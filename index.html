@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Favicon — paste anywhere inside <head> -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231A6B5A'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-weight='700' font-size='20' fill='white'>S</text></svg>">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7B7NDTKEL"></script>
   <script>
@@ -13,48 +15,159 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Samie Vargas — Engagement Manager &amp; Operations Leader</title>
   <meta name="description" content="Samie Vargas — Engagement Manager and Operations Leader based in Austin, TX. 8 years enterprise ops at GLG, Google Data Analytics certified, GA4 certified.">
+    <!-- OG:Image -->
+  <meta property="og:title" content="Samie Vargas — Engagement Manager &amp; Operations Leader">
+  <meta property="og:description" content="8+ years enterprise ops at GLG. Google Data Analytics &amp; GA4 certified. Austin, TX — Remote.">
+  <meta property="og:image" content="https://samievargas.github.io/og-image.png">
+  <meta property="og:url" content="https://samievargas.github.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
-    :root{--ink:#0f0e0c;--paper:#f7f4ef;--accent:#1a6b5a;--accent-dark:#135248;--accent-light:#e8f2ef;--rule:#d4cfc7;--muted:#7a7570;--tag-bg:#e8f2ef;--tag-fg:#1a6b5a;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;--mono:'DM Mono',monospace}
+    :root{
+      --ink:#0f0e0c;--paper:#f7f4ef;--accent:#1a6b5a;--accent-dark:#135248;
+      --accent-light:#e8f2ef;--rule:#d4cfc7;--muted:#7a7570;
+      --tag-bg:#e8f2ef;--tag-fg:#1a6b5a;
+      --serif:'Playfair Display',Georgia,serif;
+      --sans:'DM Sans',sans-serif;
+      --mono:'DM Mono',monospace;
+    }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;font-weight:300;-webkit-font-smoothing:antialiased}
     a{color:inherit;text-decoration:none}
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(247,244,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+
+    /* ── SCROLL PROGRESS BAR ─────────────────────────────────────────── */
+    #progress-bar{
+      position:fixed;top:0;left:0;z-index:200;height:3px;width:0%;
+      background:linear-gradient(to right,var(--accent),#6bc4ac);
+      transition:width .1s linear;
+    }
+
+    /* ── BACK TO TOP ─────────────────────────────────────────────────── */
+    #back-top{
+      position:fixed;bottom:2rem;right:2rem;z-index:99;
+      width:42px;height:42px;border-radius:50%;
+      background:var(--accent);color:#fff;
+      border:none;cursor:pointer;font-size:1.1rem;
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;transform:translateY(12px);
+      transition:opacity .3s,transform .3s;
+      pointer-events:none;
+    }
+    #back-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
+    #back-top:hover{background:var(--accent-dark)}
+
+    /* ── TOAST ───────────────────────────────────────────────────────── */
+    #toast{
+      position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);
+      z-index:200;background:var(--ink);color:#fff;
+      font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
+      padding:.55rem 1.25rem;opacity:0;transition:opacity .3s,transform .3s;
+      pointer-events:none;
+    }
+    #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    /* ── NAV ─────────────────────────────────────────────────────────── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1.25rem 3rem;
+      background:rgba(247,244,239,.92);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--rule);
+    }
     .nav-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--ink)}
     .nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center}
-    .nav-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+    .nav-links a{
+      font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--muted);transition:color .2s;position:relative;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;
+      background:var(--accent);transform:scaleX(0);transition:transform .2s;
+    }
+    .nav-links a.active,
     .nav-links a:hover{color:var(--accent)}
-    .nav-resume{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .9rem;border:1.5px solid var(--accent);color:var(--accent);transition:all .2s}
+    .nav-links a.active::after{transform:scaleX(1)}
+    .nav-resume{
+      font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+      padding:.4rem .9rem;border:1.5px solid var(--accent);color:var(--accent);transition:all .2s;
+    }
     .nav-resume:hover{background:var(--accent);color:#fff}
-    /* HERO */
+
+    /* ── HERO ────────────────────────────────────────────────────────── */
     .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:72px}
-    .hero-left{padding:8rem 4rem 6rem 3rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule)}
-    .hero-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
-    .hero-name{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.1;font-weight:700;margin-bottom:1.25rem}
+    .hero-left{
+      padding:8rem 4rem 6rem 3rem;display:flex;flex-direction:column;
+      justify-content:center;border-right:1px solid var(--rule);
+    }
+    .hero-eyebrow{
+      font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--accent);margin-bottom:1.5rem;
+    }
+    .hero-name{
+      font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.5rem);
+      line-height:1.1;font-weight:700;margin-bottom:1.25rem;
+    }
     .hero-name em{font-style:italic;color:var(--accent)}
-    .hero-tagline{font-size:1.05rem;color:var(--muted);max-width:38ch;margin-bottom:2.5rem;line-height:1.65}
+    .hero-tagline{font-size:1.05rem;color:var(--muted);max-width:38ch;margin-bottom:1.5rem;line-height:1.65}
+
+    /* Open to work badge */
+    .otw-badge{
+      display:inline-flex;align-items:center;gap:.5rem;margin-bottom:2rem;
+      font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--accent);
+    }
+    .otw-dot{
+      width:8px;height:8px;border-radius:50%;background:var(--accent);
+      animation:pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(26,107,90,.5)}70%{box-shadow:0 0 0 6px rgba(26,107,90,0)}}
+
     .hero-cta{display:flex;gap:.85rem;flex-wrap:wrap}
-    .btn{display:inline-block;padding:.65rem 1.4rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid;transition:all .2s;cursor:pointer}
+    .btn{
+      display:inline-block;padding:.65rem 1.4rem;
+      font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;
+      border:1.5px solid;transition:all .2s;cursor:pointer;
+    }
     .btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
     .btn-primary:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
     .btn-ghost{background:transparent;border-color:var(--rule);color:var(--ink)}
     .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-    .hero-right{padding:8rem 3rem 6rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:2rem}
+
+    .hero-right{
+      padding:8rem 3rem 6rem 4rem;display:flex;flex-direction:column;
+      justify-content:center;gap:2rem;
+    }
     .stat-block{border-left:3px solid var(--accent);padding-left:1.5rem}
-    .stat-number{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--ink);line-height:1;margin-bottom:.3rem}
+    .stat-number{
+      font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--ink);
+      line-height:1;margin-bottom:.3rem;
+    }
     .stat-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-    /* SECTION BASE */
+
+    /* ── SECTION BASE ────────────────────────────────────────────────── */
     .sw{padding:6rem 3rem;max-width:1100px;margin:0 auto}
     .swf{padding:6rem 0}
     .swf .inner{max-width:1100px;margin:0 auto;padding:0 3rem}
-    .sh{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3.5rem;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
+    .sh{
+      display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3.5rem;
+      padding-bottom:1rem;border-bottom:1px solid var(--rule);
+    }
     .sl{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);flex-shrink:0}
     .st{font-family:var(--serif);font-size:2rem;font-weight:700}
-    /* EXPERIENCE */
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────────────── */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:.1s}
+    .reveal-delay-2{transition-delay:.2s}
+    .reveal-delay-3{transition-delay:.3s}
+
+    /* ── EXPERIENCE ──────────────────────────────────────────────────── */
     .exp-co-row{display:grid;grid-template-columns:220px 1fr;gap:0 3rem}
     .exp-co-name{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--accent);margin-bottom:.25rem}
     .exp-co-meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.8}
@@ -69,7 +182,8 @@
     .exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:.75rem}
     .exp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
     .exp-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted);border:1px solid var(--rule);padding:.2rem .55rem}
-    /* PROJECTS */
+
+    /* ── PROJECTS ────────────────────────────────────────────────────── */
     .project-featured{border:1px solid var(--rule);margin-bottom:2px;transition:border-color .25s}
     .project-featured:hover{border-color:var(--accent)}
     .pf-embed{width:100%;aspect-ratio:16/9;background:var(--accent-light)}
@@ -81,7 +195,11 @@
     .pdesc{font-size:.875rem;color:var(--muted);line-height:1.65}
     .pmeta{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:1rem}
     .ppill{font-family:var(--mono);font-size:.65rem;letter-spacing:.06em;color:var(--muted);border:1px solid var(--rule);padding:.2rem .55rem}
-    .plink{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:.5rem 1rem;border:1.5px solid var(--accent);transition:all .2s;white-space:nowrap;display:inline-block;align-self:flex-start}
+    .plink{
+      font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--accent);padding:.5rem 1rem;border:1.5px solid var(--accent);
+      transition:all .2s;white-space:nowrap;display:inline-block;align-self:flex-start;
+    }
     .plink:hover{background:var(--accent);color:#fff}
     .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px;margin-top:2px}
     .pcard{background:#fff;border:1px solid var(--rule);transition:all .25s;display:flex;flex-direction:column}
@@ -90,38 +208,56 @@
     .pcbody{padding:1.75rem 2rem 2rem;flex:1;display:flex;flex-direction:column;gap:.6rem}
     .parrow{font-size:1.1rem;color:var(--accent);margin-top:auto;align-self:flex-end;opacity:0;transition:opacity .2s}
     .pcard:hover .parrow{opacity:1}
-    /* CAROUSEL */
+
+    /* ── CAROUSEL ────────────────────────────────────────────────────── */
     .carousel{position:relative;overflow:hidden;background:#f0ede8}
     .c-track{display:flex;transition:transform .35s ease}
     .c-slide{min-width:100%;position:relative}
     .c-slide img{width:100%;height:200px;object-fit:cover;object-position:top;display:block}
     .c-slide a{display:block;cursor:pointer}
-    .c-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(247,244,239,.9);border:1px solid var(--rule);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;color:var(--ink);z-index:2;transition:background .2s}
+    .c-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      background:rgba(247,244,239,.9);border:1px solid var(--rule);
+      width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;font-size:.8rem;color:var(--ink);z-index:2;transition:background .2s;
+    }
     .c-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
     .c-prev{left:8px}.c-next{right:8px}
     .c-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
     .c-dot{width:6px;height:6px;border-radius:50%;background:rgba(15,14,12,.25);cursor:pointer;transition:background .2s}
     .c-dot.on{background:var(--accent)}
-    .c-lbl{position:absolute;bottom:8px;right:10px;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(15,14,12,.5);background:rgba(247,244,239,.8);padding:.15rem .4rem}
-    /* SKILLS */
+    .c-lbl{
+      position:absolute;bottom:8px;right:10px;
+      font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;
+      color:rgba(15,14,12,.5);background:rgba(247,244,239,.8);padding:.15rem .4rem;
+    }
+
+    /* ── SKILLS ──────────────────────────────────────────────────────── */
     .sg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:2rem}
     .sg h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
     .slist{list-style:none;display:flex;flex-direction:column;gap:.3rem}
     .slist li{font-size:.85rem;color:var(--ink);padding:.3rem 0;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:.5rem}
     .slist li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0}
     .snote{font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;color:var(--muted);margin-left:auto}
-    /* CERTS */
+
+    /* ── CERTS ───────────────────────────────────────────────────────── */
     .certs{display:flex;flex-direction:column;gap:1.25rem}
-    .cert-row{display:grid;grid-template-columns:1fr auto;align-items:start;gap:2rem;padding:1.4rem 1.5rem;border:1px solid var(--rule);transition:border-color .2s}
+    .cert-row{
+      display:grid;grid-template-columns:1fr auto;align-items:start;gap:2rem;
+      padding:1.4rem 1.5rem;border:1px solid var(--rule);transition:border-color .2s;
+    }
     .cert-row:hover{border-color:var(--accent)}
     .cname{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:.25rem}
     .ciss{font-size:.82rem;color:var(--muted);font-family:var(--mono)}
-    .ciss a{color:var(--accent)}
-    .ciss a:hover{text-decoration:underline}
-    .cst{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .75rem;flex-shrink:0;white-space:nowrap}
+    .ciss a{color:var(--accent)}.ciss a:hover{text-decoration:underline}
+    .cst{
+      font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+      padding:.3rem .75rem;flex-shrink:0;white-space:nowrap;
+    }
     .cst.done{background:var(--accent);color:#fff}
     .cst.prog{border:1.5px solid var(--accent);color:var(--accent)}
-    /* BUILDING */
+
+    /* ── CURRENTLY BUILDING ──────────────────────────────────────────── */
     .bld-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
     .bld-card{border:1px solid var(--rule);padding:1.5rem;display:flex;flex-direction:column;gap:.6rem;background:#fff;transition:border-color .2s}
     .bld-card:hover{border-color:var(--accent)}
@@ -132,7 +268,8 @@
     @keyframes pa{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
     .btitle{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.3}
     .bdesc{font-size:.83rem;color:var(--muted);line-height:1.6}
-    /* OBSERVATIONS */
+
+    /* ── OBSERVATIONS ────────────────────────────────────────────────── */
     .obs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
     .obs-card{border:1px solid rgba(255,255,255,.1);padding:2rem;transition:border-color .2s,background .2s}
     .obs-card:hover{border-color:#6bc4ac;background:rgba(255,255,255,.04)}
@@ -143,9 +280,15 @@
     .obs-body em{font-style:italic}
     .obs-src{font-family:var(--mono);font-size:.65rem;letter-spacing:.06em;color:rgba(247,244,239,.3);margin-top:1.25rem}
     .obs-src a{color:#6bc4ac}.obs-src a:hover{text-decoration:underline}
+    .obs-read{
+      display:inline-block;margin-top:1rem;
+      font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+      color:#6bc4ac;border:1px solid rgba(107,196,172,.3);padding:.25rem .65rem;
+    }
     .obs-ph{border:1px dashed rgba(255,255,255,.12);padding:2rem;display:flex;align-items:center;justify-content:center}
     .obs-ph span{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,244,239,.2)}
-    /* ABOUT */
+
+    /* ── ABOUT ───────────────────────────────────────────────────────── */
     .about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:5rem;align-items:start}
     .at p{font-size:1rem;color:rgba(247,244,239,.75);margin-bottom:1.25rem;line-height:1.8}
     .at p strong{color:var(--paper);font-weight:500}
@@ -153,29 +296,45 @@
     .qf{padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,.1)}
     .qfl{font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#6bc4ac;margin-bottom:.25rem}
     .qfv{font-size:.875rem;color:rgba(247,244,239,.8)}
-    /* CONTACT */
+
+    /* ── CONTACT ─────────────────────────────────────────────────────── */
     .cg{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
     .ch{font-family:var(--serif);font-size:1.8rem;line-height:1.3;margin-bottom:1rem}
     .ch em{font-style:italic;color:var(--accent)}
     .cs{font-size:.875rem;color:var(--muted);margin-bottom:2rem;line-height:1.6}
     .cl{display:flex;flex-direction:column;gap:.75rem}
-    .clink{display:flex;align-items:center;gap:1rem;color:var(--ink);font-size:.875rem;padding:.85rem 1.25rem;border:1px solid var(--rule);transition:all .2s}
+    .clink{
+      display:flex;align-items:center;gap:1rem;color:var(--ink);font-size:.875rem;
+      padding:.85rem 1.25rem;border:1px solid var(--rule);transition:all .2s;
+    }
     .clink:hover{border-color:var(--accent);background:var(--accent-light);color:var(--accent)}
     .cll{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:80px}
-    /* FOOTER */
-    footer{padding:1.75rem 3rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+    .copy-hint{
+      font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--muted);margin-left:auto;opacity:0;transition:opacity .2s;
+    }
+    .clink:hover .copy-hint{opacity:1}
+
+    /* ── FOOTER ──────────────────────────────────────────────────────── */
+    footer{
+      padding:1.75rem 3rem;border-top:1px solid var(--rule);
+      display:flex;justify-content:space-between;align-items:center;
+    }
     footer p{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
-    /* ANIMATIONS */
+
+    /* ── ANIMATIONS ──────────────────────────────────────────────────── */
     @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
     .hero-eyebrow{animation:fadeUp .6s ease both}
     .hero-name{animation:fadeUp .6s .1s ease both}
     .hero-tagline{animation:fadeUp .6s .2s ease both}
+    .otw-badge{animation:fadeUp .6s .25s ease both}
     .hero-cta{animation:fadeUp .6s .3s ease both}
     .stat-block{animation:fadeUp .6s .35s ease both}
     .stat-block:nth-child(2){animation-delay:.45s}
     .stat-block:nth-child(3){animation-delay:.55s}
     .stat-block:nth-child(4){animation-delay:.65s}
-    /* RESPONSIVE */
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────────── */
     @media(max-width:900px){
       nav{padding:1rem 1.5rem}
       .nav-links li:not(:last-child):not(:nth-last-child(2)){display:none}
@@ -189,28 +348,41 @@
       .about-grid,.cg{grid-template-columns:1fr;gap:2.5rem}
       .pf-body{grid-template-columns:1fr}
       footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
+      #back-top{bottom:1.5rem;right:1.5rem}
     }
   </style>
 </head>
 <body>
 
+<!-- ── PROGRESS BAR ───────────────────────────────────────────────────── -->
+<div id="progress-bar"></div>
+
+<!-- ── BACK TO TOP ────────────────────────────────────────────────────── -->
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ── TOAST ──────────────────────────────────────────────────────────── -->
+<div id="toast">Email copied to clipboard</div>
+
+<!-- ── NAV ────────────────────────────────────────────────────────────── -->
 <nav>
   <a class="nav-name" href="#">Samie Vargas</a>
   <ul class="nav-links">
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#experience" data-nav="experience">Experience</a></li>
+    <li><a href="#work" data-nav="work">Work</a></li>
+    <li><a href="#skills" data-nav="skills">Skills</a></li>
+    <li><a href="#about" data-nav="about">About</a></li>
+    <li><a href="#contact" data-nav="contact">Contact</a></li>
     <li><a class="nav-resume" href="YOUR_RESUME_PDF_LINK_HERE" target="_blank" rel="noopener">Resume ↓</a></li>
   </ul>
 </nav>
 
+<!-- ── HERO ───────────────────────────────────────────────────────────── -->
 <header class="hero">
   <div class="hero-left">
     <p class="hero-eyebrow">Engagement Manager &amp; Operations Leader — Austin, TX (Remote)</p>
     <h1 class="hero-name">Samie<br><em>Vargas</em></h1>
     <p class="hero-tagline">Eight years building the operational infrastructure that makes enterprise client relationships work. Now layering in data analytics to close the gap between what the numbers say and what the business does next.</p>
+    <div class="otw-badge"><span class="otw-dot"></span>Open to new roles</div>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#work">See My Work</a>
       <a class="btn btn-ghost" href="https://linkedin.com/in/samievargas12" target="_blank" rel="noopener">LinkedIn</a>
@@ -238,20 +410,21 @@
   </div>
 </header>
 
-<!-- EXPERIENCE -->
+
+<!-- ── EXPERIENCE ──────────────────────────────────────────────────────── -->
 <section id="experience" class="swf" style="background:#fff;">
   <div class="inner">
-    <div class="sh">
+    <div class="sh reveal">
       <span class="sl">01 — Career</span>
       <h2 class="st">Work Experience</h2>
     </div>
     <div class="exp-co-row">
-      <div class="exp-co-label">
+      <div class="exp-co-label reveal">
         <div class="exp-co-name">GLG</div>
         <div class="exp-co-meta">Austin, TX · Remote<br>Jul 2018 – Present<br>3 Roles · 8 Years</div>
       </div>
       <div class="exp-roles">
-        <div class="exp-role">
+        <div class="exp-role reveal">
           <div class="exp-rh">
             <div class="exp-rt">Senior Manager, Service</div>
             <div class="exp-dates">Oct 2023 – Present</div>
@@ -267,7 +440,7 @@
             <span class="exp-tag">Team Leadership</span><span class="exp-tag">Salesforce</span><span class="exp-tag">Revenue Growth</span><span class="exp-tag">AI Workflows</span><span class="exp-tag">SOW Management</span>
           </div>
         </div>
-        <div class="exp-role">
+        <div class="exp-role reveal">
           <div class="exp-rh">
             <div class="exp-rt">Manager, Client Solutions — Team Lead</div>
             <div class="exp-dates">Mar 2022 – Oct 2023</div>
@@ -282,7 +455,7 @@
             <span class="exp-tag">CoE Design</span><span class="exp-tag">Playbook Development</span><span class="exp-tag">Renewal Forecasting</span><span class="exp-tag">Cross-functional Alignment</span>
           </div>
         </div>
-        <div class="exp-role">
+        <div class="exp-role reveal">
           <div class="exp-rh">
             <div class="exp-rt">Associate → Senior Client Solutions Manager</div>
             <div class="exp-dates">Jul 2018 – Feb 2022</div>
@@ -301,16 +474,17 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
+
+<!-- ── PROJECTS ────────────────────────────────────────────────────────── -->
 <section id="work" class="swf" style="background:var(--paper);">
   <div class="inner">
-    <div class="sh">
+    <div class="sh reveal">
       <span class="sl">02 — Portfolio</span>
       <h2 class="st">Selected Work</h2>
     </div>
 
     <!-- Featured GDA Capstone -->
-    <div class="project-featured">
+    <div class="project-featured reveal">
       <div class="pf-embed">
         <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRsL1gK9sbwSSWGcXKwWrtsRjn_20h1qjh8Qv0mBmYtyPDf1hTv-7I1DsbQFXXmqYxjamyaZ5aXqgZD/pubembed?start=false&loop=false&delayms=3000" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe>
       </div>
@@ -323,20 +497,18 @@
             <span class="ppill">Python (pandas · matplotlib)</span><span class="ppill">BigQuery SQL</span><span class="ppill">EDA</span><span class="ppill">Behavioral Analysis</span><span class="ppill">Looker Studio</span><span class="ppill">Google GDA Cert</span>
           </div>
         </div>
-        <a class="plink" href="https://www.kaggle.com" target="_blank" rel="noopener">View on Kaggle →</a>
+        <a class="plink" href="https://www.kaggle.com/samievargas" target="_blank" rel="noopener">View on Kaggle →</a>
       </div>
     </div>
 
-    <!-- App Cards -->
     <div class="pgrid">
-
       <!-- Life in Pixels -->
-      <div class="pcard">
+      <div class="pcard reveal">
         <div class="carousel" data-carousel>
           <div class="c-track">
             <div class="c-slide">
               <a href="https://script.google.com/macros/s/AKfycbwUVS3iL7JTO-XR93eCRDRY_lcFOdWPpa9VIB1hFLatsgtXT9QRfPtgoRJlTstkDis/exec" target="_blank" rel="noopener">
-                <img src="Pixels-App.png" alt="Life in Pixels app interface" loading="lazy">
+                <img src="https://raw.githubusercontent.com/SamieVargas/SamieVargas/main/Pixels-App.png" alt="Life in Pixels app interface" loading="lazy" onerror="this.parentElement.style.height='200px';this.parentElement.style.background='var(--accent-light)';this.remove()">
               </a>
               <span class="c-lbl">Live App</span>
             </div>
@@ -345,7 +517,7 @@
         <div class="pcbody">
           <span class="ptag">Self-Built · Google Apps Script</span>
           <div class="ptitle">Life in Pixels — Mood &amp; Habit Tracker</div>
-          <p class="pdesc">A daily mood and habit logger built in Google Apps Script, backed by Google Sheets. Tracks mood on a 1–5 scale alongside activity and habit data over time. The data from this app produced the walk/mood finding in the Observations section.</p>
+          <p class="pdesc">A daily mood and habit logger built in Google Apps Script, backed by Google Sheets. Tracks mood on a 1–5 scale alongside activity and habit data over time. The data from this app produced the walk/mood finding in Observations.</p>
           <div class="pmeta">
             <span class="ppill">Google Apps Script</span><span class="ppill">Google Sheets</span><span class="ppill">Behavioral Data</span><span class="ppill">Personal Analytics</span>
           </div>
@@ -354,17 +526,17 @@
       </div>
 
       <!-- Journal -->
-      <div class="pcard">
+      <div class="pcard reveal reveal-delay-1">
         <div class="carousel" data-carousel>
           <div class="c-track">
             <div class="c-slide">
               <a href="https://script.google.com/macros/s/AKfycbwBsldN89wdMdiVlD9xWINYvm30Gayaj0eb0N4nQeLsNmG98PHd7QnngjQSGl2l91Wq/exec" target="_blank" rel="noopener">
-                <img src="Journal-App.png" alt="Journal app interface" loading="lazy">
+                <img src="https://raw.githubusercontent.com/SamieVargas/SamieVargas/main/Journal-App.png" alt="Journal app interface" loading="lazy" onerror="this.parentElement.style.height='200px';this.parentElement.style.background='var(--accent-light)';this.remove()">
               </a>
               <span class="c-lbl">Live App</span>
             </div>
             <div class="c-slide">
-              <img src="Journal.png" alt="Journal output in Google Docs" loading="lazy" style="cursor:default;">
+              <img src="https://raw.githubusercontent.com/SamieVargas/SamieVargas/main/Journal.png" alt="Journal output in Google Docs" loading="lazy" style="cursor:default;" onerror="this.parentElement.style.height='200px';this.parentElement.style.background='var(--accent-light)';this.remove()">
               <span class="c-lbl">Output View</span>
             </div>
           </div>
@@ -387,7 +559,7 @@
       </div>
 
       <!-- Coming Soon: Churn -->
-      <div class="pcard dim">
+      <div class="pcard dim reveal reveal-delay-2">
         <div style="height:200px;background:#f0ede8;display:flex;align-items:center;justify-content:center;">
           <span style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">In Progress</span>
         </div>
@@ -400,34 +572,34 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
+
+<!-- ── SKILLS ──────────────────────────────────────────────────────────── -->
 <section id="skills" class="sw">
-  <div class="sh">
+  <div class="sh reveal">
     <span class="sl">03 — Capabilities</span>
     <h2 class="st">Skills &amp; Tools</h2>
   </div>
   <div class="sg-grid">
-    <div class="sg">
+    <div class="sg reveal">
       <h3>Analytics</h3>
       <ul class="slist">
         <li>Python <span class="snote">pandas · matplotlib</span></li>
         <li>SQL / BigQuery</li>
-        <li>Google Analytics 4 <span class="snote">certified</span></li>
+        <li>Google Analytics 4 <span class="snote">certified ✓</span></li>
         <li>Google Looker Studio</li>
         <li>Exploratory Data Analysis</li>
         <li>Behavioral Pattern Analysis</li>
         <li>Data Visualization</li>
       </ul>
     </div>
-    <div class="sg">
+    <div class="sg reveal reveal-delay-1">
       <h3>Tools &amp; Platforms</h3>
       <ul class="slist">
-        <li>Google Apps Script <span class="snote">built apps</span></li>
+        <li>Google Apps Script <span class="snote">built 2 apps</span></li>
         <li>Salesforce <span class="snote">cert in progress</span></li>
         <li>Power BI</li>
         <li>Tableau <span class="snote">learning</span></li>
@@ -435,7 +607,7 @@
         <li>Kaggle Notebooks</li>
       </ul>
     </div>
-    <div class="sg">
+    <div class="sg reveal reveal-delay-2">
       <h3>Operations</h3>
       <ul class="slist">
         <li>Engagement Lifecycle Mgmt</li>
@@ -447,16 +619,14 @@
         <li>Agile / Scrum <span class="snote">PSM I</span></li>
       </ul>
     </div>
-    <div class="sg">
+    <div class="sg reveal reveal-delay-3">
       <h3>AI &amp; Productivity</h3>
       <ul class="slist">
         <li>Claude <span class="snote">daily</span></li>
-        <li>ChatGPT</li>
-        <li>Gemini</li>
-        <li>Microsoft Copilot</li>
+        <li>ChatGPT · Gemini · Copilot</li>
         <li>In-house LLM workflows</li>
         <li>Prompt Engineering</li>
-        <li>Notion · Trello · Jira</li>
+        <li>Notion · Jira · Asana</li>
       </ul>
     </div>
   </div>
@@ -464,56 +634,56 @@
   <div style="margin-top:4rem;">
     <h3 style="font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;">Credentials</h3>
     <div class="certs">
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div>
           <div class="cname">Google Analytics Certification (GA4)</div>
           <div class="ciss">Google · Skillshop · Issued May 21, 2026 · ID: 182987115 · <a href="https://skillshop.credential.net/da7f2a2d-1e02-4267-aaca-d6bfbfc3036e#acc.5RV2vAUu" target="_blank" rel="noopener">Verify ↗</a> · <a href="https://www.credly.com/badges/cdf8ff04-0b23-435a-a53d-3c46ab172885" target="_blank" rel="noopener">Credly ↗</a></div>
         </div>
         <span class="cst done">Complete</span>
       </div>
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div>
           <div class="cname">Google Data Analytics Certificate</div>
           <div class="ciss">Google / Coursera · May 2026 · <a href="https://coursera.org/verify/professional-cert/HRA1SDNA2WE5" target="_blank" rel="noopener">Verify ↗</a></div>
         </div>
         <span class="cst done">Complete</span>
       </div>
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div>
           <div class="cname">Google Advanced Data Analytics Certificate</div>
           <div class="ciss">Google / Coursera · In Progress · Est. Q3 2026</div>
         </div>
         <span class="cst prog">In Progress</span>
       </div>
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div>
           <div class="cname">PSM I — Professional Scrum Master</div>
           <div class="ciss">Scrum.org · May 2026 · <a href="https://scrum.org/certificates/1318010" target="_blank" rel="noopener">Verify ↗</a></div>
         </div>
         <span class="cst done">Complete</span>
       </div>
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div>
           <div class="cname">Fundamentals of Predictive Project Management</div>
           <div class="ciss">Project Management Institute · 2026</div>
         </div>
         <span class="cst done">Complete</span>
       </div>
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div>
           <div class="cname">Six Sigma White Belt</div>
           <div class="ciss">2026</div>
         </div>
         <span class="cst done">Complete</span>
       </div>
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div>
           <div class="cname">Salesforce Administrator Certification</div>
           <div class="ciss">Salesforce / Trailhead · In Progress</div>
         </div>
         <span class="cst prog">In Progress</span>
       </div>
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div>
           <div class="cname">dbt Fundamentals</div>
           <div class="ciss">dbt Labs · In Progress</div>
@@ -524,25 +694,26 @@
   </div>
 </section>
 
-<!-- CURRENTLY BUILDING -->
+
+<!-- ── CURRENTLY BUILDING ──────────────────────────────────────────────── -->
 <section id="building" class="swf" style="background:#fff;">
   <div class="inner">
-    <div class="sh">
+    <div class="sh reveal">
       <span class="sl">04 — Active</span>
       <h2 class="st">Currently Building</h2>
     </div>
     <div class="bld-grid">
-      <div class="bld-card">
+      <div class="bld-card reveal">
         <div class="bst inp"><span class="pulse"></span>In Progress</div>
         <div class="btitle">Google Advanced Data Analytics Certificate</div>
         <p class="bdesc">Advanced capstone extending the GDA program — regression, classification, deeper Python. Coursera / Google. Est. Q3 2026.</p>
       </div>
-      <div class="bld-card">
+      <div class="bld-card reveal reveal-delay-1">
         <div class="bst inp"><span class="pulse"></span>In Progress</div>
         <div class="btitle">Customer Churn Analysis — Kaggle</div>
         <p class="bdesc">IBM Telco dataset. Behavioral and contract signals predicting churn. Python, pandas, sklearn. Second published project — different domain, same analytical lens.</p>
       </div>
-      <div class="bld-card">
+      <div class="bld-card reveal reveal-delay-2">
         <div class="bst lnch"><span class="pulse"></span>Launching</div>
         <div class="btitle">Freelance Analytics — Upwork</div>
         <p class="bdesc">GA4 audits, Looker Studio dashboards, and ops data analysis for small teams. GA4 certified May 2026. First proposals live.</p>
@@ -551,42 +722,44 @@
   </div>
 </section>
 
-<!-- OBSERVATIONS -->
+
+<!-- ── OBSERVATIONS ────────────────────────────────────────────────────── -->
 <section id="observations" class="swf" style="background:var(--ink);">
   <div class="inner">
-    <div class="sh" style="border-color:rgba(255,255,255,.1);">
+    <div class="sh reveal" style="border-color:rgba(255,255,255,.1);">
       <span class="sl" style="color:#6bc4ac;">05 — Writing</span>
       <h2 class="st" style="color:var(--paper);">Observations</h2>
     </div>
     <p style="font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,244,239,.3);margin-top:-2rem;margin-bottom:2.5rem;">Notes from the data I live in</p>
     <div class="obs-grid">
-      <article class="obs-card">
+      <article class="obs-card reveal">
         <div class="obs-tag">May 2026 · Life in Pixels · Behavioral Data</div>
         <h3 class="obs-title">A Walk Is Worth +0.5 — What My Own Mood Data Showed Me</h3>
         <p class="obs-body">I've been logging my daily mood on a 1–5 scale for months using a tracker I built myself. When I analyzed the data, one pattern held consistently: on days I went for a walk, my mood score was on average <strong>+0.5 points higher</strong> — both that same day <em>and</em> the following morning. Not just a same-day lift. A carry-over effect into the next day.</p>
         <p class="obs-body" style="margin-top:.75rem;">The more interesting question isn't whether it holds at scale — it's what that lag says about recovery and mood regulation. Sleep, stress, and movement don't reset cleanly at midnight. That's the kind of thing product teams building wellness features tend to flatten out of their models.</p>
         <div class="obs-src">Tracked via <a href="https://script.google.com/macros/s/AKfycbwUVS3iL7JTO-XR93eCRDRY_lcFOdWPpa9VIB1hFLatsgtXT9QRfPtgoRJlTstkDis/exec" target="_blank" rel="noopener">Life in Pixels</a> — self-built mood &amp; habit tracker.</div>
       </article>
-      <div class="obs-ph"><span>Next observation — coming soon</span></div>
+      <div class="obs-ph reveal reveal-delay-1"><span>Next observation — coming soon</span></div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+
+<!-- ── ABOUT ────────────────────────────────────────────────────────────── -->
 <section id="about" class="swf" style="background:var(--ink);border-top:1px solid rgba(255,255,255,.07);">
   <div class="inner">
-    <div class="sh" style="border-color:rgba(255,255,255,.1);">
+    <div class="sh reveal" style="border-color:rgba(255,255,255,.1);">
       <span class="sl" style="color:#6bc4ac;">06 — Background</span>
       <h2 class="st" style="color:var(--paper);">About</h2>
     </div>
     <div class="about-grid">
-      <div class="at">
+      <div class="at reveal">
         <p>I've spent 8 years at <strong>GLG</strong> — a PE-backed global expert network — managing a $14M+ annual book of business across the advisory and professional services organizations that shape how enterprises make decisions.</p>
         <p>Most of what I've built didn't exist before I built it. Health scoring systems, renewal pipeline architecture, Salesforce-based portfolio dashboards, team playbooks, CoE design. I operate at the intersection of client-facing delivery and operational infrastructure — the place where <em>data becomes decisions</em>.</p>
         <p>I'm now deepening the analytical side of that work. The part of the job I've always found most energizing isn't the account management — it's the discovery phase: sitting with messy data, finding patterns before you know what you're looking for, and surfacing the signal that changes what the business does next.</p>
         <p>My GDA capstone — behavioral dropout prediction on longitudinal wearable data — was the first time I got to do that work from scratch. <strong>It was genuinely fun.</strong> I'm building toward more of it.</p>
       </div>
-      <div>
+      <div class="reveal reveal-delay-1">
         <div class="qf"><div class="qfl">Currently</div><div class="qfv">Senior Manager, Service @ GLG</div></div>
         <div class="qf"><div class="qfl">Location</div><div class="qfv">Austin, TX — Remote</div></div>
         <div class="qf"><div class="qfl">Education</div><div class="qfv">B.S. Biochemistry · UT Austin · 2018</div></div>
@@ -598,23 +771,24 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+
+<!-- ── CONTACT ──────────────────────────────────────────────────────────── -->
 <section id="contact" class="sw">
-  <div class="sh">
+  <div class="sh reveal">
     <span class="sl">07 — Get in Touch</span>
     <h2 class="st">Contact</h2>
   </div>
   <div class="cg">
-    <div>
+    <div class="reveal">
       <h3 class="ch">Let's work on something <em>worth discovering.</em></h3>
       <p class="cs">Open to full-time remote roles in engagement management, CS operations, or business strategy at data-driven companies. Also available for freelance data analysis and GA4 audit projects.</p>
       <a class="btn btn-primary" href="mailto:sammisnv@gmail.com">Send an Email</a>
     </div>
-    <div class="cl">
-      <a class="clink" href="mailto:sammisnv@gmail.com"><span class="cll">Email</span>sammisnv@gmail.com</a>
+    <div class="cl reveal reveal-delay-1">
+      <a class="clink" href="#" id="copy-email"><span class="cll">Email</span>sammisnv@gmail.com<span class="copy-hint">click to copy</span></a>
       <a class="clink" href="https://www.linkedin.com/in/samievargas12/" target="_blank" rel="noopener"><span class="cll">LinkedIn</span>linkedin.com/in/samievargas12</a>
       <a class="clink" href="https://github.com/SamieVargas" target="_blank" rel="noopener"><span class="cll">GitHub</span>github.com/SamieVargas</a>
-      <a class="clink" href="https://www.kaggle.com" target="_blank" rel="noopener"><span class="cll">Kaggle</span>Notebooks &amp; Projects →</a>
+      <a class="clink" href="https://www.kaggle.com/samievargas" target="_blank" rel="noopener"><span class="cll">Kaggle</span>kaggle.com/samievargas →</a>
       <a class="clink" href="YOUR_RESUME_PDF_LINK_HERE" target="_blank" rel="noopener"><span class="cll">Resume</span>Download PDF ↓</a>
     </div>
   </div>
@@ -625,19 +799,88 @@
   <p>Austin, TX · Remote · sammisnv@gmail.com</p>
 </footer>
 
+
 <script>
-document.querySelectorAll('[data-carousel]').forEach(function(c){
-  var track=c.querySelector('.c-track');
-  var slides=c.querySelectorAll('.c-slide');
-  var dots=c.querySelectorAll('.c-dot');
-  var prev=c.querySelector('.c-prev');
-  var next=c.querySelector('.c-next');
-  if(slides.length<2)return;
-  var cur=0;
-  function go(n){cur=(n+slides.length)%slides.length;track.style.transform='translateX(-'+(cur*100)+'%)';dots.forEach(function(d,i){d.classList.toggle('on',i===cur)});}
-  if(prev)prev.addEventListener('click',function(e){e.preventDefault();go(cur-1);});
-  if(next)next.addEventListener('click',function(e){e.preventDefault();go(cur+1);});
-  dots.forEach(function(d,i){d.addEventListener('click',function(){go(i);});});
+// ── SCROLL PROGRESS BAR ─────────────────────────────────────────────────
+var bar = document.getElementById('progress-bar');
+function updateProgress() {
+  var scrolled = window.scrollY;
+  var total = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = (scrolled / total * 100) + '%';
+}
+
+// ── BACK TO TOP ─────────────────────────────────────────────────────────
+var backTop = document.getElementById('back-top');
+function updateBackTop() {
+  if (window.scrollY > 400) {
+    backTop.classList.add('show');
+  } else {
+    backTop.classList.remove('show');
+  }
+}
+
+window.addEventListener('scroll', function() {
+  updateProgress();
+  updateBackTop();
+}, { passive: true });
+
+// ── SCROLL REVEAL ───────────────────────────────────────────────────────
+var revealEls = document.querySelectorAll('.reveal');
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+// ── ACTIVE NAV HIGHLIGHTING ─────────────────────────────────────────────
+var sections = document.querySelectorAll('section[id], header.hero');
+var navLinks = document.querySelectorAll('.nav-links a[data-nav]');
+var navObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var id = entry.target.id;
+      navLinks.forEach(function(link) {
+        link.classList.toggle('active', link.dataset.nav === id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(function(s) { navObserver.observe(s); });
+
+// ── COPY EMAIL ──────────────────────────────────────────────────────────
+var copyEmailBtn = document.getElementById('copy-email');
+var toast = document.getElementById('toast');
+var toastTimer;
+copyEmailBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  navigator.clipboard.writeText('sammisnv@gmail.com').then(function() {
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() { toast.classList.remove('show'); }, 2200);
+  });
+});
+
+// ── CAROUSEL ────────────────────────────────────────────────────────────
+document.querySelectorAll('[data-carousel]').forEach(function(c) {
+  var track = c.querySelector('.c-track');
+  var slides = c.querySelectorAll('.c-slide');
+  var dots = c.querySelectorAll('.c-dot');
+  var prev = c.querySelector('.c-prev');
+  var next = c.querySelector('.c-next');
+  if (slides.length < 2) return;
+  var cur = 0;
+  function go(n) {
+    cur = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('on', i === cur); });
+  }
+  if (prev) prev.addEventListener('click', function(e) { e.preventDefault(); go(cur - 1); });
+  if (next) next.addEventListener('click', function(e) { e.preventDefault(); go(cur + 1); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); }); });
 });
 </script>
 </body>
