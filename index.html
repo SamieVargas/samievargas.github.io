@@ -2,562 +2,220 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K7B7NDTKEL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K7B7NDTKEL');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samantha Vargas — Data Analyst & Operations Leader</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0e0c;
-    --paper: #f7f4ef;
-    --accent: #1a6b5a;
-    --accent-light: #e8f2ef;
-    --rule: #d4cfc7;
-    --muted: #7a7570;
-    --tag-bg: #e8f2ef;
-    --tag-fg: #1a6b5a;
-    --serif: 'Playfair Display', Georgia, serif;
-    --sans: 'DM Sans', sans-serif;
-    --mono: 'DM Mono', monospace;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── NAV ───────────────────────────────────────────────────────── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 3rem;
-    background: rgba(247,244,239,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .nav-name {
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    letter-spacing: 0.01em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex; gap: 2.5rem; list-style: none;
-  }
-
-  .nav-links a {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  /* ── HERO ──────────────────────────────────────────────────────── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 72px;
-  }
-
-  .hero-left {
-    padding: 8rem 4rem 6rem 3rem;
-    display: flex; flex-direction: column; justify-content: center;
-    border-right: 1px solid var(--rule);
-  }
-
-  .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-name {
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    line-height: 1.1;
-    font-weight: 700;
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-name em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-tagline {
-    font-size: 1.15rem;
-    color: var(--muted);
-    max-width: 36ch;
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
-  }
-
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.7rem 1.6rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1.5px solid;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-  }
-  .btn-primary:hover { background: #135248; border-color: #135248; }
-
-  .btn-ghost {
-    background: transparent;
-    border-color: var(--rule);
-    color: var(--ink);
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-  .hero-right {
-    padding: 8rem 3rem 6rem 4rem;
-    display: flex; flex-direction: column; justify-content: center;
-    gap: 2rem;
-  }
-
-  .stat-block {
-    border-left: 3px solid var(--accent);
-    padding-left: 1.5rem;
-  }
-
-  .stat-number {
-    font-family: var(--serif);
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* ── SECTION LAYOUT ────────────────────────────────────────────── */
-  section {
-    padding: 6rem 3rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    display: flex; align-items: baseline; gap: 1.5rem;
-    margin-bottom: 3.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .section-title {
-    font-family: var(--serif);
-    font-size: 2rem;
-    font-weight: 700;
-  }
-
-  /* ── WORK ──────────────────────────────────────────────────────── */
-  #work { background: #fff; max-width: 100%; padding: 6rem 0; }
-  #work .inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
-
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2px;
-    border: 1px solid var(--rule);
-  }
-
-  .project-card {
-    padding: 2.5rem;
-    background: #fff;
-    border: 1px solid transparent;
-    transition: all 0.25s;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    border: 1px solid var(--rule);
-  }
-
-  .project-card:hover {
-    background: var(--accent-light);
-    border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(26,107,90,0.1);
-  }
-
-  .project-tag {
-    font-family: var(--mono);
-    font-size: 0.67rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--tag-fg);
-    background: var(--tag-bg);
-    padding: 0.25rem 0.6rem;
-    display: inline-block;
-    align-self: flex-start;
-  }
-
-  .project-title {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  .project-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.6;
-    flex: 1;
-  }
-
-  .project-meta {
-    display: flex; gap: 0.75rem; flex-wrap: wrap;
-    margin-top: 0.5rem;
-  }
-
-  .project-pill {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-    border: 1px solid var(--rule);
-    padding: 0.2rem 0.55rem;
-  }
-
-  .project-arrow {
-    font-size: 1.1rem;
-    color: var(--accent);
-    margin-top: auto;
-    align-self: flex-end;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .project-card:hover .project-arrow { opacity: 1; }
-
-  /* ── SKILLS ────────────────────────────────────────────────────── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .skill-group h3 {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-  }
-
-  .skill-list {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 0.35rem;
-  }
-
-  .skill-list li {
-    font-size: 0.88rem;
-    color: var(--ink);
-    padding: 0.35rem 0;
-    border-bottom: 1px solid var(--rule);
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-
-  .skill-list li::before {
-    content: '';
-    width: 4px; height: 4px;
-    background: var(--accent);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  /* ── CERTS ─────────────────────────────────────────────────────── */
-  .certs-list {
-    display: flex; flex-direction: column; gap: 1.25rem;
-  }
-
-  .cert-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    gap: 2rem;
-    padding: 1.5rem;
-    border: 1px solid var(--rule);
-    transition: border-color 0.2s;
-  }
-
-  .cert-row:hover { border-color: var(--accent); }
-
-  .cert-name {
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .cert-issuer {
-    font-size: 0.83rem;
-    color: var(--muted);
-    font-family: var(--mono);
-  }
-
-  .cert-status {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.75rem;
-    flex-shrink: 0;
-  }
-
-  .cert-status.done {
-    background: var(--accent);
-    color: #fff;
-  }
-
-  .cert-status.progress {
-    border: 1.5px solid var(--accent);
-    color: var(--accent);
-  }
-
-  /* ── ABOUT ─────────────────────────────────────────────────────── */
-  #about { background: var(--ink); color: var(--paper); max-width: 100%; padding: 6rem 0; }
-  #about .inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
-  #about .section-title { color: var(--paper); }
-  #about .section-label { color: #6bc4ac; }
-  #about .section-header { border-color: rgba(255,255,255,0.1); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .about-text p {
-    font-size: 1.05rem;
-    color: rgba(247,244,239,0.8);
-    margin-bottom: 1.25rem;
-    line-height: 1.75;
-  }
-
-  .about-text p strong {
-    color: var(--paper);
-    font-weight: 500;
-  }
-
-  .client-roster {
-    border-left: 3px solid #6bc4ac;
-    padding-left: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .client-roster p {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    color: rgba(247,244,239,0.6);
-    margin-bottom: 0.4rem !important;
-  }
-
-  .about-right {}
-
-  .quick-fact {
-    padding: 1.25rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .quick-fact-label {
-    font-family: var(--mono);
-    font-size: 0.67rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #6bc4ac;
-    margin-bottom: 0.3rem;
-  }
-
-  .quick-fact-value {
-    font-size: 0.9rem;
-    color: rgba(247,244,239,0.85);
-  }
-
-  /* ── CONTACT ───────────────────────────────────────────────────── */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  .contact-headline {
-    font-family: var(--serif);
-    font-size: 1.8rem;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-  }
-
-  .contact-headline em { font-style: italic; color: var(--accent); }
-
-  .contact-sub {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 2rem;
-  }
-
-  .contact-links {
-    display: flex; flex-direction: column; gap: 0.75rem;
-  }
-
-  .contact-link {
-    display: flex; align-items: center; gap: 1rem;
-    text-decoration: none;
-    color: var(--ink);
-    font-size: 0.9rem;
-    padding: 0.85rem 1.25rem;
-    border: 1px solid var(--rule);
-    transition: all 0.2s;
-  }
-
-  .contact-link:hover {
-    border-color: var(--accent);
-    background: var(--accent-light);
-    color: var(--accent);
-  }
-
-  .contact-link-label {
-    font-family: var(--mono);
-    font-size: 0.67rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    min-width: 80px;
-  }
-
-  /* ── FOOTER ────────────────────────────────────────────────────── */
-  footer {
-    padding: 2rem 3rem;
-    border-top: 1px solid var(--rule);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-
-  footer p {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-
-  /* ── ANIMATIONS ────────────────────────────────────────────────── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
-  .hero-name    { animation: fadeUp 0.6s 0.1s ease both; }
-  .hero-tagline { animation: fadeUp 0.6s 0.2s ease both; }
-  .hero-cta     { animation: fadeUp 0.6s 0.3s ease both; }
-  .stat-block   { animation: fadeUp 0.6s 0.35s ease both; }
-  .stat-block:nth-child(2) { animation-delay: 0.45s; }
-  .stat-block:nth-child(3) { animation-delay: 0.55s; }
-
-  /* ── RESPONSIVE ────────────────────────────────────────────────── */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
-    .hero-right { padding: 3rem 1.5rem; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; }
-    section { padding: 4rem 1.5rem; }
-    #work .inner, #about .inner { padding: 0 1.5rem; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
-</style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7B7NDTKEL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K7B7NDTKEL');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samie Vargas — Engagement Manager &amp; Operations Leader</title>
+  <meta name="description" content="Samie Vargas — Engagement Manager and Operations Leader based in Austin, TX. 8 years enterprise ops at GLG, Google Data Analytics certified, GA4 certified.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#0f0e0c;--paper:#f7f4ef;--accent:#1a6b5a;--accent-dark:#135248;--accent-light:#e8f2ef;--rule:#d4cfc7;--muted:#7a7570;--tag-bg:#e8f2ef;--tag-fg:#1a6b5a;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;--mono:'DM Mono',monospace}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;font-weight:300;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(247,244,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+    .nav-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--ink)}
+    .nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center}
+    .nav-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-resume{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .9rem;border:1.5px solid var(--accent);color:var(--accent);transition:all .2s}
+    .nav-resume:hover{background:var(--accent);color:#fff}
+    /* HERO */
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:72px}
+    .hero-left{padding:8rem 4rem 6rem 3rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule)}
+    .hero-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
+    .hero-name{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.1;font-weight:700;margin-bottom:1.25rem}
+    .hero-name em{font-style:italic;color:var(--accent)}
+    .hero-tagline{font-size:1.05rem;color:var(--muted);max-width:38ch;margin-bottom:2.5rem;line-height:1.65}
+    .hero-cta{display:flex;gap:.85rem;flex-wrap:wrap}
+    .btn{display:inline-block;padding:.65rem 1.4rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid;transition:all .2s;cursor:pointer}
+    .btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+    .btn-ghost{background:transparent;border-color:var(--rule);color:var(--ink)}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+    .hero-right{padding:8rem 3rem 6rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:2rem}
+    .stat-block{border-left:3px solid var(--accent);padding-left:1.5rem}
+    .stat-number{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--ink);line-height:1;margin-bottom:.3rem}
+    .stat-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    /* SECTION BASE */
+    .sw{padding:6rem 3rem;max-width:1100px;margin:0 auto}
+    .swf{padding:6rem 0}
+    .swf .inner{max-width:1100px;margin:0 auto;padding:0 3rem}
+    .sh{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3.5rem;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
+    .sl{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);flex-shrink:0}
+    .st{font-family:var(--serif);font-size:2rem;font-weight:700}
+    /* EXPERIENCE */
+    .exp-co-row{display:grid;grid-template-columns:220px 1fr;gap:0 3rem}
+    .exp-co-name{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--accent);margin-bottom:.25rem}
+    .exp-co-meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.8}
+    .exp-roles{display:flex;flex-direction:column}
+    .exp-role{padding:1.75rem 0;border-bottom:1px solid var(--rule)}
+    .exp-role:last-child{border-bottom:none;padding-bottom:0}
+    .exp-rh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+    .exp-rt{font-family:var(--serif);font-size:1.05rem;font-weight:700}
+    .exp-dates{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .exp-bullets li{font-size:.875rem;color:var(--muted);line-height:1.65;padding-left:1.1rem;position:relative}
+    .exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:.75rem}
+    .exp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+    .exp-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted);border:1px solid var(--rule);padding:.2rem .55rem}
+    /* PROJECTS */
+    .project-featured{border:1px solid var(--rule);margin-bottom:2px;transition:border-color .25s}
+    .project-featured:hover{border-color:var(--accent)}
+    .pf-embed{width:100%;aspect-ratio:16/9;background:var(--accent-light)}
+    .pf-embed iframe{width:100%;height:100%;border:none;display:block}
+    .pf-body{padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start}
+    .ptag{font-family:var(--mono);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tag-fg);background:var(--tag-bg);padding:.25rem .6rem;display:inline-block;margin-bottom:.75rem}
+    .ptag-dim{font-family:var(--mono);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:#7a7570;background:#f0ede8;padding:.25rem .6rem;display:inline-block;margin-bottom:.75rem}
+    .ptitle{font-family:var(--serif);font-size:1.3rem;font-weight:700;line-height:1.3;margin-bottom:.6rem}
+    .pdesc{font-size:.875rem;color:var(--muted);line-height:1.65}
+    .pmeta{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:1rem}
+    .ppill{font-family:var(--mono);font-size:.65rem;letter-spacing:.06em;color:var(--muted);border:1px solid var(--rule);padding:.2rem .55rem}
+    .plink{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:.5rem 1rem;border:1.5px solid var(--accent);transition:all .2s;white-space:nowrap;display:inline-block;align-self:flex-start}
+    .plink:hover{background:var(--accent);color:#fff}
+    .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px;margin-top:2px}
+    .pcard{background:#fff;border:1px solid var(--rule);transition:all .25s;display:flex;flex-direction:column}
+    .pcard:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,107,90,.1)}
+    .pcard.dim{opacity:.5;pointer-events:none}
+    .pcbody{padding:1.75rem 2rem 2rem;flex:1;display:flex;flex-direction:column;gap:.6rem}
+    .parrow{font-size:1.1rem;color:var(--accent);margin-top:auto;align-self:flex-end;opacity:0;transition:opacity .2s}
+    .pcard:hover .parrow{opacity:1}
+    /* CAROUSEL */
+    .carousel{position:relative;overflow:hidden;background:#f0ede8}
+    .c-track{display:flex;transition:transform .35s ease}
+    .c-slide{min-width:100%;position:relative}
+    .c-slide img{width:100%;height:200px;object-fit:cover;object-position:top;display:block}
+    .c-slide a{display:block;cursor:pointer}
+    .c-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(247,244,239,.9);border:1px solid var(--rule);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;color:var(--ink);z-index:2;transition:background .2s}
+    .c-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .c-prev{left:8px}.c-next{right:8px}
+    .c-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+    .c-dot{width:6px;height:6px;border-radius:50%;background:rgba(15,14,12,.25);cursor:pointer;transition:background .2s}
+    .c-dot.on{background:var(--accent)}
+    .c-lbl{position:absolute;bottom:8px;right:10px;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(15,14,12,.5);background:rgba(247,244,239,.8);padding:.15rem .4rem}
+    /* SKILLS */
+    .sg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:2rem}
+    .sg h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+    .slist{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+    .slist li{font-size:.85rem;color:var(--ink);padding:.3rem 0;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:.5rem}
+    .slist li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0}
+    .snote{font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;color:var(--muted);margin-left:auto}
+    /* CERTS */
+    .certs{display:flex;flex-direction:column;gap:1.25rem}
+    .cert-row{display:grid;grid-template-columns:1fr auto;align-items:start;gap:2rem;padding:1.4rem 1.5rem;border:1px solid var(--rule);transition:border-color .2s}
+    .cert-row:hover{border-color:var(--accent)}
+    .cname{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:.25rem}
+    .ciss{font-size:.82rem;color:var(--muted);font-family:var(--mono)}
+    .ciss a{color:var(--accent)}
+    .ciss a:hover{text-decoration:underline}
+    .cst{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .75rem;flex-shrink:0;white-space:nowrap}
+    .cst.done{background:var(--accent);color:#fff}
+    .cst.prog{border:1.5px solid var(--accent);color:var(--accent)}
+    /* BUILDING */
+    .bld-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+    .bld-card{border:1px solid var(--rule);padding:1.5rem;display:flex;flex-direction:column;gap:.6rem;background:#fff;transition:border-color .2s}
+    .bld-card:hover{border-color:var(--accent)}
+    .bst{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase}
+    .pulse{width:7px;height:7px;border-radius:50%;animation:pa 2s ease-in-out infinite}
+    .inp .pulse{background:#d97706}.inp{color:#d97706}
+    .lnch .pulse{background:var(--accent)}.lnch{color:var(--accent)}
+    @keyframes pa{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+    .btitle{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.3}
+    .bdesc{font-size:.83rem;color:var(--muted);line-height:1.6}
+    /* OBSERVATIONS */
+    .obs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+    .obs-card{border:1px solid rgba(255,255,255,.1);padding:2rem;transition:border-color .2s,background .2s}
+    .obs-card:hover{border-color:#6bc4ac;background:rgba(255,255,255,.04)}
+    .obs-tag{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#6bc4ac;margin-bottom:.75rem}
+    .obs-title{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--paper);margin-bottom:1rem;line-height:1.35}
+    .obs-body{font-size:.875rem;color:rgba(247,244,239,.65);line-height:1.75}
+    .obs-body strong{color:var(--paper);font-weight:500}
+    .obs-body em{font-style:italic}
+    .obs-src{font-family:var(--mono);font-size:.65rem;letter-spacing:.06em;color:rgba(247,244,239,.3);margin-top:1.25rem}
+    .obs-src a{color:#6bc4ac}.obs-src a:hover{text-decoration:underline}
+    .obs-ph{border:1px dashed rgba(255,255,255,.12);padding:2rem;display:flex;align-items:center;justify-content:center}
+    .obs-ph span{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,244,239,.2)}
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:5rem;align-items:start}
+    .at p{font-size:1rem;color:rgba(247,244,239,.75);margin-bottom:1.25rem;line-height:1.8}
+    .at p strong{color:var(--paper);font-weight:500}
+    .at p em{font-style:italic;color:#6bc4ac}
+    .qf{padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,.1)}
+    .qfl{font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#6bc4ac;margin-bottom:.25rem}
+    .qfv{font-size:.875rem;color:rgba(247,244,239,.8)}
+    /* CONTACT */
+    .cg{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .ch{font-family:var(--serif);font-size:1.8rem;line-height:1.3;margin-bottom:1rem}
+    .ch em{font-style:italic;color:var(--accent)}
+    .cs{font-size:.875rem;color:var(--muted);margin-bottom:2rem;line-height:1.6}
+    .cl{display:flex;flex-direction:column;gap:.75rem}
+    .clink{display:flex;align-items:center;gap:1rem;color:var(--ink);font-size:.875rem;padding:.85rem 1.25rem;border:1px solid var(--rule);transition:all .2s}
+    .clink:hover{border-color:var(--accent);background:var(--accent-light);color:var(--accent)}
+    .cll{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:80px}
+    /* FOOTER */
+    footer{padding:1.75rem 3rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+    footer p{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+    /* ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .hero-eyebrow{animation:fadeUp .6s ease both}
+    .hero-name{animation:fadeUp .6s .1s ease both}
+    .hero-tagline{animation:fadeUp .6s .2s ease both}
+    .hero-cta{animation:fadeUp .6s .3s ease both}
+    .stat-block{animation:fadeUp .6s .35s ease both}
+    .stat-block:nth-child(2){animation-delay:.45s}
+    .stat-block:nth-child(3){animation-delay:.55s}
+    .stat-block:nth-child(4){animation-delay:.65s}
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      nav{padding:1rem 1.5rem}
+      .nav-links li:not(:last-child):not(:nth-last-child(2)){display:none}
+      .hero{grid-template-columns:1fr}
+      .hero-left{padding:5rem 1.5rem 3rem;border-right:none;border-bottom:1px solid var(--rule)}
+      .hero-right{padding:2.5rem 1.5rem;flex-direction:row;flex-wrap:wrap;gap:1.5rem}
+      .stat-block{flex:1 1 120px}
+      .sw,.swf .inner{padding:4rem 1.5rem}
+      .exp-co-row{grid-template-columns:1fr}
+      .exp-co-label{margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule)}
+      .about-grid,.cg{grid-template-columns:1fr;gap:2.5rem}
+      .pf-body{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
+    }
+  </style>
 </head>
 <body>
 
-<!-- ── NAV ───────────────────────────────────────────────────────── -->
 <nav>
-  <a class="nav-name" href="#">Samantha Vargas</a>
+  <a class="nav-name" href="#">Samie Vargas</a>
   <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a class="nav-resume" href="YOUR_RESUME_PDF_LINK_HERE" target="_blank" rel="noopener">Resume ↓</a></li>
   </ul>
 </nav>
 
-<!-- ── HERO ──────────────────────────────────────────────────────── -->
 <header class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">Data Analyst &amp; Operations Leader — Austin, TX (Remote)</p>
-    <h1 class="hero-name">Samantha<br><em>Vargas</em></h1>
-    <p class="hero-tagline">I find the patterns before you know what you're looking for. 8 years of enterprise operations, now building toward data discovery at scale.</p>
+    <p class="hero-eyebrow">Engagement Manager &amp; Operations Leader — Austin, TX (Remote)</p>
+    <h1 class="hero-name">Samie<br><em>Vargas</em></h1>
+    <p class="hero-tagline">Eight years building the operational infrastructure that makes enterprise client relationships work. Now layering in data analytics to close the gap between what the numbers say and what the business does next.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#work">See My Work</a>
-      <a class="btn btn-ghost" href="https://linkedin.com/in/samanthajvargas" target="_blank">LinkedIn</a>
-      <a class="btn btn-ghost" href="https://www.kaggle.com" target="_blank">Kaggle</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/samievargas12" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/SamieVargas" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="YOUR_RESUME_PDF_LINK_HERE" target="_blank" rel="noopener">Resume ↓</a>
     </div>
   </div>
   <div class="hero-right">
@@ -567,57 +225,179 @@
     </div>
     <div class="stat-block">
       <div class="stat-number">8 yrs</div>
-      <div class="stat-label">Enterprise client operations at GLG</div>
+      <div class="stat-label">Enterprise operations at GLG</div>
     </div>
     <div class="stat-block">
-      <div class="stat-number">2026</div>
-      <div class="stat-label">Google Data Analytics Certificate — complete</div>
+      <div class="stat-number">GDA</div>
+      <div class="stat-label">Google Data Analytics — certified May 2026</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">GA4</div>
+      <div class="stat-label">Google Analytics — certified May 2026</div>
     </div>
   </div>
 </header>
 
-<!-- ── WORK ──────────────────────────────────────────────────────── -->
-<section id="work">
+<!-- EXPERIENCE -->
+<section id="experience" class="swf" style="background:#fff;">
   <div class="inner">
-    <div class="section-header">
-      <span class="section-label">01 — Portfolio</span>
-      <h2 class="section-title">Selected Work</h2>
+    <div class="sh">
+      <span class="sl">01 — Career</span>
+      <h2 class="st">Work Experience</h2>
     </div>
-    <div class="project-grid">
-
-      <a class="project-card" href="https://www.kaggle.com" target="_blank">
-        <span class="project-tag">Behavioral Analytics</span>
-        <h3 class="project-title">Wearable Engagement &amp; Fitness Dropout Prediction</h3>
-        <p class="project-desc">Analyzed LifeSnaps/Fitbit longitudinal data (71 users, 4+ months) to identify behavioral and physiological signals that predict fitness goal dropout in Feb/March. Identified load trajectory spikes, resting HR elevation, and sleep degradation as leading indicators of disengagement.</p>
-        <div class="project-meta">
-          <span class="project-pill">Python</span>
-          <span class="project-pill">BigQuery SQL</span>
-          <span class="project-pill">pandas</span>
-          <span class="project-pill">EDA</span>
-          <span class="project-pill">Kaggle</span>
+    <div class="exp-co-row">
+      <div class="exp-co-label">
+        <div class="exp-co-name">GLG</div>
+        <div class="exp-co-meta">Austin, TX · Remote<br>Jul 2018 – Present<br>3 Roles · 8 Years</div>
+      </div>
+      <div class="exp-roles">
+        <div class="exp-role">
+          <div class="exp-rh">
+            <div class="exp-rt">Senior Manager, Service</div>
+            <div class="exp-dates">Oct 2023 – Present</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Lead a team of client solutions managers across a $14M+ enterprise book — setting KPIs, running weekly performance reviews, and coaching to retention and growth targets.</li>
+            <li>Spearheaded a 5% YoY growth strategy across a portfolio of global professional services and advisory clients, identifying expansion signals through usage data and stakeholder mapping.</li>
+            <li>Built Salesforce health scoring dashboards and automated reporting that reduced reactive escalations and gave leadership a live view of account risk.</li>
+            <li>Deployed AI-assisted workflows using Claude, ChatGPT, and in-house LLM tools to accelerate QBR prep, escalation drafts, and data synthesis — adopted across the broader team under personal license.</li>
+            <li>Designed SOW-based delivery frameworks for high-complexity, multi-stakeholder engagements across consulting, financial services, and technology verticals.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Team Leadership</span><span class="exp-tag">Salesforce</span><span class="exp-tag">Revenue Growth</span><span class="exp-tag">AI Workflows</span><span class="exp-tag">SOW Management</span>
+          </div>
         </div>
-        <div class="project-arrow">→</div>
-      </a>
+        <div class="exp-role">
+          <div class="exp-rh">
+            <div class="exp-rt">Manager, Client Solutions — Team Lead</div>
+            <div class="exp-dates">Mar 2022 – Oct 2023</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Managed a team of client solutions specialists while carrying a personal enterprise book — bridging IC delivery and people management during a high-growth phase.</li>
+            <li>Founded and scaled an internal Center of Excellence (CoE): built playbooks, onboarding templates, and Agile-driven performance cadences adopted team-wide.</li>
+            <li>Led cross-functional coordination with product, legal, and operations to resolve complex client escalations and protect retention in a high-touch model.</li>
+            <li>Developed renewal forecasting models and pipeline tracking in Salesforce that improved quarterly accuracy and provided cleaner visibility into at-risk accounts.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">CoE Design</span><span class="exp-tag">Playbook Development</span><span class="exp-tag">Renewal Forecasting</span><span class="exp-tag">Cross-functional Alignment</span>
+          </div>
+        </div>
+        <div class="exp-role">
+          <div class="exp-rh">
+            <div class="exp-rt">Associate → Senior Client Solutions Manager</div>
+            <div class="exp-dates">Jul 2018 – Feb 2022</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Grew from individual contributor to senior IC managing complex enterprise accounts across consulting, financial services, and technology verticals — promoted twice in four years.</li>
+            <li>Built custom Salesforce reporting and tracking infrastructure that became the team standard for account health visibility.</li>
+            <li>Consistently achieved top-tier client satisfaction scores, recognized for combining operational rigor with high-touch relationship management.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Account Management</span><span class="exp-tag">Enterprise CS</span><span class="exp-tag">Salesforce Reporting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="project-card" style="opacity:0.55; cursor:default;">
-        <span class="project-tag" style="background:#f0ede8; color:#7a7570;">Coming Soon</span>
-        <h3 class="project-title">Customer Churn Signal Analysis</h3>
-        <p class="project-desc">Cohort-based analysis of churn behavioral patterns using telecom dataset. Identifying which customer behaviors in months 1–3 predict 12-month churn — modeled on patterns I've tracked in enterprise CS for 8 years.</p>
-        <div class="project-meta">
-          <span class="project-pill">Python</span>
-          <span class="project-pill">Cohort Analysis</span>
-          <span class="project-pill">Visualization</span>
+<!-- PROJECTS -->
+<section id="work" class="swf" style="background:var(--paper);">
+  <div class="inner">
+    <div class="sh">
+      <span class="sl">02 — Portfolio</span>
+      <h2 class="st">Selected Work</h2>
+    </div>
+
+    <!-- Featured GDA Capstone -->
+    <div class="project-featured">
+      <div class="pf-embed">
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRsL1gK9sbwSSWGcXKwWrtsRjn_20h1qjh8Qv0mBmYtyPDf1hTv-7I1DsbQFXXmqYxjamyaZ5aXqgZD/pubembed?start=false&loop=false&delayms=3000" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe>
+      </div>
+      <div class="pf-body">
+        <div>
+          <span class="ptag">Google Data Analytics Capstone</span>
+          <div class="ptitle">Wearable Engagement &amp; Fitness Dropout Prediction</div>
+          <p class="pdesc">Analyzed the LifeSnaps/Fitbit longitudinal dataset (71 users, 4+ months) to identify behavioral and physiological signals that predict fitness goal dropout. Surfaced Feb/March burnout patterns, cadence load spikes, and HRV trends as early dropout predictors — built in Python and BigQuery SQL, informed by personal Garmin training data and 8 years of observing behavioral dropout in enterprise clients.</p>
+          <div class="pmeta">
+            <span class="ppill">Python (pandas · matplotlib)</span><span class="ppill">BigQuery SQL</span><span class="ppill">EDA</span><span class="ppill">Behavioral Analysis</span><span class="ppill">Looker Studio</span><span class="ppill">Google GDA Cert</span>
+          </div>
+        </div>
+        <a class="plink" href="https://www.kaggle.com" target="_blank" rel="noopener">View on Kaggle →</a>
+      </div>
+    </div>
+
+    <!-- App Cards -->
+    <div class="pgrid">
+
+      <!-- Life in Pixels -->
+      <div class="pcard">
+        <div class="carousel" data-carousel>
+          <div class="c-track">
+            <div class="c-slide">
+              <a href="https://script.google.com/macros/s/AKfycbwUVS3iL7JTO-XR93eCRDRY_lcFOdWPpa9VIB1hFLatsgtXT9QRfPtgoRJlTstkDis/exec" target="_blank" rel="noopener">
+                <img src="Pixels-App.png" alt="Life in Pixels app interface" loading="lazy">
+              </a>
+              <span class="c-lbl">Live App</span>
+            </div>
+          </div>
+        </div>
+        <div class="pcbody">
+          <span class="ptag">Self-Built · Google Apps Script</span>
+          <div class="ptitle">Life in Pixels — Mood &amp; Habit Tracker</div>
+          <p class="pdesc">A daily mood and habit logger built in Google Apps Script, backed by Google Sheets. Tracks mood on a 1–5 scale alongside activity and habit data over time. The data from this app produced the walk/mood finding in the Observations section.</p>
+          <div class="pmeta">
+            <span class="ppill">Google Apps Script</span><span class="ppill">Google Sheets</span><span class="ppill">Behavioral Data</span><span class="ppill">Personal Analytics</span>
+          </div>
+          <div class="parrow">→</div>
         </div>
       </div>
 
-      <div class="project-card" style="opacity:0.55; cursor:default;">
-        <span class="project-tag" style="background:#f0ede8; color:#7a7570;">Coming Soon</span>
-        <h3 class="project-title">E-Commerce Customer LTV &amp; Retention Dashboard</h3>
-        <p class="project-desc">End-to-end customer segmentation and lifetime value analysis with interactive Looker Studio dashboard. Designed for a small business audience — clear findings, actionable recommendations.</p>
-        <div class="project-meta">
-          <span class="project-pill">Looker Studio</span>
-          <span class="project-pill">BigQuery</span>
-          <span class="project-pill">SQL</span>
+      <!-- Journal -->
+      <div class="pcard">
+        <div class="carousel" data-carousel>
+          <div class="c-track">
+            <div class="c-slide">
+              <a href="https://script.google.com/macros/s/AKfycbwBsldN89wdMdiVlD9xWINYvm30Gayaj0eb0N4nQeLsNmG98PHd7QnngjQSGl2l91Wq/exec" target="_blank" rel="noopener">
+                <img src="Journal-App.png" alt="Journal app interface" loading="lazy">
+              </a>
+              <span class="c-lbl">Live App</span>
+            </div>
+            <div class="c-slide">
+              <img src="Journal.png" alt="Journal output in Google Docs" loading="lazy" style="cursor:default;">
+              <span class="c-lbl">Output View</span>
+            </div>
+          </div>
+          <button class="c-btn c-prev" aria-label="Previous">&#8249;</button>
+          <button class="c-btn c-next" aria-label="Next">&#8250;</button>
+          <div class="c-dots">
+            <span class="c-dot on"></span>
+            <span class="c-dot"></span>
+          </div>
+        </div>
+        <div class="pcbody">
+          <span class="ptag">Self-Built · Google Apps Script</span>
+          <div class="ptitle">Journal — Structured Reflection Logger</div>
+          <p class="pdesc">A lightweight journaling app with structured prompts for fast daily entries stored in Google Docs. Part of the same personal data infrastructure as Life in Pixels. Built end-to-end in Google Apps Script — no external dependencies.</p>
+          <div class="pmeta">
+            <span class="ppill">Google Apps Script</span><span class="ppill">Google Docs</span><span class="ppill">Structured Logging</span>
+          </div>
+          <div class="parrow">→</div>
+        </div>
+      </div>
+
+      <!-- Coming Soon: Churn -->
+      <div class="pcard dim">
+        <div style="height:200px;background:#f0ede8;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">In Progress</span>
+        </div>
+        <div class="pcbody">
+          <span class="ptag-dim">Coming Soon</span>
+          <div class="ptitle">Customer Churn Signal Analysis</div>
+          <p class="pdesc">Cohort-based analysis of churn behavioral patterns using the IBM Telco dataset. Identifying which behaviors in months 1–3 predict 12-month churn — modeled on patterns observed across 8 years in enterprise CS.</p>
+          <div class="pmeta">
+            <span class="ppill">Python</span><span class="ppill">sklearn</span><span class="ppill">Cohort Analysis</span><span class="ppill">Kaggle</span>
+          </div>
         </div>
       </div>
 
@@ -625,181 +405,240 @@
   </div>
 </section>
 
-<!-- ── SKILLS ─────────────────────────────────────────────────────── -->
-<section id="skills">
-  <div class="section-header">
-    <span class="section-label">02 — Capabilities</span>
-    <h2 class="section-title">Skills &amp; Tools</h2>
+<!-- SKILLS -->
+<section id="skills" class="sw">
+  <div class="sh">
+    <span class="sl">03 — Capabilities</span>
+    <h2 class="st">Skills &amp; Tools</h2>
   </div>
-  <div class="skills-grid">
-    <div class="skill-group">
+  <div class="sg-grid">
+    <div class="sg">
       <h3>Analytics</h3>
-      <ul class="skill-list">
-        <li>Python (pandas, matplotlib)</li>
+      <ul class="slist">
+        <li>Python <span class="snote">pandas · matplotlib</span></li>
         <li>SQL / BigQuery</li>
+        <li>Google Analytics 4 <span class="snote">certified</span></li>
+        <li>Google Looker Studio</li>
         <li>Exploratory Data Analysis</li>
         <li>Behavioral Pattern Analysis</li>
         <li>Data Visualization</li>
       </ul>
     </div>
-    <div class="skill-group">
-      <h3>Tools</h3>
-      <ul class="skill-list">
-        <li>Google Looker Studio</li>
-        <li>Tableau</li>
-        <li>Salesforce (admin-level)</li>
-        <li>Gainsight NXT</li>
+    <div class="sg">
+      <h3>Tools &amp; Platforms</h3>
+      <ul class="slist">
+        <li>Google Apps Script <span class="snote">built apps</span></li>
+        <li>Salesforce <span class="snote">cert in progress</span></li>
+        <li>Power BI</li>
+        <li>Tableau <span class="snote">learning</span></li>
+        <li>Google Sheets <span class="snote">advanced</span></li>
         <li>Kaggle Notebooks</li>
       </ul>
     </div>
-    <div class="skill-group">
+    <div class="sg">
       <h3>Operations</h3>
-      <ul class="skill-list">
+      <ul class="slist">
         <li>Engagement Lifecycle Mgmt</li>
         <li>Health Scoring Architecture</li>
-        <li>OKR &amp; Portfolio Design</li>
+        <li>Playbook &amp; CoE Design</li>
+        <li>SOW Management</li>
+        <li>Renewal Pipeline Architecture</li>
         <li>Cross-Functional Alignment</li>
-        <li>Agile / Scrum (PSM I)</li>
+        <li>Agile / Scrum <span class="snote">PSM I</span></li>
       </ul>
     </div>
-    <div class="skill-group">
-      <h3>AI Tooling</h3>
-      <ul class="skill-list">
-        <li>Claude (daily use)</li>
+    <div class="sg">
+      <h3>AI &amp; Productivity</h3>
+      <ul class="slist">
+        <li>Claude <span class="snote">daily</span></li>
         <li>ChatGPT</li>
         <li>Gemini</li>
         <li>Microsoft Copilot</li>
         <li>In-house LLM workflows</li>
+        <li>Prompt Engineering</li>
+        <li>Notion · Trello · Jira</li>
       </ul>
     </div>
   </div>
 
-  <!-- Certs -->
   <div style="margin-top:4rem;">
-    <h3 style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem;">Credentials</h3>
-    <div class="certs-list">
+    <h3 style="font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;">Credentials</h3>
+    <div class="certs">
       <div class="cert-row">
         <div>
-          <div class="cert-name">Google Data Analytics Certificate</div>
-          <div class="cert-issuer">Google / Coursera · May 2026 · <a href="https://coursera.org/verify/3TZFHERTU294" target="_blank" style="color:var(--accent);">Verify ↗</a></div>
+          <div class="cname">Google Analytics Certification (GA4)</div>
+          <div class="ciss">Google · Skillshop · Issued May 21, 2026 · ID: 182987115 · <a href="https://skillshop.credential.net/da7f2a2d-1e02-4267-aaca-d6bfbfc3036e#acc.5RV2vAUu" target="_blank" rel="noopener">Verify ↗</a> · <a href="https://www.credly.com/badges/cdf8ff04-0b23-435a-a53d-3c46ab172885" target="_blank" rel="noopener">Credly ↗</a></div>
         </div>
-        <span class="cert-status done">Complete</span>
+        <span class="cst done">Complete</span>
       </div>
       <div class="cert-row">
         <div>
-          <div class="cert-name">Google Advanced Data Analytics Certificate</div>
-          <div class="cert-issuer">Google / Coursera · In Progress</div>
+          <div class="cname">Google Data Analytics Certificate</div>
+          <div class="ciss">Google / Coursera · May 2026 · <a href="https://coursera.org/verify/professional-cert/HRA1SDNA2WE5" target="_blank" rel="noopener">Verify ↗</a></div>
         </div>
-        <span class="cert-status progress">In Progress</span>
+        <span class="cst done">Complete</span>
       </div>
       <div class="cert-row">
         <div>
-          <div class="cert-name">PSM I — Professional Scrum Master</div>
-          <div class="cert-issuer">Scrum.org · May 2026</div>
+          <div class="cname">Google Advanced Data Analytics Certificate</div>
+          <div class="ciss">Google / Coursera · In Progress · Est. Q3 2026</div>
         </div>
-        <span class="cert-status done">Complete</span>
+        <span class="cst prog">In Progress</span>
       </div>
       <div class="cert-row">
         <div>
-          <div class="cert-name">Salesforce Administrator Certification</div>
-          <div class="cert-issuer">Salesforce / Trailhead · In Progress</div>
+          <div class="cname">PSM I — Professional Scrum Master</div>
+          <div class="ciss">Scrum.org · May 2026 · <a href="https://scrum.org/certificates/1318010" target="_blank" rel="noopener">Verify ↗</a></div>
         </div>
-        <span class="cert-status progress">In Progress</span>
+        <span class="cst done">Complete</span>
       </div>
       <div class="cert-row">
         <div>
-          <div class="cert-name">Gainsight NXT Certification</div>
-          <div class="cert-issuer">Gainsight University · In Progress</div>
+          <div class="cname">Fundamentals of Predictive Project Management</div>
+          <div class="ciss">Project Management Institute · 2026</div>
         </div>
-        <span class="cert-status progress">In Progress</span>
+        <span class="cst done">Complete</span>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cname">Six Sigma White Belt</div>
+          <div class="ciss">2026</div>
+        </div>
+        <span class="cst done">Complete</span>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cname">Salesforce Administrator Certification</div>
+          <div class="ciss">Salesforce / Trailhead · In Progress</div>
+        </div>
+        <span class="cst prog">In Progress</span>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cname">dbt Fundamentals</div>
+          <div class="ciss">dbt Labs · In Progress</div>
+        </div>
+        <span class="cst prog">In Progress</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── ABOUT ──────────────────────────────────────────────────────── -->
-<section id="about">
+<!-- CURRENTLY BUILDING -->
+<section id="building" class="swf" style="background:#fff;">
   <div class="inner">
-    <div class="section-header">
-      <span class="section-label">03 — Background</span>
-      <h2 class="section-title">About</h2>
+    <div class="sh">
+      <span class="sl">04 — Active</span>
+      <h2 class="st">Currently Building</h2>
+    </div>
+    <div class="bld-grid">
+      <div class="bld-card">
+        <div class="bst inp"><span class="pulse"></span>In Progress</div>
+        <div class="btitle">Google Advanced Data Analytics Certificate</div>
+        <p class="bdesc">Advanced capstone extending the GDA program — regression, classification, deeper Python. Coursera / Google. Est. Q3 2026.</p>
+      </div>
+      <div class="bld-card">
+        <div class="bst inp"><span class="pulse"></span>In Progress</div>
+        <div class="btitle">Customer Churn Analysis — Kaggle</div>
+        <p class="bdesc">IBM Telco dataset. Behavioral and contract signals predicting churn. Python, pandas, sklearn. Second published project — different domain, same analytical lens.</p>
+      </div>
+      <div class="bld-card">
+        <div class="bst lnch"><span class="pulse"></span>Launching</div>
+        <div class="btitle">Freelance Analytics — Upwork</div>
+        <p class="bdesc">GA4 audits, Looker Studio dashboards, and ops data analysis for small teams. GA4 certified May 2026. First proposals live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBSERVATIONS -->
+<section id="observations" class="swf" style="background:var(--ink);">
+  <div class="inner">
+    <div class="sh" style="border-color:rgba(255,255,255,.1);">
+      <span class="sl" style="color:#6bc4ac;">05 — Writing</span>
+      <h2 class="st" style="color:var(--paper);">Observations</h2>
+    </div>
+    <p style="font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,244,239,.3);margin-top:-2rem;margin-bottom:2.5rem;">Notes from the data I live in</p>
+    <div class="obs-grid">
+      <article class="obs-card">
+        <div class="obs-tag">May 2026 · Life in Pixels · Behavioral Data</div>
+        <h3 class="obs-title">A Walk Is Worth +0.5 — What My Own Mood Data Showed Me</h3>
+        <p class="obs-body">I've been logging my daily mood on a 1–5 scale for months using a tracker I built myself. When I analyzed the data, one pattern held consistently: on days I went for a walk, my mood score was on average <strong>+0.5 points higher</strong> — both that same day <em>and</em> the following morning. Not just a same-day lift. A carry-over effect into the next day.</p>
+        <p class="obs-body" style="margin-top:.75rem;">The more interesting question isn't whether it holds at scale — it's what that lag says about recovery and mood regulation. Sleep, stress, and movement don't reset cleanly at midnight. That's the kind of thing product teams building wellness features tend to flatten out of their models.</p>
+        <div class="obs-src">Tracked via <a href="https://script.google.com/macros/s/AKfycbwUVS3iL7JTO-XR93eCRDRY_lcFOdWPpa9VIB1hFLatsgtXT9QRfPtgoRJlTstkDis/exec" target="_blank" rel="noopener">Life in Pixels</a> — self-built mood &amp; habit tracker.</div>
+      </article>
+      <div class="obs-ph"><span>Next observation — coming soon</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="swf" style="background:var(--ink);border-top:1px solid rgba(255,255,255,.07);">
+  <div class="inner">
+    <div class="sh" style="border-color:rgba(255,255,255,.1);">
+      <span class="sl" style="color:#6bc4ac;">06 — Background</span>
+      <h2 class="st" style="color:var(--paper);">About</h2>
     </div>
     <div class="about-grid">
-      <div class="about-text">
-        <p>I've spent 8 years at <strong>GLG</strong> — a PE-backed global expert network — managing a $14M+ annual book of business across the organizations that shape how enterprises make decisions: Deloitte, Accenture, Gartner, KPMG, AlixPartners, Stax, Kearney, and Roland Berger.</p>
-        <p>Most of what I've built didn't exist before I built it. Health scoring systems, renewal pipeline architecture, Salesforce-based portfolio dashboards, team playbooks, CoE design. I operate at the intersection of client-facing delivery and operational infrastructure — the place where <strong>data becomes decisions</strong>.</p>
-        <p>I'm now deepening the analytical side of that work. The part of the job I've always found most energizing isn't the account management — it's the <em>discovery phase</em>: sitting with messy data, finding patterns before you know what you're looking for, and surfacing the signal that changes what the business does next.</p>
-        <p>My Google Data Analytics capstone — behavioral dropout prediction on longitudinal wearable data — was the first time I got to do that work from scratch. It was genuinely fun. I'm building toward more of it.</p>
-        <div class="client-roster">
-          <p>Enterprise client roster:</p>
-          <p>Deloitte · Accenture · Gartner · KPMG</p>
-          <p>AlixPartners · Stax · Kearney · Roland Berger</p>
-        </div>
+      <div class="at">
+        <p>I've spent 8 years at <strong>GLG</strong> — a PE-backed global expert network — managing a $14M+ annual book of business across the advisory and professional services organizations that shape how enterprises make decisions.</p>
+        <p>Most of what I've built didn't exist before I built it. Health scoring systems, renewal pipeline architecture, Salesforce-based portfolio dashboards, team playbooks, CoE design. I operate at the intersection of client-facing delivery and operational infrastructure — the place where <em>data becomes decisions</em>.</p>
+        <p>I'm now deepening the analytical side of that work. The part of the job I've always found most energizing isn't the account management — it's the discovery phase: sitting with messy data, finding patterns before you know what you're looking for, and surfacing the signal that changes what the business does next.</p>
+        <p>My GDA capstone — behavioral dropout prediction on longitudinal wearable data — was the first time I got to do that work from scratch. <strong>It was genuinely fun.</strong> I'm building toward more of it.</p>
       </div>
-      <div class="about-right">
-        <div class="quick-fact">
-          <div class="quick-fact-label">Currently</div>
-          <div class="quick-fact-value">Senior Team Leader, Client Solutions @ GLG</div>
-        </div>
-        <div class="quick-fact">
-          <div class="quick-fact-label">Location</div>
-          <div class="quick-fact-value">Austin, TX — Remote</div>
-        </div>
-        <div class="quick-fact">
-          <div class="quick-fact-label">Education</div>
-          <div class="quick-fact-value">B.S. Biochemistry, UT Austin</div>
-        </div>
-        <div class="quick-fact">
-          <div class="quick-fact-label">Interests</div>
-          <div class="quick-fact-value">Trail running, Garmin data, cadence mapping, wearable health tech</div>
-        </div>
-        <div class="quick-fact">
-          <div class="quick-fact-label">Targeting</div>
-          <div class="quick-fact-value">Data-driven &amp; AI-adjacent companies where discovery is the work</div>
-        </div>
+      <div>
+        <div class="qf"><div class="qfl">Currently</div><div class="qfv">Senior Manager, Service @ GLG</div></div>
+        <div class="qf"><div class="qfl">Location</div><div class="qfv">Austin, TX — Remote</div></div>
+        <div class="qf"><div class="qfl">Education</div><div class="qfv">B.S. Biochemistry · UT Austin · 2018</div></div>
+        <div class="qf"><div class="qfl">Interests</div><div class="qfv">Trail running · Garmin data · cadence mapping · wearable health tech</div></div>
+        <div class="qf"><div class="qfl">Targeting</div><div class="qfv">Engagement Manager, BizOps &amp; CS Operations at data-driven companies</div></div>
+        <div class="qf"><div class="qfl">GitHub</div><div class="qfv"><a href="https://github.com/SamieVargas" target="_blank" rel="noopener" style="color:#6bc4ac;">github.com/SamieVargas ↗</a></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CONTACT ─────────────────────────────────────────────────────── -->
-<section id="contact">
-  <div class="section-header">
-    <span class="section-label">04 — Get in Touch</span>
-    <h2 class="section-title">Contact</h2>
+<!-- CONTACT -->
+<section id="contact" class="sw">
+  <div class="sh">
+    <span class="sl">07 — Get in Touch</span>
+    <h2 class="st">Contact</h2>
   </div>
-  <div class="contact-grid">
+  <div class="cg">
     <div>
-      <h3 class="contact-headline">Let's work on something <em>worth discovering.</em></h3>
-      <p class="contact-sub">Open to full-time remote roles in data analytics, CS operations, or engagement management at data-driven companies. Also available for freelance data analysis projects.</p>
+      <h3 class="ch">Let's work on something <em>worth discovering.</em></h3>
+      <p class="cs">Open to full-time remote roles in engagement management, CS operations, or business strategy at data-driven companies. Also available for freelance data analysis and GA4 audit projects.</p>
       <a class="btn btn-primary" href="mailto:sammisnv@gmail.com">Send an Email</a>
     </div>
-    <div class="contact-links">
-      <a class="contact-link" href="mailto:sammisnv@gmail.com">
-        <span class="contact-link-label">Email</span>
-        sammisnv@gmail.com
-      </a>
-      <a class="contact-link" href="tel:2145873539">
-        <span class="contact-link-label">Phone</span>
-        (214) 587-3539
-      </a>
-      <a class="contact-link" href="https://www.linkedin.com/in/samievargas12/" target="_blank">
-        <span class="contact-link-label">LinkedIn</span>
-        linkedin.com/in/samievargas12/
-      </a>
-      <a class="contact-link" href="https://www.kaggle.com" target="_blank">
-        <span class="contact-link-label">Kaggle</span>
-        Notebooks &amp; Projects →
-      </a>
+    <div class="cl">
+      <a class="clink" href="mailto:sammisnv@gmail.com"><span class="cll">Email</span>sammisnv@gmail.com</a>
+      <a class="clink" href="https://www.linkedin.com/in/samievargas12/" target="_blank" rel="noopener"><span class="cll">LinkedIn</span>linkedin.com/in/samievargas12</a>
+      <a class="clink" href="https://github.com/SamieVargas" target="_blank" rel="noopener"><span class="cll">GitHub</span>github.com/SamieVargas</a>
+      <a class="clink" href="https://www.kaggle.com" target="_blank" rel="noopener"><span class="cll">Kaggle</span>Notebooks &amp; Projects →</a>
+      <a class="clink" href="YOUR_RESUME_PDF_LINK_HERE" target="_blank" rel="noopener"><span class="cll">Resume</span>Download PDF ↓</a>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
 <footer>
-  <p>© 2026 Samantha Vargas</p>
+  <p>© 2026 Samie Vargas</p>
   <p>Austin, TX · Remote · sammisnv@gmail.com</p>
 </footer>
 
+<script>
+document.querySelectorAll('[data-carousel]').forEach(function(c){
+  var track=c.querySelector('.c-track');
+  var slides=c.querySelectorAll('.c-slide');
+  var dots=c.querySelectorAll('.c-dot');
+  var prev=c.querySelector('.c-prev');
+  var next=c.querySelector('.c-next');
+  if(slides.length<2)return;
+  var cur=0;
+  function go(n){cur=(n+slides.length)%slides.length;track.style.transform='translateX(-'+(cur*100)+'%)';dots.forEach(function(d,i){d.classList.toggle('on',i===cur)});}
+  if(prev)prev.addEventListener('click',function(e){e.preventDefault();go(cur-1);});
+  if(next)next.addEventListener('click',function(e){e.preventDefault();go(cur+1);});
+  dots.forEach(function(d,i){d.addEventListener('click',function(){go(i);});});
+});
+</script>
 </body>
 </html>
