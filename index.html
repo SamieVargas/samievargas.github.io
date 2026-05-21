@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samantha Vargas — Data Analyst & Operations Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f7f4ef;
+    --accent: #1a6b5a;
+    --accent-light: #e8f2ef;
+    --rule: #d4cfc7;
+    --muted: #7a7570;
+    --tag-bg: #e8f2ef;
+    --tag-fg: #1a6b5a;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ───────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(247,244,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ──────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+  }
+
+  .hero-left {
+    padding: 8rem 4rem 6rem 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid var(--rule);
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 36ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.6rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #135248; border-color: #135248; }
+
+  .btn-ghost {
+    background: transparent;
+    border-color: var(--rule);
+    color: var(--ink);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-right {
+    padding: 8rem 3rem 6rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 2rem;
+  }
+
+  .stat-block {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+  }
+
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION LAYOUT ────────────────────────────────────────────── */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 3.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  /* ── WORK ──────────────────────────────────────────────────────── */
+  #work { background: #fff; max-width: 100%; padding: 6rem 0; }
+  #work .inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2px;
+    border: 1px solid var(--rule);
+  }
+
+  .project-card {
+    padding: 2.5rem;
+    background: #fff;
+    border: 1px solid transparent;
+    transition: all 0.25s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid var(--rule);
+  }
+
+  .project-card:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(26,107,90,0.1);
+  }
+
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tag-fg);
+    background: var(--tag-bg);
+    padding: 0.25rem 0.6rem;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-meta {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .project-pill {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    padding: 0.2rem 0.55rem;
+  }
+
+  .project-arrow {
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-top: auto;
+    align-self: flex-end;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .project-card:hover .project-arrow { opacity: 1; }
+
+  /* ── SKILLS ────────────────────────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-group h3 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+
+  .skill-list li {
+    font-size: 0.88rem;
+    color: var(--ink);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .skill-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── CERTS ─────────────────────────────────────────────────────── */
+  .certs-list {
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+
+  .cert-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    transition: border-color 0.2s;
+  }
+
+  .cert-row:hover { border-color: var(--accent); }
+
+  .cert-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .cert-issuer {
+    font-size: 0.83rem;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .cert-status {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cert-status.done {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .cert-status.progress {
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── ABOUT ─────────────────────────────────────────────────────── */
+  #about { background: var(--ink); color: var(--paper); max-width: 100%; padding: 6rem 0; }
+  #about .inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+  #about .section-title { color: var(--paper); }
+  #about .section-label { color: #6bc4ac; }
+  #about .section-header { border-color: rgba(255,255,255,0.1); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    color: rgba(247,244,239,0.8);
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .about-text p strong {
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .client-roster {
+    border-left: 3px solid #6bc4ac;
+    padding-left: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .client-roster p {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: rgba(247,244,239,0.6);
+    margin-bottom: 0.4rem !important;
+  }
+
+  .about-right {}
+
+  .quick-fact {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .quick-fact-label {
+    font-family: var(--mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6bc4ac;
+    margin-bottom: 0.3rem;
+  }
+
+  .quick-fact-value {
+    font-size: 0.9rem;
+    color: rgba(247,244,239,0.85);
+  }
+
+  /* ── CONTACT ───────────────────────────────────────────────────── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .contact-headline {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .contact-headline em { font-style: italic; color: var(--accent); }
+
+  .contact-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 0.9rem;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid var(--rule);
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 80px;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────────────────── */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ────────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero-name    { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-tagline { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-cta     { animation: fadeUp 0.6s 0.3s ease both; }
+  .stat-block   { animation: fadeUp 0.6s 0.35s ease both; }
+  .stat-block:nth-child(2) { animation-delay: 0.45s; }
+  .stat-block:nth-child(3) { animation-delay: 0.55s; }
+
+  /* ── RESPONSIVE ────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
+    .hero-right { padding: 3rem 1.5rem; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    #work .inner, #about .inner { padding: 0 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-name" href="#">Samantha Vargas</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Data Analyst &amp; Operations Leader — Austin, TX (Remote)</p>
+    <h1 class="hero-name">Samantha<br><em>Vargas</em></h1>
+    <p class="hero-tagline">I find the patterns before you know what you're looking for. 8 years of enterprise operations, now building toward data discovery at scale.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#work">See My Work</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/samanthajvargas" target="_blank">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://www.kaggle.com" target="_blank">Kaggle</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block">
+      <div class="stat-number">$14M+</div>
+      <div class="stat-label">Annual enterprise portfolio managed</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">8 yrs</div>
+      <div class="stat-label">Enterprise client operations at GLG</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">2026</div>
+      <div class="stat-label">Google Data Analytics Certificate — complete</div>
+    </div>
+  </div>
+</header>
+
+<!-- ── WORK ──────────────────────────────────────────────────────── -->
+<section id="work">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-label">01 — Portfolio</span>
+      <h2 class="section-title">Selected Work</h2>
+    </div>
+    <div class="project-grid">
+
+      <a class="project-card" href="https://www.kaggle.com" target="_blank">
+        <span class="project-tag">Behavioral Analytics</span>
+        <h3 class="project-title">Wearable Engagement &amp; Fitness Dropout Prediction</h3>
+        <p class="project-desc">Analyzed LifeSnaps/Fitbit longitudinal data (71 users, 4+ months) to identify behavioral and physiological signals that predict fitness goal dropout in Feb/March. Identified load trajectory spikes, resting HR elevation, and sleep degradation as leading indicators of disengagement.</p>
+        <div class="project-meta">
+          <span class="project-pill">Python</span>
+          <span class="project-pill">BigQuery SQL</span>
+          <span class="project-pill">pandas</span>
+          <span class="project-pill">EDA</span>
+          <span class="project-pill">Kaggle</span>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+
+      <div class="project-card" style="opacity:0.55; cursor:default;">
+        <span class="project-tag" style="background:#f0ede8; color:#7a7570;">Coming Soon</span>
+        <h3 class="project-title">Customer Churn Signal Analysis</h3>
+        <p class="project-desc">Cohort-based analysis of churn behavioral patterns using telecom dataset. Identifying which customer behaviors in months 1–3 predict 12-month churn — modeled on patterns I've tracked in enterprise CS for 8 years.</p>
+        <div class="project-meta">
+          <span class="project-pill">Python</span>
+          <span class="project-pill">Cohort Analysis</span>
+          <span class="project-pill">Visualization</span>
+        </div>
+      </div>
+
+      <div class="project-card" style="opacity:0.55; cursor:default;">
+        <span class="project-tag" style="background:#f0ede8; color:#7a7570;">Coming Soon</span>
+        <h3 class="project-title">E-Commerce Customer LTV &amp; Retention Dashboard</h3>
+        <p class="project-desc">End-to-end customer segmentation and lifetime value analysis with interactive Looker Studio dashboard. Designed for a small business audience — clear findings, actionable recommendations.</p>
+        <div class="project-meta">
+          <span class="project-pill">Looker Studio</span>
+          <span class="project-pill">BigQuery</span>
+          <span class="project-pill">SQL</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ─────────────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-label">02 — Capabilities</span>
+    <h2 class="section-title">Skills &amp; Tools</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>Analytics</h3>
+      <ul class="skill-list">
+        <li>Python (pandas, matplotlib)</li>
+        <li>SQL / BigQuery</li>
+        <li>Exploratory Data Analysis</li>
+        <li>Behavioral Pattern Analysis</li>
+        <li>Data Visualization</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Tools</h3>
+      <ul class="skill-list">
+        <li>Google Looker Studio</li>
+        <li>Tableau</li>
+        <li>Salesforce (admin-level)</li>
+        <li>Gainsight NXT</li>
+        <li>Kaggle Notebooks</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Operations</h3>
+      <ul class="skill-list">
+        <li>Engagement Lifecycle Mgmt</li>
+        <li>Health Scoring Architecture</li>
+        <li>OKR &amp; Portfolio Design</li>
+        <li>Cross-Functional Alignment</li>
+        <li>Agile / Scrum (PSM I)</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>AI Tooling</h3>
+      <ul class="skill-list">
+        <li>Claude (daily use)</li>
+        <li>ChatGPT</li>
+        <li>Gemini</li>
+        <li>Microsoft Copilot</li>
+        <li>In-house LLM workflows</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Certs -->
+  <div style="margin-top:4rem;">
+    <h3 style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem;">Credentials</h3>
+    <div class="certs-list">
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Google Data Analytics Certificate</div>
+          <div class="cert-issuer">Google / Coursera · May 2026 · <a href="https://coursera.org/verify/3TZFHERTU294" target="_blank" style="color:var(--accent);">Verify ↗</a></div>
+        </div>
+        <span class="cert-status done">Complete</span>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Google Advanced Data Analytics Certificate</div>
+          <div class="cert-issuer">Google / Coursera · In Progress</div>
+        </div>
+        <span class="cert-status progress">In Progress</span>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">PSM I — Professional Scrum Master</div>
+          <div class="cert-issuer">Scrum.org · May 2026</div>
+        </div>
+        <span class="cert-status done">Complete</span>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Salesforce Administrator Certification</div>
+          <div class="cert-issuer">Salesforce / Trailhead · In Progress</div>
+        </div>
+        <span class="cert-status progress">In Progress</span>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Gainsight NXT Certification</div>
+          <div class="cert-issuer">Gainsight University · In Progress</div>
+        </div>
+        <span class="cert-status progress">In Progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-label">03 — Background</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I've spent 8 years at <strong>GLG</strong> — a PE-backed global expert network — managing a $14M+ annual book of business across the organizations that shape how enterprises make decisions: Deloitte, Accenture, Gartner, KPMG, AlixPartners, Stax, Kearney, and Roland Berger.</p>
+        <p>Most of what I've built didn't exist before I built it. Health scoring systems, renewal pipeline architecture, Salesforce-based portfolio dashboards, team playbooks, CoE design. I operate at the intersection of client-facing delivery and operational infrastructure — the place where <strong>data becomes decisions</strong>.</p>
+        <p>I'm now deepening the analytical side of that work. The part of the job I've always found most energizing isn't the account management — it's the <em>discovery phase</em>: sitting with messy data, finding patterns before you know what you're looking for, and surfacing the signal that changes what the business does next.</p>
+        <p>My Google Data Analytics capstone — behavioral dropout prediction on longitudinal wearable data — was the first time I got to do that work from scratch. It was genuinely fun. I'm building toward more of it.</p>
+        <div class="client-roster">
+          <p>Enterprise client roster:</p>
+          <p>Deloitte · Accenture · Gartner · KPMG</p>
+          <p>AlixPartners · Stax · Kearney · Roland Berger</p>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="quick-fact">
+          <div class="quick-fact-label">Currently</div>
+          <div class="quick-fact-value">Senior Team Leader, Client Solutions @ GLG</div>
+        </div>
+        <div class="quick-fact">
+          <div class="quick-fact-label">Location</div>
+          <div class="quick-fact-value">Austin, TX — Remote</div>
+        </div>
+        <div class="quick-fact">
+          <div class="quick-fact-label">Education</div>
+          <div class="quick-fact-value">B.S. Biochemistry, UT Austin</div>
+        </div>
+        <div class="quick-fact">
+          <div class="quick-fact-label">Interests</div>
+          <div class="quick-fact-value">Trail running, Garmin data, cadence mapping, wearable health tech</div>
+        </div>
+        <div class="quick-fact">
+          <div class="quick-fact-label">Targeting</div>
+          <div class="quick-fact-value">Data-driven &amp; AI-adjacent companies where discovery is the work</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ─────────────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-label">04 — Get in Touch</span>
+    <h2 class="section-title">Contact</h2>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <h3 class="contact-headline">Let's work on something <em>worth discovering.</em></h3>
+      <p class="contact-sub">Open to full-time remote roles in data analytics, CS operations, or engagement management at data-driven companies. Also available for freelance data analysis projects.</p>
+      <a class="btn btn-primary" href="mailto:sammisnv@gmail.com">Send an Email</a>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:sammisnv@gmail.com">
+        <span class="contact-link-label">Email</span>
+        sammisnv@gmail.com
+      </a>
+      <a class="contact-link" href="tel:2145873539">
+        <span class="contact-link-label">Phone</span>
+        (214) 587-3539
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/samanthajvargas" target="_blank">
+        <span class="contact-link-label">LinkedIn</span>
+        linkedin.com/in/samanthajvargas
+      </a>
+      <a class="contact-link" href="https://www.kaggle.com" target="_blank">
+        <span class="contact-link-label">Kaggle</span>
+        Notebooks &amp; Projects →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+<footer>
+  <p>© 2026 Samantha Vargas</p>
+  <p>Austin, TX · Remote · sammisnv@gmail.com</p>
+</footer>
+
+</body>
+</html>
