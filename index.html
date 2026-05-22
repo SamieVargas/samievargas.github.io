@@ -474,16 +474,15 @@
 </section>
 
 
-<!-- ── PROJECTS ────────────────────────────────────────────────────────── -->
+<!-- ── PROJECTS ────────────────────────────────────────────────────────────── -->
 <section id="work" class="swf" style="background:var(--paper);">
   <div class="inner">
     <div class="sh reveal">
       <span class="sl">02 — Portfolio</span>
       <h2 class="st">Selected Work</h2>
     </div>
-
-    <!-- Featured GDA Capstone -->
-    <div class="project-featured reveal">
+    <!-- Featured: GDA Capstone — Wearable Dropout -->
+    <div class="project-featured reveal" style="margin-bottom:2px;">
       <div class="pf-embed">
         <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRsL1gK9sbwSSWGcXKwWrtsRjn_20h1qjh8Qv0mBmYtyPDf1hTv-7I1DsbQFXXmqYxjamyaZ5aXqgZD/pubembed?start=false&loop=false&delayms=3000" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe>
       </div>
@@ -496,11 +495,35 @@
             <span class="ppill">Python (pandas · matplotlib)</span><span class="ppill">BigQuery SQL</span><span class="ppill">EDA</span><span class="ppill">Behavioral Analysis</span><span class="ppill">Looker Studio</span><span class="ppill">Google GDA Cert</span>
           </div>
         </div>
-        <a class="plink" href="https://www.kaggle.com/samievargas" target="_blank" rel="noopener">View on Kaggle →</a>
+        <a class="plink" href="https://www.kaggle.com/code/samievargas/sv-wearable-dropout-behavioral-signals" target="_blank" rel="noopener">View on Kaggle →</a>
       </div>
     </div>
-
+ 
+    <!-- Featured: IBM Churn Analysis -->
+    <div class="project-featured reveal" style="margin-bottom:3rem;">
+      <div class="pf-embed" style="background:#0f0e0c;">
+        <img
+          src="./churn-preview.png"
+          alt="IBM Telco Customer Churn — logistic regression coefficient chart showing top risk drivers vs retention signals"
+          style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;padding:1.25rem;"
+        >
+      </div>
+      <div class="pf-body">
+        <div>
+          <span class="ptag">Personal Portfolio Project</span>
+          <div class="ptitle">IBM Telco Customer Churn — The Fiber Paradox</div>
+          <p class="pdesc">Analyzed 7,000+ customer records using Python, pandas, seaborn, and logistic regression. Identified a "Fiber Paradox" — premium internet customers churning at 2× the rate of lower-tier users — and engineered a composite risk signal (new customer + fiber + no tech support) that surfaces high-churn candidates a CS team can action in any CRM without ML infrastructure. Modeled on 8 years of enterprise retention patterns.</p>
+          <div class="pmeta">
+            <span class="ppill">Python</span><span class="ppill">pandas · seaborn</span><span class="ppill">scikit-learn</span><span class="ppill">Logistic Regression</span><span class="ppill">EDA</span><span class="ppill">Feature Engineering</span><span class="ppill">Kaggle</span>
+          </div>
+        </div>
+        <a class="plink" href="https://www.kaggle.com/code/samievargas/ibm-telco-customer-churn" target="_blank" rel="noopener">View on Kaggle →</a>
+      </div>
+    </div>
+ 
+    <!-- Grid: smaller projects -->
     <div class="pgrid">
+ 
       <!-- Life in Pixels -->
       <div class="pcard reveal">
         <div class="carousel" data-carousel>
@@ -523,7 +546,7 @@
           <div class="parrow">→</div>
         </div>
       </div>
-
+ 
       <!-- Journal -->
       <div class="pcard reveal reveal-delay-1">
         <div class="carousel" data-carousel>
@@ -556,21 +579,22 @@
           <div class="parrow">→</div>
         </div>
       </div>
-
-      <!-- Coming Soon: Churn -->
+ 
+      <!-- Placeholder: GADA Capstone -->
       <div class="pcard dim reveal reveal-delay-2">
         <div style="height:200px;background:#f0ede8;display:flex;align-items:center;justify-content:center;">
-          <span style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">In Progress</span>
+          <span style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">Coming Soon</span>
         </div>
         <div class="pcbody">
-          <span class="ptag-dim">Coming Soon</span>
-          <div class="ptitle">Customer Churn Signal Analysis</div>
-          <p class="pdesc">Cohort-based analysis of churn behavioral patterns using the IBM Telco dataset. Identifying which behaviors in months 1–3 predict 12-month churn — modeled on patterns observed across 8 years in enterprise CS.</p>
+          <span class="ptag-dim">In Progress</span>
+          <div class="ptitle">Advanced Analytics Capstone</div>
+          <p class="pdesc">Google Advanced Data Analytics Certificate capstone — regression and classification on a real-world dataset. Python, scikit-learn. Est. Q3 2026.</p>
           <div class="pmeta">
-            <span class="ppill">Python</span><span class="ppill">sklearn</span><span class="ppill">Cohort Analysis</span><span class="ppill">Kaggle</span>
+            <span class="ppill">Python</span><span class="ppill">Regression</span><span class="ppill">Classification</span><span class="ppill">GADA Cert</span>
           </div>
         </div>
       </div>
+ 
     </div>
   </div>
 </section>
@@ -694,7 +718,7 @@
 </section>
 
 
-<!-- ── CURRENTLY BUILDING ──────────────────────────────────────────────── -->
+<!-- ── CURRENTLY BUILDING ──────────────────────────────────────────────────── -->
 <section id="building" class="swf" style="background:#fff;">
   <div class="inner">
     <div class="sh reveal">
@@ -709,8 +733,8 @@
       </div>
       <div class="bld-card reveal reveal-delay-1">
         <div class="bst inp"><span class="pulse"></span>In Progress</div>
-        <div class="btitle">Customer Churn Analysis — Kaggle</div>
-        <p class="bdesc">IBM Telco dataset. Behavioral and contract signals predicting churn. Python, pandas, sklearn. Second published project — different domain, same analytical lens.</p>
+        <div class="btitle">Salesforce Administrator Certification</div>
+        <p class="bdesc">Hands-on Trailhead path building toward the Salesforce Admin cert — extending existing Salesforce ops work with formal platform credentials.</p>
       </div>
       <div class="bld-card reveal reveal-delay-2">
         <div class="bst lnch"><span class="pulse"></span>Launching</div>
