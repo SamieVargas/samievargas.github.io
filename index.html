@@ -200,7 +200,14 @@
       transition:all .2s;white-space:nowrap;display:inline-block;align-self:flex-start;
     }
     .plink:hover{background:var(--accent);color:#fff}
-    .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px;margin-top:2px}
+    .pgrid {
+    display: grid;
+    /* auto-fit collapses extra columns; justify-content centers the cards */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    justify-content: center; 
+    gap: 2rem;             /* Adds better spacing between your cards */
+    margin-top: 2rem;
+}
     .pcard{background:#fff;border:1px solid var(--rule);transition:all .25s;display:flex;flex-direction:column}
     .pcard:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,107,90,.1)}
     .pcard.dim{opacity:.5;pointer-events:none}
@@ -212,7 +219,14 @@
     .carousel{position:relative;overflow:hidden;background:#f0ede8}
     .c-track{display:flex;transition:transform .35s ease}
     .c-slide{min-width:100%;position:relative}
-    .c-slide img{width:100%;height:200px;object-fit:cover;object-position:top;display:block}
+    .c-slide img {
+    width: 100%;
+    height: 400px;         /* Increased height to make charts more readable */
+    object-fit: contain;   /* Ensures entire image is visible, no zooming */
+    object-position: center;
+    background: #f0ede8;   /* Background color for letterboxing */
+    display: block;
+}
     .c-slide a{display:block;cursor:pointer}
     .c-btn{
       position:absolute;top:50%;transform:translateY(-50%);
