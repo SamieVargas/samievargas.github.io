@@ -554,7 +554,48 @@
 </div>
       </div>
     </div>
- 
+ <!-- Featured: ATX Foodie Inspection Analysis -->
+    <div class="project-featured reveal" style="margin-bottom:3rem;">
+      <div class="carousel" data-carousel>
+        <div class="c-track">
+          <div class="c-slide">
+            <img src="./assets/atx-foodie-inspection/zip_compliance.png" alt="Compliance by zip code — top 10 by restaurant density" loading="lazy" style="cursor:default;">
+            <span class="c-lbl">Zip Code Compliance</span>
+          </div>
+          <div class="c-slide">
+            <img src="./assets/atx-foodie-inspection/follow_up_risk.png" alt="Follow-up inspection risk — serial offenders" loading="lazy" style="cursor:default;">
+            <span class="c-lbl">Serial Offender Risk</span>
+          </div>
+          <div class="c-slide">
+            <img src="./assets/atx-foodie-inspection/burnout_trend.png" alt="Operational drift — avg score by inspection sequence" loading="lazy" style="cursor:default;">
+            <span class="c-lbl">Compliance Drift</span>
+          </div>
+          <div class="c-slide">
+            <img src="./assets/atx-foodie-inspection/my_favs.png" alt="My regulars vs Austin compliance landscape" loading="lazy" style="cursor:default;">
+            <span class="c-lbl">Personal Audit</span>
+          </div>
+        </div>
+        <button class="c-btn c-prev" aria-label="Previous">&#8249;</button>
+        <button class="c-btn c-next" aria-label="Next">&#8250;</button>
+        <div class="c-dots">
+          <span class="c-dot on"></span>
+          <span class="c-dot"></span>
+          <span class="c-dot"></span>
+          <span class="c-dot"></span>
+        </div>
+      </div>
+      <div class="pf-body">
+        <div>
+          <span class="ptag">Personal Portfolio Project</span>
+          <div class="ptitle">Austin Food Safety — Does Reputation Match the Safety Record?</div>
+          <p class="pdesc">A JuiceLand pest report on r/Austin made me realize I had zero data visibility into the restaurants I eat at daily. Fetched 4,300+ health inspection records from the City of Austin Open Data Portal API, built a brand compliance scorecard across 84 local brands, and surfaced five findings with direct policy implications: compliance isn't uniform by neighborhood, operational drift is measurable by inspection cycle, and follow-up inspections average 8 points lower than routine visits — meaning the corrective action loop is broken. Includes a folium choropleth map of Austin zip codes and a personal audit of my own regular spots.</p>
+          <div class="pmeta">
+            <span class="ppill">Python</span><span class="ppill">pandas · matplotlib · seaborn</span><span class="ppill">folium (geospatial)</span><span class="ppill">Socrata API</span><span class="ppill">EDA</span><span class="ppill">Public Health Data</span><span class="ppill">Kaggle</span>
+          </div>
+        </div>
+        <a class="plink" href="https://www.kaggle.com/code/samievargas/atx-foodie-inspection" target="_blank" rel="noopener">View on Kaggle →</a>
+      </div>
+    </div>
     <!-- Grid: smaller projects -->
     <div class="pgrid">
  
@@ -642,60 +683,44 @@
   </div>
   <div class="sg-grid">
 
-    <div class="sg reveal">
-      <h3>Analytics</h3>
-      <ul class="slist">
-        <li>Python <span class="snote">pandas · numpy · seaborn · matplotlib</span></li>
-        <li>SQL / BigQuery</li>
-        <li>Exploratory Data Analysis</li>
-        <li>Feature Engineering</li>
-        <li>Logistic Regression</li>
-        <li>Classification Modeling</li>
-        <li>Cohort &amp; Segment Analysis</li>
-        <li>Behavioral Pattern Analysis</li>
-        <li>Data Visualization</li>
-      </ul>
-    </div>
-
-    <div class="sg reveal reveal-delay-1">
-      <h3>Tools &amp; Platforms</h3>
-      <ul class="slist">
-        <li>scikit-learn <span class="snote">LR · metrics · preprocessing</span></li>
-        <li>Google Analytics 4 <span class="snote">certified ✓</span></li>
-        <li>Google Looker Studio</li>
-        <li>Google Apps Script <span class="snote">built 2 apps</span></li>
-        <li>Kaggle Notebooks</li>
-        <li>Salesforce <span class="snote">cert in progress</span></li>
-        <li>Power BI</li>
-        <li>Google Sheets <span class="snote">advanced</span></li>
-      </ul>
-    </div>
-
-    <div class="sg reveal reveal-delay-2">
-      <h3>Operations</h3>
-      <ul class="slist">
-        <li>Engagement Lifecycle Mgmt</li>
-        <li>Health Scoring Architecture</li>
-        <li>Playbook &amp; CoE Design</li>
-        <li>SOW Management</li>
-        <li>Renewal Pipeline Architecture</li>
-        <li>Cross-Functional Alignment</li>
-        <li>Agile / Scrum <span class="snote">PSM I</span></li>
-      </ul>
-    </div>
-
-    <div class="sg reveal reveal-delay-3">
-      <h3>AI &amp; Productivity</h3>
-      <ul class="slist">
-        <li>Claude <span class="snote">daily</span></li>
-        <li>ChatGPT · Gemini · Copilot</li>
-        <li>In-house LLM workflows</li>
-        <li>Prompt Engineering</li>
-        <li>Notion · Jira · Asana</li>
-      </ul>
-    </div>
-
+  <div class="sg reveal">
+    <h3>Analytics</h3>
+    <ul class="slist">
+      <li>Python <span class="snote">pandas · numpy · seaborn · matplotlib</span></li>
+      <li>SQL / BigQuery</li>
+      <li>Exploratory Data Analysis</li>
+      <li>Feature Engineering</li>
+      <li>Logistic Regression</li>
+      <li>Classification Modeling</li>
+      <li>Cohort &amp; Segment Analysis</li>
+      <li>Behavioral Pattern Analysis</li>
+      <li>Time Series &amp; Longitudinal Analysis</li>
+      <li>Weighted Scoring &amp; Statistical Normalization</li>
+      <li>API Data Ingestion <span class="snote">Socrata REST</span></li>
+      <li>Entity Resolution &amp; Data Cleaning</li>
+    </ul>
   </div>
+
+  <div class="sg reveal reveal-delay-1">
+    <h3>Visualization</h3>
+    <ul class="slist">
+      <li>matplotlib &amp; seaborn <span class="snote">advanced</span></li>
+      <li>folium <span class="snote">geospatial choropleth</span></li>
+      <li>Tableau</li>
+      <li>Power BI</li>
+      <li>Google Looker Studio</li>
+      <li>Google Slides <span class="snote">data narrative decks</span></li>
+    </ul>
+  </div>
+
+  <div class="sg reveal reveal-delay-2">
+    <h3>Tools &amp; Platforms</h3>
+    <ul class="slist">
+      <li>scikit-learn <span class="snote">LR · metrics · preprocessing</span></li>
+      <li>Google Analytics 4 <span class="snote">certified ✓</span></li>
+      <li>Google Apps Script <span class="snote">2 self-built apps</span></li>
+      <li>Kaggle Notebooks</li>
+      <li>Salesforce <span c
 
   <div style="margin-top:4rem;">
     <h3 style="font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;">Credentials</h3>
@@ -805,7 +830,13 @@
         <p class="obs-body" style="margin-top:.75rem;">The more interesting question isn't whether it holds at scale — it's what that lag says about recovery and mood regulation. Sleep, stress, and movement don't reset cleanly at midnight. That's the kind of thing product teams building wellness features tend to flatten out of their models.</p>
         <div class="obs-src">Tracked via <a href="https://script.google.com/macros/s/AKfycbwUVS3iL7JTO-XR93eCRDRY_lcFOdWPpa9VIB1hFLatsgtXT9QRfPtgoRJlTstkDis/exec" target="_blank" rel="noopener">Life in Pixels</a> — self-built mood &amp; habit tracker.</div>
       </article>
-      <div class="obs-ph reveal reveal-delay-1"><span>Next observation — coming soon</span></div>
+      <article class="obs-card reveal reveal-delay-1">
+        <div class="obs-tag">May 2026 · Austin Open Data · 4,320 Inspection Records</div>
+        <h3 class="obs-title">Being Flagged Doesn't Fix It: Follow-Up Inspections Score 8 Points Lower</h3>
+        <p class="obs-body">I started this by querying every restaurant I've eaten at in Austin against the City's public health inspection API. What I expected to find were a few outliers in an otherwise clean picture. What I found instead was a systemic pattern: establishments that failed inspection and were sent for follow-up visits scored an average of <strong>8 points lower</strong> than routine visits — not higher. The corrective action loop isn't working.</p>
+        <p class="obs-body" style="margin-top:.75rem;">A second pattern held across 84 mapped local brands: scores decay measurably by the <strong>5th–6th inspection cycle</strong>. Not a catastrophic failure — a slow operational erosion that routine visits don't catch until violations are already compounding. The most unsettling part: <em>serial offenders are identifiable in advance.</em> The data exists. The question is whether the city's workflow is structured to act on it.</p>
+        <div class="obs-src">City of Austin Open Data Portal · Austin Public Health Department · <a href="https://www.kaggle.com/code/samievargas/atx-foodie-inspection" target="_blank" rel="noopener">Full analysis on Kaggle ↗</a></div>
+      </article>
     </div>
   </div>
 </section>
