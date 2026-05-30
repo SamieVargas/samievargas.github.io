@@ -3,10 +3,10 @@
 // ============================================================
 
 export const BIO = [
-  `Eight years at <strong>GLG</strong> — a PE-backed global expert network — managing a $14M+ book of enterprise accounts. Most of what I built there didn't exist before I built it: health scoring systems, renewal pipeline architecture, Salesforce dashboards, team playbooks, a Center of Excellence from scratch. I operate where client delivery and operational data meet, which is a weird niche that I've gotten pretty good at.`,
-  `I'm now doing the thing I kept wishing someone on my team would do: closing the gap between what the numbers say and what the business actually does next. The GDA capstone, the Instacart dbt project, the ATX Foodie inspection analysis — all of it started the same way. Sit with messy data. Find the pattern before you know what you're looking for. Surface the signal that changes what happens next.`,
-  `This site is a portfolio but it's also just me. The projects here reflect the way I think — personal data systems, public health records, behavioral analytics, building things I actually use. I'd be doing most of this even if I wasn't job searching. The Agatha Christie read-through and the Ring Fit dragon-fighting are not for the resume. <strong>Everything else kind of is.</strong>`,
-  `I'm looking for roles at data-driven companies where the analytical and operational sides of the business actually talk to each other. Remote only. Austin stays.`,
+  `Eight years at GLG managing a $14M+ book of enterprise accounts. Most of what I built there didn't exist before I built it — health scoring systems, renewal pipeline architecture, Salesforce dashboards, team playbooks, a Center of Excellence from scratch. I'm good at finding the thing that's missing and building it before anyone's formally asked.`,
+  `I've been layering in data analytics because I kept running into the same wall: the numbers existed, the insight was sitting right there, and nothing changed. The GDA capstone, the Instacart dbt project, the ATX Foodie inspection analysis, and all of it came from the same impulse. Sit with the mess long enough and something shows up.`,
+  `This site is a portfolio but it's also just me. I'd be building most of this stuff regardless. The Agatha Christie read-through and the Ring Fit dragon are not for the resume. The rest kind of is.`,
+  `Looking for understand where the operational and analytical sides of the business actually talk to each other. ATX.`,
 ];
 
 export const QUICK_FACTS = [
