@@ -3,7 +3,7 @@
 // ============================================================
 
 export const BIO = [
-  `Eight years at GLG managing a $14M+ book of enterprise accounts. Most of what I built there didn't exist before I built it — health scoring systems, renewal pipeline architecture, Salesforce dashboards, team playbooks, a Center of Excellence from scratch. I'm good at finding the thing that's missing and building it before anyone's formally asked.`,
+  `Eight years managing a $14M+ book of enterprise accounts. Most of what I built didn't exist before I built it — health scoring systems, renewal pipeline architecture, Salesforce dashboards, team playbooks, a Center of Excellence from scratch. I'm good at finding the thing that's missing and building it before anyone's formally asked.`,
   `I've been layering in data analytics because I kept running into the same wall: the numbers existed, the insight was sitting right there, and nothing changed. The GDA capstone, the Instacart dbt project, the ATX Foodie inspection analysis, and all of it came from the same impulse. Sit with the mess long enough and something shows up.`,
   `This site is a portfolio but it's also just me. I'd be building most of this stuff regardless. The Agatha Christie read-through and the Ring Fit dragon are not for the resume. The rest kind of is.`,
 ];
