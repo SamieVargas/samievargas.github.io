@@ -12,8 +12,8 @@ export const CURRENTLY_BUILDING = [
   {
     status: 'inp',
     label: 'In Progress',
-    title: 'Salesforce Administrator Certification',
-    description: 'Hands-on Trailhead path building toward the Salesforce Admin cert — extending existing Salesforce ops work with formal platform credentials.',
+    title: 'dbt Certified Developer',
+    description: 'Deeper knowledge into dbt.',
   },
   {
     status: 'lnch',
