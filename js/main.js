@@ -5,6 +5,23 @@
 import { renderAll } from './render.js';
 import { CONTACT }   from '../data/about.js';
 
+// ── COMMANDS defined first — must be before boot sequence ────
+// NOTE: const is not hoisted. initCommandPalette() references COMMANDS,
+// so this array must appear before the function is called.
+const COMMANDS = [
+  { group: 'Navigate', icon: '#', label: 'Go to Experience', action: () => scrollToSection('#experience'), kbd: '' },
+  { group: 'Navigate', icon: '#', label: 'Go to Work',       action: () => scrollToSection('#work'),       kbd: '' },
+  { group: 'Navigate', icon: '#', label: 'Go to Skills',     action: () => scrollToSection('#skills'),     kbd: '' },
+  { group: 'Navigate', icon: '#', label: 'Go to About',      action: () => scrollToSection('#about'),      kbd: '' },
+  { group: 'Navigate', icon: '#', label: 'Go to Contact',    action: () => scrollToSection('#contact'),    kbd: '' },
+  { group: 'Actions',  icon: '◑', label: 'Toggle Dark Mode', action: () => document.getElementById('dark-toggle')?.click(), kbd: '⌘D' },
+  { group: 'Actions',  icon: '✉', label: 'Copy Email',       action: doCopyEmail, kbd: '' },
+  { group: 'Actions',  icon: '↓', label: 'Download Resume',  action: () => window.open('./Resume.pdf', '_blank'), kbd: '' },
+  { group: 'Links',    icon: '↗', label: 'Open LinkedIn',    action: () => window.open('https://linkedin.com/in/samievargas12', '_blank'), kbd: '' },
+  { group: 'Links',    icon: '↗', label: 'Open GitHub',      action: () => window.open('https://github.com/SamieVargas', '_blank'), kbd: '' },
+  { group: 'Links',    icon: '↗', label: 'Open Kaggle',      action: () => window.open('https://www.kaggle.com/samievargas', '_blank'), kbd: '' },
+];
+
 // ── Boot ─────────────────────────────────────────────────────
 renderAll();
 initDarkMode();
@@ -18,11 +35,12 @@ initCarousels();
 initCommandPalette();
 initCopyEmail();
 
-// NOTE: carousels need DOM fully painted — short timeout ensures elements exist
+// NOTE: carousels need DOM fully painted — timeout ensures elements exist
+// 200ms gives reveal animations time to fire before we measure layout
 setTimeout(() => {
   initObsCarousel();
   initIntBandCarousel();
-}, 80);
+}, 200);
 
 // ── DARK MODE ────────────────────────────────────────────────
 function initDarkMode() {
@@ -44,10 +62,10 @@ function initGreeting() {
   if (!badge) return;
   const hour = new Date().getHours();
   let text, emoji;
-  if      (hour >= 5  && hour < 12) { text = 'Good morning, Austin';            emoji = '🌅'; }
-  else if (hour >= 12 && hour < 17) { text = 'Good afternoon';                  emoji = '☀️'; }
-  else if (hour >= 17 && hour < 20) { text = 'Good evening';                    emoji = '🌆'; }
-  else if (hour >= 20 && hour < 24) { text = 'Burning the midnight oil?';       emoji = '🌙'; }
+  if      (hour >= 5  && hour < 12) { text = 'Good morning, Austin';                emoji = '🌅'; }
+  else if (hour >= 12 && hour < 17) { text = 'Good afternoon';                      emoji = '☀️'; }
+  else if (hour >= 17 && hour < 20) { text = 'Good evening';                        emoji = '🌆'; }
+  else if (hour >= 20 && hour < 24) { text = 'Burning the midnight oil?';           emoji = '🌙'; }
   else                              { text = 'It\'s late — insomniac or recruiter?'; emoji = '👀'; }
   badge.textContent = `${emoji}  ${text}`;
 }
@@ -168,23 +186,24 @@ function initOneCarousel(c) {
     track.style.transform = `translateX(-${cur * 100}%)`;
     dots.forEach((d, i) => d.classList.toggle('on', i === cur));
   }
-  // NOTE: scoped to THIS carousel element — fixes click not working
   if (prev) prev.addEventListener('click', e => { e.stopPropagation(); go(cur - 1); });
   if (next) next.addEventListener('click', e => { e.stopPropagation(); go(cur + 1); });
   dots.forEach((d, i) => d.addEventListener('click', e => { e.stopPropagation(); go(i); }));
 }
 
 // ── OBSERVATIONS CAROUSEL ────────────────────────────────────
-// NOTE: uses ID-scoped queries so clicks are isolated to this carousel
 function initObsCarousel() {
   const prev    = document.getElementById('obs-prev');
   const next    = document.getElementById('obs-next');
   const counter = document.getElementById('obs-counter');
   const dotsEl  = document.getElementById('obs-dots');
+  const track   = document.getElementById('obs-track');
 
   if (!prev || !next) { console.warn('obs carousel: prev/next not found'); return; }
+  if (!track)         { console.warn('obs carousel: track not found'); return; }
 
-  const slides = document.querySelectorAll('.obs-slide');
+  // Scoped to track element — prevents bleed if class used elsewhere
+  const slides = track.querySelectorAll('.obs-slide');
   const dots   = dotsEl ? dotsEl.querySelectorAll('.obs-dot') : [];
 
   if (!slides.length) { console.warn('obs carousel: no slides found'); return; }
@@ -201,20 +220,17 @@ function initObsCarousel() {
   }
 
   if (counter) counter.textContent = `1 / ${slides.length}`;
-
-  // NOTE: addEventListener on the specific button elements — not delegated
   prev.addEventListener('click', () => goObs(cur - 1));
   next.addEventListener('click', () => goObs(cur + 1));
   dots.forEach((d, i) => d.addEventListener('click', () => goObs(i)));
 }
 
 // ── INTERESTS BAND CAROUSEL ──────────────────────────────────
-// Shows 3 cards at a time, slides by page
 function initIntBandCarousel() {
-  const band    = document.getElementById('int-band');
-  const prev    = document.getElementById('int-prev-b');
-  const next    = document.getElementById('int-next-b');
-  const dotsEl  = document.getElementById('int-band-dots');
+  const band   = document.getElementById('int-band');
+  const prev   = document.getElementById('int-prev-b');
+  const next   = document.getElementById('int-next-b');
+  const dotsEl = document.getElementById('int-band-dots');
 
   if (!band || !prev || !next) { console.warn('int band: elements not found'); return; }
 
@@ -226,55 +242,29 @@ function initIntBandCarousel() {
 
   let page = 0;
 
-  function getCardWidth() {
-    if (!cards[0]) return 0;
-    const card = cards[0];
-    const style = getComputedStyle(card);
-    const margin = parseFloat(style.marginRight) || 0;
-    // gap is on the flex container
-    return card.offsetWidth;
-  }
-
   function goBand(p) {
     if (dots[page]) dots[page].classList.remove('on');
     page = (p + pageCount) % pageCount;
-
-    // Calculate offset: move by (page * perPage) cards
-    // Each card takes (100% / perPage) of container + gap
-    const wrap = document.getElementById('int-band-wrap');
-    if (!wrap) return;
-    const wrapWidth = wrap.offsetWidth;
-    const gap = 16; // 1rem in px
-    const cardWidth = (wrapWidth - (gap * (perPage - 1))) / perPage;
-    const offset = page * perPage * (cardWidth + gap);
-
-    band.style.transform = `translateX(-${offset}px)`;
-    if (dots[page]) dots[page].classList.add('on');
+    // requestAnimationFrame ensures layout is complete before measuring
+    requestAnimationFrame(() => {
+      const wrap = document.getElementById('int-band-wrap');
+      if (!wrap) return;
+      const wrapWidth = wrap.offsetWidth;
+      const gap = 16;
+      const cardWidth = (wrapWidth - (gap * (perPage - 1))) / perPage;
+      const offset = page * perPage * (cardWidth + gap);
+      band.style.transform = `translateX(-${offset}px)`;
+      if (dots[page]) dots[page].classList.add('on');
+    });
   }
 
   prev.addEventListener('click', () => goBand(page - 1));
   next.addEventListener('click', () => goBand(page + 1));
   dots.forEach((d, i) => d.addEventListener('click', () => goBand(i)));
-
-  // Recalculate on resize
   window.addEventListener('resize', () => goBand(page), { passive: true });
 }
 
 // ── COMMAND PALETTE ──────────────────────────────────────────
-const COMMANDS = [
-  { group: 'Navigate', icon: '#', label: 'Go to Experience', action: () => scrollToSection('#experience'), kbd: '' },
-  { group: 'Navigate', icon: '#', label: 'Go to Work',       action: () => scrollToSection('#work'),       kbd: '' },
-  { group: 'Navigate', icon: '#', label: 'Go to Skills',     action: () => scrollToSection('#skills'),     kbd: '' },
-  { group: 'Navigate', icon: '#', label: 'Go to About',      action: () => scrollToSection('#about'),      kbd: '' },
-  { group: 'Navigate', icon: '#', label: 'Go to Contact',    action: () => scrollToSection('#contact'),    kbd: '' },
-  { group: 'Actions',  icon: '◑', label: 'Toggle Dark Mode', action: () => document.getElementById('dark-toggle')?.click(), kbd: '⌘D' },
-  { group: 'Actions',  icon: '✉', label: 'Copy Email',       action: doCopyEmail, kbd: '' },
-  { group: 'Actions',  icon: '↓', label: 'Download Resume',  action: () => window.open('./Resume.pdf', '_blank'), kbd: '' },
-  { group: 'Links',    icon: '↗', label: 'Open LinkedIn',    action: () => window.open('https://linkedin.com/in/samievargas12', '_blank'), kbd: '' },
-  { group: 'Links',    icon: '↗', label: 'Open GitHub',      action: () => window.open('https://github.com/SamieVargas', '_blank'), kbd: '' },
-  { group: 'Links',    icon: '↗', label: 'Open Kaggle',      action: () => window.open('https://www.kaggle.com/samievargas', '_blank'), kbd: '' },
-];
-
 function initCommandPalette() {
   const overlay = document.getElementById('cmd-palette');
   const input   = document.getElementById('cmd-input');
