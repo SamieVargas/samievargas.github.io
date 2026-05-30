@@ -1,10 +1,9 @@
-// ============================================================
-// data/projects.js — Portfolio projects content
+// ===========================================================
 // FEATURED_PROJECTS: full-width with Quick Context sidebar
 // GRID_PROJECTS: smaller card layout
 //
 // Featured order:
-//   1. ATX Foodie (strongest narrative, most complete)
+//   1. ATX Foodie
 //   2. Instacart dbt (dbt Cloud + BigQuery)
 //   3. Wearable GDA Capstone
 //   4. IBM Churn
