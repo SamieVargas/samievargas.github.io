@@ -38,9 +38,12 @@ export const SKILL_GROUPS = [
       { name: 'Google Analytics 4', note: 'certified ✓' },
       { name: 'Google Apps Script', note: '2 self-built apps' },
       { name: 'Kaggle Notebooks' },
-      { name: 'Salesforce', note: 'cert in progress' },
       { name: 'BigQuery' },
       { name: 'Google Sheets', note: 'advanced' },
+      { name: 'Microsoft Excel', note: 'advanced' },
+      { name: 'dbt Cloud', note: 'Fundamentals certified' },
+      { name: 'bq CLI', note: 'data loading' },
+      { name: 'Kaggle CLI', note: 'API data ingestion' },
     ],
   },
   {
@@ -68,6 +71,12 @@ export const SKILL_GROUPS = [
 ];
 
 export const CERTIFICATIONS = [
+  {
+  name: 'dbt Fundamentals',
+  issuer: 'dbt Labs · May 2026',
+  links: [{ label: 'Verify ↗', href: 'https://credentials.getdbt.com/5470c199-7753-4f90-99a3-07e8f8c6fe51' }],
+  status: 'done',
+    },
   {
     name: 'Google Analytics Certification (GA4)',
     issuer: 'Google · Skillshop · Issued May 21, 2026 · ID: 182987115',
@@ -106,17 +115,5 @@ export const CERTIFICATIONS = [
     issuer: '2026',
     links: [],
     status: 'done',
-  },
-  {
-    name: 'Salesforce Administrator Certification',
-    issuer: 'Salesforce / Trailhead · In Progress',
-    links: [],
-    status: 'prog',
-  },
-  {
-    name: 'dbt Fundamentals',
-    issuer: 'dbt Labs · In Progress',
-    links: [],
-    status: 'prog',
   },
 ];
