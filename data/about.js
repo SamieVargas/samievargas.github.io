@@ -12,7 +12,6 @@ export const QUICK_FACTS = [
   { label: 'Currently',   value: 'Senior Manager, Service @ GLG' },
   { label: 'Location',    value: 'Austin, TX · since 2014' },
   { label: 'Education',   value: 'B.S. Biochemistry · UT Austin · 2018' },
-  { label: 'Looking for', value: 'Engagement Manager, BizOps & CS Ops — remote' },
   { label: 'Running',     value: 'Trail runner · 15 of 21mi Greenbelt goal · knee in progress' },
   { label: 'Reading',     value: 'Hercule Poirot complete catalog' },
   {
@@ -25,7 +24,7 @@ export const INTERESTS = [
   {
     icon: '🏃',
     title: 'Trail Running & the Greenbelt',
-    body: 'I run with a Garmin and yes, I look at the data — but the reason I run is because the Greenbelt in October, water still warm, is one of the best things about living in Austin. Working up to the full 21-mile out-and-back. Currently at 15. Knee is the gating factor. It\'ll hold.',
+    body: 'I run with a Garmin and yes, I look at the data-— but the reason I run is because the Greenbelt in October, water still warm, is one of the best things about living in Austin. Working up to the full 21-mile out-and-back. Currently at 15. Knee is the gating factor. It\'ll hold.',
   },
   {
     icon: '🎮',
@@ -35,7 +34,7 @@ export const INTERESTS = [
   {
     icon: '🍜',
     title: 'Austin Food (and Its Inspection Records)',
-    body: 'I love exploring Austin\'s food scene — current favorites are Paprika, Desnudo, and Terrible Love. Also on an ongoing and possibly doomed search for the perfect Caesar salad in the city. The health inspection project started because of a JuiceLand Reddit post and I have zero regrets. I still go there.',
+    body: 'I love exploring Austin\'s food scene - current favorites are Paprika, Desnudo, and Terrible Love. Also on an ongoing and possibly doomed search for the perfect Caesar salad in the city. The health inspection project started because of a JuiceLand Reddit post and I have zero regrets. I still go there.',
   },
   {
     icon: '🔮',
