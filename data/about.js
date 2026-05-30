@@ -15,7 +15,7 @@ export const QUICK_FACTS = [
   { label: 'Education',  value: 'B.S. Biochemistry · UT Austin · 2018' },
   { label: 'Looking for', value: 'Engagement Manager, BizOps & CS Ops — remote' },
   { label: 'Running',    value: 'Trail runner · 15 of 21mi Greenbelt goal · knee in progress' },
-  { label: 'Reading',    value: 'Agatha Christie\'s complete catalog' },
+  { label: 'Reading',    value: 'Hercule Poirot complete catalog' },
   {
     label: 'GitHub',
     value: '<a href="https://github.com/SamieVargas" target="_blank" rel="noopener">github.com/SamieVargas ↗</a>',
