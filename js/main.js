@@ -18,6 +18,8 @@ initExperienceCollapse();
 initCarousels();
 initCommandPalette();
 initCopyEmail();
+initObsCarousel();
+initIntCarousel();
 
 // ── DARK MODE ────────────────────────────────────────────────
 function initDarkMode() {
@@ -364,4 +366,54 @@ function showToast(msg) {
   toast.classList.add('show');
   clearTimeout(window.__toastTimer);
   window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+// ── OBSERVATIONS CAROUSEL ────────────────────────────────────
+function initObsCarousel() {
+  const track  = document.querySelector('.obs-track');
+  if (!track) return;
+
+  const slides  = document.querySelectorAll('.obs-slide');
+  const dots    = document.querySelectorAll('.obs-dot');
+  const counter = document.querySelector('.obs-counter');
+  const prev    = document.querySelector('.obs-prev');
+  const next    = document.querySelector('.obs-next');
+  let cur = 0;
+
+  function goObs(n) {
+    slides[cur].classList.remove('obs-active');
+    dots[cur].classList.remove('on');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('obs-active');
+    dots[cur].classList.add('on');
+    if (counter) counter.textContent = `${cur + 1} / ${slides.length}`;
+  }
+
+  if (counter) counter.textContent = `1 / ${slides.length}`;
+  if (prev) prev.addEventListener('click', () => goObs(cur - 1));
+  if (next) next.addEventListener('click', () => goObs(cur + 1));
+  dots.forEach((d, i) => d.addEventListener('click', () => goObs(i)));
+}
+
+// ── INTERESTS CAROUSEL ───────────────────────────────────────
+function initIntCarousel() {
+  const track = document.querySelector('.int-track');
+  if (!track) return;
+
+  const slides = document.querySelectorAll('.interest-slide');
+  const dots   = document.querySelectorAll('.int-dot');
+  const prev   = document.querySelector('.int-prev');
+  const next   = document.querySelector('.int-next');
+  let cur = 0;
+
+  function goInt(n) {
+    slides[cur].classList.remove('int-active');
+    dots[cur].classList.remove('on');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('int-active');
+    dots[cur].classList.add('on');
+  }
+
+  if (prev) prev.addEventListener('click', () => goInt(cur - 1));
+  if (next) next.addEventListener('click', () => goInt(cur + 1));
+  dots.forEach((d, i) => d.addEventListener('click', () => goInt(i)));
 }
