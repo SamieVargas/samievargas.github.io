@@ -25,42 +25,42 @@ export const INTERESTS = [
   {
     icon: '🏃',
     title: 'Trail Running & the Greenbelt',
-    body: 'I run with a Garmin and I actually look at the data. Cadence trends, HRV patterns, load spikes — the same signals I analyzed in the GDA capstone, applied to my own training. Currently rehabbing a knee and measuring everything. Working up to a full 21-mile Barton Creek Greenbelt out-and-back — at 15 miles right now. The HRV correlation with injury risk was more obvious in hindsight than I wanted to admit.',
+    body: 'I run with a Garmin and yes, I look at the data — but the reason I run is because the Greenbelt in October, water still warm, is one of the best things about living in Austin. Working up to the full 21-mile out-and-back. Currently at 15. Knee is the gating factor. It\'ll hold.',
   },
   {
-    icon: '📊',
-    title: 'Personal Data Stack',
-    body: 'I built Life in Pixels because I wanted real longitudinal data on my own patterns. That data now powers Life OS — a multi-panel dashboard with Chart.js visualizations, Gemini AI weekly reflections, and Todoist integration. Not a side project I abandoned. A real system I open every day. The walk/mood finding (+0.5 on days I go outside) came out of this. So did realizing I was under-sleeping by exactly one cycle most nights.',
+    icon: '🎮',
+    title: 'House Flipper & the Medieval Problem',
+    body: 'I spent an unreasonable amount of time getting the half-timbering right on a House Flipper 2 build. Cobblestone base, old plaster walls, steep pitched roof, Tudor timber pattern. It served no purpose. I loved every minute. Not everything needs to be useful.',
   },
   {
     icon: '🍜',
     title: 'Austin Food (and Its Inspection Records)',
-    body: 'I love exploring Austin\'s food scene — current favorites are Paprika, Desnudo, and Terrible Love. I\'m also on an ongoing and possibly doomed search for the perfect Caesar salad in Austin. Separately, a JuiceLand pest report on Reddit sent me down a data rabbit hole and I ended up building a compliance scorecard for 84 local restaurants. I still went back to JuiceLand. The green juice was fine.',
+    body: 'I love exploring Austin\'s food scene — current favorites are Paprika, Desnudo, and Terrible Love. Also on an ongoing and possibly doomed search for the perfect Caesar salad in the city. The health inspection project started because of a JuiceLand Reddit post and I have zero regrets. I still go there.',
   },
   {
     icon: '🔮',
-    title: 'Tarot as a Reflection Practice',
-    body: 'I pull cards most days as a journaling prompt, not a prediction method. I built Tarot Tracker to log every pull, track card frequency, and surface patterns over time — stalker cards, ghost cards, reorder rate by suit. Behavioral data on my own thinking. Very much my brand. I have seven decks. The Rider-Waite-Smith images are in the public domain and I have the copyright audit to prove it.',
-  },
-  {
-    icon: '🧘',
-    title: 'Ring Fit, Hot Yoga & Pilates',
-    body: 'Ring Fit Adventure is genuinely fun in a way gym equipment isn\'t — it turns out I need a dragon to fight to stay motivated. The hot yoga and pilates mix is for the knee rehab and the nervous system reset. There\'s something about moving in a hot room that processes things no amount of data logging can touch.',
+    title: 'Tarot',
+    body: 'I pull cards most days. It\'s a journaling prompt, not a prediction. I built a tracker for it because of course I did: 78 cards, pull history, suit patterns, stalker cards. I have seven decks and keep collecting more.',
   },
   {
     icon: '📚',
-    title: 'Agatha Christie, Cover to Cover',
-    body: 'Working through the complete Christie catalog in order. Currently paused somewhere in the Poirot series — he\'s getting older in the later books and I\'m not quite ready to read toward the end of something I love. In the meantime I\'m reading everything else she wrote. Miss Marple has been a revelation.',
+    title: 'Agatha Christie, in Order',
+    body: 'Working through the complete catalog. Currently paused in the Poirot series — he\'s getting older in the later books and I\'m not ready to read toward the end of something I love. I\'ll get back to Poirot eventually.',
   },
   {
-    icon: '🛠️',
-    title: 'Building Things That Solve My Own Problems',
-    body: 'Tarot Tracker (GitHub Pages, vanilla JS, Google Sheets sync), Life OS (Apps Script dashboard), a structured journal app, a daily log form, a vehicle maintenance tracker, a travel planner template. I build for myself first. If I can\'t get myself to use it, the design is wrong. Four self-deployed apps, no computer science degree. The design constraint is always: would I open this when I\'m tired?',
+    icon: '🧘',
+    title: 'Hot Yoga, Pilates & Ring Fit',
+    body: 'The hot yoga and pilates mix is for the knee and the nervous system. Ring Fit is because it turns out I need a dragon to fight to stay motivated. These three things have nothing in common except that I actually do all of them.',
+  },
+  {
+    icon: '☀️',
+    title: 'Austin, Actually',
+    body: 'Been here since 2014 and still finding things. Barton Springs before it gets crowded. The Greenbelt in October. That late-afternoon light in South Austin. I complain about the summers like everyone else and then September comes and I remember why I stayed.',
   },
   {
     icon: '📓',
-    title: 'Journaling as a Data Practice',
-    body: 'Daily structured journaling since 2020. I treat it like tagging commits: consistent schema, recurring themes that only become visible across months of entries. It\'s where year-long patterns show up. Also where most of my project ideas come from. I built my own journal app so the prompts are exactly what I want.',
+    title: 'Journaling',
+    body: 'Daily since 2020. I built my own app for it so the prompts are exactly what I want. The patterns that show up across months of entries are different from what shows up in a single day — that\'s the whole point. Most of my sparks of joy start here.',
   },
 ];
 
