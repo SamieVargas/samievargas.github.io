@@ -18,8 +18,11 @@ initExperienceCollapse();
 initCarousels();
 initCommandPalette();
 initCopyEmail();
-initObsCarousel();
-initIntCarousel();
+// NOTE: timeout gives render.js time to finish painting before we query
+setTimeout(() => {
+  initObsCarousel();
+  initIntCarousel();
+}, 50);
 
 // ── DARK MODE ────────────────────────────────────────────────
 function initDarkMode() {
@@ -369,9 +372,8 @@ function showToast(msg) {
 }
 // ── OBSERVATIONS CAROUSEL ────────────────────────────────────
 function initObsCarousel() {
-  const track  = document.querySelector('.obs-track');
-  if (!track) return;
-
+  const track = document.querySelector('.obs-track');
+  if (!track) { console.warn('obs-track not found'); return; }
   const slides  = document.querySelectorAll('.obs-slide');
   const dots    = document.querySelectorAll('.obs-dot');
   const counter = document.querySelector('.obs-counter');
