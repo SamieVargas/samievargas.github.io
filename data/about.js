@@ -64,8 +64,8 @@ export const INTERESTS = [
 ];
 
 export const CONTACT = {
-  heading: 'Let\'s work on something <em>worth discovering.</em>',
-  subtext: 'Interested in engagement management, CS operations, or strategy roles at data-driven companies. Remote only. Also available for freelance data analysis and GA4 audit projects.',
+  heading: 'Come say <em>howdy!</em>',
+  subtext: '',
   email: 'sammisnv@gmail.com',
   links: [
     { label: 'Email',    value: 'sammisnv@gmail.com',                    href: '#copy-email',   copyEmail: true },
