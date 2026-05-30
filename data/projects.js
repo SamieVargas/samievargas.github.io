@@ -158,8 +158,14 @@ export const GRID_PROJECTS = [
       slides: [
         {
           src: './assets/tarot-tracker/deck.png',
-          alt: 'Tarot Tracker deck view',
+          alt: 'Tarot Tracker spread view',
           label: 'Live App',
+          link: 'https://samievargas.github.io/tarot-tracker/',
+        },
+        {
+          src: './assets/tarot-tracker/card.png',
+          alt: 'Tarot Tracker card view',
+          label: 'Card History',
           link: 'https://samievargas.github.io/tarot-tracker/',
         },
       ],
