@@ -16,12 +16,6 @@ export const CURRENTLY_BUILDING = [
     description: 'Pushing past Fundamentals into the full Developer certification. Already have the Instacart project as a working foundation — the models, tests, and DAG are built, now closing the gaps the cert requires.',
   },
   {
-    status: 'lnch',
-    label: 'Launching',
-    title: 'Freelance Analytics — Upwork',
-    description: 'GA4 audits, Looker Studio dashboards, and ops data analysis for small teams. GA4 certified May 2026. First proposals live.',
-  },
-  {
     status: 'inp',
     label: 'In Progress',
     title: 'Tableau Public Dashboard — ATX Food Safety',
@@ -30,7 +24,7 @@ export const CURRENTLY_BUILDING = [
   {
     status: 'inp',
     label: 'In Progress',
-    title: 'Barton Creek Greenbelt — Full 21-Mile Out-and-Back',
+    title: 'Barton Creek Greenbelt & Violet Crown — Full 21-Mile Out-and-Back',
     description: 'Working up to the full Barton Creek Greenbelt trail — 21 miles out and back. Currently at 15. Knee rehab is the gating factor, not fitness. Garmin is tracking everything.',
   },
   {
