@@ -5,9 +5,7 @@
 import { renderAll } from './render.js';
 import { CONTACT }   from '../data/about.js';
 
-// ── COMMANDS defined first — must be before boot sequence ────
-// NOTE: const is not hoisted. initCommandPalette() references COMMANDS,
-// so this array must appear before the function is called.
+// ── COMMANDS defined first — must be before boot sequence plz work ────
 const COMMANDS = [
   { group: 'Navigate', icon: '#', label: 'Go to Experience', action: () => scrollToSection('#experience'), kbd: '' },
   { group: 'Navigate', icon: '#', label: 'Go to Work',       action: () => scrollToSection('#work'),       kbd: '' },
@@ -35,7 +33,7 @@ initCarousels();
 initCommandPalette();
 initCopyEmail();
 
-// NOTE: carousels need DOM fully painted — timeout ensures elements exist
+// NOTE: carousels imeout ensures elements exist plz plz work
 // 200ms gives reveal animations time to fire before we measure layout
 setTimeout(() => {
   initObsCarousel();
@@ -66,7 +64,7 @@ function initGreeting() {
   else if (hour >= 12 && hour < 17) { text = 'Good afternoon';                      emoji = '☀️'; }
   else if (hour >= 17 && hour < 20) { text = 'Good evening';                        emoji = '🌆'; }
   else if (hour >= 20 && hour < 24) { text = 'Burning the midnight oil?';           emoji = '🌙'; }
-  else                              { text = 'It\'s late — insomniac or recruiter?'; emoji = '👀'; }
+  else                              { text = 'It\'s late — insomniac?'; emoji = '👀'; }
   badge.textContent = `${emoji}  ${text}`;
 }
 
