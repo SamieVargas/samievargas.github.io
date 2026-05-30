@@ -36,3 +36,8 @@ export const EXPERIENCE = [
           'Built custom Salesforce reporting and tracking infrastructure that became the team standard for account health visibility.',
           'Maintained top-tier client satisfaction scores across a high-complexity book — accounts that required both operational precision and genuine relationship depth to retain.',
         ],
+        tags: ['Account Management', 'Enterprise CS', 'Salesforce Reporting'],
+      },
+    ],
+  },
+];
