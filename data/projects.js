@@ -169,23 +169,43 @@ export const GRID_PROJECTS = [
   },
 
   {
-    id: 'life-os',
-    badge: 'Self-Built · Google Apps Script · Personal Analytics',
-    title: 'Life OS — Personal Health & Habit Dashboard',
-    description: 'A multi-panel personal dashboard pulling from Life in Pixels longitudinal data via Apps Script. Tracks mood, HRV, body battery, sleep score, habits, cycle phase, DBT regulation skills, and life events. Includes Gemini AI weekly reflection, Todoist task integration, and a full rearview analytics layer with Chart.js visualizations across mental health, physical symptoms, and habit streaks.',
-    media: {
-      type: 'carousel',
-      slides: [
-        {
-          src: './assets/life-os/dashboard_scrubbed.png',
-          alt: 'Life OS dashboard — personal data scrubbed',
-          label: 'Dashboard',
-        },
-      ],
-    },
-    tags: ['Google Apps Script', 'Chart.js', 'Gemini API', 'Todoist API', 'Garmin', 'Personal Analytics'],
-    dim: false,
+  id: 'life-os',
+  badge: 'Self-Built · Google Apps Script · Personal Analytics',
+  title: 'Life OS — Personal Health & Habit Dashboard',
+  description: 'A multi-panel personal dashboard I built and use daily. Pulls longitudinal data from two custom Apps Script APIs, renders 15+ Chart.js visualizations across health, habit, and behavioral metrics, and integrates Gemini AI for weekly reflection and Todoist for task tracking. Built entirely in vanilla Apps Script — no frameworks, no external backend. The architecture is the same pattern I\'d use to build an ops dashboard for a CS team: normalized data model, live sync, modular panels.',
+  media: {
+    type: 'carousel',
+    slides: [
+      {
+        src: './assets/life-os/lifeos_today.png',
+        alt: 'Life OS today panel — daily snapshot with wearable data',
+        label: 'Today',
+      },
+      {
+        src: './assets/life-os/lifeos_goals.png',
+        alt: 'Life OS goals panel — smart goal tracking with progress bars',
+        label: 'Goals',
+      },
+      {
+        src: './assets/life-os/lifeos_events.png',
+        alt: 'Life OS life events panel — body battery and sleep score overlaid with events',
+        label: 'Events × Recovery',
+      },
+      {
+        src: './assets/life-os/lifeos_rearview.png',
+        alt: 'Life OS rearview panel — 30-day trend charts and wearable stats',
+        label: 'Rearview',
+      },
+      {
+        src: './assets/life-os/lifeos_journal.png',
+        alt: 'Life OS journal search — full-text search across journal entries',
+        label: 'Journal Search',
+      },
+    ],
   },
+  tags: ['Google Apps Script', 'Chart.js', 'Gemini API', 'Todoist API', 'Garmin', 'Personal Analytics'],
+  dim: false,
+},
 
   {
     id: 'life-in-pixels',
