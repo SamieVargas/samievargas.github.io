@@ -5,7 +5,7 @@
 //
 // Featured order:
 //   1. ATX Foodie (strongest narrative, most complete)
-//   2. Instacart dbt (new — dbt Cloud + BigQuery)
+//   2. Instacart dbt (dbt Cloud + BigQuery)
 //   3. Wearable GDA Capstone
 //   4. IBM Churn
 // ============================================================
@@ -15,19 +15,40 @@ export const FEATURED_PROJECTS = [
     id: 'atx-foodie',
     badge: 'Personal Portfolio Project',
     title: 'Austin Food Safety — Does Reputation Match the Safety Record?',
-    description: 'A JuiceLand pest report on r/Austin made me realize I had zero data visibility into the restaurants I eat at daily. Fetched 4,300+ health inspection records from the City of Austin Open Data Portal API, built a brand compliance scorecard across 84 local brands, and surfaced five findings with direct policy implications: compliance isn\'t uniform by neighborhood, operational drift is measurable by inspection cycle, and follow-up inspections average 8 points lower than routine visits — meaning the corrective action loop is broken. Includes a folium choropleth map of Austin zip codes and a personal audit of my own regular spots.',
+    description: 'A JuiceLand pest report on r/Austin made me realize I had zero data visibility into the restaurants I eat at daily. Fetched 21,160 health inspection records from the City of Austin Open Data Portal API via paginated pull, built a brand compliance scorecard across 84 local brands, and surfaced five findings with direct policy implications: compliance isn\'t uniform by neighborhood, operational drift is measurable by inspection cycle, and follow-up inspections average 8 points lower than routine visits — meaning the corrective action loop is broken. Includes a folium choropleth map of Austin zip codes and a personal audit of my own regular spots.',
     quickContext: {
       problem: 'A Reddit pest-sighting post made me realize I ate at dozens of Austin restaurants with zero visibility into their actual health inspection records.',
-      approach: 'Pulled 4,300+ inspection records via the City of Austin Socrata REST API. Built brand scorecards for 84 local restaurant groups and a folium choropleth map by zip code.',
+      approach: 'Pulled 21,160 inspection records via the City of Austin Socrata REST API with offset pagination. Built brand scorecards for 84 local restaurant groups and a folium choropleth map by zip code.',
       finding: 'Follow-up inspections score 8 pts lower than routine visits — the corrective loop is broken. Serial offenders are identifiable in advance. The data exists; the workflow to act on it doesn\'t.',
     },
     media: {
       type: 'carousel',
       slides: [
-        { src: './assets/atx-foodie-inspection/zip_performance.png', alt: 'Compliance by zip code — top 10 by restaurant density', label: 'Zip Code Compliance' },
-        { src: './assets/atx-foodie-inspection/score_volatility.png', alt: 'Follow-up inspection risk — serial offenders', label: 'Serial Offender Risk' },
-        { src: './assets/atx-foodie-inspection/burnout_trend.png', alt: 'Operational drift — avg score by inspection sequence', label: 'Compliance Drift' },
-        { src: './assets/atx-foodie-inspection/my_favs.png', alt: 'My regulars vs Austin compliance landscape', label: 'Personal Audit' },
+        {
+          src: './assets/atx-foodie-inspection/zip_performance.png',
+          alt: 'Compliance by zip code — top 10 by restaurant density',
+          label: 'Zip Code Compliance',
+        },
+        {
+          src: './assets/atx-foodie-inspection/branded_only_scale.png',
+          alt: 'Brand scale vs inspection frequency — full and zoomed view',
+          label: 'Inspection Intensity',
+        },
+        {
+          src: './assets/atx-foodie-inspection/score_volatility.png',
+          alt: 'Brand score volatility vs average compliance',
+          label: 'Score Volatility',
+        },
+        {
+          src: './assets/atx-foodie-inspection/burnout_inverted_trend.png',
+          alt: 'Operational drift — avg score by inspection sequence',
+          label: 'Compliance Drift',
+        },
+        {
+          src: './assets/atx-foodie-inspection/my_favs.png',
+          alt: 'My regulars vs Austin compliance landscape',
+          label: 'Personal Audit',
+        },
       ],
     },
     tags: ['Python', 'pandas · matplotlib · seaborn', 'folium (geospatial)', 'Socrata API', 'EDA', 'Public Health Data', 'Kaggle'],
@@ -47,10 +68,26 @@ export const FEATURED_PROJECTS = [
     media: {
       type: 'carousel',
       slides: [
-        { src: './assets/instacart-dbt/dag_01_full_lineage.png', alt: 'dbt DAG showing full lineage from sources through staging to marts', label: 'Data Lineage DAG' },
-        { src: './assets/instacart-dbt/find_02_reorder_rate_by_user_segment.png', alt: 'Reorder rate by user segment showing 3x difference from new to veteran users', label: 'User Segment Finding' },
-        { src: './assets/instacart-dbt/find_01_reorder_rate_by_dept.png', alt: 'Reorder rate by department showing dairy eggs and produce at top', label: 'Department Finding' },
-        { src: './assets/instacart-dbt/doc_01_dbt_test_all_passing.png', alt: '35 of 35 dbt tests passing', label: '35 Tests Passing' },
+        {
+          src: './assets/instacart-dbt/dag_01_full_lineage.png',
+          alt: 'dbt DAG showing full lineage from sources through staging to marts',
+          label: 'Data Lineage DAG',
+        },
+        {
+          src: './assets/instacart-dbt/find_02_reorder_rate_by_user_segment.png',
+          alt: 'Reorder rate by user segment showing 3x difference from new to veteran users',
+          label: 'User Segment Finding',
+        },
+        {
+          src: './assets/instacart-dbt/find_01_reorder_rate_by_dept.png',
+          alt: 'Reorder rate by department showing dairy eggs and produce at top',
+          label: 'Department Finding',
+        },
+        {
+          src: './assets/instacart-dbt/doc_01_dbt_test_all_passing.png',
+          alt: '35 of 35 dbt tests passing',
+          label: '35 Tests Passing',
+        },
       ],
     },
     tags: ['dbt Cloud', 'BigQuery', 'SQL', 'bq CLI', 'Data Modeling', 'Looker Studio', 'dbt Fundamentals'],
@@ -88,9 +125,21 @@ export const FEATURED_PROJECTS = [
     media: {
       type: 'carousel',
       slides: [
-        { src: './assets/ibm-telco-churn-analysis/churn_preview_both.png', alt: 'IBM Telco Customer Churn Overview', label: 'Overview' },
-        { src: './assets/ibm-telco-churn-analysis/churn.png', alt: 'Churn Analysis Chart', label: 'Churn Drivers' },
-        { src: './assets/ibm-telco-churn-analysis/retention.png', alt: 'Retention Analysis', label: 'Retention Patterns' },
+        {
+          src: './assets/ibm-telco-churn-analysis/churn_preview_both.png',
+          alt: 'IBM Telco Customer Churn Overview',
+          label: 'Overview',
+        },
+        {
+          src: './assets/ibm-telco-churn-analysis/churn.png',
+          alt: 'Churn Analysis Chart',
+          label: 'Churn Drivers',
+        },
+        {
+          src: './assets/ibm-telco-churn-analysis/retention.png',
+          alt: 'Retention Analysis',
+          label: 'Retention Patterns',
+        },
       ],
     },
     tags: ['Python', 'pandas · seaborn', 'scikit-learn', 'Logistic Regression', 'EDA', 'Feature Engineering', 'Kaggle'],
