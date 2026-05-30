@@ -87,10 +87,21 @@ export const FEATURED_PROJECTS = [
           alt: '35 of 35 dbt tests passing',
           label: '35 Tests Passing',
         },
+        {
+          src: './assets/instacart-dbt/find_03_looker_page-1.png',
+          alt: 'Looker dashboard showing orders do not significantly vary by day or week',
+          label: 'Instacart orders',
+        },
+         {
+          src: './assets/instacart-dbt/find_03_looker_page-2.png',
+          alt: 'Looker dashboard segmenting users',
+          label: 'User segmentation',
+        },
       ],
     },
     tags: ['dbt Cloud', 'BigQuery', 'SQL', 'bq CLI', 'Data Modeling', 'Looker Studio', 'dbt Fundamentals'],
     link: { href: 'https://github.com/SamieVargas/instacart-project', label: 'View on GitHub →' },
+    link: { href: 'https://datastudio.google.com/reporting/e6e40a84-8ad4-47e8-b6f7-25016e65b32b', label: 'Interact on Looker →' },
   },
 
   {
