@@ -2,6 +2,12 @@
 // data/projects.js — Portfolio projects content
 // FEATURED_PROJECTS: full-width with Quick Context sidebar
 // GRID_PROJECTS: smaller card layout
+//
+// Featured order:
+//   1. ATX Foodie (strongest narrative, most complete)
+//   2. Instacart dbt (new — dbt Cloud + BigQuery)
+//   3. Wearable GDA Capstone
+//   4. IBM Churn
 // ============================================================
 
 export const FEATURED_PROJECTS = [
@@ -27,20 +33,30 @@ export const FEATURED_PROJECTS = [
     tags: ['Python', 'pandas · matplotlib · seaborn', 'folium (geospatial)', 'Socrata API', 'EDA', 'Public Health Data', 'Kaggle'],
     link: { href: 'https://www.kaggle.com/code/samievargas/atx-foodie-inspection', label: 'View on Kaggle →' },
   },
+
   {
-  id: 'instacart-dbt',
-  badge: 'Personal Portfolio Project',
-  title: 'Instacart dbt Project — When Does Data Become Trustworthy?',
-  description: 'Built a staging → intermediate → mart architecture in dbt Cloud on BigQuery across 3.4M Instacart orders. Loaded via Kaggle CLI + bq CLI. 35 passing tests encoding business logic, not just nulls. Key finding: the 0.60 average reorder ratio hides a 3x difference — new users reorder at 0.221, veterans at 0.670. Data only becomes reliable for ML reorder prediction at 10+ orders.',
-  quickContext: {
-    problem: 'The Instacart dataset ships with no enforced relationships, a capped column with no documentation, and two order-product files that overlap in non-obvious ways. A raw join produces numbers that look correct and are wrong.',
-    approach: 'Built a full dbt transformation layer: 5 staging models, 1 intermediate join, 3 marts. 35 tests. Explored the data in BigQuery before writing a single model.',
-    finding: 'Reorder ratio ranges from 0.221 (new users) to 0.670 (veterans) — a 3x difference. The population average of 0.60 is meaningless without the segment label.',
+    id: 'instacart-dbt',
+    badge: 'Personal Portfolio Project · dbt Fundamentals Certified',
+    title: 'Instacart dbt Project — When Does Data Become Trustworthy?',
+    description: 'Built a staging → intermediate → mart transformation layer in dbt Cloud on BigQuery across 3.4M Instacart grocery orders. Loaded 6 CSVs from Kaggle via the bq CLI — no manual UI uploads. 35 passing tests that encode business logic, not just nulls. The core finding: the 0.60 average reorder ratio everyone cites hides a 3x difference across user segments. New users reorder at 0.221. Veterans reorder at 0.670. The data only becomes reliable for ML reorder prediction at 10+ orders.',
+    quickContext: {
+      problem: 'The Instacart dataset ships with no enforced relationships, a days_since_prior_order column that silently caps at 30, and two order-product files that overlap in non-obvious ways. A raw join produces numbers that look correct and are wrong.',
+      approach: 'Explored the data in BigQuery before writing a single model. Built 5 staging models, 1 intermediate join, and 3 marts. 35 tests. Connected to Looker Studio for findings visualization.',
+      finding: 'Reorder ratio ranges from 0.221 (new users, 1-3 orders) to 0.670 (veterans, 20+ orders). The population average of 0.60 is misleading without the segment label. Data becomes reliable for prediction at 10+ orders.',
+    },
+    media: {
+      type: 'carousel',
+      slides: [
+        { src: './assets/instacart-dbt/dag_01_full_lineage.png', alt: 'dbt DAG showing full lineage from sources through staging to marts', label: 'Data Lineage DAG' },
+        { src: './assets/instacart-dbt/find_02_reorder_rate_by_user_segment.png', alt: 'Reorder rate by user segment showing 3x difference from new to veteran users', label: 'User Segment Finding' },
+        { src: './assets/instacart-dbt/find_01_reorder_rate_by_dept.png', alt: 'Reorder rate by department showing dairy eggs and produce at top', label: 'Department Finding' },
+        { src: './assets/instacart-dbt/doc_01_dbt_test_all_passing.png', alt: '35 of 35 dbt tests passing', label: '35 Tests Passing' },
+      ],
+    },
+    tags: ['dbt Cloud', 'BigQuery', 'SQL', 'bq CLI', 'Data Modeling', 'Looker Studio', 'dbt Fundamentals'],
+    link: { href: 'https://github.com/SamieVargas/instacart-project', label: 'View on GitHub →' },
   },
-  media: { type: 'placeholder' },  // replace with DAG screenshot later
-  tags: ['dbt Cloud', 'BigQuery', 'SQL', 'Data Modeling', 'bq CLI', 'Looker Studio', 'dbt Fundamentals'],
-  link: { href: 'https://github.com/SamieVargas/instacart-project', label: 'View on GitHub →' },
-},
+
   {
     id: 'gda-capstone',
     badge: 'Google Data Analytics Capstone',
@@ -49,7 +65,7 @@ export const FEATURED_PROJECTS = [
     quickContext: {
       problem: 'What early behavioral signals predict fitness goal dropout — before users fully disengage?',
       approach: 'Analyzed 71 users across 4+ months of LifeSnaps/Fitbit longitudinal data in Python and BigQuery SQL. Cross-referenced with personal Garmin cadence data.',
-      finding: 'Feb/March burnout spikes, HRV trend drops, and cadence load overload precede dropout by 2–3 weeks — actionable by any wearable platform with the right alerting logic.',
+      finding: 'Feb/March burnout spikes, HRV trend drops, and cadence load overload precede dropout by 2-3 weeks — actionable by any wearable platform with the right alerting logic.',
     },
     media: {
       type: 'iframe',
@@ -58,15 +74,16 @@ export const FEATURED_PROJECTS = [
     tags: ['Python (pandas · matplotlib)', 'BigQuery SQL', 'EDA', 'Behavioral Analysis', 'Looker Studio', 'Google GDA Cert'],
     link: { href: 'https://www.kaggle.com/code/samievargas/sv-wearable-dropout-behavioral-signals', label: 'View on Kaggle →' },
   },
+
   {
     id: 'ibm-churn',
     badge: 'Personal Portfolio Project',
     title: 'IBM Telco Customer Churn — The Fiber Paradox',
-    description: 'Analyzed 7,000+ customer records using Python, pandas, seaborn, and logistic regression. Identified a "Fiber Paradox" — premium internet customers churning at 2× the rate of lower-tier users — and engineered a composite risk signal (new customer + fiber + no tech support) that surfaces high-churn candidates a CS team can action in any CRM without ML infrastructure. Modeled on 8 years of enterprise retention patterns.',
+    description: 'Analyzed 7,000+ customer records using Python, pandas, seaborn, and logistic regression. Identified a "Fiber Paradox" — premium internet customers churning at 2x the rate of lower-tier users — and engineered a composite risk signal (new customer + fiber + no tech support) that surfaces high-churn candidates a CS team can action in any CRM without ML infrastructure. Modeled on 8 years of enterprise retention patterns.',
     quickContext: {
       problem: 'Why are premium fiber customers churning at twice the rate of basic-plan users — and can we catch them before they leave?',
       approach: 'Logistic regression + feature engineering on 7,043 customer records. Built a composite risk signal from three observable attributes requiring zero ML infrastructure to deploy.',
-      finding: 'New + fiber + no tech support = 3× churn probability. Any CS team can filter a CRM for this combination today.',
+      finding: 'New + fiber + no tech support = 3x churn probability. Any CS team can filter a CRM for this combination today.',
     },
     media: {
       type: 'carousel',
@@ -83,34 +100,89 @@ export const FEATURED_PROJECTS = [
 
 export const GRID_PROJECTS = [
   {
-    id: 'life-in-pixels',
-    badge: 'Self-Built · Google Apps Script',
-    title: 'Life in Pixels — Mood & Habit Tracker',
-    description: 'A daily mood and habit logger built in Google Apps Script, backed by Google Sheets. Tracks mood on a 1–5 scale alongside activity and habit data over time. The data from this app produced the walk/mood finding in Observations.',
+    id: 'tarot-tracker',
+    badge: 'Self-Built · JavaScript · GitHub Pages',
+    title: 'Tarot Tracker — Personal Card Archive',
+    description: 'A full-featured tarot reading tracker deployed on GitHub Pages. Logs pulls, tracks card history across 78 cards, surfaces stalker cards and ghost cards, visualizes suit distribution, and syncs to Google Sheets via Apps Script. Built end-to-end with vanilla JS — no frameworks, no dependencies.',
     media: {
       type: 'carousel',
       slides: [
-        { src: './assets/pixels-app-script/Pixels-App.png', alt: 'Life in Pixels app interface', label: 'Live App', link: 'https://script.google.com/macros/s/AKfycbwUVS3iL7JTO-XR93eCRDRY_lcFOdWPpa9VIB1hFLatsgtXT9QRfPtgoRJlTstkDis/exec' },
+        {
+          src: './assets/tarot-tracker/deck.png',
+          alt: 'Tarot Tracker deck view',
+          label: 'Live App',
+          link: 'https://samievargas.github.io/tarot-tracker/',
+        },
+      ],
+    },
+    tags: ['JavaScript', 'Google Apps Script', 'GitHub Pages', 'Google Sheets', 'Self-Deployed'],
+    dim: false,
+  },
+
+  {
+    id: 'life-os',
+    badge: 'Self-Built · Google Apps Script · Personal Analytics',
+    title: 'Life OS — Personal Health & Habit Dashboard',
+    description: 'A multi-panel personal dashboard pulling from Life in Pixels longitudinal data via Apps Script. Tracks mood, HRV, body battery, sleep score, habits, cycle phase, DBT regulation skills, and life events. Includes Gemini AI weekly reflection, Todoist task integration, and a full rearview analytics layer with Chart.js visualizations across mental health, physical symptoms, and habit streaks.',
+    media: {
+      type: 'carousel',
+      slides: [
+        {
+          src: './assets/life-os/dashboard_scrubbed.png',
+          alt: 'Life OS dashboard — personal data scrubbed',
+          label: 'Dashboard',
+        },
+      ],
+    },
+    tags: ['Google Apps Script', 'Chart.js', 'Gemini API', 'Todoist API', 'Garmin', 'Personal Analytics'],
+    dim: false,
+  },
+
+  {
+    id: 'life-in-pixels',
+    badge: 'Self-Built · Google Apps Script',
+    title: 'Life in Pixels — Mood & Habit Tracker',
+    description: 'A daily mood and habit logger built in Google Apps Script, backed by Google Sheets. Tracks mood on a 1-5 scale alongside activity and habit data over time. The data from this app produced the walk/mood finding in Observations and powers the Life OS dashboard.',
+    media: {
+      type: 'carousel',
+      slides: [
+        {
+          src: './assets/pixels-app-script/Pixels-App.png',
+          alt: 'Life in Pixels app interface',
+          label: 'Live App',
+          link: 'https://script.google.com/macros/s/AKfycbwUVS3iL7JTO-XR93eCRDRY_lcFOdWPpa9VIB1hFLatsgtXT9QRfPtgoRJlTstkDis/exec',
+        },
       ],
     },
     tags: ['Google Apps Script', 'Google Sheets', 'Behavioral Data', 'Personal Analytics'],
     dim: false,
   },
+
   {
     id: 'journal',
     badge: 'Self-Built · Google Apps Script',
     title: 'Journal — Structured Reflection Logger',
-    description: 'A lightweight journaling app with structured prompts for fast daily entries stored in Google Docs. Part of the same personal data infrastructure as Life in Pixels. Built end-to-end in Google Apps Script — no external dependencies.',
+    description: 'A lightweight journaling app with structured prompts for fast daily entries stored in Google Docs. Part of the same personal data infrastructure as Life in Pixels and Life OS. Built end-to-end in Google Apps Script — no external dependencies.',
     media: {
       type: 'carousel',
       slides: [
-        { src: './assets/journal-app-script/Journal-App.png', alt: 'Journal app interface', label: 'Live App', link: 'https://script.google.com/macros/s/AKfycbwBsldN89wdMdiVlD9xWINYvm30Gayaj0eb0N4nQeLsNmG98PHd7QnngjQSGl2l91Wq/exec' },
-        { src: './assets/journal-app-script/Journal.png', alt: 'Journal output in Google Docs', label: 'Output View' },
+        {
+          src: './assets/journal-app-script/Journal-App.png',
+          alt: 'Journal app interface',
+          label: 'Live App',
+          link: 'https://script.google.com/macros/s/AKfycbwBsldN89wdMdiVlD9xWINYvm30Gayaj0eb0N4nQeLsNmG98PHd7QnngjQSGl2l91Wq/exec',
+        },
+        {
+          src: './assets/journal-app-script/Journal.png',
+          alt: 'Journal output in Google Docs',
+          label: 'Output View',
+        },
       ],
     },
     tags: ['Google Apps Script', 'Google Docs', 'Structured Logging'],
     dim: false,
   },
+
   {
     id: 'gada-capstone',
     badge: 'In Progress',
@@ -120,27 +192,4 @@ export const GRID_PROJECTS = [
     tags: ['Python', 'Regression', 'Classification', 'GADA Cert'],
     dim: true,
   },
-  {
-  id: 'tarot-tracker',
-  badge: 'Self-Built · JavaScript · Google Apps Script',
-  title: 'Tarot Tracker — Personal Card Archive',
-  description: 'A full-featured tarot reading tracker deployed on GitHub Pages. Logs pulls, tracks card history, surfaces stalker cards and ghost cards, visualizes suit distribution, and syncs to Google Sheets via Apps Script. Built end-to-end with vanilla JS — no frameworks.',
-  media: {
-    type: 'carousel',
-    slides: [
-      { src: './assets/tarot-tracker/deck.png', alt: 'Tarot Tracker deck view', label: 'Deck', link: 'https://samievargas.github.io/tarot-tracker/' },
-    ],
-  },
-  tags: ['JavaScript', 'Google Apps Script', 'GitHub Pages', 'Google Sheets', 'Self-Deployed'],
-  dim: false,
-},
-{
-  id: 'life-os',
-  badge: 'Self-Built · Google Apps Script · Personal Analytics',
-  title: 'Life OS — Personal Health & Habit Dashboard',
-  description: 'A multi-panel personal dashboard built on Google Apps Script pulling from Life in Pixels longitudinal data. Tracks mood, HRV, body battery, sleep, habits, cycle phase, DBT skills, and life events over time. Includes Gemini AI weekly reflection, Todoist task integration, and a full rearview analytics layer with Chart.js visualizations.',
-  media: { type: 'placeholder' },  // scrubbed screenshot — add manually
-  tags: ['Google Apps Script', 'Chart.js', 'Gemini API', 'Todoist API', 'Garmin', 'Personal Analytics'],
-  dim: false,
-},
 ];
