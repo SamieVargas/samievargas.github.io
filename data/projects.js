@@ -1,12 +1,5 @@
-// ===========================================================
-// FEATURED_PROJECTS: full-width with Quick Context sidebar
-// GRID_PROJECTS: smaller card layout
-//
-// Featured order:
-//   1. ATX Foodie
-//   2. Instacart dbt (dbt Cloud + BigQuery)
-//   3. Wearable GDA Capstone
-//   4. IBM Churn
+// ============================================================
+// data/projects.js
 // ============================================================
 
 export const FEATURED_PROJECTS = [
@@ -14,7 +7,7 @@ export const FEATURED_PROJECTS = [
     id: 'atx-foodie',
     badge: 'Personal Portfolio Project',
     title: 'Austin Food Safety — Does Reputation Match the Safety Record?',
-    description: 'A JuiceLand pest report on r/Austin made me realize I had zero data visibility into the restaurants I eat at daily. Fetched 21,160 health inspection records from the City of Austin Open Data Portal API via paginated pull, built a brand compliance scorecard across 84 local brands, and surfaced five findings with direct policy implications: compliance isn\'t uniform by neighborhood, operational drift is measurable by inspection cycle, and follow-up inspections average 8 points lower than routine visits — meaning the corrective action loop is broken. Includes a folium choropleth map of Austin zip codes and a personal audit of my own regular spots.',
+    description: 'A JuiceLand pest report on r/Austin & TikTok made me realize I had zero data visibility into the restaurants I eat at daily. Fetched 21,160 health inspection records from the City of Austin Open Data Portal API via paginated pull, built a brand compliance scorecard across 84 local brands, and surfaced five findings with direct policy implications: compliance isn\'t uniform by neighborhood, operational drift is measurable by inspection cycle, and follow-up inspections average 8 points lower than routine visits — meaning the corrective action loop is broken. Includes a folium choropleth map of Austin zip codes and a personal audit of my own regular spots.',
     quickContext: {
       problem: 'A Reddit pest-sighting post made me realize I ate at dozens of Austin restaurants with zero visibility into their actual health inspection records.',
       approach: 'Pulled 21,160 inspection records via the City of Austin Socrata REST API with offset pagination. Built brand scorecards for 84 local restaurant groups and a folium choropleth map by zip code.',
@@ -24,26 +17,41 @@ export const FEATURED_PROJECTS = [
       type: 'carousel',
       slides: [
         {
+          type: 'iframe',
+          src: 'https://samievargas.github.io/assets/atx-foodie-inspection/atx_choropleth_site_widget.html',
+          label: 'Zip Code Compliance Map',
+        },
+        {
+          type: 'iframe',
+          src: 'https://samievargas.github.io/assets/atx-foodie-inspection/atx_zipcode_site_widget.html',
+          label: 'Zip Code Lookup',
+        },
+        {
+          type: 'img',
           src: './assets/atx-foodie-inspection/zip_performance.png',
           alt: 'Compliance by zip code — top 10 by restaurant density',
           label: 'Zip Code Compliance',
         },
         {
+          type: 'img',
           src: './assets/atx-foodie-inspection/branded_only_scale.png',
           alt: 'Brand scale vs inspection frequency — full and zoomed view',
           label: 'Inspection Intensity',
         },
         {
+          type: 'img',
           src: './assets/atx-foodie-inspection/score_volatility.png',
           alt: 'Brand score volatility vs average compliance',
           label: 'Score Volatility',
         },
         {
+          type: 'img',
           src: './assets/atx-foodie-inspection/burnout_inverted_trend.png',
           alt: 'Operational drift — avg score by inspection sequence',
           label: 'Compliance Drift',
         },
         {
+          type: 'img',
           src: './assets/atx-foodie-inspection/my_favs.png',
           alt: 'My regulars vs Austin compliance landscape',
           label: 'Personal Audit',
@@ -51,7 +59,9 @@ export const FEATURED_PROJECTS = [
       ],
     },
     tags: ['Python', 'pandas · matplotlib · seaborn', 'folium (geospatial)', 'Socrata API', 'EDA', 'Public Health Data', 'Kaggle'],
-    link: { href: 'https://www.kaggle.com/code/samievargas/atx-foodie-inspection', label: 'View on Kaggle →' },
+    links: [
+      { href: 'https://www.kaggle.com/code/samievargas/atx-foodie-inspection', label: 'View on Kaggle →' },
+    ],
   },
 
   {
@@ -68,40 +78,48 @@ export const FEATURED_PROJECTS = [
       type: 'carousel',
       slides: [
         {
+          type: 'img',
           src: './assets/instacart-dbt/dag_01_full_lineage.png',
           alt: 'dbt DAG showing full lineage from sources through staging to marts',
           label: 'Data Lineage DAG',
         },
         {
+          type: 'img',
           src: './assets/instacart-dbt/find_02_reorder_rate_by_user_segment.png',
           alt: 'Reorder rate by user segment showing 3x difference from new to veteran users',
           label: 'User Segment Finding',
         },
         {
+          type: 'img',
           src: './assets/instacart-dbt/find_01_reorder_rate_by_dept.png',
           alt: 'Reorder rate by department showing dairy eggs and produce at top',
           label: 'Department Finding',
         },
         {
+          type: 'img',
           src: './assets/instacart-dbt/doc_01_dbt_test_all_passing.png',
           alt: '35 of 35 dbt tests passing',
           label: '35 Tests Passing',
         },
         {
+          type: 'img',
           src: './assets/instacart-dbt/find_03_looker_page-1.png',
-          alt: 'Looker dashboard showing orders do not significantly vary by day or week',
-          label: 'Instacart orders',
+          alt: 'Looker dashboard page 1',
+          label: 'Looker: Orders',
         },
-         {
+        {
+          type: 'img',
           src: './assets/instacart-dbt/find_03_looker_page-2.png',
-          alt: 'Looker dashboard segmenting users',
-          label: 'User segmentation',
+          alt: 'Looker dashboard page 2 — user segmentation',
+          label: 'Looker: User Segments',
         },
       ],
     },
     tags: ['dbt Cloud', 'BigQuery', 'SQL', 'bq CLI', 'Data Modeling', 'Looker Studio', 'dbt Fundamentals'],
-    link: { href: 'https://github.com/SamieVargas/instacart-project', label: 'View on GitHub →' },
-    link: { href: 'https://datastudio.google.com/reporting/e6e40a84-8ad4-47e8-b6f7-25016e65b32b', label: 'Interact on Looker →' },
+    links: [
+      { href: 'https://github.com/SamieVargas/instacart-project', label: 'View on GitHub →' },
+      { href: 'https://datastudio.google.com/reporting/e6e40a84-8ad4-47e8-b6f7-25016e65b32b', label: 'Interact on Looker →' },
+    ],
   },
 
   {
@@ -119,7 +137,9 @@ export const FEATURED_PROJECTS = [
       src: 'https://docs.google.com/presentation/d/e/2PACX-1vRsL1gK9sbwSSWGcXKwWrtsRjn_20h1qjh8Qv0mBmYtyPDf1hTv-7I1DsbQFXXmqYxjamyaZ5aXqgZD/pubembed?start=false&loop=false&delayms=3000',
     },
     tags: ['Python (pandas · matplotlib)', 'BigQuery SQL', 'EDA', 'Behavioral Analysis', 'Looker Studio', 'Google GDA Cert'],
-    link: { href: 'https://www.kaggle.com/code/samievargas/sv-wearable-dropout-behavioral-signals', label: 'View on Kaggle →' },
+    links: [
+      { href: 'https://www.kaggle.com/code/samievargas/sv-wearable-dropout-behavioral-signals', label: 'View on Kaggle →' },
+    ],
   },
 
   {
@@ -136,16 +156,19 @@ export const FEATURED_PROJECTS = [
       type: 'carousel',
       slides: [
         {
+          type: 'img',
           src: './assets/ibm-telco-churn-analysis/churn_preview_both.png',
           alt: 'IBM Telco Customer Churn Overview',
           label: 'Overview',
         },
         {
+          type: 'img',
           src: './assets/ibm-telco-churn-analysis/churn.png',
           alt: 'Churn Analysis Chart',
           label: 'Churn Drivers',
         },
         {
+          type: 'img',
           src: './assets/ibm-telco-churn-analysis/retention.png',
           alt: 'Retention Analysis',
           label: 'Retention Patterns',
@@ -153,7 +176,9 @@ export const FEATURED_PROJECTS = [
       ],
     },
     tags: ['Python', 'pandas · seaborn', 'scikit-learn', 'Logistic Regression', 'EDA', 'Feature Engineering', 'Kaggle'],
-    link: { href: 'https://www.kaggle.com/code/samievargas/ibm-telco-customer-churn', label: 'View on Kaggle →' },
+    links: [
+      { href: 'https://www.kaggle.com/code/samievargas/ibm-telco-customer-churn', label: 'View on Kaggle →' },
+    ],
   },
 ];
 
@@ -167,12 +192,14 @@ export const GRID_PROJECTS = [
       type: 'carousel',
       slides: [
         {
+          type: 'img',
           src: './assets/tarot-tracker/deck.png',
           alt: 'Tarot Tracker spread view',
           label: 'Live App',
           link: 'https://samievargas.github.io/tarot-tracker/',
         },
         {
+          type: 'img',
           src: './assets/tarot-tracker/card.png',
           alt: 'Tarot Tracker card view',
           label: 'Card History',
@@ -185,43 +212,48 @@ export const GRID_PROJECTS = [
   },
 
   {
-  id: 'life-os',
-  badge: 'Self-Built · Google Apps Script · Personal Analytics',
-  title: 'Life OS — Personal Health & Habit Dashboard',
-  description: 'A multi-panel personal dashboard I built and use daily. Pulls longitudinal data from two custom Apps Script APIs, renders 15+ Chart.js visualizations across health, habit, and behavioral metrics, and integrates Gemini AI for weekly reflection and Todoist for task tracking. Built entirely in vanilla Apps Script — no frameworks, no external backend. The architecture is the same pattern I\'d use to build an ops dashboard for a CS team: normalized data model, live sync, modular panels.',
-  media: {
-    type: 'carousel',
-    slides: [
-      {
-        src: './assets/life-os/lifeos_today.png',
-        alt: 'Life OS today panel — daily snapshot with wearable data',
-        label: 'Today',
-      },
-      {
-        src: './assets/life-os/lifeos_goals.png',
-        alt: 'Life OS goals panel — smart goal tracking with progress bars',
-        label: 'Goals',
-      },
-      {
-        src: './assets/life-os/lifeos_events.png',
-        alt: 'Life OS life events panel — body battery and sleep score overlaid with events',
-        label: 'Events × Recovery',
-      },
-      {
-        src: './assets/life-os/lifeos_rearview.png',
-        alt: 'Life OS rearview panel — 30-day trend charts and wearable stats',
-        label: 'Rearview',
-      },
-      {
-        src: './assets/life-os/lifeos_journal.png',
-        alt: 'Life OS journal search — full-text search across journal entries',
-        label: 'Journal Search',
-      },
-    ],
+    id: 'life-os',
+    badge: 'Self-Built · Google Apps Script · Personal Analytics',
+    title: 'Life OS — Personal Health & Habit Dashboard',
+    description: 'A multi-panel personal dashboard I built and use daily. Pulls longitudinal data from two custom Apps Script APIs, renders 15+ Chart.js visualizations across health, habit, and behavioral metrics, and integrates Gemini AI for weekly reflection and Todoist for task tracking. Built entirely in vanilla Apps Script — no frameworks, no external backend. The architecture is the same pattern I\'d use to build an ops dashboard for a CS team: normalized data model, live sync, modular panels.',
+    media: {
+      type: 'carousel',
+      slides: [
+        {
+          type: 'img',
+          src: './assets/life-os/lifeos_today.png',
+          alt: 'Life OS today panel — daily snapshot with wearable data',
+          label: 'Today',
+        },
+        {
+          type: 'img',
+          src: './assets/life-os/lifeos_goals.png',
+          alt: 'Life OS goals panel — smart goal tracking with progress bars',
+          label: 'Goals',
+        },
+        {
+          type: 'img',
+          src: './assets/life-os/lifeos_events.png',
+          alt: 'Life OS life events panel — body battery and sleep score overlaid with events',
+          label: 'Events × Recovery',
+        },
+        {
+          type: 'img',
+          src: './assets/life-os/lifeos_rearview.png',
+          alt: 'Life OS rearview panel — 30-day trend charts and wearable stats',
+          label: 'Rearview',
+        },
+        {
+          type: 'img',
+          src: './assets/life-os/lifeos_journal.png',
+          alt: 'Life OS journal search — full-text search across journal entries',
+          label: 'Journal Search',
+        },
+      ],
+    },
+    tags: ['Google Apps Script', 'Chart.js', 'Gemini API', 'Todoist API', 'Garmin', 'Personal Analytics'],
+    dim: false,
   },
-  tags: ['Google Apps Script', 'Chart.js', 'Gemini API', 'Todoist API', 'Garmin', 'Personal Analytics'],
-  dim: false,
-},
 
   {
     id: 'life-in-pixels',
@@ -232,6 +264,7 @@ export const GRID_PROJECTS = [
       type: 'carousel',
       slides: [
         {
+          type: 'img',
           src: './assets/pixels-app-script/Pixels-App.png',
           alt: 'Life in Pixels app interface',
           label: 'Live App',
@@ -252,12 +285,14 @@ export const GRID_PROJECTS = [
       type: 'carousel',
       slides: [
         {
+          type: 'img',
           src: './assets/journal-app-script/Journal-App.png',
           alt: 'Journal app interface',
           label: 'Live App',
           link: 'https://script.google.com/macros/s/AKfycbwBsldN89wdMdiVlD9xWINYvm30Gayaj0eb0N4nQeLsNmG98PHd7QnngjQSGl2l91Wq/exec',
         },
         {
+          type: 'img',
           src: './assets/journal-app-script/Journal.png',
           alt: 'Journal output in Google Docs',
           label: 'Output View',
