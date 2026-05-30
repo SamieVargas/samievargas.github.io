@@ -1,9 +1,23 @@
 // ============================================================
 // data/observations.js — "Observations" writing section
-// Add new entries here; they render in order.
 // ============================================================
 
 export const OBSERVATIONS = [
+  {
+    tag: 'May 2026 · Instacart Dataset · 3.4M Orders · dbt Cloud + BigQuery',
+    title: 'The 0.60 Reorder Rate Is a Lie — Or At Least Meaningless Without the Segment',
+    paragraphs: [
+      `The Instacart dataset gets cited constantly for its 0.60 average reorder ratio — meaning 60% of items in a typical order are things the user has ordered before. I spent this week building a dbt transformation layer on top of it to make the data actually trustworthy. When I ran the first real finding query, that number fell apart immediately.`,
+      `New users (1–3 orders) reorder at <strong>0.221</strong>. Veterans (20+ orders) reorder at <strong>0.670</strong>. That's a 3x difference on the same metric, same platform, same dataset. The population average isn't wrong — it's just a compression of four completely different behavioral profiles into a single number that describes none of them accurately. Any ML reorder prediction model trained on all users equally is being diluted by new-user noise. The data only becomes reliable for prediction at 10+ orders, when habit has had time to form.`,
+      `The other thing I found: I'm in this dataset. I ordered groceries yesterday — yogurt, cottage cheese, produce — and dairy eggs and produce came back as the top two reorder departments at 67% and 65%. That wasn't a surprise. <em>That was my cart.</em>`,
+    ],
+    source: {
+      text: 'Built in dbt Cloud on BigQuery ·',
+      linkText: 'Full project on GitHub ↗',
+      linkHref: 'https://github.com/SamieVargas/instacart-project',
+      suffix: '',
+    },
+  },
   {
     tag: 'May 2026 · Life in Pixels · Behavioral Data',
     title: 'A Walk Is Worth +0.5 — What My Own Mood Data Showed Me',
