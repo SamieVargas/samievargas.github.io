@@ -275,6 +275,13 @@ export function renderAbout() {
         <div class="currently-into-header">Currently Into</div>
         <div class="media-grid">
           <div class="media-col">
+            <div class="media-col-label">Reading</div>
+            <span class="media-pill">Stephen King</span>
+            <span class="media-pill">Agatha Christie</span>
+            <span class="media-pill">Seishi Tokomizo</span>
+            <span class="media-pill">Terry Pratchett</span>
+          </div>
+          <div class="media-col">
             <div class="media-col-label">Watching</div>
             <span class="media-pill">Bob's Burgers</span>
             <span class="media-pill">Dimension 20</span>
@@ -289,6 +296,7 @@ export function renderAbout() {
             <div class="media-col-label">Playing</div>
             <span class="media-pill">House Flipper 2</span>
             <span class="media-pill">Ring Fit</span>
+            <span class="media-pill">Stardew Valley</span>
           </div>
         </div>
       </div>
