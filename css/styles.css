@@ -551,7 +551,7 @@ nav {
   margin-top: 3rem; margin-bottom: 1.25rem;
   padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,.1);
 }
-.interests-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.interests-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
 .interest-card {
   padding: 1.25rem 1.5rem;
   border: 1px solid rgba(255,255,255,.08);
