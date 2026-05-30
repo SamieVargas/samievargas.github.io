@@ -6,16 +6,15 @@ export const BIO = [
   `Eight years at GLG managing a $14M+ book of enterprise accounts. Most of what I built there didn't exist before I built it — health scoring systems, renewal pipeline architecture, Salesforce dashboards, team playbooks, a Center of Excellence from scratch. I'm good at finding the thing that's missing and building it before anyone's formally asked.`,
   `I've been layering in data analytics because I kept running into the same wall: the numbers existed, the insight was sitting right there, and nothing changed. The GDA capstone, the Instacart dbt project, the ATX Foodie inspection analysis, and all of it came from the same impulse. Sit with the mess long enough and something shows up.`,
   `This site is a portfolio but it's also just me. I'd be building most of this stuff regardless. The Agatha Christie read-through and the Ring Fit dragon are not for the resume. The rest kind of is.`,
-  `Looking to always understand where the operational and analytical sides of a problem actually talk to each other. ATX.`,
 ];
 
 export const QUICK_FACTS = [
-  { label: 'Currently',  value: 'Senior Manager, Service @ GLG' },
-  { label: 'Location',   value: 'Austin, TX · since 2014' },
-  { label: 'Education',  value: 'B.S. Biochemistry · UT Austin · 2018' },
+  { label: 'Currently',   value: 'Senior Manager, Service @ GLG' },
+  { label: 'Location',    value: 'Austin, TX · since 2014' },
+  { label: 'Education',   value: 'B.S. Biochemistry · UT Austin · 2018' },
   { label: 'Looking for', value: 'Engagement Manager, BizOps & CS Ops — remote' },
-  { label: 'Running',    value: 'Trail runner · 15 of 21mi Greenbelt goal · knee in progress' },
-  { label: 'Reading',    value: 'Hercule Poirot complete catalog' },
+  { label: 'Running',     value: 'Trail runner · 15 of 21mi Greenbelt goal · knee in progress' },
+  { label: 'Reading',     value: 'Hercule Poirot complete catalog' },
   {
     label: 'GitHub',
     value: '<a href="https://github.com/SamieVargas" target="_blank" rel="noopener">github.com/SamieVargas ↗</a>',
