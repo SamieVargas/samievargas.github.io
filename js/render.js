@@ -312,7 +312,7 @@ async function loadSpotifyTrack() {
           style="border-radius:4px; border: 1px solid rgba(255,255,255,.08);"
           src="https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=generator&theme=0"
           width="100%"
-          height="152"
+          height="80"
           frameBorder="0"
           allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
