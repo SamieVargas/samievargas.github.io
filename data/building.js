@@ -18,8 +18,8 @@ export const CURRENTLY_BUILDING = [
   {
     status: 'inp',
     label: 'In Progress',
-    title: 'Tableau Public Dashboard — ATX Food Safety',
-    description: 'Taking the Austin inspection analysis further: connecting the zip-level compliance CSVs to a live Tableau Public dashboard. The data exports are already formatted for ingestion — this is the visualization layer that makes the findings accessible without opening a Kaggle notebook.',
+    title: 'ML model — Instacart reorders',
+    description: 'Taking the Instacart analysis further.',
   },
   {
     status: 'inp',
