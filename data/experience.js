@@ -1,8 +1,3 @@
-// ============================================================
-// data/experience.js — Work history content
-// Edit roles, bullets, and tags here.
-// ============================================================
-
 export const EXPERIENCE = [
   {
     company: 'GLG',
@@ -17,7 +12,7 @@ export const EXPERIENCE = [
           'Lead a team of client solutions managers across a $14M+ enterprise book — setting KPIs, running weekly performance reviews, and coaching to retention and growth targets.',
           'Spearheaded a 5% YoY growth strategy across a portfolio of global professional services and advisory clients, identifying expansion signals through usage data and stakeholder mapping.',
           'Built Salesforce health scoring dashboards and automated reporting that reduced reactive escalations and gave leadership a live view of account risk.',
-          'Deployed AI-assisted workflows using Claude, ChatGPT, and in-house LLM tools to accelerate QBR prep, escalation drafts, and data synthesis — adopted across the broader team under personal license.',
+          'Deployed AI-assisted workflows using Claude, ChatGPT, and in-house LLM tools to accelerate QBR prep, escalation drafts, and data synthesis — adopted across the broader team.',
           'Designed SOW-based delivery frameworks for high-complexity, multi-stakeholder engagements across consulting, financial services, and technology verticals.',
         ],
         tags: ['Team Leadership', 'Salesforce', 'Revenue Growth', 'AI Workflows', 'SOW Management'],
@@ -39,10 +34,5 @@ export const EXPERIENCE = [
         bullets: [
           'Grew from individual contributor to senior IC managing complex enterprise accounts across consulting, financial services, and technology verticals — promoted twice in four years.',
           'Built custom Salesforce reporting and tracking infrastructure that became the team standard for account health visibility.',
-          'Consistently achieved top-tier client satisfaction scores, recognized for combining operational rigor with high-touch relationship management.',
+          'Maintained top-tier client satisfaction scores across a high-complexity book — accounts that required both operational precision and genuine relationship depth to retain.',
         ],
-        tags: ['Account Management', 'Enterprise CS', 'Salesforce Reporting'],
-      },
-    ],
-  },
-];
