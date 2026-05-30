@@ -7,13 +7,13 @@ export const CURRENTLY_BUILDING = [
     status: 'inp',
     label: 'In Progress',
     title: 'Google Advanced Data Analytics Certificate',
-    description: 'Advanced capstone extending the GDA program — regression, classification, deeper Python. Coursera / Google. Est. Q3 2026.',
+    description: 'Extending the GDA program into regression, classification, and deeper Python. The capstone will be a real dataset, not a toy problem. Coursera / Google. Est. Q3 2026.',
   },
   {
     status: 'inp',
     label: 'In Progress',
     title: 'dbt Certified Developer',
-    description: 'Deeper knowledge into dbt.',
+    description: 'Pushing past Fundamentals into the full Developer certification. Already have the Instacart project as a working foundation.',
   },
   {
     status: 'lnch',
