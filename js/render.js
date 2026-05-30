@@ -233,7 +233,7 @@ export function renderObservations() {
   if (!el) return;
 
   const cardsHTML = OBSERVATIONS.map((obs, i) => `
-    <article class="obs-card reveal${i > 0 ? ` reveal-delay-${i}` : ''}">
+    <article class="obs-card obs-slide${i === 0 ? ' obs-active' : ''}" data-obs="${i}">
       <div class="obs-tag">${obs.tag}</div>
       <h3 class="obs-title">${obs.title}</h3>
       ${obs.paragraphs.map(p => `<p class="obs-body">${p}</p>`).join('')}
@@ -245,6 +245,10 @@ export function renderObservations() {
     </article>
   `).join('');
 
+  const dotsHTML = OBSERVATIONS.map((_, i) => `
+    <button class="obs-dot${i === 0 ? ' on' : ''}" data-dot="${i}" aria-label="Observation ${i + 1}"></button>
+  `).join('');
+
   el.className = 'swf dark-section';
   el.innerHTML = `
     <div class="swf-inner">
@@ -253,7 +257,15 @@ export function renderObservations() {
         <h2 class="st light">Observations</h2>
       </div>
       <p class="obs-sub">Notes from the data I live in</p>
-      <div class="obs-grid">${cardsHTML}</div>
+      <div class="obs-carousel reveal">
+        <div class="obs-track">${cardsHTML}</div>
+        <div class="obs-controls">
+          <button class="obs-prev" aria-label="Previous">&#8249;</button>
+          <div class="obs-dots">${dotsHTML}</div>
+          <button class="obs-next" aria-label="Next">&#8250;</button>
+        </div>
+        <div class="obs-counter"></div>
+      </div>
     </div>
   `;
 }
@@ -270,12 +282,17 @@ export function renderAbout() {
       <div class="qfv">${f.value}</div>
     </div>
   `).join('');
-  const interestsHTML = INTERESTS.map(item => `
-    <div class="interest-card">
+
+  const interestSlidesHTML = INTERESTS.map((item, i) => `
+    <div class="interest-slide${i === 0 ? ' int-active' : ''}" data-int="${i}">
       <div class="interest-icon">${item.icon}</div>
       <div class="interest-name">${item.title}</div>
       <p class="interest-body">${item.body}</p>
     </div>
+  `).join('');
+
+  const interestDotsHTML = INTERESTS.map((_, i) => `
+    <button class="int-dot${i === 0 ? ' on' : ''}" data-idot="${i}" aria-label="Interest ${i + 1}"></button>
   `).join('');
 
   el.className = 'swf dark-section';
@@ -290,7 +307,14 @@ export function renderAbout() {
         <div>
           <div class="at reveal">${bioHTML}</div>
           <p class="interests-title">Beyond the Resume</p>
-          <div class="interests-grid reveal reveal-delay-1">${interestsHTML}</div>
+          <div class="interests-carousel reveal reveal-delay-1">
+            <div class="int-track">${interestSlidesHTML}</div>
+            <div class="int-controls">
+              <button class="int-prev" aria-label="Previous">&#8249;</button>
+              <div class="int-dots">${interestDotsHTML}</div>
+              <button class="int-next" aria-label="Next">&#8250;</button>
+            </div>
+          </div>
         </div>
         <div class="reveal reveal-delay-2">${factsHTML}</div>
       </div>
