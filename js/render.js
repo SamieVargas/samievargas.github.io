@@ -224,12 +224,15 @@ export function renderAbout() {
   const el = qs('#about');
   if (!el) return;
 
+  // Bio rendered as full-width top band
   const bioHTML = BIO.map(p => `<p>${p}</p>`).join('');
+
+  // Quick facts for left column
   const factsHTML = QUICK_FACTS.map(f => `
     <div class="qf"><div class="qfl">${f.label}</div><div class="qfv">${f.value}</div></div>
   `).join('');
 
-  // Band carousel — all cards rendered, JS slides them
+  // Interest band: all cards, JS slides 3 at a time
   const interestCardsHTML = INTERESTS.map(item => `
     <div class="int-card">
       <div class="int-icon">${item.icon}</div>
@@ -238,7 +241,6 @@ export function renderAbout() {
     </div>
   `).join('');
 
-  // Dots: one per "page" of 3 — calculated in JS
   const pageCount = Math.ceil(INTERESTS.length / 3);
   const dotsHTML = Array.from({length: pageCount}, (_, i) => `
     <button class="int-band-dot${i === 0 ? ' on' : ''}" data-page="${i}" aria-label="Page ${i + 1}"></button>
@@ -250,10 +252,14 @@ export function renderAbout() {
     <div class="swf-inner">
       <div class="sh dark reveal"><span class="sl light">06 — Background</span><h2 class="st light">About</h2></div>
     </div>
+
+    <div class="about-bio-band reveal">
+      <div class="at">${bioHTML}</div>
+    </div>
+
     <div class="about-wrap">
       <div class="about-left">
-        <div class="at reveal">${bioHTML}</div>
-        <div class="reveal reveal-delay-2">${factsHTML}</div>
+        <div class="reveal">${factsHTML}</div>
       </div>
       <div class="about-right reveal reveal-delay-1">
         <p class="interests-title">Beyond the Resume</p>
@@ -266,26 +272,29 @@ export function renderAbout() {
           <button class="int-next-b" id="int-next-b" aria-label="Next">&#8250;</button>
         </div>
         <div id="spotify-slot"></div>
-        <div class="media-row">
-          <div class="media-row-label">Podcasts</div>
-          <div class="media-row-items">
-            <span class="media-pill">That Chapter</span>
-            <span class="media-pill">Regulation Podcast</span>
-          </div>
-        </div>
-        <div class="media-row" style="margin-top:.75rem">
-          <div class="media-row-label">Watching</div>
-          <div class="media-row-items">
+        <div class="currently-into-header">Currently Into</div>
+        <div class="media-grid">
+          <div class="media-col">
+            <div class="media-col-label">Watching</div>
             <span class="media-pill">Bob's Burgers</span>
             <span class="media-pill">Dimension 20</span>
             <span class="media-pill">BoJack Horseman</span>
+          </div>
+          <div class="media-col">
+            <div class="media-col-label">Podcasts</div>
+            <span class="media-pill">That Chapter</span>
+            <span class="media-pill">Regulation Podcast</span>
+          </div>
+          <div class="media-col">
+            <div class="media-col-label">Playing</div>
+            <span class="media-pill">House Flipper 2</span>
+            <span class="media-pill">Ring Fit</span>
           </div>
         </div>
       </div>
     </div>
   `;
 
-  // Fetch Spotify track after DOM is ready
   loadSpotifyTrack();
 }
 
@@ -293,15 +302,12 @@ async function loadSpotifyTrack() {
   const slot = qs('#spotify-slot');
   if (!slot) return;
 
-  // NOTE: Spotify public playlist embed — no auth needed for public playlists
-  // We fetch via oEmbed which is CORS-friendly and requires no token
   const PLAYLIST_ID = '3oLN1CsU4GEi8N3q6SbhbE';
 
   try {
-    // Use Spotify oEmbed for a clean embed card
     slot.innerHTML = `
-      <div style="margin-top:1.5rem;">
-        <div class="media-row-label" style="margin-bottom:.75rem;">Listening to</div>
+      <div class="spotify-embed-wrap">
+        <div class="media-col-label" style="margin-bottom:.75rem;">Listening to</div>
         <iframe
           style="border-radius:4px; border: 1px solid rgba(255,255,255,.08);"
           src="https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=generator&theme=0"
@@ -315,7 +321,6 @@ async function loadSpotifyTrack() {
       </div>
     `;
   } catch(e) {
-    // Fallback: plain link
     slot.innerHTML = `
       <a class="spotify-card" href="https://open.spotify.com/playlist/${PLAYLIST_ID}" target="_blank" rel="noopener">
         <div class="spotify-art-placeholder">🎵</div>
