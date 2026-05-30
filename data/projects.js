@@ -6,6 +6,42 @@
 
 export const FEATURED_PROJECTS = [
   {
+    id: 'atx-foodie',
+    badge: 'Personal Portfolio Project',
+    title: 'Austin Food Safety — Does Reputation Match the Safety Record?',
+    description: 'A JuiceLand pest report on r/Austin made me realize I had zero data visibility into the restaurants I eat at daily. Fetched 4,300+ health inspection records from the City of Austin Open Data Portal API, built a brand compliance scorecard across 84 local brands, and surfaced five findings with direct policy implications: compliance isn\'t uniform by neighborhood, operational drift is measurable by inspection cycle, and follow-up inspections average 8 points lower than routine visits — meaning the corrective action loop is broken. Includes a folium choropleth map of Austin zip codes and a personal audit of my own regular spots.',
+    quickContext: {
+      problem: 'A Reddit pest-sighting post made me realize I ate at dozens of Austin restaurants with zero visibility into their actual health inspection records.',
+      approach: 'Pulled 4,300+ inspection records via the City of Austin Socrata REST API. Built brand scorecards for 84 local restaurant groups and a folium choropleth map by zip code.',
+      finding: 'Follow-up inspections score 8 pts lower than routine visits — the corrective loop is broken. Serial offenders are identifiable in advance. The data exists; the workflow to act on it doesn\'t.',
+    },
+    media: {
+      type: 'carousel',
+      slides: [
+        { src: './assets/atx-foodie-inspection/zip_performance.png', alt: 'Compliance by zip code — top 10 by restaurant density', label: 'Zip Code Compliance' },
+        { src: './assets/atx-foodie-inspection/score_volatility.png', alt: 'Follow-up inspection risk — serial offenders', label: 'Serial Offender Risk' },
+        { src: './assets/atx-foodie-inspection/burnout_trend.png', alt: 'Operational drift — avg score by inspection sequence', label: 'Compliance Drift' },
+        { src: './assets/atx-foodie-inspection/my_favs.png', alt: 'My regulars vs Austin compliance landscape', label: 'Personal Audit' },
+      ],
+    },
+    tags: ['Python', 'pandas · matplotlib · seaborn', 'folium (geospatial)', 'Socrata API', 'EDA', 'Public Health Data', 'Kaggle'],
+    link: { href: 'https://www.kaggle.com/code/samievargas/atx-foodie-inspection', label: 'View on Kaggle →' },
+  },
+  {
+  id: 'instacart-dbt',
+  badge: 'Personal Portfolio Project',
+  title: 'Instacart dbt Project — When Does Data Become Trustworthy?',
+  description: 'Built a staging → intermediate → mart architecture in dbt Cloud on BigQuery across 3.4M Instacart orders. Loaded via Kaggle CLI + bq CLI. 35 passing tests encoding business logic, not just nulls. Key finding: the 0.60 average reorder ratio hides a 3x difference — new users reorder at 0.221, veterans at 0.670. Data only becomes reliable for ML reorder prediction at 10+ orders.',
+  quickContext: {
+    problem: 'The Instacart dataset ships with no enforced relationships, a capped column with no documentation, and two order-product files that overlap in non-obvious ways. A raw join produces numbers that look correct and are wrong.',
+    approach: 'Built a full dbt transformation layer: 5 staging models, 1 intermediate join, 3 marts. 35 tests. Explored the data in BigQuery before writing a single model.',
+    finding: 'Reorder ratio ranges from 0.221 (new users) to 0.670 (veterans) — a 3x difference. The population average of 0.60 is meaningless without the segment label.',
+  },
+  media: { type: 'placeholder' },  // replace with DAG screenshot later
+  tags: ['dbt Cloud', 'BigQuery', 'SQL', 'Data Modeling', 'bq CLI', 'Looker Studio', 'dbt Fundamentals'],
+  link: { href: 'https://github.com/SamieVargas/instacart-project', label: 'View on GitHub →' },
+},
+  {
     id: 'gda-capstone',
     badge: 'Google Data Analytics Capstone',
     title: 'Wearable Engagement & Fitness Dropout Prediction',
@@ -42,28 +78,6 @@ export const FEATURED_PROJECTS = [
     },
     tags: ['Python', 'pandas · seaborn', 'scikit-learn', 'Logistic Regression', 'EDA', 'Feature Engineering', 'Kaggle'],
     link: { href: 'https://www.kaggle.com/code/samievargas/ibm-telco-customer-churn', label: 'View on Kaggle →' },
-  },
-  {
-    id: 'atx-foodie',
-    badge: 'Personal Portfolio Project',
-    title: 'Austin Food Safety — Does Reputation Match the Safety Record?',
-    description: 'A JuiceLand pest report on r/Austin made me realize I had zero data visibility into the restaurants I eat at daily. Fetched 4,300+ health inspection records from the City of Austin Open Data Portal API, built a brand compliance scorecard across 84 local brands, and surfaced five findings with direct policy implications: compliance isn\'t uniform by neighborhood, operational drift is measurable by inspection cycle, and follow-up inspections average 8 points lower than routine visits — meaning the corrective action loop is broken. Includes a folium choropleth map of Austin zip codes and a personal audit of my own regular spots.',
-    quickContext: {
-      problem: 'A Reddit pest-sighting post made me realize I ate at dozens of Austin restaurants with zero visibility into their actual health inspection records.',
-      approach: 'Pulled 4,300+ inspection records via the City of Austin Socrata REST API. Built brand scorecards for 84 local restaurant groups and a folium choropleth map by zip code.',
-      finding: 'Follow-up inspections score 8 pts lower than routine visits — the corrective loop is broken. Serial offenders are identifiable in advance. The data exists; the workflow to act on it doesn\'t.',
-    },
-    media: {
-      type: 'carousel',
-      slides: [
-        { src: './assets/atx-foodie-inspection/zip_performance.png', alt: 'Compliance by zip code — top 10 by restaurant density', label: 'Zip Code Compliance' },
-        { src: './assets/atx-foodie-inspection/score_volatility.png', alt: 'Follow-up inspection risk — serial offenders', label: 'Serial Offender Risk' },
-        { src: './assets/atx-foodie-inspection/burnout_trend.png', alt: 'Operational drift — avg score by inspection sequence', label: 'Compliance Drift' },
-        { src: './assets/atx-foodie-inspection/my_favs.png', alt: 'My regulars vs Austin compliance landscape', label: 'Personal Audit' },
-      ],
-    },
-    tags: ['Python', 'pandas · matplotlib · seaborn', 'folium (geospatial)', 'Socrata API', 'EDA', 'Public Health Data', 'Kaggle'],
-    link: { href: 'https://www.kaggle.com/code/samievargas/atx-foodie-inspection', label: 'View on Kaggle →' },
   },
 ];
 
@@ -106,4 +120,27 @@ export const GRID_PROJECTS = [
     tags: ['Python', 'Regression', 'Classification', 'GADA Cert'],
     dim: true,
   },
+  {
+  id: 'tarot-tracker',
+  badge: 'Self-Built · JavaScript · Google Apps Script',
+  title: 'Tarot Tracker — Personal Card Archive',
+  description: 'A full-featured tarot reading tracker deployed on GitHub Pages. Logs pulls, tracks card history, surfaces stalker cards and ghost cards, visualizes suit distribution, and syncs to Google Sheets via Apps Script. Built end-to-end with vanilla JS — no frameworks.',
+  media: {
+    type: 'carousel',
+    slides: [
+      { src: './assets/tarot-tracker/deck.png', alt: 'Tarot Tracker deck view', label: 'Deck', link: 'https://samievargas.github.io/tarot-tracker/' },
+    ],
+  },
+  tags: ['JavaScript', 'Google Apps Script', 'GitHub Pages', 'Google Sheets', 'Self-Deployed'],
+  dim: false,
+},
+{
+  id: 'life-os',
+  badge: 'Self-Built · Google Apps Script · Personal Analytics',
+  title: 'Life OS — Personal Health & Habit Dashboard',
+  description: 'A multi-panel personal dashboard built on Google Apps Script pulling from Life in Pixels longitudinal data. Tracks mood, HRV, body battery, sleep, habits, cycle phase, DBT skills, and life events over time. Includes Gemini AI weekly reflection, Todoist task integration, and a full rearview analytics layer with Chart.js visualizations.',
+  media: { type: 'placeholder' },  // scrubbed screenshot — add manually
+  tags: ['Google Apps Script', 'Chart.js', 'Gemini API', 'Todoist API', 'Garmin', 'Personal Analytics'],
+  dim: false,
+},
 ];
