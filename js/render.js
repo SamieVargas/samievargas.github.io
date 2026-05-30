@@ -14,8 +14,14 @@ function qs(sel) { return document.querySelector(sel); }
 function buildCarousel(slides) {
   const hasMultiple = slides.length > 1;
   const slidesHTML = slides.map(s => {
-    const img = `<img src="${s.src}" alt="${s.alt}" loading="lazy">`;
-    const inner = s.link ? `<a href="${s.link}" target="_blank" rel="noopener">${img}</a>` : img;
+    // Support typed slides: { type: 'iframe' } or { type: 'img' } or legacy (no type = img)
+    let inner;
+    if (s.type === 'iframe') {
+      inner = `<iframe src="${s.src}" class="c-iframe" allowfullscreen loading="lazy" title="${s.label}"></iframe>`;
+    } else {
+      const img = `<img src="${s.src}" alt="${s.alt || ''}" loading="lazy">`;
+      inner = s.link ? `<a href="${s.link}" target="_blank" rel="noopener">${img}</a>` : img;
+    }
     return `<div class="c-slide">${inner}<span class="c-lbl">${s.label}</span></div>`;
   }).join('');
   const controls = hasMultiple ? `
@@ -87,7 +93,7 @@ export function renderProjects() {
               <div class="pf-context-item"><span class="pf-context-key">Problem</span><p>${p.quickContext.problem}</p></div>
               <div class="pf-context-item"><span class="pf-context-key">Approach</span><p>${p.quickContext.approach}</p></div>
               <div class="pf-context-item"><span class="pf-context-key">Finding</span><p>${p.quickContext.finding}</p></div>
-              <a class="plink" href="${p.link.href}" target="_blank" rel="noopener">${p.link.label}</a>
+              ${(p.links || [p.link]).filter(Boolean).map(l => `<a class="plink" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join("")}
             </div>
           </aside>
           <div class="pf-details">
@@ -275,13 +281,6 @@ export function renderAbout() {
         <div class="currently-into-header">Currently Into</div>
         <div class="media-grid">
           <div class="media-col">
-            <div class="media-col-label">Reading</div>
-            <span class="media-pill">Stephen King</span>
-            <span class="media-pill">Agatha Christie</span>
-            <span class="media-pill">Seishi Tokomizo</span>
-            <span class="media-pill">Terry Pratchett</span>
-          </div>
-          <div class="media-col">
             <div class="media-col-label">Watching</div>
             <span class="media-pill">Bob's Burgers</span>
             <span class="media-pill">Dimension 20</span>
@@ -296,7 +295,6 @@ export function renderAbout() {
             <div class="media-col-label">Playing</div>
             <span class="media-pill">House Flipper 2</span>
             <span class="media-pill">Ring Fit</span>
-            <span class="media-pill">Stardew Valley</span>
           </div>
         </div>
       </div>
