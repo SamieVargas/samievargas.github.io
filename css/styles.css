@@ -486,12 +486,12 @@ nav {
 /* Two-column split */
 .about-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 280px 1fr;
   gap: 0;
   min-height: 100%;
 }
 .about-left {
-  padding: 2.5rem 3rem 5rem 3rem;
+  padding: 2.5rem 2rem 5rem 3rem;
   border-right: 1px solid rgba(255,255,255,.07);
 }
 .about-right {
@@ -502,7 +502,7 @@ nav {
 }
 
 /* Quick facts */
-.qf { padding: 7.5rem 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+.qf { padding: .75rem 0; border-bottom: 1px solid rgba(255,255,255,.1); }
 .qf:first-child { padding-top: 0; }
 .qfl { font-family: var(--mono); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: #6bc4ac; margin-bottom: .15rem; }
 .qfv { font-size: .8rem; color: rgba(247,244,239,.8); }
