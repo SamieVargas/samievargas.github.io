@@ -738,3 +738,36 @@ footer p { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; c
   .int-card { flex: 0 0 100%; }
   .media-grid { grid-template-columns: 1fr; }
 }
+
+/* === SPOTIFY EMBED — responsive fix ======================== */
+.spotify-embed-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+
+.spotify-embed-wrap iframe {
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+  display: block;
+}
+
+/* Prevent about-right from overflowing its column */
+.about-right {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* === MEDIA GRID — responsive stacking ====================== */
+@media (max-width: 1100px) {
+  .media-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Already stacks to 1 col at 600px, but the about-right
+     column is half-width at 900px
