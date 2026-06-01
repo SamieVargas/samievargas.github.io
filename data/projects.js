@@ -121,6 +121,57 @@ export const FEATURED_PROJECTS = [
       { href: 'https://datastudio.google.com/reporting/e6e40a84-8ad4-47e8-b6f7-25016e65b32b', label: 'Interact on Looker →' },
     ],
   },
+  {
+    id: 'instacart-ml',
+    badge: 'Personal Portfolio Project · ML Extension',
+    title: 'Instacart Reorder Prediction — Does the Segment Finding Hold Under ML?',
+    description: 'Built a reorder prediction model on top of the dbt mart layer to validate a behavioral threshold found in SQL. Instead of pulling raw CSVs like every other Instacart notebook on Kaggle, feature inputs came from validated BigQuery marts with 35 passing dbt tests behind them. The core question: if veteran users (10+ orders) reorder at 3x the rate of new users, is that difference actually learnable — or just descriptive? Trained logistic regression and random forest classifiers on 480K order-product rows. Veteran user AUC: 0.9886. New user AUC: 0.8566. The 0.1320 gap is ML evidence for the same threshold the SQL analysis found.',
+    quickContext: {
+      problem: 'The dbt project found that users with 10+ orders reorder at 3x the rate of new users. SQL can describe that pattern — it can\'t tell you whether it\'s learnable. This notebook finds out.',
+      approach: 'Pulled 2M rows from dbt mart layer via BigQuery. Applied the 10+ order filter as justified preprocessing. Trained logistic regression baseline (AUC 0.8585) and random forest (AUC 0.8711). Ran segment AUC comparison on held-out new user population.',
+      finding: 'Veteran users scored 0.9886 AUC vs 0.8566 for new users — a 15.4% performance gap. `order_reorder_ratio` was the dominant feature at 0.37 importance, nearly 4x the next predictor. Two methods, one threshold.',
+    },
+    media: {
+      type: 'carousel',
+      slides: [
+        {
+          type: 'img',
+          src: './assets/instacart-ml/V3_segment_auc_comparison.png',
+          alt: 'Segment AUC comparison — new users vs veteran users',
+          label: 'Segment Validation',
+        },
+        {
+          type: 'img',
+          src: './assets/instacart-ml/V4_feature_importances.png',
+          alt: 'Random forest feature importances — order_reorder_ratio dominates',
+          label: 'Feature Importances',
+        },
+        {
+          type: 'img',
+          src: './assets/instacart-ml/V1_data_overview.png',
+          alt: 'Data overview — target distribution and segment reorder gradient',
+          label: 'Data Overview',
+        },
+        {
+          type: 'img',
+          src: './assets/instacart-ml/V2_correlation_heatmap.png',
+          alt: 'Feature correlation heatmap',
+          label: 'Correlation Heatmap',
+        },
+        {
+          type: 'img',
+          src: './assets/instacart-ml/V5_confusion_matrix.png',
+          alt: 'Confusion matrix — random forest on test set',
+          label: 'Confusion Matrix',
+        },
+      ],
+    },
+    tags: ['Python', 'pandas · scikit-learn · seaborn', 'BigQuery', 'Logistic Regression', 'Random Forest', 'dbt', 'Kaggle'],
+    links: [
+      { href: 'https://www.kaggle.com/code/samievargas/instacart-reorder-ml', label: 'View on Kaggle →' },
+      { href: 'https://github.com/SamieVargas/instacart-project', label: 'dbt Project →' },
+    ],
+  },
 
   {
     id: 'gda-capstone',
