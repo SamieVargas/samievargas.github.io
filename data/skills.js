@@ -1,8 +1,5 @@
 // ============================================================
 // data/skills.js — Skills groups and certifications
-// Only confirmed skills: certificates, portfolio projects,
-// or actively used tools. Salesforce Admin removed (not yet cert).
-// Gainsight removed. dbt added.
 // ============================================================
 
 export const SKILL_GROUPS = [
@@ -16,6 +13,9 @@ export const SKILL_GROUPS = [
       { name: 'Feature Engineering' },
       { name: 'Logistic Regression' },
       { name: 'Classification Modeling' },
+      { name: 'Random Forest',              note: 'feature importance · segment validation' },
+      { name: 'Model Evaluation',           note: 'AUC · confusion matrix · classification report' },
+      { name: 'Train/Test Split & Sampling',note: 'stratified · class balancing' },
       { name: 'Cohort & Segment Analysis' },
       { name: 'Behavioral Pattern Analysis' },
       { name: 'Time Series & Longitudinal Analysis' },
@@ -42,7 +42,7 @@ export const SKILL_GROUPS = [
       { name: 'BigQuery' },
       { name: 'bq CLI',                    note: 'data loading · schema mgmt' },
       { name: 'dbt Cloud',                 note: 'models · tests · docs · DAG' },
-      { name: 'scikit-learn',              note: 'LR · metrics · preprocessing' },
+      { name: 'scikit-learn',              note: 'LR · RF · Pipeline · StandardScaler · metrics' },
       { name: 'Google Analytics 4',        note: 'certified ✓' },
       { name: 'Google Apps Script',        note: '4 self-built apps deployed' },
       { name: 'Kaggle Notebooks' },
