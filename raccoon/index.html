@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231A6B5A'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-weight='700' font-size='20' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Raccoon Invoice — Samie Vargas</title>
+  <meta name="description" content="What a raccoon in my Austin apartment actually cost me, measured in Garmin data.">
+  <meta property="og:title" content="The Raccoon Invoice">
+  <meta property="og:description" content="A data story about sleep, body battery, and an unauthorized tenant.">
+  <meta property="og:url" content="https://samievargas.github.io/raccoon/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --ink: #0f0e0c;
+      --paper: #f7f4ef;
+      --accent: #1a6b5a;
+      --accent-dark: #135248;
+      --accent-light: #e8f2ef;
+      --rule: #d4cfc7;
+      --muted: #7a7570;
+      --surface-page: #f7f4ef;
+      --surface-raised: #ffffff;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+      --red: #c0392b;
+      --red-bg: #fdf3f2;
+      --amber: #9a6c00;
+      --amber-bg: #fdf8ee;
+    }
+    [data-theme="dark"] {
+      --ink: #e2ddd6;
+      --paper: #141210;
+      --accent: #4daa91;
+      --accent-dark: #3d9278;
+      --accent-light: #0d2018;
+      --rule: #2c2820;
+      --muted: #6a6560;
+      --surface-page: #141210;
+      --surface-raised: #1c1916;
+      --red: #e05c4a;
+      --red-bg: #1f0e0c;
+      --amber: #c49a30;
+      --amber-bg: #1a1508;
+    }
+
+    body { background: var(--surface-page); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(247,244,239,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); transition: background .3s, border-color .3s; }
+    [data-theme="dark"] nav { background: rgba(20,18,16,.92); }
+    .nav-name { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-back { font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+    .nav-back:hover { color: var(--accent); }
+    .nav-icon-btn { background: none; border: none; cursor: pointer; font-family: var(--mono); font-size: .72rem; color: var(--muted); padding: .3rem .45rem; transition: color .2s; }
+    .nav-icon-btn:hover { color: var(--accent); }
+    .icon-sun { display: none; } .icon-moon { display: inline; }
+    [data-theme="dark"] .icon-sun { display: inline; } [data-theme="dark"] .icon-moon { display: none; }
+
+    .hero { padding: 8rem 3rem 5rem; max-width: 900px; margin: 0 auto; border-bottom: 1px solid var(--rule); }
+    .hero-eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .hero h1 { font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.25rem; }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 52ch; line-height: 1.65; margin-bottom: 2rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 2rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .hero-meta span::before { content: '—'; color: var(--accent); margin-right: .5rem; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-eyebrow { animation: fadeUp .5s ease both; }
+    .hero h1 { animation: fadeUp .6s .1s ease both; }
+    .hero-sub { animation: fadeUp .6s .2s ease both; }
+    .hero-meta { animation: fadeUp .6s .3s ease both; }
+
+    .sw { padding: 5rem 3rem; max-width: 900px; margin: 0 auto; border-bottom: 1px solid var(--rule); }
+    .sh { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+    .sl { font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); flex-shrink: 0; }
+    .st { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; }
+
+    /* RECEIPT */
+    .receipt-wrap { max-width: 420px; }
+    .receipt { background: var(--surface-raised); border: 1px solid var(--rule); padding: 2.25rem 2rem; position: relative; overflow: hidden; }
+    .receipt::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 10px, transparent 10px, transparent 20px); }
+    .receipt-header { text-align: center; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--rule); margin-bottom: 1.5rem; }
+    .receipt-store { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .receipt-address { font-family: var(--mono); font-size: .68rem; color: var(--muted); line-height: 1.9; }
+    .r-section-label { font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 1.25rem 0 .6rem; }
+    .line-item { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+    .line-item .desc { font-family: var(--mono); font-size: .72rem; color: var(--ink); flex: 1; line-height: 1.5; }
+    .line-item .desc small { display: block; font-size: .65rem; color: var(--muted); font-style: italic; margin-top: 2px; }
+    .val { font-family: var(--mono); font-size: .72rem; white-space: nowrap; }
+    .val-bad { color: var(--red); } .val-muted { color: var(--muted); }
+    .r-divider { border: none; border-top: 1px dashed var(--rule); margin: 1.25rem 0; }
+    .total-block { display: flex; flex-direction: column; gap: 4px; }
+    .total-row { display: flex; justify-content: space-between; }
+    .total-row .label { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+    .total-row .value { font-family: var(--mono); font-size: .72rem; color: var(--red); }
+    .total-row.final .label { font-family: var(--serif); font-size: .95rem; font-weight: 700; color: var(--ink); }
+    .total-row.final .value { font-family: var(--serif); font-size: .95rem; font-weight: 700; color: var(--accent); }
+    .receipt-footer { text-align: center; padding-top: 1.25rem; border-top: 1px dashed var(--rule); margin-top: 1.25rem; }
+    .receipt-footer p { font-family: var(--mono); font-size: .68rem; color: var(--muted); margin-bottom: 2px; }
+    .no-refunds { font-family: var(--mono); font-size: .7rem; color: var(--muted); margin-top: 8px; letter-spacing: .08em; }
+
+    /* STORY PROSE */
+    .prose { font-size: .95rem; color: var(--muted); line-height: 1.85; max-width: 62ch; }
+    .prose + .prose { margin-top: 1.1rem; }
+    .prose strong { color: var(--ink); font-weight: 500; }
+    .prose em { font-style: italic; }
+
+    /* ASIDE CALLOUT */
+    .callout { border-left: 3px solid var(--accent); padding: .75rem 1.25rem; margin: 1.5rem 0; background: var(--accent-light); max-width: 56ch; }
+    .callout p { font-family: var(--mono); font-size: .75rem; line-height: 1.7; color: var(--ink); }
+    .callout p + p { margin-top: .4rem; }
+
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); }
+    .stat { padding: 1.75rem 1.5rem; border-right: 1px solid var(--rule); }
+    .stat:last-child { border-right: none; }
+    .stat-label { font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .75rem; line-height: 1.6; }
+    .stat-baseline { font-family: var(--mono); font-size: .68rem; color: var(--muted); margin-bottom: 4px; }
+    .stat-during { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--red); line-height: 1.1; margin-bottom: 4px; }
+    .stat-note { font-family: var(--mono); font-size: .62rem; color: var(--muted); font-style: italic; }
+
+    /* TIMELINE */
+    .arc-sub { font-family: var(--mono); font-size: .72rem; color: var(--muted); letter-spacing: .04em; margin-bottom: 3rem; }
+    .phase-list { position: relative; }
+    .phase-list::before { content: ''; position: absolute; left: 80px; top: 6px; bottom: 6px; width: 1px; background: var(--rule); }
+    .phase { display: grid; grid-template-columns: 80px 20px 1fr; gap: 0 1.25rem; margin-bottom: 3rem; }
+    .phase:last-child { margin-bottom: 0; }
+    .phase-date { font-family: var(--mono); font-size: .62rem; color: var(--muted); text-align: right; padding-top: 3px; line-height: 1.5; }
+    .phase-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--rule); background: var(--surface-page); margin-top: 4px; flex-shrink: 0; position: relative; z-index: 1; }
+    .phase-dot.bad { border-color: var(--red); background: var(--red-bg); }
+    .phase-dot.warn { border-color: var(--amber); background: var(--amber-bg); }
+    .phase-dot.good { border-color: var(--accent); background: var(--accent-light); }
+    .phase-dot.neutral { border-color: var(--muted); background: var(--surface-raised); }
+    .phase-label { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: .4rem; }
+    .phase-story { font-size: .875rem; color: var(--muted); line-height: 1.75; margin-bottom: .75rem; max-width: 52ch; }
+    .phase-story + .phase-story { margin-top: .5rem; }
+    .pills { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }
+    .pill { font-family: var(--mono); font-size: .62rem; letter-spacing: .04em; padding: .2rem .6rem; border: 1px solid var(--rule); color: var(--muted); background: var(--surface-raised); }
+    .pill.bad { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    .pill.good { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .pill.warn { border-color: var(--amber); color: var(--amber); background: var(--amber-bg); }
+
+    /* PHOTO */
+    .phase-photo { margin-top: .85rem; max-width: 340px; }
+    .phase-photo img { width: 100%; display: block; border: 1px solid var(--rule); }
+    .photo-caption { font-family: var(--mono); font-size: .62rem; color: var(--muted); padding: .5rem .6rem; border: 1px solid var(--rule); border-top: none; background: var(--surface-raised); font-style: italic; line-height: 1.5; }
+
+    /* FOOTER */
+    footer { padding: 1.75rem 3rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    footer p { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+    footer a { color: var(--accent); }
+    footer a:hover { text-decoration: underline; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; } .reveal-delay-2 { transition-delay: .2s; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero, .sw { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--rule); }
+      .stat:last-child { border-bottom: none; }
+      .phase-list::before { left: 56px; }
+      .phase { grid-template-columns: 56px 20px 1fr; }
+      .phase-photo { max-width: 100%; }
+      footer { flex-direction: column; text-align: center; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="https://samievargas.github.io/">Samie Vargas</a>
+  <div class="nav-right">
+    <a class="nav-back" href="https://samievargas.github.io/#work">← Work</a>
+    <button id="dark-toggle" class="nav-icon-btn" aria-label="Toggle dark mode">
+      <span class="icon-moon" aria-hidden="true">☽</span>
+      <span class="icon-sun"  aria-hidden="true">☀</span>
+    </button>
+  </div>
+</nav>
+
+<header class="hero">
+  <p class="hero-eyebrow">Data story &nbsp;·&nbsp; Austin, TX &nbsp;·&nbsp; Apr – May 2026</p>
+  <h1>The Raccoon <em>Invoice</em></h1>
+  <p class="hero-sub">For several nights I couldn't sleep and didn't know why. I blamed true crime podcasts. I was wrong. This is what a raccoon — and her babies — actually cost me, measured in Garmin data.</p>
+  <div class="hero-meta">
+    <span>17 days</span>
+    <span>3 raccoons</span>
+    <span>1 Noah Kahn incident</span>
+    <span>$0 rent paid</span>
+  </div>
+</header>
+
+<!-- INVOICE -->
+<section class="sw">
+  <div class="sh reveal"><span class="sl">01 — The Invoice</span><h2 class="st">Itemized damages</h2></div>
+  <div class="receipt-wrap reveal reveal-delay-1">
+    <div class="receipt">
+      <div class="receipt-header">
+        <div class="receipt-store">The Raccoon Invoice</div>
+        <div class="receipt-address">
+          Tenant: Samie Vargas &nbsp;·&nbsp; Austin, TX<br>
+          Period: Apr 23 – May 10, 2026<br>
+          Issued by: The Raccoon (unauthorized occupant)
+        </div>
+      </div>
+
+      <div class="r-section-label">Sleep damages</div>
+      <div class="line-item"><span class="desc">Sleep score floor</span><span class="val val-bad">53 / 100</span></div>
+      <div class="line-item"><span class="desc">Pre-raccoon baseline</span><span class="val val-muted">81 / 100</span></div>
+      <div class="line-item"><span class="desc">Average during incident</span><span class="val val-bad">75 / 100</span></div>
+      <div class="line-item"><span class="desc">Nights of interrupted sleep</span><span class="val val-bad">11 nights</span></div>
+      <div class="line-item"><span class="desc">Plans canceled due to unexplained exhaustion</span><span class="val val-bad">at least 1</span></div>
+
+      <hr class="r-divider">
+      <div class="r-section-label">Body battery damages</div>
+      <div class="line-item"><span class="desc">Body battery floor</span><span class="val val-bad">5 / 100</span></div>
+      <div class="line-item"><span class="desc">Consecutive days at floor (≤6)</span><span class="val val-bad">5 days</span></div>
+      <div class="line-item"><span class="desc">Pre-raccoon baseline</span><span class="val val-muted">20 / 100</span></div>
+      <div class="line-item"><span class="desc">Average during incident</span><span class="val val-bad">10 / 100</span></div>
+      <div class="line-item">
+        <span class="desc">Days to recover after removal<small>the nervous system does not care that the threat is gone</small></span>
+        <span class="val val-bad">8 days</span>
+      </div>
+
+      <hr class="r-divider">
+      <div class="r-section-label">Miscellaneous charges</div>
+      <div class="line-item"><span class="desc">True crime podcasts falsely blamed</span><span class="val val-bad">several</span></div>
+      <div class="line-item"><span class="desc">Songs played at raccoon (Noah Kahn, ineffective)</span><span class="val val-bad">unknown</span></div>
+      <div class="line-item"><span class="desc">Songs played at raccoon (EDM, marginally effective)</span><span class="val val-bad">also unknown</span></div>
+      <div class="line-item"><span class="desc">Calls to leasing office, pest control, corporate</span><span class="val val-bad">9 calls</span></div>
+      <div class="line-item"><span class="desc">Days pest control took to actually remove them</span><span class="val val-bad">8 days</span></div>
+      <div class="line-item"><span class="desc">HRV floor (Apr 28)</span><span class="val val-bad">26 ms</span></div>
+      <div class="line-item"><span class="desc">HRV baseline</span><span class="val val-muted">38 ms</span></div>
+      <div class="line-item"><span class="desc">Raccoon's contribution to rent</span><span class="val val-bad">$0.00</span></div>
+
+      <hr class="r-divider">
+      <div class="total-block">
+        <div class="total-row"><span class="label">Total disruption</span><span class="value">17 days</span></div>
+        <div class="total-row"><span class="label">Recovery lag after removal</span><span class="value">8 days</span></div>
+        <div class="total-row final"><span class="label">Balance due</span><span class="value">$0 — paid in raccoon</span></div>
+      </div>
+
+      <div class="receipt-footer">
+        <p>Thank you for your unauthorized tenancy.</p>
+        <p>Please do not return.</p>
+        <div class="no-refunds">*** NO REFUNDS ***</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE STORY -->
+<section class="sw">
+  <div class="sh reveal"><span class="sl">02 — The Story</span><h2 class="st">What actually happened</h2></div>
+
+  <p class="prose reveal">For several nights leading up to April 23, I was sleeping terribly and had no idea why. I was waking up at 3am, tired during the day, canceling plans. I blamed myself. Maybe it was the true crime podcasts — all those stories of things lurking in the dark. So the Tuesday night before the discovery, I canceled plans to meet a friend. <strong>I don't know why I'm so bugged out,</strong> I thought. <strong>I'll skip the podcast tonight, wake up early tomorrow, get some sunlight and exercise.</strong></p>
+
+  <p class="prose reveal reveal-delay-1">I slept poorly anyway.</p>
+
+  <p class="prose reveal reveal-delay-2">Wednesday morning I got up early to do Ring Fit in the living room. To get some sunlight in, I opened the patio door — and immediately noticed <strong>my balcony furniture had been moved.</strong> My first thought was a burglar. I grabbed my phone to take a picture of the evidence. That's when I saw her: mama raccoon, laid out flat on my balcony like she owned the place. Because, as far as she was concerned, she did.</p>
+
+  <div class="callout reveal">
+    <p>It was not the true crime podcasts.</p>
+    <p>My nervous system had been tracking a real threat the entire time. It just couldn't tell me what it was.</p>
+  </div>
+
+  <p class="prose reveal">This was one hour before I needed to leave for work. I immediately googled <em>how to safely get a raccoon off your apartment balcony.</em> Pest control said they couldn't help — they basically told me I had to "draw first blood" before they'd get involved. So I researched. Raccoons don't like bright lights. They don't like loud music.</p>
+
+  <p class="prose reveal reveal-delay-1">I started playing music. The music I happened to be listening to was Noah Kahn. I stood there for a moment, flashlight in hand, and thought: <strong>this is not disruptive music.</strong> This raccoon is not leaving because of Noah Kahn. I switched to EDM.</p>
+
+  <p class="prose reveal reveal-delay-2">The EDM worked — sort of. Mama raccoon moved off the balcony proper but retreated into the balcony closet, hiding under a wicker piece I kept out there. I got her to move again. She made it to the railing. She started hissing at me. And then I heard it: <strong>chirping.</strong> From inside the dark closet. Baby raccoons I couldn't even see. This wasn't one raccoon. This was a family.</p>
+
+  <p class="prose reveal">I closed the door and stepped back. She was hissing at me because she was a mother protecting her babies. It took eight more days, nine phone calls, one escalation to corporate, and an offsite pest control company to finally remove them — humanely — on May 3.</p>
+</section>
+
+<!-- NUMBERS -->
+<section class="sw">
+  <div class="sh reveal"><span class="sl">03 — Numbers</span><h2 class="st">By the numbers</h2></div>
+  <div class="stats-grid reveal reveal-delay-1">
+    <div class="stat">
+      <div class="stat-label">Sleep score<br>floor</div>
+      <div class="stat-baseline">baseline: 81</div>
+      <div class="stat-during">53</div>
+      <div class="stat-note">Apr 28 — worst single night</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Consecutive days<br>at body battery floor</div>
+      <div class="stat-baseline">normal range: 15–25</div>
+      <div class="stat-during">5 days</div>
+      <div class="stat-note">Apr 25–29, stuck at 5/100</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Recovery lag<br>after removal</div>
+      <div class="stat-baseline">expected: immediate</div>
+      <div class="stat-during">8 days</div>
+      <div class="stat-note">nervous system on its own schedule</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="sw">
+  <div class="sh reveal"><span class="sl">04 — Timeline</span><h2 class="st">Night by night</h2></div>
+  <p class="arc-sub reveal">Every metric below is real, pulled from Garmin and the Life in Pixels tracker. Photos are mine.</p>
+
+  <div class="phase-list">
+
+    <div class="phase reveal">
+      <div class="phase-date">Apr 19–22<br>Fri–Tue</div>
+      <div class="phase-dot bad"></div>
+      <div>
+        <div class="phase-label">Something is wrong. Unknown cause.</div>
+        <div class="phase-story">Multiple nights of broken sleep before I knew why. Body battery trending down. I blamed true crime podcasts and late nights. Tuesday I canceled plans with a friend — I was too exhausted and too "bugged out" to go. I skipped the podcast and went to bed early, planning to wake up and exercise instead.</div>
+        <div class="pills">
+          <span class="pill bad">sleep scores: 86 → 69 → 78 → 74</span>
+          <span class="pill bad">body battery: 5–15 range</span>
+          <span class="pill warn">cause: unknown</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-date">Apr 23<br>Wed</div>
+      <div class="phase-dot warn"></div>
+      <div>
+        <div class="phase-label">I wake up early to exercise. I find a raccoon.</div>
+        <div class="phase-story">Ring Fit in the living room. Opened the patio door for sunlight. Furniture was moved. First thought: burglar. Then I saw her — mama raccoon, completely settled in. One hour before work. I tried Noah Kahn. I tried EDM. I tried a flashlight. She hissed at me. I heard babies chirping from the dark closet.</div>
+        <div class="phase-story">Cause of poor sleep: <strong>identified.</strong></div>
+        <div class="pills">
+          <span class="pill warn">sleep 93</span>
+          <span class="pill warn">body battery 23</span>
+          <span class="pill warn">HRV 47 ms</span>
+        </div>
+        <div class="phase-photo">
+          <img src="img/raccoon-on-balcony.jpg" alt="Raccoon spotted on the balcony, partly hidden behind a wicker chair" loading="lazy">
+          <div class="photo-caption">Wednesday morning. The answer to several nights of bad sleep, hiding behind a patio chair.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-date">Apr 24–25</div>
+      <div class="phase-dot bad"></div>
+      <div>
+        <div class="phase-label">Now I know. It doesn't help.</div>
+        <div class="phase-story">Knowing the cause didn't stop the sleep disruption. The raccoons were still there. The 3am sounds were still real. Sleep dropped to 80 then 57. Body battery hit 5. Leasing office was notified. Pest control was called. Nobody could come immediately.</div>
+        <div class="pills">
+          <span class="pill bad">sleep 57</span>
+          <span class="pill bad">body battery 5</span>
+          <span class="pill bad">HRV 31 ms</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-date">Apr 26–29</div>
+      <div class="phase-dot bad"></div>
+      <div>
+        <div class="phase-label">Five days at the floor. Nine phone calls.</div>
+        <div class="phase-story">Body battery stuck at 5 for five consecutive days. Sleep floor hit 53. HRV dropped to 26ms on April 28. Meanwhile: voicemails to leasing, in-person visit to the office, calls to pest control, escalation to corporate. Trap set on Apr 29 — raccoon ate the bait and left without triggering it. A trap defeat.</div>
+        <div class="pills">
+          <span class="pill bad">body battery: 5, 5, 5, 5</span>
+          <span class="pill bad">sleep floor: 53</span>
+          <span class="pill bad">HRV floor: 26 ms</span>
+          <span class="pill bad">trap: outsmarted</span>
+        </div>
+        <div class="phase-photo">
+          <img src="img/raccoon-hiding.jpg" alt="Raccoon face visible through the slats of a wicker basket, babies visible below" loading="lazy">
+          <div class="photo-caption">Apr 29 — mama raccoon confirmed with babies, nested in the balcony wicker basket. Not just one raccoon.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-date">Apr 30 – May 2</div>
+      <div class="phase-dot bad"></div>
+      <div>
+        <div class="phase-label">Still there. Partial recovery, partial escalation.</div>
+        <div class="phase-story">Body battery climbed slightly: 13, 21, 11. Sleep improved to 82, 84, 84. The raccoons were still present. Pest company only inspected — removal was quoted as next week. I escalated to the apartment's corporate office. A second trap was set.</div>
+        <div class="pills">
+          <span class="pill warn">sleep 82–84</span>
+          <span class="pill warn">body battery 11–21</span>
+          <span class="pill warn">resolution: pending</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-date">May 3</div>
+      <div class="phase-dot neutral"></div>
+      <div>
+        <div class="phase-label">Raccoons caught. Raccoons removed.</div>
+        <div class="phase-story">Offsite pest control arrived and removed mama raccoon and the babies. Resolution. I expected to sleep that night. Body battery: 5. Sleep score: 61. The nervous system did not receive the memo.</div>
+        <div class="pills">
+          <span class="pill bad">body battery: still 5</span>
+          <span class="pill bad">sleep: 61</span>
+        </div>
+        <div class="phase-photo">
+          <img src="img/raccoon-caught.jpg" alt="Raccoon in a humane trap cage held by wildlife removal, looking directly at the camera" loading="lazy">
+          <div class="photo-caption">May 3, 11:50am — eviction complete. She looks exactly as tired as my Garmin data.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-date">May 4–10</div>
+      <div class="phase-dot warn"></div>
+      <div>
+        <div class="phase-label">The 8-day recovery lag nobody warned me about</div>
+        <div class="phase-story">Body battery climbed slowly: 6, 23, 18, 26, 18, 11, 17. Sleep crept up: 71, 85, 80, 86, 79, 66, 80. Non-linear. Two steps forward, one back. The body keeps the score longer than you'd expect, even after the threat is completely gone. This is the part the data made visible.</div>
+        <div class="pills">
+          <span class="pill warn">8 days to stabilize</span>
+          <span class="pill good">body battery: 5 → 17</span>
+          <span class="pill good">sleep: 61 → 80</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-date">May 10+</div>
+      <div class="phase-dot good"></div>
+      <div>
+        <div class="phase-label">Back to baseline</div>
+        <div class="phase-story">Sleep scores back above 80. Body battery climbing. Morning workouts resumed — this time without wildlife. True crime podcasts fully exonerated. The raccoon left no forwarding address.</div>
+        <div class="pills">
+          <span class="pill good">sleep 80+</span>
+          <span class="pill good">exercise resumed</span>
+          <span class="pill good">podcasts: not guilty</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>Data: Garmin Connect &amp; <a href="https://samievargas.github.io/life-os/">Life in Pixels</a> &nbsp;·&nbsp; Photos: mine, metadata stripped</p>
+  <p><a href="https://samievargas.github.io/">← samievargas.github.io</a></p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('dark-toggle');
+  const html = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) html.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
