@@ -15,6 +15,21 @@ export const OBSERVATIONS = [
     },
   },
   {
+  tag: 'Apr–May 2026 · Garmin + Life in Pixels · personal biometric data',
+  title: 'My nervous system knew about the raccoon before I did',
+  paragraphs: [
+    `For several nights I was sleeping badly and couldn't explain it. I blamed true crime podcasts. I cancelled plans. I woke up early one Wednesday to exercise instead — and discovered a mama raccoon and her babies had been nesting on my balcony the entire time.`,
+    `The Garmin data told the story better than I could. Five consecutive days at a body battery of <strong>5 out of 100</strong> — the absolute floor — before I even knew what the threat was. Sleep score dropped from a baseline of <strong>81 to a floor of 53</strong>. HRV hit 26ms on the worst night. My nervous system was running a background alarm the whole time. It just couldn't tell me what it was tracking.`,
+    `The part that surprised me most was after. The raccoons were removed on May 3. I expected to recover immediately. Body battery that day: still 5. Sleep score: 61. It took <strong>8 days</strong> to return to baseline after the threat was fully gone. The nervous system doesn't get the memo. It stays activated on its own timeline, regardless of what the situation actually is. That lag — not the disruption itself — is the thing the data made visible.`,
+  ],
+  source: {
+    text: 'Full story with photos and data →',
+    linkText: 'The Raccoon Invoice ↗',
+    linkHref: 'https://samievargas.github.io/raccoon/',
+    suffix: '',
+  },
+},
+  {
     tag: 'May 2026 · Life in Pixels · behavioral data',
     title: 'A walk is worth +0.5: what my own mood data showed',
     paragraphs: [
