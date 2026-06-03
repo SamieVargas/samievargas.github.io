@@ -36,6 +36,7 @@ export const SKILL_GROUPS = [
     items: [
       { name: 'Snowflake', note: 'data loading · file formats · compute · COPY INTO' },
       { name: 'BigQuery' },
+      { name: 'Databricks', note: 'fundamentals · lakehouse · unified analytics' },
       { name: 'dbt Cloud',                  note: 'models · tests · docs · DAG' },
       { name: 'scikit-learn',               note: 'LR · RF · Pipeline · StandardScaler · metrics' },
       { name: 'Kaggle Notebooks' },
@@ -127,6 +128,12 @@ export const CERTIFICATIONS = [
     ],
     status: 'done',
   },
+  {
+  name: 'Databricks Fundamentals Accreditation',
+  issuer: 'Databricks Academy · Jun 2026',
+  links: [],
+  status: 'done',
+},
   {
     name: 'PSM I — Professional Scrum Master',
     issuer: 'Scrum.org · May 2026',
