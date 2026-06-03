@@ -34,6 +34,7 @@ export const SKILL_GROUPS = [
   {
     title: 'Tools & Platforms',
     items: [
+      { name: 'Snowflake', note: 'data loading · file formats · compute · COPY INTO' },
       { name: 'BigQuery' },
       { name: 'dbt Cloud',                  note: 'models · tests · docs · DAG' },
       { name: 'scikit-learn',               note: 'LR · RF · Pipeline · StandardScaler · metrics' },
@@ -104,6 +105,12 @@ export const CERTIFICATIONS = [
     issuer: 'dbt Labs · May 2026',
     links: [{ label: 'Verify ↗', href: 'https://credentials.getdbt.com/5470c199-7753-4f90-99a3-07e8f8c6fe51' }],
     status: 'done',
+  },
+  {
+  name: 'Snowflake Hands-On Essentials: Data Warehouse',
+  issuer: 'Snowflake · Jun 2026',
+  links: [{ label: 'Verify ↗', href: 'https://achieve.snowflake.com/e3201335-75c2-4604-98c1-4c8063699131#acc.csaFBAmw' }],
+  status: 'done',
   },
   {
     name: 'Google Data Analytics Certificate',
