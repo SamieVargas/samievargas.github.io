@@ -121,9 +121,10 @@ export const FEATURED_PROJECTS = [
       { href: 'https://datastudio.google.com/reporting/e6e40a84-8ad4-47e8-b6f7-25016e65b32b', label: 'Interact on Looker →' },
     ],
   },
+
   {
     id: 'instacart-ml',
-    badge: 'Personal Portfolio Project · ML Extension',
+    badge: 'Google Advanced Data Analytics Capstone · ML Extension',
     title: 'Instacart Reorder Prediction — Does the Segment Finding Hold Under ML?',
     description: 'Built a reorder prediction model on top of the dbt mart layer to validate a behavioral threshold found in SQL. Instead of pulling raw CSVs like every other Instacart notebook on Kaggle, feature inputs came from validated BigQuery marts with 35 passing dbt tests behind them. The core question: if veteran users (10+ orders) reorder at 3x the rate of new users, is that difference actually learnable — or just descriptive? Trained logistic regression and random forest classifiers on 480K order-product rows. Veteran user AUC: 0.9886. New user AUC: 0.8566. The 0.1320 gap is ML evidence for the same threshold the SQL analysis found.',
     quickContext: {
@@ -166,7 +167,7 @@ export const FEATURED_PROJECTS = [
         },
       ],
     },
-    tags: ['Python', 'pandas · scikit-learn · seaborn', 'BigQuery', 'Logistic Regression', 'Random Forest', 'dbt', 'Kaggle'],
+    tags: ['Python', 'pandas · scikit-learn · seaborn', 'BigQuery', 'Logistic Regression', 'Random Forest', 'dbt', 'Google GADA Cert', 'Kaggle'],
     links: [
       { href: 'https://www.kaggle.com/code/samievargas/instacart-reorder-ml', label: 'View on Kaggle →' },
       { href: 'https://github.com/SamieVargas/instacart-project', label: 'dbt Project →' },
@@ -175,7 +176,7 @@ export const FEATURED_PROJECTS = [
 
   {
     id: 'gda-capstone',
-    badge: 'Google Data Analytics Capstone',
+    badge: 'Google Data Analytics Certificate Capstone',
     title: 'Wearable Engagement & Fitness Dropout Prediction',
     description: 'Analyzed the LifeSnaps/Fitbit longitudinal dataset (71 users, 4+ months) to identify behavioral and physiological signals that predict fitness goal dropout. Surfaced Feb/March burnout patterns, cadence load spikes, and HRV trends as early dropout predictors — built in Python and BigQuery SQL, informed by personal Garmin training data and 8 years of observing behavioral dropout in enterprise clients.',
     quickContext: {
@@ -355,12 +356,12 @@ export const GRID_PROJECTS = [
   },
 
   {
-    id: 'gada-capstone',
-    badge: 'In Progress',
-    title: 'Advanced Analytics Capstone',
-    description: 'Google Advanced Data Analytics Certificate capstone — regression and classification on a real-world dataset. Python, scikit-learn. Est. Q3 2026.',
+    id: 'steam-nlp',
+    badge: 'In Progress · Est. Q3 2026',
+    title: 'Steam Review Bombing Detection — When Sentiment and Score Diverge',
+    description: 'NLP sentiment analysis on 31M+ Steam reviews to detect when a game\'s review score is being driven by non-gameplay factors — developer controversy, monetization backlash, platform exclusivity deals. Built for publishers and indie studios who need an early warning signal before a score collapse becomes a crisis.',
     media: { type: 'placeholder' },
-    tags: ['Python', 'Regression', 'Classification', 'GADA Cert'],
+    tags: ['Python', 'NLP · Sentiment Analysis', 'BigQuery', 'Steam API', 'scikit-learn', 'Tableau'],
     dim: true,
   },
 ];
