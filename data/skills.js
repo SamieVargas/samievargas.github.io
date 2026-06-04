@@ -85,9 +85,21 @@ export const CERTIFICATIONS = [
     status: 'done',
   },
   {
+    name: 'Databricks AI Agent Fundamentals Accreditation',
+    issuer: 'Databricks Academy · Jun 2026',
+    links: [{ label: 'Verify ↗', href: 'https://credentials.databricks.com/77b2e833-0cf3-4f03-bdb7-5ac7ce9e8024#acc.6YmWJv4O' }],
+    status: 'done',
+  },
+  {
+    name: 'Databricks Generative AI Fundamentals Accreditation',
+    issuer: 'Databricks Academy · Jun 2026',
+    links: [{ label: 'Verify ↗', href: 'https://credentials.databricks.com/8d3a5c2b-f47b-43d1-8ce7-86f71f844a2d#acc.maCtXnr3' }],
+    status: 'done',
+  },
+  {
     name: 'Databricks Fundamentals Accreditation',
     issuer: 'Databricks Academy · Jun 2026',
-    links: [],
+    links: [{ label: 'Verify ↗', href: 'https://credentials.databricks.com/86e01edd-79c7-4c9b-a796-0273ae36c80c#acc.oQhUiTNj' }],
     status: 'done',
   },
   {
