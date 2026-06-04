@@ -34,9 +34,9 @@ export const SKILL_GROUPS = [
   {
     title: 'Tools & Platforms',
     items: [
-      { name: 'Snowflake', note: 'data loading · file formats · compute · COPY INTO' },
+      { name: 'Snowflake',                  note: 'data loading · file formats · compute · COPY INTO' },
       { name: 'BigQuery' },
-      { name: 'Databricks', note: 'fundamentals · lakehouse · unified analytics' },
+      { name: 'Databricks',                 note: 'fundamentals · lakehouse · unified analytics' },
       { name: 'dbt Cloud',                  note: 'models · tests · docs · DAG' },
       { name: 'scikit-learn',               note: 'LR · RF · Pipeline · StandardScaler · metrics' },
       { name: 'Kaggle Notebooks' },
@@ -70,29 +70,6 @@ export const SKILL_GROUPS = [
     ],
   },
 ];
-  {
-    title: 'Operations',
-    items: [
-      { name: 'Engagement Lifecycle Mgmt' },
-      { name: 'Health Scoring Architecture' },
-      { name: 'Playbook & CoE Design' },
-      { name: 'SOW Management' },
-      { name: 'Renewal Pipeline Architecture' },
-      { name: 'Cross-Functional Alignment' },
-      { name: 'Agile / Scrum',             note: 'PSM I certified' },
-    ],
-  },
-  {
-    title: 'AI & Productivity',
-    items: [
-      { name: 'Claude',                    note: 'daily · prompt engineering' },
-      { name: 'ChatGPT · Gemini · Copilot' },
-      { name: 'Gemini API',               note: 'integrated in Life OS' },
-      { name: 'In-house LLM workflows' },
-      { name: 'Notion · Jira · Asana' },
-    ],
-  },
-];
 
 export const CERTIFICATIONS = [
   {
@@ -102,16 +79,22 @@ export const CERTIFICATIONS = [
     status: 'done',
   },
   {
+    name: 'Snowflake Hands-On Essentials: Data Warehouse',
+    issuer: 'Snowflake · Jun 2026',
+    links: [{ label: 'Verify ↗', href: 'https://achieve.snowflake.com/e3201335-75c2-4604-98c1-4c8063699131' }],
+    status: 'done',
+  },
+  {
+    name: 'Databricks Fundamentals Accreditation',
+    issuer: 'Databricks Academy · Jun 2026',
+    links: [],
+    status: 'done',
+  },
+  {
     name: 'dbt Fundamentals',
     issuer: 'dbt Labs · May 2026',
     links: [{ label: 'Verify ↗', href: 'https://credentials.getdbt.com/5470c199-7753-4f90-99a3-07e8f8c6fe51' }],
     status: 'done',
-  },
-  {
-  name: 'Snowflake Hands-On Essentials: Data Warehouse',
-  issuer: 'Snowflake · Jun 2026',
-  links: [{ label: 'Verify ↗', href: 'https://achieve.snowflake.com/e3201335-75c2-4604-98c1-4c8063699131#acc.csaFBAmw' }],
-  status: 'done',
   },
   {
     name: 'Google Data Analytics Certificate',
@@ -124,16 +107,9 @@ export const CERTIFICATIONS = [
     issuer: 'Google · Skillshop · May 2026 · ID: 182987115',
     links: [
       { label: 'Verify ↗', href: 'https://skillshop.credential.net/da7f2a2d-1e02-4267-aaca-d6bfbfc3036e#acc.5RV2vAUu' },
-      { label: 'Credly ↗', href: 'https://www.credly.com/badges/cdf8ff04-0b23-435a-a53d-3c46ab172885' },
     ],
     status: 'done',
   },
-  {
-  name: 'Databricks Fundamentals Accreditation',
-  issuer: 'Databricks Academy · Jun 2026',
-  links: [],
-  status: 'done',
-},
   {
     name: 'PSM I — Professional Scrum Master',
     issuer: 'Scrum.org · May 2026',
@@ -143,7 +119,7 @@ export const CERTIFICATIONS = [
   {
     name: 'Fundamentals of Predictive Project Management',
     issuer: 'Project Management Institute · 2026',
-    links: [],
+    links: [{ label: 'Credly ↗', href: 'https://www.credly.com/badges/cdf8ff04-0b23-435a-a53d-3c46ab172885' }],
     status: 'done',
   },
   {
