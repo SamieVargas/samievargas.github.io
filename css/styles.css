@@ -772,7 +772,7 @@ footer p { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; c
   /* Already stacks to 1 col at 600px, but the about-right
      column is half-width at 900px
 
-   /* === CERT SUBCERTS DROPDOWN ================================ */
+  /* === CERT SUBCERTS DROPDOWN ================================ */
 .cert-subcerts {
   max-height: 0;
   overflow: hidden;
@@ -781,7 +781,7 @@ footer p { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; c
   margin-top: 0;
 }
 .cert-row.has-sub.open .cert-subcerts {
-  max-height: 400px;
+  max-height: 600px;
   opacity: 1;
   margin-top: .75rem;
 }
@@ -801,14 +801,27 @@ footer p { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; c
   white-space: nowrap; flex-shrink: 0;
 }
 .cert-sub-link:hover { text-decoration: underline; }
+
 .cert-toggle {
-  background: none; border: 1px solid var(--rule);
-  cursor: pointer; display: flex; align-items: center; gap: .35rem;
-  font-family: var(--mono); font-size: .6rem; letter-spacing: .06em;
-  color: var(--muted); padding: .2rem .55rem;
+  background: none;
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: .2rem .55rem;
   transition: all .2s;
+  white-space: nowrap;
 }
 .cert-toggle:hover { border-color: var(--accent); color: var(--accent); }
-.cert-toggle-icon { font-size: .7rem; transition: transform .25s; }
-.cert-row.has-sub.open .cert-toggle-icon { transform: rotate(180deg); }
-.cert-toggle-count { font-size: .6rem; }
+.cert-toggle .exp-toggle-icon { font-size: .7rem; transition: transform .25s; }
+.cert-row.has-sub.open .cert-toggle .exp-toggle-icon { transform: rotate(180deg); }
+.cert-toggle-label { pointer-events: none; }
+.cert-row.has-sub.open .cert-toggle-label::before { content: 'Hide'; }
+.cert-toggle-label::before { content: 'Show'; }
+.cert-toggle-label-text { display: none; }
