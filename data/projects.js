@@ -173,6 +173,51 @@ export const FEATURED_PROJECTS = [
       { href: 'https://github.com/SamieVargas/instacart-project', label: 'dbt Project →' },
     ],
   },
+  {
+  id: 'brain-dump',
+  badge: 'Self-Built · AI Agent · Vanilla JS · Cloudflare Workers',
+  title: 'Brain Dump — An AI Sorting Tool for ADHD and ADHD-Adjacent Brains',
+  description: 'I built this because every productivity app I tried assumed I already knew what I needed to do. I didn\'t. I just needed to get it out of my head first. Brain Dump is a timed free-write tool that sends your unfiltered thoughts to an AI agent, which reads the whole dump holistically and sorts everything into four buckets: things you have energy for today, things that are real but not for right now, ideas worth keeping, and things that are just weight you\'re carrying. The AI then gives you 2-3 focus tasks matched to how you actually feel, with built-in ADHD strategies and a Pomodoro timer that queues your tasks automatically. Five energy states (overwhelmed, scattered, anxious, low energy, foggy) each produce meaningfully different output. The API key is held in a Cloudflare Worker so the code is fully open source without exposing credentials.',
+  quickContext: {
+    problem: 'Most productivity tools treat you the same way on a bad Tuesday as a good Monday. They also assume you already know what to do. This one starts with the brain dump first.',
+    approach: 'Vanilla HTML/CSS/JS, no framework, no build step. Anthropic API proxied through a Cloudflare Worker to keep the key secret while the code stays public. Structured JSON response drives bucket rendering, dynamic focus copy, and Pomodoro queue.',
+    finding: 'Energy state materially changes output. Foggy gets one physical gesture and warm copy. Anxious gets two tasks and no "should" anywhere. Low energy blocks decision tasks entirely. The AI also caught that I hadn\'t eaten dinner at 7:30pm and made that the first priority.',
+  },
+  media: {
+    type: 'carousel',
+    slides: [
+      {
+        type: 'img',
+        src: './assets/brain-dump/brain_dump_1.png',
+        alt: 'Brain dump input view — timer, energy selector, and dump area',
+        label: 'Input',
+      },
+      {
+        type: 'img',
+        src: './assets/brain-dump/brain_dump_2.png',
+        alt: 'Four color-coded buckets with sorted items',
+        label: 'Buckets',
+      },
+      {
+        type: 'img',
+        src: './assets/brain-dump/brain_dump_3.png',
+        alt: 'Your focus today — 3 tasks with inline strategy tags',
+        label: 'Focus List',
+      },
+      {
+        type: 'img',
+        src: './assets/brain-dump/brain_dump_4.png',
+        alt: 'Pomodoro timer with task queue and up next',
+        label: 'Pomodoro',
+      },
+    ],
+  },
+  tags: ['JavaScript', 'Anthropic API', 'AI Agent', 'Cloudflare Workers', 'Prompt Engineering', 'GitHub Pages', 'UX Design'],
+  links: [
+    { href: 'https://samievargas.github.io/brain-dump', label: 'Try it →' },
+    { href: 'https://github.com/SamieVargas/brain-dump', label: 'View on GitHub →' },
+  ],
+},
 
   {
     id: 'gda-capstone',
