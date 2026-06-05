@@ -147,18 +147,43 @@ export function renderSkills() {
       </ul>
     </div>
   `).join('');
-  const certsHTML = CERTIFICATIONS.map(c => {
-    const linksHTML = c.links.map(l => `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join(' · ');
-    return `
-      <div class="cert-row reveal">
-        <div>
-          <div class="cname">${c.name}</div>
-          <div class="ciss">${c.issuer}${linksHTML ? ` · ${linksHTML}` : ''}</div>
+const certsHTML = CERTIFICATIONS.map(c => {
+  const linksHTML = c.links.map(l =>
+    `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`
+  ).join(' · ');
+
+  const subcertsHTML = c.subcerts ? `
+    <div class="cert-subcerts" id="sub-${c.name.replace(/\s+/g,'-').toLowerCase()}">
+      ${c.subcerts.map(s => `
+        <div class="cert-sub-row">
+          <span class="cert-sub-name">${s.name}</span>
+          <a href="${s.href}" target="_blank" rel="noopener" class="cert-sub-link">Verify ↗</a>
         </div>
-        <span class="cst ${c.status}">${c.status === 'done' ? 'Complete' : 'In Progress'}</span>
+      `).join('')}
+    </div>
+  ` : '';
+
+  const toggleBtn = c.subcerts ? `
+    <button class="cert-toggle" onclick="this.closest('.cert-row').classList.toggle('open')" aria-label="Toggle subcerts">
+      <span class="cert-toggle-icon">▾</span>
+      <span class="cert-toggle-count">${c.subcerts.length} courses</span>
+    </button>
+  ` : '';
+
+  return `
+    <div class="cert-row${c.subcerts ? ' has-sub' : ''} reveal">
+      <div>
+        <div class="cname">${c.name}</div>
+        <div class="ciss">${c.issuer}${linksHTML ? ` · ${linksHTML}` : ''}</div>
+        ${subcertsHTML}
       </div>
-    `;
-  }).join('');
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0;">
+        <span class="cst ${c.status}">${c.status === 'done' ? 'Complete' : 'In Progress'}</span>
+        ${toggleBtn}
+      </div>
+    </div>
+  `;
+}).join('');
   el.className = 'sw';
   el.innerHTML = `
     <div class="sh reveal"><span class="sl">03 — Capabilities</span><h2 class="st">Skills &amp; Tools</h2></div>
