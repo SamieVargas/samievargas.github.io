@@ -40,6 +40,7 @@ export const SKILL_GROUPS = [
       { name: 'dbt Cloud',                  note: 'models · tests · docs · DAG' },
       { name: 'scikit-learn',               note: 'LR · RF · Pipeline · StandardScaler · metrics' },
       { name: 'Kaggle Notebooks' },
+      { name: 'Prompt Engineering',  note: 'structured JSON outputs · energy-state conditional logic' },
       { name: 'GitHub / GitHub Pages',      note: 'self-deployed portfolio' },
       { name: 'Google Analytics 4',         note: 'certified ✓' },
       { name: 'Google Apps Script',         note: '4 self-built apps deployed' },
@@ -63,6 +64,7 @@ export const SKILL_GROUPS = [
     title: 'AI & Productivity',
     items: [
       { name: 'Claude',                     note: 'daily · prompt engineering' },
+      { name: 'Anthropic API · Cloudflare Workers', note: 'brain dump AI agent · open source' },
       { name: 'ChatGPT · Gemini · Copilot' },
       { name: 'Gemini API',                 note: 'integrated in Life OS' },
       { name: 'In-house LLM workflows' },
