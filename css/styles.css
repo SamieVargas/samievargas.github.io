@@ -771,3 +771,44 @@ footer p { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; c
 @media (max-width: 900px) {
   /* Already stacks to 1 col at 600px, but the about-right
      column is half-width at 900px
+
+   /* === CERT SUBCERTS DROPDOWN ================================ */
+.cert-subcerts {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s;
+  opacity: 0;
+  margin-top: 0;
+}
+.cert-row.has-sub.open .cert-subcerts {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: .75rem;
+}
+.cert-sub-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .35rem 0;
+  border-bottom: 1px solid var(--rule);
+  gap: 1rem;
+}
+.cert-sub-row:last-child { border-bottom: none; }
+.cert-sub-name { font-size: .8rem; color: var(--muted); }
+.cert-sub-link {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .06em; color: var(--accent);
+  white-space: nowrap; flex-shrink: 0;
+}
+.cert-sub-link:hover { text-decoration: underline; }
+.cert-toggle {
+  background: none; border: 1px solid var(--rule);
+  cursor: pointer; display: flex; align-items: center; gap: .35rem;
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .06em;
+  color: var(--muted); padding: .2rem .55rem;
+  transition: all .2s;
+}
+.cert-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.cert-toggle-icon { font-size: .7rem; transition: transform .25s; }
+.cert-row.has-sub.open .cert-toggle-icon { transform: rotate(180deg); }
+.cert-toggle-count { font-size: .6rem; }
