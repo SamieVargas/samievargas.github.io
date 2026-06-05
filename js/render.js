@@ -164,11 +164,11 @@ const certsHTML = CERTIFICATIONS.map(c => {
   ` : '';
 
   const toggleBtn = c.subcerts ? `
-    <button class="cert-toggle" onclick="this.closest('.cert-row').classList.toggle('open')" aria-label="Toggle subcerts">
-      <span class="cert-toggle-icon">▾</span>
-      <span class="cert-toggle-count">${c.subcerts.length} courses</span>
-    </button>
-  ` : '';
+  <button class="cert-toggle exp-toggle" onclick="this.closest('.cert-row').classList.toggle('open')" aria-label="Toggle subcerts">
+    <span class="exp-toggle-label cert-toggle-label">Show details</span>
+    <span class="exp-toggle-icon">▾</span>
+  </button>
+` : '';
 
   return `
     <div class="cert-row${c.subcerts ? ' has-sub' : ''} reveal">
