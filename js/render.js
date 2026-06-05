@@ -164,8 +164,8 @@ const certsHTML = CERTIFICATIONS.map(c => {
   ` : '';
 
   const toggleBtn = c.subcerts ? `
-  <button class="cert-toggle exp-toggle" onclick="this.closest('.cert-row').classList.toggle('open')" aria-label="Toggle subcerts">
-    <span class="exp-toggle-label cert-toggle-label">Show details</span>
+  <button class="cert-toggle" onclick="this.closest('.cert-row').classList.toggle('open')" aria-label="Toggle subcerts">
+    <span class="cert-toggle-label"> details</span>
     <span class="exp-toggle-icon">▾</span>
   </button>
 ` : '';
