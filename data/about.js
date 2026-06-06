@@ -24,7 +24,7 @@ export const INTERESTS = [
   {
     icon: '🏃',
     title: 'Trail Running & the Greenbelt',
-    body: 'I run with a Garmin and yes, I look at the data-— but the reason I run is because the Greenbelt in October, water still warm, is one of the best things about living in Austin. Working up to the full 21-mile out-and-back. Currently at 15. Knee is the gating factor. It\'ll hold.',
+    body: 'The Greenbelt in October, water still warm, is one of the best things about living in Austin. Working up to the full 21-mile out-and-back. Knee is the gating factor, not fitness. It\'ll hold.',
   },
   {
     icon: '🎮',

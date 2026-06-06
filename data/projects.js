@@ -58,6 +58,7 @@ export const FEATURED_PROJECTS = [
         },
       ],
     },
+    filters: ['Python'],
     tags: ['Python', 'pandas · matplotlib · seaborn', 'folium (geospatial)', 'Socrata API', 'EDA', 'Public Health Data', 'Kaggle'],
     links: [
       { href: 'https://www.kaggle.com/code/samievargas/atx-foodie-inspection', label: 'View on Kaggle →' },
@@ -115,6 +116,7 @@ export const FEATURED_PROJECTS = [
         },
       ],
     },
+    filters: ['SQL', 'dbt'],
     tags: ['dbt Cloud', 'BigQuery', 'SQL', 'bq CLI', 'Data Modeling', 'Looker Studio', 'dbt Fundamentals'],
     links: [
       { href: 'https://github.com/SamieVargas/instacart-project', label: 'View on GitHub →' },
@@ -167,6 +169,7 @@ export const FEATURED_PROJECTS = [
         },
       ],
     },
+    filters: ['Python', 'ML', 'SQL', 'dbt'],
     tags: ['Python', 'pandas · scikit-learn · seaborn', 'BigQuery', 'Logistic Regression', 'Random Forest', 'dbt', 'Google GADA Cert', 'Kaggle'],
     links: [
       { href: 'https://www.kaggle.com/code/samievargas/instacart-reorder-ml', label: 'View on Kaggle →' },
@@ -212,6 +215,7 @@ export const FEATURED_PROJECTS = [
       },
     ],
   },
+  filters: ['AI Agent'],
   tags: ['JavaScript', 'Anthropic API', 'AI Agent', 'Cloudflare Workers', 'Prompt Engineering', 'GitHub Pages', 'UX Design'],
   links: [
     { href: 'https://samievargas.github.io/brain-dump', label: 'Try it →' },
@@ -233,6 +237,7 @@ export const FEATURED_PROJECTS = [
       type: 'iframe',
       src: 'https://docs.google.com/presentation/d/e/2PACX-1vRsL1gK9sbwSSWGcXKwWrtsRjn_20h1qjh8Qv0mBmYtyPDf1hTv-7I1DsbQFXXmqYxjamyaZ5aXqgZD/pubembed?start=false&loop=false&delayms=3000',
     },
+    filters: ['Python', 'ML'],
     tags: ['Python (pandas · matplotlib)', 'BigQuery SQL', 'EDA', 'Behavioral Analysis', 'Looker Studio', 'Google GDA Cert'],
     links: [
       { href: 'https://www.kaggle.com/code/samievargas/sv-wearable-dropout-behavioral-signals', label: 'View on Kaggle →' },
@@ -272,6 +277,7 @@ export const FEATURED_PROJECTS = [
         },
       ],
     },
+    filters: ['Python', 'ML'],
     tags: ['Python', 'pandas · seaborn', 'scikit-learn', 'Logistic Regression', 'EDA', 'Feature Engineering', 'Kaggle'],
     links: [
       { href: 'https://www.kaggle.com/code/samievargas/ibm-telco-customer-churn', label: 'View on Kaggle →' },
@@ -304,6 +310,7 @@ export const GRID_PROJECTS = [
         },
       ],
     },
+    filters: ['Apps Script'],
     tags: ['JavaScript', 'Google Apps Script', 'GitHub Pages', 'Google Sheets', 'Self-Deployed'],
     dim: false,
   },
@@ -348,6 +355,7 @@ export const GRID_PROJECTS = [
         },
       ],
     },
+    filters: ['Apps Script'],
     tags: ['Google Apps Script', 'Chart.js', 'Gemini API', 'Todoist API', 'Garmin', 'Personal Analytics'],
     dim: false,
   },
@@ -369,6 +377,7 @@ export const GRID_PROJECTS = [
         },
       ],
     },
+    filters: ['Apps Script'],
     tags: ['Google Apps Script', 'Google Sheets', 'Behavioral Data', 'Personal Analytics'],
     dim: false,
   },
@@ -396,6 +405,7 @@ export const GRID_PROJECTS = [
         },
       ],
     },
+    filters: ['Apps Script'],
     tags: ['Google Apps Script', 'Google Docs', 'Structured Logging'],
     dim: false,
   },
@@ -406,6 +416,7 @@ export const GRID_PROJECTS = [
     title: 'Steam Review Bombing Detection — When Sentiment and Score Diverge',
     description: 'NLP sentiment analysis on 31M+ Steam reviews to detect when a game\'s review score is being driven by non-gameplay factors — developer controversy, monetization backlash, platform exclusivity deals. Built for publishers and indie studios who need an early warning signal before a score collapse becomes a crisis.',
     media: { type: 'placeholder' },
+    filters: ['Python', 'ML'],
     tags: ['Python', 'NLP · Sentiment Analysis', 'BigQuery', 'Steam API', 'scikit-learn', 'Tableau'],
     dim: true,
   },
