@@ -78,140 +78,384 @@ export function renderExperience() {
 export function renderProjects() {
   const el = qs('#work');
   if (!el) return;
-  const featuredHTML = FEATURED_PROJECTS.map((p, i) => {
-    const mediaHTML = p.media.type === 'iframe'
-      ? `<div class="pf-media"><iframe src="${p.media.src}" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe></div>`
-      : `<div class="pf-media">${buildCarousel(p.media.slides)}</div>`;
-    const tagsHTML = p.tags.map(t => `<span class="ppill">${t}</span>`).join('');
-    return `
-      <article class="project-featured reveal${i > 0 ? ` reveal-delay-${Math.min(i,2)}` : ''}">
-        ${mediaHTML}
-        <div class="pf-lower">
-          <aside class="pf-context-col">
-            <div class="pf-context-sticky">
-              <div class="pf-context-header">Quick Context</div>
-              <div class="pf-context-item"><span class="pf-context-key">Problem</span><p>${p.quickContext.problem}</p></div>
-              <div class="pf-context-item"><span class="pf-context-key">Approach</span><p>${p.quickContext.approach}</p></div>
-              <div class="pf-context-item"><span class="pf-context-key">Finding</span><p>${p.quickContext.finding}</p></div>
-              ${(p.links || [p.link]).filter(Boolean).map(l => `<a class="plink" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join("")}
-            </div>
-          </aside>
-          <div class="pf-details">
-            <span class="ptag">${p.badge}</span>
-            <div class="ptitle">${p.title}</div>
-            <p class="pdesc">${p.description}</p>
-            <div class="pmeta">${tagsHTML}</div>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
-  const gridHTML = GRID_PROJECTS.map((p, i) => {
-    let mediaHTML = p.media.type === 'carousel'
-      ? buildCarousel(p.media.slides)
-      : `<div style="height:200px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">Coming Soon</span></div>`;
-    const tagsHTML = p.tags.map(t => `<span class="ppill">${t}</span>`).join('');
-    const badge = p.dim ? `<span class="ptag-dim">${p.badge}</span>` : `<span class="ptag">${p.badge}</span>`;
-    return `
-      <div class="pcard${p.dim ? ' dim' : ''} reveal reveal-delay-${i}">
-        ${mediaHTML}
-        <div class="pcbody">
-          ${badge}
-          <div class="ptitle">${p.title}</div>
-          <p class="pdesc">${p.description}</p>
-          <div class="pmeta">${tagsHTML}</div>
-          ${!p.dim ? '<div class="parrow">→</div>' : ''}
-        </div>
-      </div>
-    `;
-  }).join('');
+
+  const featuredCount = FEATURED_PROJECTS.length;
+  const gridCount = GRID_PROJECTS.filter(p => !p.dim).length;
+  const totalCount = featuredCount + gridCount;
+
   el.className = 'swf bg-page';
   el.innerHTML = `
     <div class="swf-inner">
-      <div class="sh reveal"><span class="sl">02 — Portfolio</span><h2 class="st">Selected Work</h2></div>
-      ${featuredHTML}
-      <div class="pgrid">${gridHTML}</div>
+      <div class="sh reveal">
+        <span class="sl">02 — Portfolio</span>
+        <h2 class="st">Selected Work</h2>
+        <span id="proj-count" style="font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-left:auto;letter-spacing:.06em;">${totalCount} projects</span>
+      </div>
+
+      <!-- Filter pills -->
+      <div class="filter-row" id="filter-row">
+        <div class="ftag on" data-filter="all">all</div>
+        <div class="ftag" data-filter="Python">Python</div>
+        <div class="ftag" data-filter="SQL">SQL</div>
+        <div class="ftag" data-filter="dbt">dbt</div>
+        <div class="ftag" data-filter="AI Agent">AI Agent</div>
+        <div class="ftag" data-filter="Apps Script">Apps Script</div>
+        <div class="ftag" data-filter="ML">ML</div>
+      </div>
+
+      <!-- Featured carousel -->
+      <div class="feat-wrap reveal" id="feat-wrap">
+        <div class="ghost l" id="ghost-l">
+          <div class="ghost-inner">
+            <div class="ghost-media"></div>
+            <div class="ghost-body"><div class="ghost-ctx"></div><div class="ghost-det"></div></div>
+          </div>
+        </div>
+        <div class="active-card" id="feat-active">
+          <!-- populated by JS -->
+        </div>
+        <div class="ghost r" id="ghost-r">
+          <div class="ghost-inner">
+            <div class="ghost-media"></div>
+            <div class="ghost-body"><div class="ghost-ctx"></div><div class="ghost-det"></div></div>
+          </div>
+        </div>
+        <button class="cbtn prev" id="feat-prev" aria-label="Previous">&#8249;</button>
+        <button class="cbtn next" id="feat-next" aria-label="Next">&#8250;</button>
+      </div>
+      <div class="cdots" id="feat-dots"></div>
+
+      <!-- Also Built -->
+      <div class="also-label">Also Built</div>
+      <div class="also-wrap reveal" id="also-wrap">
+        <button class="also-nbtn" id="also-next" aria-label="Next">›</button>
+      </div>
+
+      <!-- What's Next -->
+      <div class="wn-section reveal">
+        <div class="wn-label">What's Next</div>
+        <div class="wn-grid" id="wn-grid"></div>
+      </div>
     </div>
   `;
+
+  initProjectCarousels();
+  initProjectFilters();
+  renderWhatsnext();
+}
+
+// ── PROJECT CAROUSEL STATE ───────────────────────────────────
+let featIdx = 0;
+let alsoIdx = 0;
+let activeFilter = 'all';
+const ALSO_VISIBLE = 3;
+
+function projMatches(p) {
+  return p.filters && p.filters.includes(activeFilter);
+}
+
+function getFeaturedFiltered() {
+  if (activeFilter === 'all') return FEATURED_PROJECTS;
+  const filtered = FEATURED_PROJECTS.filter(projMatches);
+  return filtered.length ? filtered : FEATURED_PROJECTS;
+}
+
+function getAlsoFiltered() {
+  const also = GRID_PROJECTS.filter(p => !p.dim);
+  if (activeFilter === 'all') return also;
+  const filtered = also.filter(projMatches);
+  return filtered.length ? filtered : also;
+}
+
+function updateProjCount() {
+  const el = document.getElementById('proj-count');
+  if (!el) return;
+  const total = FEATURED_PROJECTS.length + GRID_PROJECTS.filter(p => !p.dim).length;
+  if (activeFilter === 'all') { el.textContent = `${total} projects`; return; }
+  const feat = FEATURED_PROJECTS.filter(projMatches).length;
+  const also = GRID_PROJECTS.filter(p => !p.dim && projMatches(p)).length;
+  el.textContent = `${feat + also} of ${total} match "${activeFilter}"`;
+}
+
+function renderFeatCard() {
+  const projects = getFeaturedFiltered();
+  if (!projects.length) return;
+  const idx = featIdx % projects.length;
+  const p = projects[idx];
+  const el = document.getElementById('feat-active');
+  if (!el) return;
+
+  const mediaHTML = p.media.type === 'carousel'
+    ? buildCarousel(p.media.slides)
+    : p.media.type === 'iframe'
+      ? `<iframe src="${p.media.src}" class="c-iframe" allowfullscreen loading="lazy"></iframe>`
+      : `<div class="active-media-ph"><span>[ preview ]</span></div>`;
+
+  el.innerHTML = `
+    <div class="active-media">${mediaHTML}</div>
+    <div class="active-lower">
+      <div class="active-ctx">
+        <div class="ctx-k">Problem</div><div class="ctx-v">${p.quickContext.problem}</div>
+        <div class="ctx-k">Approach</div><div class="ctx-v">${p.quickContext.approach}</div>
+        <div class="ctx-k">Finding</div><div class="ctx-v">${p.quickContext.finding}</div>
+        ${(p.links || []).map(l => `<a class="plink" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('')}
+      </div>
+      <div class="active-det">
+        <span class="ptag">${p.badge}</span>
+        <div class="ptitle">${p.title}</div>
+        <p class="pdesc">${p.description}</p>
+        <div class="ppills">${p.tags.map(t => `<span class="ppill">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+  `;
+
+  const dotsEl = document.getElementById('feat-dots');
+  if (dotsEl) {
+    dotsEl.innerHTML = projects.map((_, i) =>
+      `<div class="cdot${i === idx ? ' on' : ''}" style="width:${i === idx ? '20px' : '7px'};cursor:pointer;" onclick="window.__goFeat(${i})"></div>`
+    ).join('');
+  }
+}
+
+function renderAlsoCards() {
+  const wrap = document.getElementById('also-wrap');
+  if (!wrap) return;
+  const nbtn = wrap.querySelector('.also-nbtn');
+  wrap.innerHTML = '';
+  if (nbtn) wrap.appendChild(nbtn);
+
+  const items = getAlsoFiltered();
+  if (!items.length) return;
+  const visible = Math.min(ALSO_VISIBLE, items.length);
+  for (let i = 0; i < visible; i++) {
+    const p = items[(alsoIdx + i) % items.length];
+    const opacity = i === 0 ? 1 : i === 1 ? 0.6 : 0.3;
+    const card = document.createElement('div');
+    card.className = 'also-card' + (i === 0 ? ' ao' : '');
+    card.style.opacity = opacity;
+
+    card.innerHTML = `
+      <div class="also-media">[ ${p.id} ]</div>
+      <div class="also-body">
+        <div class="also-badge">${p.badge}</div>
+        <div class="also-title">${p.title}</div>
+        <div class="also-desc">${p.description.slice(0, 120)}…</div>
+        ${(p.links || []).map(l => `<a class="also-link" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('')}
+      </div>
+    `;
+    if (nbtn) wrap.insertBefore(card, nbtn); else wrap.appendChild(card);
+  }
+}
+
+function renderWhatsnext() {
+  const el = document.getElementById('wn-grid');
+  if (!el) return;
+  el.innerHTML = CURRENTLY_BUILDING.map(item => `
+    <div class="wn-card">
+      <div class="wn-st"><div class="wn-dot"></div><span class="wn-stl">${item.label}</span></div>
+      <div class="wn-title">${item.title}</div>
+      <div class="wn-desc">${item.description.slice(0, 120)}…</div>
+    </div>
+  `).join('');
+}
+
+function initProjectCarousels() {
+  featIdx = 0; alsoIdx = 0;
+  renderFeatCard();
+  renderAlsoCards();
+
+  window.__goFeat = (i) => { featIdx = i; renderFeatCard(); };
+
+  const prev  = document.getElementById('feat-prev');
+  const next  = document.getElementById('feat-next');
+  const anext = document.getElementById('also-next');
+
+  if (prev) prev.addEventListener('click', () => {
+    const len = getFeaturedFiltered().length;
+    featIdx = (featIdx - 1 + len) % len;
+    renderFeatCard();
+  });
+  if (next) next.addEventListener('click', () => {
+    featIdx = (featIdx + 1) % getFeaturedFiltered().length;
+    renderFeatCard();
+  });
+  if (anext) anext.addEventListener('click', () => {
+    alsoIdx = (alsoIdx + 1) % getAlsoFiltered().length;
+    renderAlsoCards();
+  });
+}
+
+let projectFiltersBound = false;
+function initProjectFilters() {
+  if (projectFiltersBound) return;
+  projectFiltersBound = true;
+  document.addEventListener('click', e => {
+    const tag = e.target.closest('.ftag');
+    if (!tag || !document.getElementById('filter-row')?.contains(tag)) return;
+    document.querySelectorAll('.ftag').forEach(t => t.classList.remove('on'));
+    tag.classList.add('on');
+    activeFilter = tag.dataset.filter;
+    featIdx = 0; alsoIdx = 0;
+    renderFeatCard();
+    renderAlsoCards();
+    updateProjCount();
+  });
 }
 
 // ── SKILLS ───────────────────────────────────────────────────
+function tabSlug(title) {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+function tabLabel(title) {
+  return title.split(' & ')[0].trim();
+}
+
 export function renderSkills() {
   const el = qs('#skills');
   if (!el) return;
-  const groupsHTML = SKILL_GROUPS.map((g, i) => `
-    <div class="sg reveal${i > 0 ? ` reveal-delay-${Math.min(i,3)}` : ''}">
-      <h3>${g.title}</h3>
-      <ul class="slist">
-        ${g.items.map(item => `<li>${item.name}${item.note ? `<span class="snote">${item.note}</span>` : ''}</li>`).join('')}
-      </ul>
-    </div>
-  `).join('');
-const certsHTML = CERTIFICATIONS.map(c => {
-  const linksHTML = c.links.map(l =>
-    `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`
-  ).join(' · ');
 
-  const subcertsHTML = c.subcerts ? `
-    <div class="cert-subcerts" id="sub-${c.name.replace(/\s+/g,'-').toLowerCase()}">
-      ${c.subcerts.map(s => `
-        <div class="cert-sub-row">
-          <span class="cert-sub-name">${s.name}</span>
-          <a href="${s.href}" target="_blank" rel="noopener" class="cert-sub-link">Verify ↗</a>
+  const tabsHTML = SKILL_GROUPS.map((g, i) =>
+    `<div class="stab${i === 0 ? ' on' : ''}" onclick="switchTab(this,'${tabSlug(g.title)}')">${tabLabel(g.title)}</div>`
+  ).join('');
+
+  const panelsHTML = SKILL_GROUPS.map((g, i) => `
+    <div class="spanel${i === 0 ? ' on' : ''}" id="panel-${tabSlug(g.title)}">
+      ${g.items.map(item => `
+        <div class="skill-row">
+          <div class="skill-dot"></div>
+          <span class="skill-name">${item.name}</span>
+          ${item.note ? `<span class="skill-note">${item.note}</span>` : ''}
         </div>
       `).join('')}
     </div>
-  ` : '';
+  `).join('');
 
-  const toggleBtn = c.subcerts ? `
-  <button class="cert-toggle" onclick="this.closest('.cert-row').classList.toggle('open')" aria-label="Toggle subcerts">
-    <span class="cert-toggle-label"> details</span>
-    <span class="exp-toggle-icon">▾</span>
-  </button>
-` : '';
+  // Featured creds — top tier (4 certs, prominent)
+  const featuredCerts = [
+    { name: 'Google Advanced Data Analytics Certificate', issuer: 'Google / Coursera · Jun 2026', href: 'https://coursera.org/verify/professional-cert/4REOBHKQJ0DS' },
+    { name: 'dbt Fundamentals', issuer: 'dbt Labs · May 2026', href: 'https://credentials.getdbt.com/5470c199-7753-4f90-99a3-07e8f8c6fe51' },
+    { name: 'PSM I — Professional Scrum Master', issuer: 'Scrum.org · May 2026', href: 'https://scrum.org/certificates/1318010' },
+    { name: 'Snowflake Hands-On Essentials: Data Warehouse', issuer: 'Snowflake · Jun 2026', href: 'https://achieve.snowflake.com/e3201335-75c2-4604-98c1-4c8063699131' },
+  ];
 
-  return `
-    <div class="cert-row${c.subcerts ? ' has-sub' : ''} reveal">
+  const featCredsHTML = featuredCerts.map(c => `
+    <div class="fcred">
       <div>
-        <div class="cname">${c.name}</div>
-        <div class="ciss">${c.issuer}${linksHTML ? ` · ${linksHTML}` : ''}</div>
-        ${subcertsHTML}
+        <div class="fcred-name">${c.name}</div>
+        <div class="fcred-meta">${c.issuer}</div>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0;">
-        <span class="cst ${c.status}">${c.status === 'done' ? 'Complete' : 'In Progress'}</span>
-        ${toggleBtn}
+      <div class="fcred-right">
+        <a class="fcred-chk" href="${c.href}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a>
       </div>
     </div>
+  `).join('');
+
+  // Credentials moved to "Other Credentials" (collapsed) — kept out of the main list
+  const otherNames = new Set([
+    'Google Analytics Certification (GA4)',
+    'Fundamentals of Predictive Project Management',
+    'Six Sigma White Belt',
+  ]);
+  const featuredNames = new Set(featuredCerts.map(c => c.name));
+
+  // Additional certs — everything not featured and not relegated to "Other"
+  const additionalCerts = CERTIFICATIONS.filter(c => !featuredNames.has(c.name) && !otherNames.has(c.name));
+
+  const certsHTML = additionalCerts.map(c => {
+    const badgeHTML = c.links && c.links.length
+      ? `<a class="cert-badge" href="${c.links[0].href}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a>`
+      : `<span style="font-family:var(--mono);font-size:.62rem;color:var(--muted);font-style:italic;">verify via subcerts</span>`;
+
+    const subHTML = c.subcerts ? `
+      <div class="cert-subs">
+        <div class="cert-sub-list">
+          ${c.subcerts.map(s => `
+            <div class="cert-sub-row">
+              <span class="cert-sub-name">${s.name}</span>
+              <a class="cert-sub-link" href="${s.href}" target="_blank" rel="noopener">Verify ↗</a>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : '';
+
+    const toggleHTML = c.subcerts ? `
+      <button class="cert-tbtn" onclick="event.stopPropagation();toggleCert(this.closest('.cert-row'))">
+        <span class="cert-tlbl"> details</span>
+        <span class="cert-tic">▾</span>
+      </button>
+    ` : '';
+
+    return `
+      <div class="cert-row" onclick="${c.subcerts ? 'toggleCert(this)' : ''}">
+        <div>
+          <div class="cert-name">${c.name}</div>
+          <div class="cert-iss">${c.issuer}</div>
+          ${subHTML}
+        </div>
+        <div class="cert-right">
+          ${badgeHTML}
+          ${toggleHTML}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const otherCredsHTML = `
+    <div class="other-creds">
+      <span style="font-family:var(--mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Other Credentials</span>
+      <div style="display:flex;align-items:center;gap:.75rem;">
+        <span style="font-family:var(--mono);font-size:.68rem;color:var(--muted);">GA4 · PMI Fundamentals · Six Sigma WB</span>
+        <button class="other-btn" onclick="toggleOtherCerts(this)">show ▾</button>
+      </div>
+    </div>
+    <div id="other-certs-expanded" style="display:none;">
+      <div class="cert-row" style="border-top:none;"><div><div class="cert-name">Google Analytics Certification (GA4)</div><div class="cert-iss">Google Skillshop · May 2026</div></div><div class="cert-right"><a class="cert-badge" href="https://skillshop.credential.net/da7f2a2d-1e02-4267-aaca-d6bfbfc3036e" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a></div></div>
+      <div class="cert-row" style="border-top:none;"><div><div class="cert-name">Fundamentals of Predictive Project Management</div><div class="cert-iss">PMI · 2026</div></div><div class="cert-right"><a class="cert-badge" href="https://www.credly.com/badges/cdf8ff04-0b23-435a-a53d-3c46ab172885" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a></div></div>
+      <div class="cert-row" style="border-top:none;"><div><div class="cert-name">Six Sigma White Belt</div><div class="cert-iss">2026</div></div><div class="cert-right"><span style="font-family:var(--mono);font-size:.62rem;color:var(--muted);">—</span></div></div>
+    </div>
   `;
-}).join('');
+
   el.className = 'sw';
   el.innerHTML = `
     <div class="sh reveal"><span class="sl">03 — Capabilities</span><h2 class="st">Skills &amp; Tools</h2></div>
-    <div class="sg-grid">${groupsHTML}</div>
-    <p class="certs-section-title">Credentials</p>
-    <div class="certs">${certsHTML}</div>
+    <div class="skills-tabs">${tabsHTML}</div>
+    ${panelsHTML}
+
+    <div class="creds-sh reveal"><span class="creds-sl">Credentials</span><span class="creds-ct">${CERTIFICATIONS.length} total</span></div>
+    <div class="feat-creds">${featCredsHTML}</div>
+    <div class="creds-tier-label">Additional Credentials</div>
+    <div class="certs-list">${certsHTML}${otherCredsHTML}</div>
   `;
 }
 
-// ── CURRENTLY BUILDING ───────────────────────────────────────
-export function renderBuilding() {
-  const el = qs('#building');
-  if (!el) return;
-  const cardsHTML = CURRENTLY_BUILDING.map((item, i) => `
-    <div class="bld-card reveal${i > 0 ? ` reveal-delay-${i}` : ''}">
-      <div class="bst ${item.status}"><span class="pulse"></span>${item.label}</div>
-      <div class="btitle">${item.title}</div>
-      <p class="bdesc">${item.description}</p>
-    </div>
-  `).join('');
-  el.className = 'swf bg-white';
-  el.innerHTML = `
-    <div class="swf-inner">
-      <div class="sh reveal"><span class="sl">04 — Active</span><h2 class="st">Currently Building</h2></div>
-      <div class="bld-grid">${cardsHTML}</div>
-    </div>
-  `;
-}
+// ── GLOBAL UI HANDLERS (referenced by inline onclick) ────────
+window.switchTab = function (el, id) {
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.spanel').forEach(p => p.classList.remove('on'));
+  el.classList.add('on');
+  const panel = document.getElementById('panel-' + id);
+  if (panel) panel.classList.add('on');
+};
+
+window.toggleCert = function (row) {
+  if (!row) return;
+  row.classList.toggle('open');
+  const sub = row.querySelector('.cert-subs');
+  if (sub) {
+    const open = row.classList.contains('open');
+    sub.style.maxHeight = open ? sub.scrollHeight + 'px' : '0';
+    sub.style.opacity = open ? '1' : '0';
+  }
+};
+
+window.toggleOtherCerts = function (btn) {
+  const expanded = document.getElementById('other-certs-expanded');
+  if (!expanded) return;
+  const open = expanded.style.display !== 'none';
+  expanded.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? 'show ▾' : 'hide ▴';
+};
 
 // ── OBSERVATIONS ─────────────────────────────────────────────
 export function renderObservations() {
@@ -235,7 +479,7 @@ export function renderObservations() {
   el.className = 'swf dark-section';
   el.innerHTML = `
     <div class="swf-inner">
-      <div class="sh dark reveal"><span class="sl light">05 — Writing</span><h2 class="st light">Observations</h2></div>
+      <div class="sh dark reveal"><span class="sl light">04 — Writing</span><h2 class="st light">Observations</h2></div>
       <p class="obs-sub">Notes from the data I live in</p>
       <div class="obs-carousel reveal" id="obs-carousel">
         <div class="obs-track" id="obs-track">${cardsHTML}</div>
@@ -281,7 +525,7 @@ export function renderAbout() {
   el.style.borderTop = '1px solid rgba(255,255,255,.07)';
   el.innerHTML = `
     <div class="swf-inner">
-      <div class="sh dark reveal"><span class="sl light">06 — Background</span><h2 class="st light">About</h2></div>
+      <div class="sh dark reveal"><span class="sl light">05 — Background</span><h2 class="st light">About</h2></div>
     </div>
 
     <div class="about-bio-band reveal">
@@ -385,7 +629,7 @@ export function renderContact() {
   }).join('');
   el.className = 'sw';
   el.innerHTML = `
-    <div class="sh reveal"><span class="sl">07 — Get in Touch</span><h2 class="st">Contact</h2></div>
+    <div class="sh reveal"><span class="sl">06 — Get in Touch</span><h2 class="st">Contact</h2></div>
     <div class="cg">
       <div class="reveal">
         <h3 class="ch">${CONTACT.heading}</h3>
@@ -402,7 +646,6 @@ export function renderAll() {
   renderExperience();
   renderProjects();
   renderSkills();
-  renderBuilding();
   renderObservations();
   renderAbout();
   renderContact();

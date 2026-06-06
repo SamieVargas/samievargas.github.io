@@ -62,11 +62,12 @@
 <nav>
   <a class="nav-name" href="#">Samie Vargas</a>
   <ul class="nav-links">
-    <li><a href="#experience" data-nav="experience">Experience</a></li>
-    <li><a href="#work"       data-nav="work">Work</a></li>
-    <li><a href="#skills"     data-nav="skills">Skills</a></li>
-    <li><a href="#about"      data-nav="about">About</a></li>
-    <li><a href="#contact"    data-nav="contact">Contact</a></li>
+    <li><a href="#experience"   data-nav="experience">Experience</a></li>
+    <li><a href="#work"         data-nav="work">Work</a></li>
+    <li><a href="#skills"       data-nav="skills">Skills</a></li>
+    <li><a href="#observations" data-nav="observations">Observations</a></li>
+    <li><a href="#about"        data-nav="about">About</a></li>
+    <li><a href="#contact"      data-nav="contact">Contact</a></li>
     <li>
       <button id="dark-toggle" class="nav-icon-btn" aria-label="Toggle dark mode" title="Toggle dark mode (⌘D)">
         <span class="icon-moon" aria-hidden="true">☽</span>
@@ -82,42 +83,70 @@
   </ul>
 </nav>
 
-<!-- ── HERO ───────────────────────────────────────────────── -->
+<!-- ── HERO — dark magazine split ──────────────────────────── -->
 <header class="hero" id="hero">
   <div class="hero-left">
-    <div class="hero-greeting-badge" id="greeting-badge"></div>
-    <p class="hero-eyebrow">Austin, TX</p>
-    <h1 class="hero-name">Samie<em>Vargas</em></h1>
-    <p class="hero-tagline">Perpetual first-drafter. I like figuring out how things work - systems at work, new coffee shops on weekends, and lately, the mini harp. Still a beginner at most of it. That's kind of the point.</p>
-    <div class="otw-badge"><span class="otw-dot"></span>Exploring</div>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#work">See My Work</a>
-      <a class="btn btn-ghost" href="https://linkedin.com/in/samievargas12" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-ghost" href="https://github.com/SamieVargas"        target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-ghost" href="./Resume.pdf"                           target="_blank" rel="noopener">Resume ↓</a>
+    <div>
+      <div class="hero-kicker" id="hero-kicker">Senior Manager · Austin, TX</div>
+      <h1 class="hero-name">Samie<em>Vargas</em></h1>
+    </div>
+    <div>
+      <div class="otw-badge">
+        <span class="otw-dot"></span>
+        <span class="open-text" style="font-family:var(--mono);font-size:.68rem;color:#6bc4ac;text-transform:uppercase;letter-spacing:.08em;">Exploring</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#work">See My Work</a>
+        <a class="btn btn-ghost-dark" href="https://linkedin.com/in/samievargas12" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost-dark" href="https://github.com/SamieVargas" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost-dark" href="./Resume.pdf" target="_blank" rel="noopener">Resume ↓</a>
+      </div>
     </div>
   </div>
   <div class="hero-right">
-    <div class="stat-block">
-      <div class="stat-number">8 yrs</div>
-      <div class="stat-label">Enterprise operations</div>
+    <div>
+      <p class="hero-pos">8 years in enterprise CS ops. A data analytics portfolio built from the same impulse — <em>the insight was sitting right there and nothing changed.</em></p>
+      <p class="hero-tagline">I sit at the intersection of the business problem and the data layer and build things at both ends. Perpetual first-drafter. Still a beginner at most of it. That's kind of the point.</p>
     </div>
-    <div class="stat-block">
-      <div class="stat-number">4</div>
-      <div class="stat-label">Self-deployed analytics projects</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-number">Remote</div>
-      <div class="stat-label">Austin, TX</div>
+    <div class="hero-teasers">
+      <div class="hero-teaser">
+        <div class="teaser-k">Latest Project</div>
+        <div class="teaser-v" id="hero-latest-project">Brain Dump AI Agent — live at samievargas.github.io/brain-dump</div>
+      </div>
+      <div class="hero-teaser">
+        <div class="teaser-k">Latest Observation</div>
+        <div class="teaser-v" id="hero-latest-obs">"The 0.60 reorder rate is technically correct and also meaningless"</div>
+      </div>
     </div>
   </div>
 </header>
+
+<!-- ── OBS TEASER BAND — dark continuation ─────────────────── -->
+<div class="obs-band">
+  <div class="obs-band-head">
+    <span class="obs-band-l">From the Observations archive</span>
+    <a class="obs-band-r" href="#observations">read all 7 ↓</a>
+  </div>
+  <div class="obs-qs">
+    <div class="oq">
+      <div class="oq-src">Instacart · 3.4M orders · dbt</div>
+      <div class="oq-text">"The 0.60 reorder rate is technically correct and also meaningless"</div>
+    </div>
+    <div class="oq">
+      <div class="oq-src">Life in Pixels · behavioral data</div>
+      <div class="oq-text">"A walk is worth +0.5: what my own mood data showed"</div>
+    </div>
+    <div class="oq">
+      <div class="oq-src">Garmin · personal biometric data</div>
+      <div class="oq-text">"My nervous system knew about the raccoon before I did"</div>
+    </div>
+  </div>
+</div>
 
 <!-- ── DYNAMIC SECTIONS (populated by js/main.js → render.js) -->
 <section id="experience"></section>
 <section id="work"></section>
 <section id="skills"></section>
-<section id="building"></section>
 <section id="observations"></section>
 <section id="about"></section>
 <section id="contact"></section>
