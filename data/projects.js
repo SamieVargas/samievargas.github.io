@@ -222,7 +222,43 @@ export const FEATURED_PROJECTS = [
     { href: 'https://github.com/SamieVargas/brain-dump', label: 'View on GitHub →' },
   ],
 },
-
+  {
+  id: 'pixels-rag',
+  badge: 'Self-Built · RAG Pipeline · Python · Anthropic API',
+  title: 'Life in Pixels RAG — Asking Natural Language Questions About My Own Behavioral Data',
+  description: 'I\'ve been logging 45 behavioral metrics daily since late 2025. This is a RAG system that lets me ask natural language questions about the patterns in that data — questions a spreadsheet can\'t answer. A spreadsheet can filter one thing. This can reason about the intersection of many: "On days where I was Dysregulated, what else was true?" or "What exercise has the best impact on my mood and sleep?" Each day\'s 35+ fields get converted into an information-dense text chunk, embedded locally via sentence-transformers, stored in ChromaDB, and retrieved semantically. Claude Haiku synthesizes the answer with specific date citations. The data never leaves my machine unencrypted — sensitive fields are stripped server-side by the Apps Script endpoint before the Python client ever sees them.',
+  quickContext: {
+    problem: 'I had 6 months of rich daily behavioral data and no way to ask multi-dimensional questions across it. SQL filters one column. I needed something that could reason across sleep, HRV, exercise, mood, and regulation simultaneously.',
+    approach: 'Built a full RAG pipeline: Google Apps Script sanitized endpoint → ingest.py → chunk.py → ChromaDB local vector store (sentence-transformers, zero API cost for embedding) → Claude Haiku for generation. CLI with --rebuild, --dry-run, and --stats flags.',
+    finding: 'Hot Yoga + Walking produced the highest sleep scores (92/100) and HRV (63ms) despite lower step counts than pure cardio days. Yoga appears to sustain positive moods rather than elevate them — every yoga day rated 4-5/5, but days without comparable data show mixed results, so it\'s correlation, not causation. The system is honest about its own limitations.',
+  },
+  media: {
+    type: 'carousel',
+    slides: [
+      {
+        type: 'img',
+        src: './assets/pixels-rag/pixels-rag-1.png',
+        alt: 'RAG dry run showing information-dense chunk structure',
+        label: 'Chunk Structure',
+      },
+      {
+        type: 'img',
+        src: './assets/pixels-rag/pixels-rag-2.png',
+        alt: 'Query: How does my mood change when I do yoga?',
+        label: 'Yoga × Mood Query',
+      },
+      {
+        type: 'img',
+        src: './assets/pixels-rag/pixels-rag-3.png',
+        alt: 'Query: What exercise has the best impact on mood and sleep?',
+        label: 'Exercise × Sleep Query',
+      },
+    ],
+  },
+  filters: ['Python', 'AI Agent'],
+  tags: ['Python', 'RAG', 'ChromaDB', 'Anthropic API', 'sentence-transformers', 'Google Apps Script', 'Privacy-First Design'],
+  dim: false,
+},
   {
     id: 'gda-capstone',
     badge: 'Google Data Analytics Certificate Capstone',
