@@ -15,6 +15,8 @@ export const SKILL_GROUPS = [
       { name: 'Behavioral Pattern Analysis' },
       { name: 'Time Series & Longitudinal Analysis' },
       { name: 'API Data Ingestion',         note: 'Socrata REST · Kaggle CLI · bq CLI' },
+      { name: 'RAG Pipeline Design',  note: 'chunking · embedding · ChromaDB · retrieval + generation' },
+      { name: 'Vector Search',        note: 'sentence-transformers · cosine similarity · local index' },
       { name: 'Data Modeling',              note: 'grain enforcement · test architecture · lineage' },
       { name: 'Entity Resolution & Data Cleaning' },
     ],
@@ -66,6 +68,7 @@ export const SKILL_GROUPS = [
     items: [
       { name: 'Claude',                               note: 'daily · prompt engineering · Claude Code' },
       { name: 'Anthropic API · Cloudflare Workers',   note: 'brain dump AI agent · open source' },
+      { name: 'RAG · ChromaDB',       note: 'local vector store · personal behavioral data' },
       { name: 'AI Agent Design',                      note: 'structured JSON outputs · energy-state logic' },
       { name: 'ChatGPT · Gemini · Copilot' },
       { name: 'Gemini API',                           note: 'integrated in Life OS' },
