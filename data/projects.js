@@ -257,6 +257,9 @@ export const FEATURED_PROJECTS = [
   },
   filters: ['Python', 'AI Agent'],
   tags: ['Python', 'RAG', 'ChromaDB', 'Anthropic API', 'sentence-transformers', 'Google Apps Script', 'Privacy-First Design'],
+    links: [
+  { href: 'https://github.com/SamieVargas/pixels-rag', label: 'View on GitHub →' },
+],
   dim: false,
 },
   {
