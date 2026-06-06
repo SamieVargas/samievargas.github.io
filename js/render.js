@@ -234,12 +234,21 @@ function renderAlsoCards() {
     card.className = 'also-card' + (i === 0 ? ' ao' : '');
     card.style.opacity = opacity;
 
+    const firstImg = (p.media && p.media.slides)
+      ? p.media.slides.find(s => s.type === 'img' || (!s.type && s.src))
+      : null;
+    const imgTag = firstImg ? `<img src="${firstImg.src}" alt="${firstImg.alt || p.title}" loading="lazy">` : '';
+    const mediaHTML = firstImg
+      ? `<div class="also-media has-img">${firstImg.link ? `<a href="${firstImg.link}" target="_blank" rel="noopener">${imgTag}</a>` : imgTag}</div>`
+      : `<div class="also-media">[ ${p.id} ]</div>`;
+    const cleanBadge = p.badge.split('·').map(s => s.trim()).filter(s => s && !/^self-built$/i.test(s)).join(' · ');
+
     card.innerHTML = `
-      <div class="also-media">[ ${p.id} ]</div>
+      ${mediaHTML}
       <div class="also-body">
-        <div class="also-badge">${p.badge}</div>
+        <div class="also-badge">${cleanBadge}</div>
         <div class="also-title">${p.title}</div>
-        <div class="also-desc">${p.description.slice(0, 120)}…</div>
+        <div class="also-desc">${p.description}</div>
         ${(p.links || []).map(l => `<a class="also-link" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('')}
       </div>
     `;
@@ -251,10 +260,11 @@ function renderWhatsnext() {
   const el = document.getElementById('wn-grid');
   if (!el) return;
   el.innerHTML = CURRENTLY_BUILDING.map(item => `
-    <div class="wn-card">
+    <div class="wn-card" onclick="this.classList.toggle('open')">
       <div class="wn-st"><div class="wn-dot"></div><span class="wn-stl">${item.label}</span></div>
       <div class="wn-title">${item.title}</div>
-      <div class="wn-desc">${item.description.slice(0, 120)}…</div>
+      <div class="wn-desc">${item.description}</div>
+      <div class="wn-more">read more ↓</div>
     </div>
   `).join('');
 }
