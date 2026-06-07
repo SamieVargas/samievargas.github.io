@@ -5,7 +5,6 @@
 import { EXPERIENCE }                      from '../data/experience.js';
 import { FEATURED_PROJECTS, GRID_PROJECTS } from '../data/projects.js';
 import { SKILL_GROUPS, CERTIFICATIONS }    from '../data/skills.js';
-import { CURRENTLY_BUILDING }              from '../data/building.js';
 import { OBSERVATIONS }                    from '../data/observations.js';
 import { BIO, QUICK_FACTS, INTERESTS, CONTACT } from '../data/about.js';
 
@@ -105,21 +104,11 @@ export function renderProjects() {
 
       <!-- Featured carousel -->
       <div class="feat-wrap reveal" id="feat-wrap">
-        <div class="ghost l" id="ghost-l">
-          <div class="ghost-inner">
-            <div class="ghost-media"></div>
-            <div class="ghost-body"><div class="ghost-ctx"></div><div class="ghost-det"></div></div>
-          </div>
-        </div>
+        <div class="ghost l" id="ghost-l" onclick="window.__featStep(-1)"></div>
         <div class="active-card" id="feat-active">
           <!-- populated by JS -->
         </div>
-        <div class="ghost r" id="ghost-r">
-          <div class="ghost-inner">
-            <div class="ghost-media"></div>
-            <div class="ghost-body"><div class="ghost-ctx"></div><div class="ghost-det"></div></div>
-          </div>
-        </div>
+        <div class="ghost r" id="ghost-r" onclick="window.__featStep(1)"></div>
         <button class="cbtn prev" id="feat-prev" aria-label="Previous">&#8249;</button>
         <button class="cbtn next" id="feat-next" aria-label="Next">&#8250;</button>
       </div>
@@ -130,18 +119,11 @@ export function renderProjects() {
       <div class="also-wrap reveal" id="also-wrap">
         <button class="also-nbtn" id="also-next" aria-label="Next">›</button>
       </div>
-
-      <!-- What's Next -->
-      <div class="wn-section reveal">
-        <div class="wn-label">What's Next</div>
-        <div class="wn-grid" id="wn-grid"></div>
-      </div>
     </div>
   `;
 
   initProjectCarousels();
   initProjectFilters();
-  renderWhatsnext();
 }
 
 // ── PROJECT CAROUSEL STATE ───────────────────────────────────
@@ -209,6 +191,25 @@ function renderFeatCard() {
     </div>
   `;
 
+  // Neighbouring projects peek in on either side
+  const setGhost = (gid, gp, dir) => {
+    const g = document.getElementById(gid);
+    if (!g) return;
+    if (projects.length < 2) { g.style.visibility = 'hidden'; return; }
+    g.style.visibility = '';
+    const fi = (gp.media && gp.media.slides) ? gp.media.slides.find(s => s.type === 'img' || (!s.type && s.src)) : null;
+    g.innerHTML = `
+      <div class="ghost-inner">
+        <div class="ghost-media"${fi ? ` style="background-image:url('${fi.src}')"` : ''}></div>
+        <div class="ghost-cap">
+          <span class="ghost-dir">${dir < 0 ? '‹ Prev' : 'Next ›'}</span>
+          <span class="ghost-title">${gp.title.split('—')[0].trim()}</span>
+        </div>
+      </div>`;
+  };
+  setGhost('ghost-l', projects[(idx - 1 + projects.length) % projects.length], -1);
+  setGhost('ghost-r', projects[(idx + 1) % projects.length], 1);
+
   const dotsEl = document.getElementById('feat-dots');
   if (dotsEl) {
     dotsEl.innerHTML = projects.map((_, i) =>
@@ -256,25 +257,17 @@ function renderAlsoCards() {
   }
 }
 
-function renderWhatsnext() {
-  const el = document.getElementById('wn-grid');
-  if (!el) return;
-  el.innerHTML = CURRENTLY_BUILDING.map(item => `
-    <div class="wn-card" onclick="this.classList.toggle('open')">
-      <div class="wn-st"><div class="wn-dot"></div><span class="wn-stl">${item.label}</span></div>
-      <div class="wn-title">${item.title}</div>
-      <div class="wn-desc">${item.description}</div>
-      <div class="wn-more">read more ↓</div>
-    </div>
-  `).join('');
-}
-
 function initProjectCarousels() {
   featIdx = 0; alsoIdx = 0;
   renderFeatCard();
   renderAlsoCards();
 
   window.__goFeat = (i) => { featIdx = i; renderFeatCard(); };
+  window.__featStep = (d) => {
+    const len = getFeaturedFiltered().length;
+    featIdx = (featIdx + d + len) % len;
+    renderFeatCard();
+  };
 
   const prev  = document.getElementById('feat-prev');
   const next  = document.getElementById('feat-next');
@@ -360,17 +353,9 @@ export function renderSkills() {
     </div>
   `).join('');
 
-  // Credentials relegated to the collapsed "Other" drawer (participation-tier / non-core)
-  const otherNames = new Set([
-    'Google Analytics Certification (GA4)',
-    'Fundamentals of Predictive Project Management',
-    'Six Sigma White Belt',
-    'Anthropic Certifications',
-    'Databricks Accreditations',
-  ]);
   const featuredNames = new Set(featuredCerts.map(c => c.name));
 
-  // Shared cert-row renderer, reused by the Additional tier and the Other drawer
+  // Shared cert-row renderer used by the collapsed "Other" drawer
   const renderCertRow = (c, flat = false) => {
     const badgeHTML = c.links && c.links.length
       ? `<a class="cert-badge" href="${c.links[0].href}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a>`
@@ -413,18 +398,14 @@ export function renderSkills() {
     `;
   };
 
-  // Additional certs — everything not featured and not relegated to "Other"
-  const additionalCerts = CERTIFICATIONS.filter(c => !featuredNames.has(c.name) && !otherNames.has(c.name));
-  const certsHTML = additionalCerts.map(c => renderCertRow(c)).join('');
-
-  // Other drawer — relegated certs, collapsed by default (subcerts preserved)
-  const otherCerts = CERTIFICATIONS.filter(c => otherNames.has(c.name));
+  // Everything that isn't a featured-4 cert is consolidated into the collapsed "Other" drawer
+  const otherCerts = CERTIFICATIONS.filter(c => !featuredNames.has(c.name));
   const otherRowsHTML = otherCerts.map(c => renderCertRow(c, true)).join('');
   const otherCredsHTML = `
     <div class="other-creds">
       <span style="font-family:var(--mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Other Credentials</span>
       <div style="display:flex;align-items:center;gap:.75rem;">
-        <span style="font-family:var(--mono);font-size:.68rem;color:var(--muted);">Anthropic · Databricks · GA4 · PMI · Six Sigma</span>
+        <span style="font-family:var(--mono);font-size:.68rem;color:var(--muted);">${otherCerts.length} credentials</span>
         <button class="other-btn" onclick="toggleOtherCerts(this)">show ▾</button>
       </div>
     </div>
@@ -441,8 +422,7 @@ export function renderSkills() {
 
     <div class="creds-sh reveal"><span class="creds-sl">Credentials</span><span class="creds-ct">${CERTIFICATIONS.length} total</span></div>
     <div class="feat-creds">${featCredsHTML}</div>
-    <div class="creds-tier-label">Additional Credentials</div>
-    <div class="certs-list">${certsHTML}${otherCredsHTML}</div>
+    <div class="certs-list">${otherCredsHTML}</div>
   `;
 }
 
