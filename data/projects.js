@@ -326,6 +326,70 @@ export const FEATURED_PROJECTS = [
 
 export const GRID_PROJECTS = [
   {
+  id: 'signal',
+  badge: 'Self-Built · AI Agent · Vanilla JS · Cloudflare Workers',
+  title: 'Signal — Account Intelligence Tool for Customer Success',
+  description: 'I spent 8 years doing this hour of account digging manually before every QBR. Signal is what I built instead. Paste or upload anything — Zoom transcripts, MBR/QBR decks, Teams chats, CRM snapshots, usage CSVs, SWOT docs — and Signal synthesizes a full account brief: situation read, contact persona analysis, ranked leverage points, and a single "do this today" action. Built on a two-call architecture: Claude Haiku summarizes each document first (cheap), Claude Sonnet synthesizes across all summaries (main call). Four analysis modes — Full Brief, Revenue Risk, Relationship Read, Pre-Call — each producing meaningfully different output at different token costs. The API key is held in a Cloudflare Worker so the code is safe to demo publicly.',
+  quickContext: {
+    problem: 'Account managers spend 45-60 minutes before every QBR digging through scattered docs to build a picture they already half-know. The insight is sitting in the data. Nobody has time to connect it.',
+    approach: 'Two-call architecture: Haiku per-document summarization (~25x cheaper than sending raw docs to Sonnet) → Sonnet synthesis with source-weighted prompting. Four focus modes reduce token usage by 40-60% on targeted pulls. Source attribution on every section.',
+    finding: 'The contact read is the sleeper feature. "Says: not off the table right now. Means: I am not prioritizing this and I am not going to tell you why." That gap between stated and behavioral signal is what experienced CSMs read instinctively — Signal makes it explicit and citable.',
+  },
+  media: {
+    type: 'carousel',
+    slides: [
+      {
+        type: 'img',
+        src: './assets/signal/signal-7.png',
+        alt: 'Signal book of business view — accounts ranked by risk with one-line reads',
+        label: 'Book of Business',
+      },
+      {
+        type: 'img',
+        src: './assets/signal/signal-6.png',
+        alt: 'Signal add context panel — upload any format, four analysis modes',
+        label: 'Upload & Focus',
+      },
+      {
+        type: 'img',
+        src: './assets/signal/signal-5.png',
+        alt: 'Signal situation read — champion silence pattern with high confidence',
+        label: 'Situation Read',
+      },
+      {
+        type: 'img',
+        src: './assets/signal/signal-4.png',
+        alt: 'Signal contact read — Marcus Webb primary, Priya Nair and Tom Gillis secondary',
+        label: 'Contact Read',
+      },
+      {
+        type: 'img',
+        src: './assets/signal/signal-3.png',
+        alt: 'Signal where to press — three ranked priorities with rationale',
+        label: 'Where to Press',
+      },
+      {
+        type: 'img',
+        src: './assets/signal/signal-2.png',
+        alt: 'Signal do this today and data gaps sections',
+        label: 'Do This Today',
+      },
+      {
+        type: 'img',
+        src: './assets/signal/signal-1.png',
+        alt: 'Signal ask signal chips — five suggested questions auto-populate chat',
+        label: 'Ask Signal',
+      },
+    ],
+  },
+  filters: ['AI Agent'],
+  tags: ['JavaScript', 'Anthropic API', 'AI Agent', 'Prompt Engineering', 'Cloudflare Workers', 'GitHub Pages', 'Two-Call Architecture'],
+  links: [
+    { href: 'https://samievargas.github.io/signal/', label: 'Try it →' },
+  ],
+  dim: false,
+},
+  {
     id: 'tarot-tracker',
     badge: 'Self-Built · JavaScript · GitHub Pages',
     title: 'Tarot Tracker — Personal Card Archive',
