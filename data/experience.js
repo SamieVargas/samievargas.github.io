@@ -12,7 +12,7 @@ export const EXPERIENCE = [
           'Lead a team of client solutions managers across a $14M+ enterprise book — setting KPIs, running weekly performance reviews, and coaching to retention and growth targets.',
           'Spearheaded a 5% YoY growth strategy across a portfolio of global professional services and advisory clients, identifying expansion signals through usage data and stakeholder mapping.',
           'Built Salesforce health scoring dashboards and automated reporting that reduced reactive escalations and gave leadership a live view of account risk.',
-          'Deployed AI-assisted workflows using Claude, ChatGPT, and in-house LLM tools to accelerate QBR prep, escalation drafts, and data synthesis — adopted across the broader team.',
+          'Built and rolled out AI-assisted workflows (Claude, ChatGPT, in-house LLM tools) for QBR prep, escalation drafts, and data synthesis. Wrote the prompts and SOPs, trained the team, and drove adoption across 8 managers, cutting QBR prep time by 60%.',
           'Designed SOW-based delivery frameworks for high-complexity, multi-stakeholder engagements across consulting, financial services, and technology verticals.',
         ],
         tags: ['Team Leadership', 'Salesforce', 'Revenue Growth', 'AI Workflows', 'SOW Management'],
