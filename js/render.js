@@ -360,21 +360,23 @@ export function renderSkills() {
     </div>
   `).join('');
 
-  // Credentials moved to "Other Credentials" (collapsed) — kept out of the main list
+  // Credentials relegated to the collapsed "Other" drawer (participation-tier / non-core)
   const otherNames = new Set([
     'Google Analytics Certification (GA4)',
     'Fundamentals of Predictive Project Management',
     'Six Sigma White Belt',
+    'Anthropic Certifications',
+    'Databricks Accreditations',
   ]);
   const featuredNames = new Set(featuredCerts.map(c => c.name));
 
-  // Additional certs — everything not featured and not relegated to "Other"
-  const additionalCerts = CERTIFICATIONS.filter(c => !featuredNames.has(c.name) && !otherNames.has(c.name));
-
-  const certsHTML = additionalCerts.map(c => {
+  // Shared cert-row renderer, reused by the Additional tier and the Other drawer
+  const renderCertRow = (c, flat = false) => {
     const badgeHTML = c.links && c.links.length
       ? `<a class="cert-badge" href="${c.links[0].href}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a>`
-      : `<span style="font-family:var(--mono);font-size:.62rem;color:var(--muted);font-style:italic;">verify via subcerts</span>`;
+      : c.subcerts
+        ? `<span style="font-family:var(--mono);font-size:.62rem;color:var(--muted);font-style:italic;">verify via subcerts</span>`
+        : `<span style="font-family:var(--mono);font-size:.62rem;color:var(--muted);">—</span>`;
 
     const subHTML = c.subcerts ? `
       <div class="cert-subs">
@@ -397,7 +399,7 @@ export function renderSkills() {
     ` : '';
 
     return `
-      <div class="cert-row" onclick="${c.subcerts ? 'toggleCert(this)' : ''}">
+      <div class="cert-row"${flat ? ' style="border-top:none;"' : ''} onclick="${c.subcerts ? 'toggleCert(this)' : ''}">
         <div>
           <div class="cert-name">${c.name}</div>
           <div class="cert-iss">${c.issuer}</div>
@@ -409,20 +411,25 @@ export function renderSkills() {
         </div>
       </div>
     `;
-  }).join('');
+  };
 
+  // Additional certs — everything not featured and not relegated to "Other"
+  const additionalCerts = CERTIFICATIONS.filter(c => !featuredNames.has(c.name) && !otherNames.has(c.name));
+  const certsHTML = additionalCerts.map(c => renderCertRow(c)).join('');
+
+  // Other drawer — relegated certs, collapsed by default (subcerts preserved)
+  const otherCerts = CERTIFICATIONS.filter(c => otherNames.has(c.name));
+  const otherRowsHTML = otherCerts.map(c => renderCertRow(c, true)).join('');
   const otherCredsHTML = `
     <div class="other-creds">
       <span style="font-family:var(--mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Other Credentials</span>
       <div style="display:flex;align-items:center;gap:.75rem;">
-        <span style="font-family:var(--mono);font-size:.68rem;color:var(--muted);">GA4 · PMI Fundamentals · Six Sigma WB</span>
+        <span style="font-family:var(--mono);font-size:.68rem;color:var(--muted);">Anthropic · Databricks · GA4 · PMI · Six Sigma</span>
         <button class="other-btn" onclick="toggleOtherCerts(this)">show ▾</button>
       </div>
     </div>
     <div id="other-certs-expanded" style="display:none;">
-      <div class="cert-row" style="border-top:none;"><div><div class="cert-name">Google Analytics Certification (GA4)</div><div class="cert-iss">Google Skillshop · May 2026</div></div><div class="cert-right"><a class="cert-badge" href="https://skillshop.credential.net/da7f2a2d-1e02-4267-aaca-d6bfbfc3036e" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a></div></div>
-      <div class="cert-row" style="border-top:none;"><div><div class="cert-name">Fundamentals of Predictive Project Management</div><div class="cert-iss">PMI · 2026</div></div><div class="cert-right"><a class="cert-badge" href="https://www.credly.com/badges/cdf8ff04-0b23-435a-a53d-3c46ab172885" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a></div></div>
-      <div class="cert-row" style="border-top:none;"><div><div class="cert-name">Six Sigma White Belt</div><div class="cert-iss">2026</div></div><div class="cert-right"><span style="font-family:var(--mono);font-size:.62rem;color:var(--muted);">—</span></div></div>
+      ${otherRowsHTML}
     </div>
   `;
 
