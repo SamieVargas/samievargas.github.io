@@ -15,6 +15,7 @@
 //   --sl-ink     reached label
 //   --sl-faint   unreached label
 //   --sl-alert   failed dot and label
+//   --sl-font    label typeface
 // ============================================================
 
 const STYLE_ID = 'staged-loader-css';
@@ -26,7 +27,7 @@ const CSS = `
   background: var(--sl-track, #e2ddce); transition: background .3s ease; }
 .sl__row.is-on .sl__dot { background: var(--sl-accent, #1a6b5a); }
 .sl__row.is-bad .sl__dot { background: var(--sl-alert, #c34a3a); }
-.sl__label { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11.5px;
+.sl__label { font-family: var(--sl-font, 'Space Mono', ui-monospace, monospace); font-size: 11.5px;
   color: var(--sl-faint, #9a9686); transition: color .3s ease; }
 .sl__row.is-on .sl__label { color: var(--sl-ink, #16150f); }
 .sl__row.is-bad .sl__label { color: var(--sl-alert, #c34a3a); }

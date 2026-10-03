@@ -14,9 +14,9 @@
 import {
   LIFE_FIELD, LIFE_RELATED, INVOICE_ROWS, RACCOON_LIFE, PROGRESS,
   RECORDS, CHRISTIE, RING_FIT, READING, PLAYING, OBSERVATIONS, LIFE_NOTES,
-} from '../data/content.js?v=20261003c';
-import { REDUCED, $, $$, esc, onSeen, autoReveal, tween, countUp } from './reveal.js?v=20261003c';
-import { driftChart, revealDrift } from './drift-chart.js?v=20261003c';
+} from '../data/content.js?v=20261003d';
+import { REDUCED, $, $$, esc, onSeen, autoReveal, tween, countUp } from './reveal.js?v=20261003d';
+import { driftChart, revealDrift } from './drift-chart.js?v=20261003d';
 
 // Category hues: same lightness and chroma, hue only. "Built" is the accent.
 const KIND_COLOR = {
@@ -73,6 +73,32 @@ function buildField() {
     state.sel = b.dataset.rel;
     renderField();
   });
+}
+
+// Labels that would land on each other slide apart vertically. Only the
+// label moves, the dot stays on its coordinate, so the data is untouched.
+function spreadLabels() {
+  const area = $('#life-area');
+  const W = area.clientWidth, H = area.clientHeight;
+  const L = LIFE_FIELD.map((p) => {
+    const s = pts.get(p.id).lastChild, x = parseFloat(p.x) / 100 * W;
+    const w = s.offsetWidth, h = s.offsetHeight;
+    return { s, w, h, y: parseFloat(p.y) / 100 * H, dy: 0, l: parseFloat(p.x) > 60 ? x - 11 - w : x + 11 };
+  }).sort((a, b) => a.y - b.y);
+  for (let pass = 0; pass < 8; pass++) {
+    let moved = false;
+    for (let i = 0; i < L.length; i++) for (let j = i + 1; j < L.length; j++) {
+      const a = L[i], b = L[j];
+      if (a.l >= b.l + b.w + 4 || b.l >= a.l + a.w + 4) continue;
+      const gap = (b.y + b.dy - b.h / 2) - (a.y + a.dy + a.h / 2);
+      if (gap >= 2) continue;
+      const push = Math.ceil(2 - gap);
+      if (b.y + b.dy + b.h / 2 + push <= H) b.dy += push; else a.dy -= push;
+      moved = true;
+    }
+    if (!moved) break;
+  }
+  L.forEach((o) => { o.s.style.transform = o.dy ? `translateY(${o.dy}px)` : ''; });
 }
 
 function renderField() {
@@ -382,6 +408,9 @@ function honourHash() {
 // ── Boot ─────────────────────────────────────────────────────
 buildField();
 renderField();
+spreadLabels();
+addEventListener('resize', spreadLabels);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(spreadLabels);
 buildProgress();
 buildChristie();
 buildRecords();

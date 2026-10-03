@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231A6B5A'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-weight='700' font-size='20' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="/favicon-16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
   <title>The Raccoon Invoice · Samie Vargas</title>
   <meta name="description" content="What a raccoon in my Austin apartment actually cost me, measured in Garmin data.">
   <meta property="og:title" content="The Raccoon Invoice">
   <meta property="og:description" content="A data story about sleep, body battery, and an unauthorized tenant.">
   <meta property="og:url" content="https://samievargas.com/raccoon/">
+  <link rel="canonical" href="https://samievargas.com/raccoon/">
+  <meta name="theme-color" content="#1a6b5a">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://samievargas.com/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -150,7 +161,7 @@
 
     /* PHOTO */
     .phase-photo { margin-top: .85rem; max-width: 340px; }
-    .phase-photo img { width: 100%; display: block; border: 1px solid var(--rule); }
+    .phase-photo img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
     .photo-caption { font-family: var(--mono); font-size: .62rem; color: var(--muted); padding: .5rem .6rem; border: 1px solid var(--rule); border-top: none; background: var(--surface-raised); font-style: italic; line-height: 1.5; }
 
     /* FOOTER */
@@ -436,11 +447,11 @@
           <span class="pill bad">trap: outsmarted</span>
         </div>
         <div class="phase-photo">
-          <img src="img/raccoon-on-balcony.jpg" alt="Raccoon spotted on the balcony, partly hidden behind a wicker chair" loading="lazy">
+          <img src="img/raccoon-on-balcony.webp" width="900" height="1195" decoding="async" alt="Raccoon spotted on the balcony, partly hidden behind a wicker chair" loading="lazy">
           <div class="photo-caption">Wednesday morning, and the answer to several nights of bad sleep was hiding behind a patio chair.</div>
         </div>
         <div class="phase-photo">
-          <img src="img/raccoon-hiding.jpg" alt="Raccoon face visible through the slats of a wicker basket, babies visible below" loading="lazy">
+          <img src="img/raccoon-hiding.webp" width="900" height="1195" decoding="async" alt="Raccoon face visible through the slats of a wicker basket, babies visible below" loading="lazy">
           <div class="photo-caption">Apr 29 · mama raccoon confirmed with babies, nested in the balcony wicker basket.</div>
         </div>
       </div>
@@ -471,7 +482,7 @@
           <span class="pill bad">sleep: 61</span>
         </div>
         <div class="phase-photo">
-          <img src="img/raccoon-caught.jpg" alt="Raccoon in a humane trap cage held by wildlife removal, looking directly at the camera" loading="lazy">
+          <img src="img/raccoon-caught.webp" width="900" height="1196" decoding="async" alt="Raccoon in a humane trap cage held by wildlife removal, looking directly at the camera" loading="lazy">
           <div class="photo-caption">May 3, 11:50am, eviction complete, and she looks exactly as tired as my Garmin data.</div>
         </div>
       </div>
@@ -516,9 +527,6 @@
 <script>
   const toggle = document.getElementById('dark-toggle');
   const html = document.documentElement;
-  let saved = null;
-  try { saved = localStorage.getItem('theme'); } catch (e) {}
-  if (saved) html.setAttribute('data-theme', saved);
   toggle.addEventListener('click', () => {
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
@@ -530,7 +538,7 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 <script type="module">
-import { RACCOON_LIFE } from '../data/content.js?v=20261003c';
+import { RACCOON_LIFE } from '../data/content.js?v=20261003d';
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
