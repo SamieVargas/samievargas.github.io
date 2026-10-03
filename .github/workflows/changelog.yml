@@ -18,6 +18,12 @@ permissions:
 jobs:
   snapshot:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # One snapshot at a time, queued and never cancelled, so a quick second
+    # push still gets its own snapshot.
+    concurrency:
+      group: changelog
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,23 +33,29 @@ jobs:
         run: node .github/scripts/changelog.mjs
 
       - name: Commit it if it changed
+        id: snap
         run: |
           if git diff --quiet -- data/changelog.json; then
             echo "nothing to commit"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/changelog.json
           git commit -m "Snapshot the change log"
+          git pull --rebase origin main
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
 
       # A push made with GITHUB_TOKEN does not always start a Pages build
       # on its own, so ask for one. Harmless if one is already queued.
       - name: Ask Pages to redeploy
+        if: steps.snap.outputs.changed == 'true'
+        continue-on-error: true
         run: |
-          curl -sS -o /dev/null -w "pages build request: %{http_code}\n" \
+          curl -sS --fail-with-body -o /dev/null -w "pages build request: %{http_code}\n" \
             -X POST \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds"

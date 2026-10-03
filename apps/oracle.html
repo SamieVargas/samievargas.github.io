@@ -6,11 +6,22 @@
 <title>One-Question Oracle · Samie Vargas</title>
 <meta name="description" content="Bring it a question and it keeps that question, then returns a harder one.">
 <link rel="canonical" href="https://samievargas.com/apps/oracle">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samievargas.com/apps/oracle">
+<meta property="og:title" content="One-Question Oracle · Samie Vargas">
+<meta property="og:description" content="Bring it a question and it keeps that question, then returns a harder one.">
+<meta property="og:image" content="https://samievargas.com/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Samie Vargas">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1a6b5a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32">
 <link rel="icon" href="/favicon-16.png" sizes="16x16">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7B7NDTKEL"></script>
 <script>
@@ -19,7 +30,6 @@
   gtag('js', new Date());
   gtag('config', 'G-K7B7NDTKEL');
 </script>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body { margin: 0; background: #050309; }
@@ -31,12 +41,14 @@ input, button { font: inherit; }
 @keyframes surface { from { opacity: 0; filter: blur(6px); transform: translateY(6px); } to { opacity: 1; filter: none; transform: none; } }
 @keyframes smoke { 0% { transform: rotate(0deg) scale(1); opacity: 0.7; } 50% { transform: rotate(180deg) scale(1.14); opacity: 1; } 100% { transform: rotate(360deg) scale(1); opacity: 0.7; } }
 @keyframes aura { 0%, 100% { opacity: 0.5; transform: scale(0.97); } 50% { opacity: 1; transform: scale(1.05); } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; } }
 #q-input:focus { border-color: #8f7dff; }
 .btn-ghost:hover { border-color: #8f7dff; color: #efe9ff; }
 .btn-deeper:hover { background: #efe9ff; color: #0a0812; }
 @media (max-width: 480px) { .page { padding-left: 20px !important; padding-right: 20px !important; } }
-.footer-links a { color: inherit; text-decoration: none; }
+button:focus-visible, a:focus-visible { outline: 2px solid #8f7dff; outline-offset: 3px; }
+#q-input:focus-visible { outline: 2px solid #8f7dff; outline-offset: 4px; }
+.footer-links a { color: inherit; text-decoration: none; display: inline-block; padding: 5px 0; margin: -5px 0; }
 .footer-links a:hover { color: #efe9ff; }
 </style>
 </head>

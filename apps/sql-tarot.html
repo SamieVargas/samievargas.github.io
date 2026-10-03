@@ -6,6 +6,15 @@
 <title>SQL Tarot · Samie Vargas</title>
 <meta name="description" content="A three-card query horoscope: past clause, present clause, and the clause that will ruin Friday, plus the SQL it implies, which runs live against Austin open data.">
 <link rel="canonical" href="https://samievargas.com/apps/sql-tarot">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samievargas.com/apps/sql-tarot">
+<meta property="og:title" content="SQL Tarot · Samie Vargas">
+<meta property="og:description" content="A three-card query horoscope: past clause, present clause, and the clause that will ruin Friday, plus the SQL it implies, which runs live against Austin open data.">
+<meta property="og:image" content="https://samievargas.com/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Samie Vargas">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1a6b5a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32">
@@ -26,7 +35,8 @@ body { margin: 0; background: #100a1c; }
 a { color: #b98cd9; } a:hover { color: #f0e8dc; }
 button { font: inherit; }
 .copy-btn:hover { border-color: #b98cd9; color: #f0e8dc; }
-.footer-link { color: inherit; text-decoration: none; }
+.footer-link { color: inherit; text-decoration: none; display: inline-block; padding: 6px 0; }
+:focus-visible { outline: 2px solid #ffca3a; outline-offset: 3px; }
 .footer-link:hover { color: #f0e8dc; }
 @keyframes deal { from { opacity: 0; transform: translateY(24px) rotate(-2deg); } to { opacity: 1; transform: none; } }
 @keyframes flipIn { 0% { transform: rotateY(90deg) scale(0.94); opacity: 0; } 60% { opacity: 1; } 100% { transform: none; opacity: 1; } }
@@ -35,7 +45,7 @@ button { font: inherit; }
 @keyframes riseUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes glow { 0%, 100% { box-shadow: 0 0 28px rgba(255,202,58,0.16); } 50% { box-shadow: 0 0 46px rgba(255,202,58,0.34); } }
 @keyframes typeQ { from { max-height: 0; opacity: 0; } to { max-height: 400px; opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
 </style>
 </head>
 <body>

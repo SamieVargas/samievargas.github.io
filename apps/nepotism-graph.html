@@ -6,6 +6,15 @@
 <title>The Nepotism Graph · Samie Vargas</title>
 <meta name="description" content="Name a trade and it finds the families inside it, then follows the longest parent-to-child line as far as the record goes.">
 <link rel="canonical" href="https://samievargas.com/apps/nepotism-graph">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samievargas.com/apps/nepotism-graph">
+<meta property="og:title" content="The Nepotism Graph · Samie Vargas">
+<meta property="og:description" content="Name a trade and it finds the families inside it, then follows the longest parent-to-child line as far as the record goes.">
+<meta property="og:image" content="https://samievargas.com/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Samie Vargas">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1a6b5a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32">
@@ -19,6 +28,7 @@
   gtag('js', new Date());
   gtag('config', 'G-K7B7NDTKEL');
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -26,7 +36,10 @@ body { margin: 0; background: #101418; }
 a { color: #d9b36a; } a:hover { color: #f6ecd8; }
 input, button { font: inherit; }
 #profession-input:focus { border-color: #d9b36a; }
-.preset-btn { background: transparent; border: none; color: #85908f; padding: 0; font-size: 11px; white-space: nowrap; cursor: pointer; border-bottom: 1px solid transparent; }
+.preset-btn { background: transparent; border: none; color: #85908f; padding: 4px 0; font-size: 11px; white-space: nowrap; cursor: pointer; border-bottom: 1px solid transparent; }
+.hit { position: relative; }
+.hit::before { content: ""; position: absolute; inset: -6px 0; }
+a:focus-visible, button:focus-visible { outline: 2px solid #d9b36a; outline-offset: 3px; }
 .preset-btn:hover { color: #d9b36a; border-color: #d9b36a; }
 .sug-btn { background: transparent; border: 1px solid #d9b36a; color: #d9b36a; padding: 10px 16px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.2px; white-space: nowrap; cursor: pointer; }
 .sug-btn:hover { background: #d9b36a; color: #101418; }
@@ -58,7 +71,7 @@ input, button { font: inherit; }
 @keyframes sweep { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 @keyframes breathe { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 @keyframes develop { from { filter: grayscale(1) contrast(0.8) blur(7px); opacity: 0.4; } to { filter: grayscale(0.35) contrast(1.06) blur(0); opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
 </style>
 </head>
 <body>
@@ -101,13 +114,13 @@ input, button { font: inherit; }
     <div id="view"></div>
 
     <div style="border-top: 1px solid #242c33; padding-top: 18px; font-size: 10px; letter-spacing: 2px; color: #5f6a6c; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px">
-      <span><a class="foot-link" href="/">SAMIEVARGAS.COM</a> · <a class="foot-link" href="./">MINI APPS</a></span><span>PORTRAITS VIA WIKIMEDIA COMMONS · STATED FACTS ONLY</span>
+      <span><a class="foot-link hit" href="/">SAMIEVARGAS.COM</a> · <a class="foot-link hit" href="./">MINI APPS</a></span><span>PORTRAITS VIA WIKIMEDIA COMMONS · STATED FACTS ONLY</span>
     </div>
   </div>
 </div>
 
 <script type="module">
-import { stagedLoader } from '../js/staged-loader.js?v=20261003c';
+import { stagedLoader } from '../js/staged-loader.js?v=20261003d';
 
 // ---- Wikidata access (no keys, browser-friendly endpoints) ----
 const SPARQL = "https://query.wikidata.org/sparql";
@@ -143,8 +156,7 @@ async function searchEntity(term, limit = 8) {
   return (json.search || []).map(s => ({
     id: s.id,
     label: s.label || s.id,
-    description: s.description || "",
-    match: s.match && s.match.text ? s.match.text : s.label
+    description: s.description || ""
   }));
 }
 
@@ -170,7 +182,7 @@ function esc(x) {
 }
 
 const state = {
-  term: "actor", occ: null, pairs: [], totalInTrade: null,
+  occ: null, pairs: [], totalInTrade: null,
   loading: true, failed: false, status: "Resolving “actor”…", statusOk: true,
   progress: "RESOLVING…", failTag: "NOTHING RETURNED", failMessage: "", suggestions: [],
   filter: "deep", showQuery: false, query: "", chosen: null, wiki: {}
@@ -359,7 +371,7 @@ function dynastyCardsHtml(g, ids) {
 }
 
 function wikiLinkHtml(url) {
-  return '<a data-wiki href="' + esc(url) + '" target="_blank" rel="noopener" style="display: inline-block; font-size: 9px; letter-spacing: 1.2px; margin-top: 8px; color: #85908f; border-bottom: 1px solid #3a4249">WIKIPEDIA ↗</a>';
+  return '<a data-wiki class="hit" href="' + esc(url) + '" target="_blank" rel="noopener" style="display: inline-block; font-size: 9px; letter-spacing: 1.2px; margin-top: 8px; color: #85908f; border-bottom: 1px solid #3a4249">WIKIPEDIA ↗</a>';
 }
 
 function queryPreHtml() {
@@ -402,7 +414,7 @@ function renderData() {
             : '<div style="width: 100%; height: 100%; background: repeating-linear-gradient(45deg, #171c21 0 7px, #1b2126 7px 14px); display: flex; align-items: flex-end; padding: 12px; box-sizing: border-box"><span style="font-size: 9.5px; letter-spacing: 1.4px; color: #5f6a6c">NO PORTRAIT</span></div>') +
           '<div style="position: absolute; top: 0; left: 0; background: #d9b36a; color: #101418; font-size: 9.5px; font-weight: 700; letter-spacing: 1.2px; padding: 4px 8px">GEN ' + (i + 1) + '</div>' +
         '</div>' +
-        '<a href="https://www.wikidata.org/wiki/' + esc(id) + '" target="_blank" rel="noopener" style="display: block; font-family: \'Playfair Display\', serif; font-size: 17px; line-height: 1.2; margin-top: 12px">' + esc(p.label) + '</a>' +
+        '<a class="hit" href="https://www.wikidata.org/wiki/' + esc(id) + '" target="_blank" rel="noopener" style="display: block; font-family: \'Playfair Display\', serif; font-size: 17px; line-height: 1.2; margin-top: 12px">' + esc(p.label) + '</a>' +
         '<div style="font-size: 10px; color: #85908f; margin-top: 5px">' + esc(years) + '</div>' +
         (wikiUrl ? wikiLinkHtml(wikiUrl) : '') +
       '</div>' +
@@ -469,7 +481,7 @@ function renderData() {
         '<p style="font-size: 12.5px; line-height: 1.75; color: #a8b1b0; margin: 10px 0 0">Family relations here are stated facts in Wikidata, with nothing inferred. Generation chains are built by walking parent edges, so a five-deep line means five generations joined by four recorded parent-child links in the same trade. Coverage is thin outside the famous, so every number here is a floor.</p>' +
         '<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 18px; border-top: 1px solid #242c33; padding-top: 14px">' +
           '<div style="font-size: 9.5px; letter-spacing: 2px; color: #85908f">THE QUERY</div>' +
-          '<button type="button" id="query-toggle" style="background: transparent; border: none; color: #d9b36a; padding: 0; font-size: 10.5px; letter-spacing: 1.2px; cursor: pointer; border-bottom: 1px solid #d9b36a">' + (state.showQuery ? 'HIDE' : 'SHOW SPARQL') + '</button>' +
+          '<button type="button" id="query-toggle" class="hit" style="background: transparent; border: none; color: #d9b36a; padding: 0; font-size: 10.5px; letter-spacing: 1.2px; cursor: pointer; border-bottom: 1px solid #d9b36a">' + (state.showQuery ? 'HIDE' : 'SHOW SPARQL') + '</button>' +
         '</div>' +
         '<div id="query-wrap">' + (state.showQuery ? queryPreHtml() : '') + '</div>' +
       '</div>' +
@@ -507,7 +519,7 @@ async function run() {
   const term = (input.value || "").trim();
   if (!term) return;
   Object.assign(state, {
-    term: term, loading: true, failed: false,
+    loading: true, failed: false,
     progress: "RESOLVING “" + term.toUpperCase() + "”…",
     status: "", statusOk: true, filter: "deep", failMessage: "", suggestions: [], chosen: null
   });
@@ -589,13 +601,11 @@ async function run() {
 // ---- Event wiring ----
 runBtn.addEventListener("click", run);
 input.addEventListener("keydown", e => { if (e.key === "Enter") run(); });
-input.addEventListener("change", () => { state.term = input.value; });
 
 document.addEventListener("click", e => {
   const pick = e.target.closest("[data-pick]");
   if (pick) {
     input.value = pick.getAttribute("data-pick");
-    state.term = input.value;
     run();
     return;
   }

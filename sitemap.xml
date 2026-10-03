@@ -2,52 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://samievargas.com/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://samievargas.com/life</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://samievargas.com/signal/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://samievargas.com/brain-dump</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://samievargas.com/field-discovery/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://samievargas.com/raccoon/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://samievargas.com/apps/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://samievargas.com/pixels/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://samievargas.com/assist/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://samievargas.com/toolkit</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/backlog-reaper</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/corporate-translator</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/died-doing-what</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/escalation-simulator</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/locked-room</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/nepotism-graph</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/oracle</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/same-name</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/sample-size-roast</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/six-degrees</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/sql-tarot</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/streak-autopsy</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/taco-coin-flip</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/was-it-worth-it</loc>
+  </url>
+  <url>
+    <loc>https://samievargas.com/apps/whodunit-roulette</loc>
   </url>
 </urlset>

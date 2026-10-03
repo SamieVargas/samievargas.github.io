@@ -6,6 +6,15 @@
 <title>Six Degrees of Anything · Samie Vargas</title>
 <meta name="description" content="Two things and one path between them, found by graph search over 100M+ Wikidata statements connecting people, films, bands, companies, and towns.">
 <link rel="canonical" href="https://samievargas.com/apps/six-degrees">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samievargas.com/apps/six-degrees">
+<meta property="og:title" content="Six Degrees of Anything · Samie Vargas">
+<meta property="og:description" content="Two things and one path between them, found by graph search over 100M+ Wikidata statements connecting people, films, bands, companies, and towns.">
+<meta property="og:image" content="https://samievargas.com/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Samie Vargas">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1a6b5a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32">
@@ -19,6 +28,7 @@
   gtag('js', new Date());
   gtag('config', 'G-K7B7NDTKEL');
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -26,13 +36,11 @@ body { margin: 0; background: #0b0f14; }
 a { color: #5ee0c0; } a:hover { color: #d8fff5; }
 input, button { font: inherit; }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-@keyframes pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
-@keyframes draw { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
 @keyframes drawline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes nodeIn { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: none; } }
 @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 @keyframes countGlow { from { color: #d8fff5; text-shadow: 0 0 18px rgba(94,224,192,0.6); } to { color: #5ee0c0; text-shadow: none; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
 .term-input { width: 100%; box-sizing: border-box; background: transparent; border: none; border-bottom: 1.5px solid #2b3b47; padding: 10px 0; font-size: 25px; color: #e6eef2; outline: none; }
 .term-input:focus { border-color: #5ee0c0; }
 .btn-daily { background: transparent; border: 1px solid #5ee0c0; color: #5ee0c0; padding: 9px 16px; font-family: 'Space Mono', monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; white-space: nowrap; cursor: pointer; }
@@ -62,7 +70,10 @@ input, button { font: inherit; }
   .chain-edge { flex: none; max-width: none; flex-direction: row; justify-content: flex-start; gap: 12px; padding: 0 0 0 22px; min-height: 58px; }
   .chain-line { order: -1; width: 1px; height: auto; align-self: stretch; transform-origin: top; animation-name: drawdown !important; }
 }
-.footer-link { color: inherit; text-decoration: none; }
+.footer-link { color: inherit; text-decoration: none; display: inline-block; padding: 7px 0; }
+.wiki-link { display: inline-block; padding: 7px 0; }
+button:focus-visible, a:focus-visible { outline: 2px solid #5ee0c0; outline-offset: 3px; }
+.term-input:focus-visible { outline: 2px solid #5ee0c0; outline-offset: 2px; }
 .footer-link:hover { color: #d8fff5; }
 </style>
 </head>
@@ -114,7 +125,7 @@ input, button { font: inherit; }
 
     <div style="border-top: 1px solid #1e2a33; padding: 22px 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #4a6472">
       <span><a href="/" class="footer-link">SAMIEVARGAS.COM</a> · <a href="./" class="footer-link">MINI APPS</a></span>
-      <button id="howBtn" type="button" style="background: transparent; border: none; color: #5ee0c0; padding: 0; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; cursor: pointer; border-bottom: 1px solid #5ee0c0">HOW IT WORKS</button>
+      <button id="howBtn" type="button" style="background: linear-gradient(#5ee0c0, #5ee0c0) no-repeat left bottom 7px / 100% 1px; border: none; color: #5ee0c0; padding: 7px 0; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; cursor: pointer">HOW IT WORKS</button>
     </div>
 
     <div id="howPanel" style="display: none">
@@ -190,7 +201,7 @@ const BORING = {
   P31: 1, P279: 1, P17: 1, P27: 1, P495: 1, P37: 1, P131: 1, P625: 1,
   P1412: 1, P407: 1, P364: 1, P136: 1, P106: 1, P21: 1, P641: 1,
   P103: 1, P2936: 1, P1705: 1, P910: 1, P921: 1, P1343: 1, P972: 1, P6886: 1,
-  P279x: 1, P1269: 1, P2579: 1, P361: 1, P30: 1, P1071: 1, P276: 1
+  P1269: 1, P2579: 1, P361: 1, P30: 1, P1071: 1, P276: 1
 };
 // A bridge is only worth showing if at least one side is a specific relationship.
 function isJunk(aLinks, bLinks) {
@@ -208,7 +219,7 @@ const PROP_NAMES = {
   P19: "born in", P20: "died in", P937: "worked in", P1441: "appears in",
   P144: "based on", P123: "published by", P178: "developed by", P400: "released on",
   P155: "follows", P156: "followed by", P361: "part of", P749: "parent org",
-  P1830: "owns", P127: "owned by", P710: "participant", P710x: "participant"
+  P1830: "owns", P127: "owned by", P710: "participant"
 };
 
 function propName(pid) { return PROP_NAMES[pid] || pid; }
@@ -327,7 +338,7 @@ function renderMain() {
             '<div style="font-family: \'Space Mono\', monospace; font-size: 9.5px; letter-spacing: 1.6px; color: ' + (isMid ? "#5ee0c0" : "#6f8794") + '">' + esc(tags[i]) + '</div>' +
             '<div style="font-size: 19px; font-weight: 500; line-height: 1.2; margin-top: 8px; color: #e6eef2">' + esc(n.label) + '</div>' +
             '<div style="font-family: \'Space Mono\', monospace; font-size: 10.5px; line-height: 1.5; margin-top: 8px; color: #7f97a3">' + esc(d ? d.slice(0, 70) : "no description on file") + '</div>' +
-            (art ? '<a href="' + esc(art) + '" target="_blank" rel="noopener" style="display: inline-block; margin-top: 12px; font-family: \'Space Mono\', monospace; font-size: 9.5px; letter-spacing: 1.4px; border-bottom: 1px solid #5ee0c0">WIKIPEDIA ↗</a>' : '') +
+            (art ? '<a href="' + esc(art) + '" class="wiki-link" target="_blank" rel="noopener" style="margin-top: 5px; font-family: \'Space Mono\', monospace; font-size: 9.5px; letter-spacing: 1.4px; background: linear-gradient(#5ee0c0, #5ee0c0) no-repeat left bottom 7px / 100% 1px">WIKIPEDIA ↗</a>' : '') +
           '</div>' +
           (hasEdge ?
             '<div class="chain-edge">' +
