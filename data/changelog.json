@@ -1,18 +1,48 @@
 {
-  "generated": "2026-10-03T02:23:01Z",
+  "generated": "2026-10-03T02:44:50Z",
   "repo": "SamieVargas/samievargas.github.io",
   "first": "2026-05-20T20:37:01-05:00",
-  "total": 322,
+  "total": 331,
   "commits": [
+    {
+      "sha": "f405a9c3ff66ef332b6d76903abbea933b6ddb3a",
+      "date": "2026-10-03T02:25:16Z",
+      "message": "Treat the Field discovery and Brain Dump prices as confirmed"
+    },
     {
       "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
       "date": "2026-10-02T21:22:52-05:00",
       "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     },
     {
+      "sha": "aaae69f3e8f86ae77b56b9745b7297091790a4db",
+      "date": "2026-10-03T02:22:28Z",
+      "message": "Bump ?v= to 20261003b for the content.js and arcade.js changes"
+    },
+    {
+      "sha": "f345f0c9d5d4c4445fc1ce72ecd475e0f92c1d12",
+      "date": "2026-10-03T02:19:41Z",
+      "message": "Verify the certificates, drop PMP, fix the Team Leader title and two arcade hooks"
+    },
+    {
+      "sha": "689d7b28dc4dc1b10259746c74aaa403ff463aef",
+      "date": "2026-10-03T02:08:49Z",
+      "message": "Lock the rest of the site's facts in FACTS.md and list what needs checking"
+    },
+    {
+      "sha": "edc90dab929847b10cf2c6f7741de1635c513198",
+      "date": "2026-10-03T02:02:21Z",
+      "message": "Apply the QC decisions: FACTS rows first, name-only identity, résumé PDF, image cleanup"
+    },
+    {
       "sha": "3ed3062640625de261fe89a2050099bafc73d390",
       "date": "2026-10-02T20:44:55-05:00",
       "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+    },
+    {
+      "sha": "c4d37ae9e7a61b2654a2f9477c8b9cbe80c57239",
+      "date": "2026-10-03T01:42:46Z",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost"
     },
     {
       "sha": "9d7e991e6c895779fdcf82692fa6fc59906db3f8",
@@ -23,41 +53,11 @@
       "sha": "7c7831408921278a175791348875c8cb8e3c415c",
       "date": "2026-09-26T01:19:29Z",
       "message": "Match every build on the site to its own repo README"
-    },
-    {
-      "sha": "e43e432b84752ae08c80f2fbdbf71ace18ecc9f1",
-      "date": "2026-09-26T01:11:31Z",
-      "message": "Name each build's own repo as the source of truth in FACTS.md"
-    },
-    {
-      "sha": "434cc07eb00463f7b1147cae27531bb3e559e6e8",
-      "date": "2026-09-26T01:06:33Z",
-      "message": "Allow more than one \"In plain terms\" line per project"
-    },
-    {
-      "sha": "f4f5d58633de0f1f7829bf48ea231e18229e4cce",
-      "date": "2026-09-26T01:04:05Z",
-      "message": "Correct what moved between the hand review and the repo"
-    },
-    {
-      "sha": "5146e988a73d9085e6941b88537e0ab2adff3799",
-      "date": "2026-09-26T01:02:09Z",
-      "message": "Show when each page last changed and why on /toolkit"
-    },
-    {
-      "sha": "258c9f20d029bfd112fa2dee63f50f927318e373",
-      "date": "2026-09-26T01:02:04Z",
-      "message": "Rewrite the résumé for AI deployment roles, and print the PDF from the page"
-    },
-    {
-      "sha": "ba365156883dc9d65b7f1276de5c2c11fc583db1",
-      "date": "2026-09-26T01:00:11Z",
-      "message": "Rewrite the site copy for readers outside AI, and split the Christie shelf by series"
     }
   ],
   "weeks": [
-    35,
-    22,
+    38,
+    19,
     114,
     13,
     0,
@@ -75,7 +75,7 @@
     15,
     0,
     75,
-    3
+    12
   ],
   "pages": [
     {
