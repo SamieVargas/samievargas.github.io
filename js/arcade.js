@@ -17,7 +17,7 @@ const FILTERS = [
   ['All', () => true],
   ['Live data', (a) => a.badge.includes('live')],
   ['No data needed', (a) => a.badge === 'no data needed'],
-  ['Tracks your taps', (a) => a.badge === 'tracks your taps'],
+  ['Tracks your taps', (a) => a.badge.includes('taps')],
   ['Your export', (a) => a.badge.includes('export')],
 ];
 

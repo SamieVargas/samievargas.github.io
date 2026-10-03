@@ -48,7 +48,7 @@ This file is the source of truth for every number, date and version that appears
 | 25–26 Sep 2026 | Guideline Assist prompt tuning, held-out confirm and Gemini Flash runs | guideline-assist `docs/prompt-tuning.md`, results |
 | Sep 2026 | Knowledge-base pilot with a 60-person team, through September | resume.html |
 | Oct 2026 | Planned rollout to four more pods (about 240 people), gated | resume.html |
-| 23 Apr – 10 May 2026 | Raccoon window (found 29 Apr, removed 3 May) | content.js RACCOON_LIFE |
+| 24 Apr – 10 May 2026 | Raccoon window, 17 days (found 29 Apr, removed 3 May); the 23 Apr reading is the pre-raccoon baseline | raccoon/index.html, content.js RACCOON_LIFE |
 
 ## Résumé facts
 
@@ -115,12 +115,17 @@ This file is the source of truth for every number, date and version that appears
 | Haiku 4.5, arm A | next action 50.1% (175/349); intent 79.9%; 1.6 / 2.7 s; $47.89 per 1,000 |
 | Arm B | Haiku $55.13, 2.7 / 4.3 s; Sonnet $147.49, 3.7 / 5.8 s |
 | Library | 55 subflow sections plus 10 flow sections; 27,563 tokens on Haiku 4.5, 37,708 on Sonnet 5, cached; 13.10 triggers per conversation |
-| Shadow | 79.5% (140/176) over 50 conversations; 36 disagreements: 13 agent drifted, 11 assist wrong, 12 both off |
+| Shadow | 79.5% (140/176) over 50 conversations; 36 disagreements: 13 agent drifted, 11 assist wrong, 12 both off; the work page may say an agent would set aside about one suggestion in five (36 of 176, 20.5%) |
 | QA | flags 20 of 100 clean chats (rules-only 63); recall 100/100 removed, 99/99 swapped, 57/59 changed values; wrong-value precision 51.8% (57/110); 358 copies graded |
+| QA, rules only (qa_100, the /assist table) | clean chats flagged 63 of 100; removed steps caught 100 of 100; swapped steps caught 99 of 99; changed values caught 34 of 59; wrong-value flags right 34 of 204 (16.7%) |
+| QA against hand labels | 85.3% of QA steps agree with Samie's hand labels (58 of 68) |
+| Whole-chat intent (intent_300) | 76.0% (228 of 300) over 55 subflows |
+| Arms on assist_100 (24 Sep 2026, the /assist ablation table) | A · Haiku 4.5: next action 50.1%, intent 79.9%, p95 2.7 s, $47.89; A · Sonnet 5: 73.9%, 88.0%, 3.2 s, $121.83; B · Haiku 4.5: 53.3%, 74.2%, 4.3 s, $55.13; B · Sonnet 5: 72.8%, 75.9%, 5.8 s, $147.49; 13.1 calls per chat |
 | Injection | 47 of 50 runs held; 2 of 10 fixtures moved a suggestion (inj01 2 of 5 to a refund, inj08 1 of 5 to none_yet); a measured rate, not a claim of injection resistance |
-| Prompt tuning (tune_60, dev split, 25 and 26 Sep 2026) | gates set before any call: no more than 3 points lost on next action or intent, at least 20% cheaper; six library renderings tried; dedupe −1.4 next action at 14% cheaper, nosub −6.0 at 44%, outline −10.2 at 60%, bare −10.2 at 67%, keysub −7.0 at 24%; none passed all gates (`docs/prompt-tuning.md`) |
+| Prompt tuning (tune_60, dev split, 25 and 26 Sep 2026) | gates set before any call: no more than 3 points lost on next action or intent, at least 20% cheaper; the full library and five shorter renderings tried; dedupe −1.4 next action and −0.5 intent at 14% cheaper, nosub −6.0 and −0.5 at 44%, outline −10.2 and +0.9 at 60%, bare −10.2 and −10.0 at 67%, keysub −7.0 and +0.2 at 24%; none passed all gates (`docs/prompt-tuning.md`) |
 | Held-out confirm (assist_100, 26 Sep 2026) | Sonnet 5 full 73.4% (256/349), $121.98, p95 2.4 s; Sonnet 5 dedupe 76.2% (266/349), +2.9 [0.0, +5.7], $104.55, 14% cheaper, p95 2.6 s (`tuning-confirm-assist_100-2026-09-26.json`) |
-| Gemini 3.8 Flash (assist_100, 26 Sep 2026, Vertex AI) | explicit cache: full 82.2% (287/349), intent 87.7%, false alarms 25.0%, $47.23 per 1,000, p50 / p95 3.0 / 22.4 s; dedupe 82.0%, $39.11, 2.3 / 5.8 s; automatic cache (hit on 20 of 693 turns): 82.2%, $262.50; +8.9 [+5.2, +12.5] next action over Sonnet full, paired; prices from third-party listings, UNCONFIRMED against Google's page (`tuning-gemini-assist_100-2026-09-26.json`, `assist-gemini-2026-09-26.json`) |
+| Gemini 3.8 Flash (assist_100, 26 Sep 2026, Vertex AI) | explicit cache: full 82.2% (287/349), intent 87.7%, false alarms 25.0%, $47.23 per 1,000, p50 / p95 3.0 / 22.4 s; dedupe 82.0%, $39.11, 2.3 / 5.8 s; automatic cache (hit on 20 of 693 turns): 82.2%, $262.50; +8.9 [+5.2, +12.5] next action over Sonnet full, paired; the site may say the explicit-cache run costs about 40% of Sonnet ($47.23 against $121.83, 38.8%); prices from third-party listings, UNCONFIRMED against Google's page (`tuning-gemini-assist_100-2026-09-26.json`, `assist-gemini-2026-09-26.json`) |
+| Held-out table (assist_100, 24 to 26 Sep 2026, the /assist cost table) | Haiku 4.5 full: 50.1%, intent 79.9%, p95 2.7 s, false alarms 54.4%, $47.89, 99% read from cache; Sonnet 5 full: 73.4%, 87.5%, 2.4 s, 50.6%, $121.98, 99%; Sonnet 5 dedupe: 76.2%, 87.3%, 2.6 s, 44.8%, $104.55, 99%; Gemini 3.8 Flash full, explicit cache: 82.2%, 87.7%, 22.4 s, 25.0%, $47.23, 94%; dedupe: 82.0%, 87.7%, 5.8 s, 23.8%, $39.11, 93%; full, automatic cache: 82.2%, 87.7%, 205.3 s, 24.4%, $262.50, 2% |
 | Stop lines | after two weeks on the customer's own traffic, pull back if shadow agreement stays below 75%, p95 goes above 4 s, assist-wrong outnumbers agent drift, supervisors overturn more than one QA flag in five, any line moves toward skipping verification or refunding, or cost runs over budget ($121.83 as the reference) |
 
 ## Signal (repo: SamieVargas/signal)
@@ -172,7 +177,7 @@ This file is the source of truth for every number, date and version that appears
 
 | Project | Values |
 | --- | --- |
-| Instacart dbt | 3.4M orders; pooled reorder 0.60; new 0.221, regular 0.670; 5 staging models, 1 join, 3 marts, 35 tests; random forest AUC 0.989 vs 0.857; days-since-prior capped at 30 |
+| Instacart dbt | 3.4M orders; pooled reorder 0.60; new 0.221, regular 0.670; 5 staging models, 1 join, 3 marts, 35 tests; random forest AUC 0.9886 vs 0.8566 (`assets/instacart-ml/V3_segment_auc_comparison.png`); days-since-prior capped at 30 |
 | ATX Foodie | 21,160 records via Socrata; 84 brands; follow-up 84.4 (110 visits) vs routine 90.9 (18,440), 6.45 apart; drift 90.5 to 92.6 by the 15th inspection (2.1, higher is more violations) |
 
 ## Life page
@@ -180,12 +185,14 @@ This file is the source of truth for every number, date and version that appears
 | Fact | Value |
 | --- | --- |
 | Raccoon | body battery floor 5/100 for 5 consecutive days; sleep score 53 vs baseline 81; HRV 26 ms; 11 nights interrupted; 9 calls; 8 days to recover; 17 days total |
+| Raccoon page detail | 3 raccoons; period Apr 24 – May 10, 2026; sleep score average during the incident 75/100; body battery pre-raccoon baseline 20/100; 4 days from finding them to removal; HRV baseline 38 ms, and 47 ms on Apr 23 before it started; the raccoon's counter-claim $95.00 (raccoon/index.html, from Garmin Connect) |
+| Raccoon body battery average | RECONCILE: the page says 10/100 during the incident, but the daily readings in content.js RACCOON_LIFE average 12.1 over Apr 24 – May 10 and 8.3 over Apr 25 – May 3, and only Apr 23 – May 3, which includes the pre-raccoon day, gives 9.8; it may be Garmin's own average, so it stays on the page and out of new copy until Samie checks it |
 | Greenbelt | 15 of 21 miles |
 | Poirot | 26 of 33, on Dead Man's Folly |
 | Ring Fit | level 32 |
 | Records | 35, from the Discogs export, Aug 2026 |
 | Tarot | 78 cards, seven decks |
-| Arcade | 15 apps, 6 pull live data |
+| Arcade | 15 apps, 8 pull live public data: Six Degrees, Died Doing What, Taco Coin Flip, Whodunit Roulette, The Nepotism Graph and Same Name, plus SQL Tarot's City of Austin query and Streak Autopsy's Austin forecast |
 
 ## History
 
@@ -201,3 +208,8 @@ When a row changes, move the old value here with the date it stopped being curre
 | 26 Sep 2026 | Guideline Assist Haiku arm A and arm B costs | $48.47, $55.02, $148.03 | the exporter averaged cost per turn through a four-place rounding; recomputed unrounded it is $47.89, $55.13 and $147.49 (guideline-assist PR #10) |
 | 26 Sep 2026 | Signal latency | "51 seconds" (UNSOURCED) | no source anywhere in the repo |
 | 26 Sep 2026 | Structured outputs scope | "across the earlier builds" | 520 is Signal alone |
+| 3 Oct 2026 | Instacart AUC | 0.989 vs 0.857 | the source chart prints 0.9886 and 0.8566, the work page already said so, and rule 3 does not round |
+| 3 Oct 2026 | Prompt tuning renderings | six library renderings tried, which /assist repeated as six shorter versions | six counted the full library; the shorter versions tried are five (dedupe, nosub, outline, bare, keysub) in assist-replay.json and the /assist table |
+| 3 Oct 2026 | Arcade | 15 apps, 6 pull live data | SQL Tarot queries data.austintexas.gov and Streak Autopsy fetches an Open-Meteo forecast, so eight apps make live requests |
+| 3 Oct 2026 | Raccoon window | 23 Apr – 10 May 2026 | the Raccoon row's 17 days and the page's period run from 24 Apr; 23 Apr is the baseline reading before it started |
+| 3 Oct 2026 | Shadow and Gemini rows | no "about" wording | Samie approved "about one suggestion in five" on the work page and "about 40% of the cost" on /assist as written |

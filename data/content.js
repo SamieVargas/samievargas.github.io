@@ -628,15 +628,15 @@ const TK_NOTES = [
 ];
 
 const TK_META = [
-  { name: 'Tab title', attr: '<title>', key: '<title>', max: 60, current: 'Samie Vargas · applied AI', status: 'Live · 25 chars',
-    why: 'My name on its own loses to every other Samie Vargas in a search result, and it says nothing in a tab strip of twelve, so this says what I do in the space I have.' },
-  { name: 'Social title', attr: 'og:title · twitter:title', key: 'og:title', max: 70, current: 'I build AI into the workflows we already use, and test them myself.', status: 'Live · 67 chars',
-    why: 'This is the line that shows up in someone\'s Slack, which is how most people get here, so it should be the claim, since my name is already on the card as the domain.' },
+  { name: 'Tab title', attr: '<title>', key: '<title>', max: 60, current: 'Samie Vargas', status: 'Live · 12 chars',
+    why: 'A tab strip and a bookmarks bar only have room for a name, and the name is what someone is looking for when they come back, so the tab says Samie Vargas and the claim lives on the page itself.' },
+  { name: 'Social title', attr: 'og:title · twitter:title', key: 'og:title', max: 70, current: 'Samie Vargas', status: 'Live · 12 chars',
+    why: 'This is the line that shows up in someone\'s Slack, which is how most people get here, and the description under it already carries the proof, so the title is just my name, which is what someone scanning a thread is looking for.' },
   { name: 'Social description', attr: 'og:description', key: 'og:description', max: 200, current: 'Agents, RAG, agent assist, fine-tuning and MCP, a dot for every test case, and five builds with their evals, from Field discovery to Guideline Assist.', status: 'Live · 150 chars',
     why: 'The title makes the claim, so this carries proof instead of repeating it, and every number here is one I can walk someone through.' },
   { name: 'Search description', attr: 'meta name="description"', key: 'description', max: 160, current: 'I build AI into the workflows we already use, and test them myself. Five builds with dated evals, eight years at GLG. Austin, remote.', status: 'Live · 133 chars',
     why: 'Google cuts around 155 and my old one was 197, so the part being dropped was the location, and this ends on the strongest clause while still keeping Austin.' },
-  { name: 'Card alt text', attr: 'og:image:alt', current: 'Samie Vargas, applied AI. Austin, remote.', status: 'Live',
+  { name: 'Card alt text', attr: 'og:image:alt', current: 'Samie Vargas', status: 'Live',
     why: 'Some clients and every screen reader get this instead of the image, and it was missing entirely.' },
   { name: 'Canonical + theme', attr: 'link canonical · meta theme-color', current: 'https://samievargas.com/ · #1a6b5a', status: 'Live',
     why: 'The site answers on two domains, so one of them has to be the real one, and the theme colour tints mobile browser chrome to the same green as everything else.' },
@@ -664,7 +664,7 @@ const ARCADE_APPS = [
   { slug: 'died-doing-what', needs: ['live'], preview: 'bars', shot: 'shots-clean/died-doing-what.png', title: 'Died Doing What', badge: 'live data', accent: '#8a4a3a', feat: true, hook: 'Pick a trade and Wikidata reports how its people actually died, so for poets tuberculosis leads at a median age of 58.' },
   { slug: 'taco-coin-flip', needs: ['live'], preview: 'terminal', shot: 'shots-clean/taco-flip.png', title: 'Taco Coin Flip', badge: 'live data', accent: '#b31f5b', feat: true, hook: "Settles a lunch argument between two Austin restaurants, and if one scored worse on the city's real inspection records then the coin defers to the cleaner option." },
   { slug: 'corporate-translator', needs: ['browser'], preview: 'terminal', shot: 'shots-clean/translator.png', title: 'Corporate Translator', badge: 'no data needed', accent: '#4a5ac9', feat: true, hook: 'Paste an email and slide from passive-aggressive to Texan warm, and the slider genuinely rewrites the text.' },
-  { slug: 'streak-autopsy', needs: ['browser'], preview: 'grid', shot: 'shots-clean/streak-autopsy.png', title: 'Streak Autopsy', badge: 'tracks your taps', accent: '#6b6255', feat: true, hook: 'A habit tracker that only gets interesting when you fail, so two missed days and it stamps the habit DECEASED and opens a case file.' },
+  { slug: 'streak-autopsy', needs: ['browser', 'live'], preview: 'grid', shot: 'shots-clean/streak-autopsy.png', title: 'Streak Autopsy', badge: 'live + your taps', accent: '#6b6255', feat: true, hook: 'A habit tracker that only gets interesting when you fail, so two missed days and it stamps the habit DECEASED and opens a case file.' },
   { slug: 'whodunit-roulette', needs: ['live', 'export'], preview: 'terminal', shot: 'shots-clean/whodunit.png', title: 'Whodunit Roulette', badge: 'live + your export', accent: '#7a3b8f', feat: true, hook: 'Picks your next mystery by mood, and if you import your Goodreads or StoryGraph export it learns which authors you return to.' },
   { slug: 'nepotism-graph', needs: ['live'], preview: 'terminal', shot: 'shots-clean/nepotism.png', title: 'The Nepotism Graph', badge: 'live data', accent: '#1a6b5a', hook: 'Which professions run in families, so of the 25,885 conductors in Wikidata, 347 have a relative who also conducted.' },
   { slug: 'same-name', needs: ['live'], preview: 'terminal', shot: 'shots-clean/same-name.png', title: 'Same Name, Different Life', badge: 'live data', accent: '#1a6b5a', hook: 'Every human in Wikidata who carried your name, as a timeline, a constellation, and a list.' },
@@ -672,7 +672,7 @@ const ARCADE_APPS = [
   { slug: 'was-it-worth-it', needs: ['browser'], preview: 'grid', shot: 'shots-clean/worth-it-v2.png', title: 'Was It Worth It?', badge: 'tracks your taps', accent: '#6b6255', hook: 'Log a purchase and thirty days later it asks whether you still care, and it keeps your lifetime regret rate.' },
   { slug: 'sample-size-roast', needs: ['browser'], preview: 'bars', shot: 'shots-clean/sample-size.png', title: 'Sample Size Roast', badge: 'no data needed', accent: '#4a5ac9', hook: 'Paste a percentage claim, give it n, and receive consequences, which is real margin-of-error math plus an honest rewrite of the stat.' },
   { slug: 'oracle', needs: ['browser'], preview: 'ring', shot: 'shots-clean/oracle.png', title: 'One-Question Oracle', badge: 'no data needed', accent: '#4a5ac9', hook: 'An obsidian scrying stone that never answers, so you ask it anything and it hands back a harder question.' },
-  { slug: 'sql-tarot', needs: ['browser'], preview: 'grid', shot: 'shots-clean/sql-tarot.png', title: 'SQL Tarot', badge: 'no data needed', accent: '#7a3b8f', hook: 'Fourteen SQL clauses, upright or reversed, dealt into past, present, and ships-to-prod.' },
+  { slug: 'sql-tarot', needs: ['browser', 'live'], preview: 'grid', shot: 'shots-clean/sql-tarot.png', title: 'SQL Tarot', badge: 'live data', accent: '#7a3b8f', hook: 'Fourteen SQL clauses, upright or reversed, dealt into past, present, and ships-to-prod.' },
   { slug: 'locked-room', needs: ['browser'], preview: 'ring', shot: 'shots-clean/locked-room.png', title: 'The Locked Room', badge: 'no data needed', accent: '#7a3b8f', hook: 'A house, a body, six guests, and one impossible exit, with a fresh locked-room mystery generated every time.' },
   { slug: 'escalation-simulator', needs: ['browser'], preview: 'ring', shot: 'shots-clean/escalation.png', title: 'Escalation Simulator', badge: 'no data needed', accent: '#8a4a3a', hook: 'An enterprise account is on fire and you have five decisions, and every choice moves account health and none of them are free.' },
 ];
