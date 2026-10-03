@@ -81,14 +81,14 @@ input, button { font: inherit; }
 
       <div class="ask-grid" style="animation: rise 520ms ease both; animation-delay: 260ms">
         <div>
-          <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #6f8794">FROM</div>
-          <input id="inputA" type="text" value="Agatha Christie" placeholder="Anything in Wikidata" class="term-input">
+          <div id="labelA" style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #6f8794">FROM</div>
+          <input id="inputA" type="text" aria-labelledby="labelA" value="Agatha Christie" placeholder="Anything in Wikidata" class="term-input">
           <div id="statusA" style="font-family: 'Space Mono', monospace; font-size: 11px; color: #5ee0c0; margin-top: 8px; min-height: 16px">&nbsp;</div>
         </div>
         <div class="ask-arrow" style="font-family: 'Space Mono', monospace; font-size: 22px; color: #3d5563; text-align: center; padding-bottom: 34px">→</div>
         <div>
-          <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #6f8794">TO</div>
-          <input id="inputB" type="text" value="Stardew Valley" placeholder="Anything else" class="term-input">
+          <div id="labelB" style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #6f8794">TO</div>
+          <input id="inputB" type="text" aria-labelledby="labelB" value="Stardew Valley" placeholder="Anything else" class="term-input">
           <div id="statusB" style="font-family: 'Space Mono', monospace; font-size: 11px; color: #5ee0c0; margin-top: 8px; min-height: 16px">&nbsp;</div>
         </div>
         <button id="connectBtn" type="button" style="background: #5ee0c0; color: #0b0f14; border: none; padding: 17px 28px; font-family: 'Space Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: 1.8px; white-space: nowrap; cursor: pointer; margin-bottom: 26px">FIND THE PATH</button>
@@ -120,7 +120,7 @@ input, button { font: inherit; }
     <div id="howPanel" style="display: none">
       <div style="border: 1px solid #1e2a33; padding: 28px 30px; margin-top: 4px">
         <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #6f8794">HOW IT FINDS A PATH</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 26px; margin-top: 18px; font-size: 14px; line-height: 1.7; color: #b8ccd4">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 26px; margin-top: 18px; font-size: 14px; line-height: 1.7; color: #b8ccd4">
           <div><span style="color: #5ee0c0">1 · Resolve</span><br>Each box of text goes to the Wikidata search API and comes back as a QID, so nothing guesses at identifiers.</div>
           <div><span style="color: #5ee0c0">2 · Expand</span><br>One SPARQL query per endpoint pulls every item it links to or from, in both directions, with the property that joins them.</div>
           <div><span style="color: #5ee0c0">3 · Intersect</span><br>Bidirectional search: the two neighbour sets are intersected in the browser. Anything in both is a two-degree bridge.</div>
@@ -412,7 +412,7 @@ async function thirdDegree(an, bn) {
     .filter(id => an[id].links.some(l => !BORING[l.pid] && PROP_NAMES[l.pid]))
     .slice(0, 14);
   if (!seeds.length) return null;
-  step("Expanding " + seeds.length + " specific neighbours for a third hop", "→", "#8ba3af");
+  step("Expanding " + seeds.length + " specific neighbour" + (seeds.length === 1 ? "" : "s") + " for a third hop", "→", "#8ba3af");
   const values = seeds.map(id => "wd:" + id).join(" ");
   const q = 'SELECT ?seed ?other ?otherLabel ?otherDescription ?p WHERE { ' +
     'VALUES ?seed { ' + values + ' } ' +
@@ -535,7 +535,7 @@ async function connect() {
 
     setProgress("EXPANDING NEIGHBOURS OF " + a.id + "…");
     const an = await neighbours(a.id);
-    step(Object.keys(an).length.toLocaleString() + " neighbours around " + a.label, "✓", "#8ba3af");
+    step(Object.keys(an).length.toLocaleString() + (Object.keys(an).length === 1 ? " neighbour" : " neighbours") + " around " + a.label, "✓", "#8ba3af");
 
     // Direct link?
     if (an[b.id]) {
@@ -550,7 +550,7 @@ async function connect() {
 
     setProgress("EXPANDING NEIGHBOURS OF " + b.id + "…");
     const bn = await neighbours(b.id);
-    step(Object.keys(bn).length.toLocaleString() + " neighbours around " + b.label, "✓", "#8ba3af");
+    step(Object.keys(bn).length.toLocaleString() + (Object.keys(bn).length === 1 ? " neighbour" : " neighbours") + " around " + b.label, "✓", "#8ba3af");
 
     setProgress("INTERSECTING THE TWO SETS…");
     const bridges = [];
@@ -561,12 +561,12 @@ async function connect() {
         score: scoreBridge(an[id].links, bn[id].links)
       });
     });
-    step(bridges.length + " items appear in both sets", bridges.length ? "✓" : "×", bridges.length ? "#5ee0c0" : "#e08a6f");
+    step(bridges.length + (bridges.length === 1 ? " item appears" : " items appear") + " in both sets", bridges.length ? "✓" : "×", bridges.length ? "#5ee0c0" : "#e08a6f");
 
     if (!bridges.length) {
       finish({
         searching: false,
-        message: a.label + " and " + b.label + " share no direct neighbour. They are connected somewhere further out, but this tool stops at two degrees on purpose, because three would mean tens of thousands of queries against a public endpoint.",
+        message: a.label + " and " + b.label + " share no direct neighbour. They are connected somewhere further out, but with nothing shared this tool stops at two degrees on purpose, in either mode, because a full search out to three would mean tens of thousands of queries against a public endpoint, and hard mode only pays for its one batched third hop when the shared neighbours it found were all generic.",
         msgTag: "NO TWO-DEGREE PATH", msgOk: false, scanned: Object.keys(an).length + Object.keys(bn).length
       });
       return;

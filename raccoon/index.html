@@ -162,6 +162,10 @@
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: .1s; } .reveal-delay-2 { transition-delay: .2s; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-eyebrow, .hero h1, .hero-sub, .hero-meta { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
 
     /* ── C6: the battery drain that opens the invoice ──────── */
     .bat-load {
@@ -289,7 +293,7 @@
       <div class="line-item"><span class="desc">Body battery floor</span><span class="val val-bad">5 / 100</span></div>
       <div class="line-item"><span class="desc">Consecutive days at floor (≤6)</span><span class="val val-bad">5 days</span></div>
       <div class="line-item"><span class="desc">Pre-raccoon baseline</span><span class="val val-muted">20 / 100</span></div>
-      <div class="line-item"><span class="desc">Average during incident</span><span class="val val-bad">10 / 100</span></div>
+      <div class="line-item"><span class="desc">Average during incident</span><span class="val val-bad">12.1 / 100</span></div>
       <div class="line-item">
         <span class="desc">Days to recover after removal<small>the nervous system does not care that the threat is gone</small></span>
         <span class="val val-bad">8 days</span>
@@ -477,7 +481,7 @@
       <div class="phase-date">May 4–10</div>
       <div class="phase-dot warn"></div>
       <div>
-        <div class="phase-label">Nobody warned me about the 8-day recovery lag</div>
+        <div class="phase-label">Nobody warned me about the 8-day recovery lag.</div>
         <div class="phase-story">Body battery climbed slowly (6, 23, 18, 26, 18, 11, 17) and sleep crept up (71, 85, 80, 86, 79, 66, 80), non-linear and two steps forward, one back. The body keeps the score longer than you'd expect, even after the threat is completely gone, and this is the part the data made visible.</div>
         <div class="pills">
           <span class="pill warn">8 days to stabilize</span>
@@ -491,7 +495,7 @@
       <div class="phase-date">May 10+</div>
       <div class="phase-dot good"></div>
       <div>
-        <div class="phase-label">I'm back to baseline</div>
+        <div class="phase-label">I'm back to baseline.</div>
         <div class="phase-story">Sleep scores are back above 80, body battery is climbing and morning workouts have resumed, this time without wildlife. True crime podcasts are fully exonerated, and the raccoon left no forwarding address.</div>
         <div class="pills">
           <span class="pill good">sleep 80+</span>
@@ -512,12 +516,13 @@
 <script>
   const toggle = document.getElementById('dark-toggle');
   const html = document.documentElement;
-  const saved = localStorage.getItem('theme');
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
   if (saved) html.setAttribute('data-theme', saved);
   toggle.addEventListener('click', () => {
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
   });
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
@@ -525,7 +530,7 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 <script type="module">
-import { RACCOON_LIFE } from '../data/content.js?v=20261003a';
+import { RACCOON_LIFE } from '../data/content.js?v=20261003c';
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

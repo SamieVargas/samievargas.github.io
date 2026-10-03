@@ -76,8 +76,8 @@ input, button { font: inherit; }
 
       <div style="display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; align-items: flex-end; animation: rise 520ms ease both; animation-delay: 260ms">
         <div style="flex: 1; min-width: 250px">
-          <div style="font-size: 10px; letter-spacing: 2px; color: #85908f">PROFESSION</div>
-          <input type="text" id="profession-input" value="actor" placeholder="actor, conductor, racing driver" style="width: 100%; box-sizing: border-box; background: transparent; border: none; border-bottom: 1.5px solid #343d44; padding: 10px 0; font-family: 'Playfair Display', serif; font-size: 29px; color: #f0ece4; outline: none">
+          <div id="profession-label" style="font-size: 10px; letter-spacing: 2px; color: #85908f">PROFESSION</div>
+          <input type="text" id="profession-input" aria-labelledby="profession-label" value="actor" placeholder="actor, conductor, racing driver" style="width: 100%; box-sizing: border-box; background: transparent; border: none; border-bottom: 1.5px solid #343d44; padding: 10px 0; font-family: 'Playfair Display', serif; font-size: 29px; color: #f0ece4; outline: none">
         </div>
         <button type="button" id="run-btn" style="background: #d9b36a; color: #101418; border: none; padding: 16px 26px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.8px; white-space: nowrap; cursor: pointer">QUERYING</button>
       </div>
@@ -107,7 +107,7 @@ input, button { font: inherit; }
 </div>
 
 <script type="module">
-import { stagedLoader } from '../js/staged-loader.js?v=20261003a';
+import { stagedLoader } from '../js/staged-loader.js?v=20261003c';
 
 // ---- Wikidata access (no keys, browser-friendly endpoints) ----
 const SPARQL = "https://query.wikidata.org/sparql";
@@ -423,9 +423,9 @@ function renderData() {
   const share = s.totalInTrade ? ((nepoCount / s.totalInTrade) * 100).toFixed(1) + "%" : "—";
 
   let finding;
-  if (ids.length >= 4) finding = "The " + lineSurname + " line runs " + ids.length + " generations deep in this trade. Whatever being " + (occLabel ? "an " + occLabel : "in it") + " takes, it is being handed down at the dinner table.";
+  if (ids.length >= 4) finding = "The " + lineSurname + " line runs " + ids.length + " generations deep in this trade. Whatever being " + (occLabel ? (/^[aeiou]/i.test(occLabel) ? "an " : "a ") + occLabel : "in it") + " takes, it is being handed down at the dinner table.";
   else if (s.totalInTrade && nepoCount / s.totalInTrade > 0.03) finding = "At least " + share + " of recorded " + occLabel + "s had a parent or child in the same work. For a trade nobody calls hereditary, that is a number.";
-  else finding = g.groups.length + " families appear twice or more among " + occLabel + "s. Wikidata only knows the households somebody recorded, so read this as a floor.";
+  else finding = g.groups.length + (g.groups.length === 1 ? " family appears" : " families appear") + " twice or more among " + occLabel + "s. Wikidata only knows the households somebody recorded, so read this as a floor.";
 
   const lineName = lineSurname ? "The " + lineSurname + "s" : "One family";
   const lineSpan = (firstYear && lastYear ? firstYear + " → " + lastYear + " · " : "") + ids.length + " generations · click any dynasty below to follow it instead";
@@ -466,7 +466,7 @@ function renderData() {
       '</div>' +
       '<div>' +
         '<div style="font-size: 9.5px; letter-spacing: 2px; color: #85908f">HOW TO READ IT</div>' +
-        '<p style="font-size: 12.5px; line-height: 1.75; color: #a8b1b0; margin: 10px 0 0">Family relations here are stated facts in Wikidata, with nothing inferred. Generation chains are built by walking parent edges, so a five-deep line means five recorded parent-child links in the same trade. Coverage is thin outside the famous, so every number here is a floor.</p>' +
+        '<p style="font-size: 12.5px; line-height: 1.75; color: #a8b1b0; margin: 10px 0 0">Family relations here are stated facts in Wikidata, with nothing inferred. Generation chains are built by walking parent edges, so a five-deep line means five generations joined by four recorded parent-child links in the same trade. Coverage is thin outside the famous, so every number here is a floor.</p>' +
         '<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 18px; border-top: 1px solid #242c33; padding-top: 14px">' +
           '<div style="font-size: 9.5px; letter-spacing: 2px; color: #85908f">THE QUERY</div>' +
           '<button type="button" id="query-toggle" style="background: transparent; border: none; color: #d9b36a; padding: 0; font-size: 10.5px; letter-spacing: 1.2px; cursor: pointer; border-bottom: 1px solid #d9b36a">' + (state.showQuery ? 'HIDE' : 'SHOW SPARQL') + '</button>' +

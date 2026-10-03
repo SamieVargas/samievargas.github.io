@@ -43,7 +43,7 @@ input { font: inherit; }
       <div style="font-size: 11px; letter-spacing: 2px; color: #6b6b73; animation: riseH 520ms ease both; animation-delay: 120ms"><span style="color: #b8331a">[ FIG. 10 ]</span>&nbsp;&nbsp;PASTE A STAT. RECEIVE CONSEQUENCES.</div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 46px; margin-top: 42px; align-items: start">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); gap: 46px; margin-top: 42px; align-items: start">
 
       <div>
         <div style="display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap">
@@ -52,30 +52,30 @@ input { font: inherit; }
         </div>
 
         <div style="font-size: 10.5px; letter-spacing: 2px; color: #6b6b73">THE CLAIM</div>
-        <input type="text" id="claimInput" value="83% of users prefer the new dashboard" placeholder="83% of users prefer the new dashboard" style="width: 100%; box-sizing: border-box; margin-top: 10px; padding: 18px; border: 2px solid #16161a; background: #fff; font-family: 'Playfair Display', serif; font-size: 21px; font-style: italic; outline: none">
+        <input type="text" id="claimInput" aria-label="The claim" value="83% of users prefer the new dashboard" placeholder="83% of users prefer the new dashboard" style="width: 100%; box-sizing: border-box; margin-top: 10px; padding: 18px; border: 2px solid #16161a; background: #fff; font-family: 'Playfair Display', serif; font-size: 21px; font-style: italic; outline: none">
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 26px">
           <div>
             <div style="font-size: 10.5px; letter-spacing: 2px; color: #6b6b73">THE PERCENTAGE</div>
-            <input type="number" id="pctInput" value="83" style="width: 100%; box-sizing: border-box; margin-top: 10px; padding: 14px 16px; border: 2px solid #16161a; background: #fff; font-size: 24px; outline: none">
+            <input type="number" id="pctInput" aria-label="The percentage" value="83" style="width: 100%; box-sizing: border-box; margin-top: 10px; padding: 14px 16px; border: 2px solid #16161a; background: #fff; font-size: 24px; outline: none">
           </div>
           <div>
             <div style="font-size: 10.5px; letter-spacing: 2px; color: #6b6b73">n = ?</div>
-            <input type="number" id="nInput" value="12" style="width: 100%; box-sizing: border-box; margin-top: 10px; padding: 14px 16px; border: 2px solid #16161a; background: #fff; font-size: 24px; outline: none">
+            <input type="number" id="nInput" aria-label="n, the sample size" value="12" style="width: 100%; box-sizing: border-box; margin-top: 10px; padding: 14px 16px; border: 2px solid #16161a; background: #fff; font-size: 24px; outline: none">
           </div>
         </div>
 
         <div id="secondBlock" style="display: none; margin-top: 26px; border-left: 3px solid #16161a; padding-left: 16px">
           <div style="font-size: 10.5px; letter-spacing: 2px; color: #6b6b73">THE SECOND CLAIM</div>
-          <input type="text" id="claimBInput" value="71% of users prefer the old one" placeholder="71% of users prefer the old one" style="width: 100%; box-sizing: border-box; margin-top: 10px; padding: 14px; border: 2px solid #16161a; background: #fff; font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; outline: none">
+          <input type="text" id="claimBInput" aria-label="The second claim" value="71% of users prefer the old one" placeholder="71% of users prefer the old one" style="width: 100%; box-sizing: border-box; margin-top: 10px; padding: 14px; border: 2px solid #16161a; background: #fff; font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; outline: none">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px">
             <div>
               <div style="font-size: 10px; letter-spacing: 1.6px; color: #6b6b73; white-space: nowrap">PERCENTAGE</div>
-              <input type="number" id="pctBInput" value="71" style="width: 100%; box-sizing: border-box; margin-top: 8px; padding: 12px 14px; border: 2px solid #16161a; background: #fff; font-size: 20px; outline: none">
+              <input type="number" id="pctBInput" aria-label="Second claim percentage" value="71" style="width: 100%; box-sizing: border-box; margin-top: 8px; padding: 12px 14px; border: 2px solid #16161a; background: #fff; font-size: 20px; outline: none">
             </div>
             <div>
               <div style="font-size: 10px; letter-spacing: 1.6px; color: #6b6b73; white-space: nowrap">n = ?</div>
-              <input type="number" id="nBInput" value="14" style="width: 100%; box-sizing: border-box; margin-top: 8px; padding: 12px 14px; border: 2px solid #16161a; background: #fff; font-size: 20px; outline: none">
+              <input type="number" id="nBInput" aria-label="Second claim n, the sample size" value="14" style="width: 100%; box-sizing: border-box; margin-top: 8px; padding: 12px 14px; border: 2px solid #16161a; background: #fff; font-size: 20px; outline: none">
             </div>
           </div>
         </div>
@@ -300,8 +300,8 @@ randomBtn.addEventListener("click", () => {
 
 copyBtn.addEventListener("click", () => {
   const v = compute();
-  const text = claimInput.value + " (n=" + v.n + "), so the true value is somewhere between " + v.lo + "% and " + v.hi + "%. " + v.roast;
-  try { navigator.clipboard.writeText(text); } catch (e) {}
+  const text = claimInput.value + " (n=" + v.n + "), so the true value is somewhere between " + v.lo.toFixed(1) + "% and " + v.hi.toFixed(1) + "%. " + v.roast;
+  try { navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
   copied = true;
   updateAll();
   setTimeout(() => { copied = false; updateAll(); }, 1800);
