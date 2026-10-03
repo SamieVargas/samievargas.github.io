@@ -1,9 +1,19 @@
 {
-  "generated": "2026-10-03T17:30:42Z",
+  "generated": "2026-10-03T21:50:28Z",
   "repo": "SamieVargas/samievargas.github.io",
   "first": "2026-05-20T20:37:01-05:00",
-  "total": 344,
+  "total": 347,
   "commits": [
+    {
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "date": "2026-10-03T19:43:44Z",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
+    },
+    {
+      "sha": "5abd48d7da0bb8e4812f2dee039334e645a33f42",
+      "date": "2026-10-03T19:32:08Z",
+      "message": "Say 34 dbt tests and give the Pixels export its length"
+    },
     {
       "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
       "date": "2026-10-03T17:13:25Z",
@@ -43,22 +53,12 @@
       "sha": "940337435c237d624fa51d0ace29dc3ff6c99a61",
       "date": "2026-10-03T15:25:00Z",
       "message": "Strip the last metadata from the site's images"
-    },
-    {
-      "sha": "54e9040fcda7d9ec089d2e0387a5adfb2f5d192f",
-      "date": "2026-10-03T15:22:25Z",
-      "message": "Lock the facts sweep in FACTS.md, with every row checked"
-    },
-    {
-      "sha": "e541778b7566ac26d1f1fbbd5523e45da5c0652d",
-      "date": "2026-10-03T14:53:43Z",
-      "message": "Fix what the facts sweep found on the pages"
     }
   ],
   "weeks": [
-    44,
-    29,
-    98,
+    53,
+    59,
+    59,
     13,
     0,
     3,
@@ -69,77 +69,77 @@
     0,
     0,
     0,
-    1,
-    25,
-    16,
+    2,
+    26,
+    14,
     15,
     0,
     75,
-    25
+    28
   ],
   "pages": [
     {
       "file": "index.html",
       "label": "Work",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:43:44Z",
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
     },
     {
       "file": "life.html",
       "label": "Life",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:43:44Z",
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
     },
     {
       "file": "resume.html",
       "label": "Résumé",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:32:08Z",
+      "sha": "5abd48d7da0bb8e4812f2dee039334e645a33f42",
+      "message": "Say 34 dbt tests and give the Pixels export its length"
     },
     {
       "file": "pixels/index.html",
       "label": "Pixels replay",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:43:44Z",
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
     },
     {
       "file": "assist/index.html",
       "label": "Assist replay",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:43:44Z",
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
     },
     {
       "file": "apps/index.html",
       "label": "Arcade",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:43:44Z",
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
     },
     {
       "file": "raccoon/index.html",
       "label": "Raccoon",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:43:44Z",
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
     },
     {
       "file": "toolkit.html",
       "label": "Toolkit",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:43:44Z",
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
     },
     {
       "file": "404.html",
       "label": "404",
-      "date": "2026-10-03T17:13:25Z",
-      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+      "date": "2026-10-03T19:43:44Z",
+      "sha": "1cbe80b67c53156698e273a3e2db6c45e8d5072f",
+      "message": "Fix the copy and small usability concerns the game reviews left open"
     }
   ],
   "notes": [
@@ -193,7 +193,7 @@
     }
   ],
   "resume": {
-    "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
-    "date": "2026-10-03T17:13:25Z"
+    "sha": "5abd48d7da0bb8e4812f2dee039334e645a33f42",
+    "date": "2026-10-03T19:32:08Z"
   }
 }
