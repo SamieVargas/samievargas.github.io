@@ -236,7 +236,7 @@ export const CERT_LIST = [
   ] },
   { name: 'Google AI Professional Certificate', issuer: 'Google / Coursera · ID 719MATVYL9UZ · Jun 2026', href: 'https://coursera.org/verify/professional-cert/719MATVYL9UZ' },
   { name: 'Google Advanced Data Analytics', issuer: 'Google / Coursera · ID 4REOBHKQJ0DS · Jun 2026', href: 'https://coursera.org/verify/professional-cert/4REOBHKQJ0DS' },
-  { name: 'Google Business Intelligence', issuer: 'Google / Coursera · Jun 2026', href: 'https://www.coursera.org/account/accomplishments/specialization/CLF3CXNNZO4L' },
+  { name: 'Google Business Intelligence', issuer: 'Google / Coursera · ID CLF3CXNNZO4L · Jun 2026', href: 'https://coursera.org/verify/professional-cert/CLF3CXNNZO4L' },
   { name: 'Snowflake Hands-On Essentials: Data Warehouse', issuer: 'Snowflake · Badge ID 184380098 · Jun 2026', href: 'https://achieve.snowflake.com/e3201335-75c2-4604-98c1-4c8063699131' },
   { name: 'dbt Fundamentals', issuer: 'dbt Labs · May 2026', href: 'https://credentials.getdbt.com/5470c199-7753-4f90-99a3-07e8f8c6fe51' },
   { name: 'Google Analytics Certification (GA4)', issuer: 'Google Skillshop · ID 182987115 · May 2026', href: 'https://skillshop.credential.net/da7f2a2d-1e02-4267-aaca-d6bfbfc3036e#acc.5RV2vAUu' },
@@ -260,7 +260,7 @@ const ROLES = [
     'Built AI-powered workflows using Claude, ChatGPT, Gemini, Copilot, and in-house GPT/Claude tools to accelerate analysis and output quality; drove adoption across the team.',
     'Manage 2–3 active contract renewals concurrently, owning the full lifecycle from health assessment through negotiation and close.'] },
   { title: 'Team Leader', period: 'May 2022 – Oct 2023', meta: 'People manager · founded the Center of Excellence', bullets: [
-    'Led a team of 5 client-facing managers while carrying a personal enterprise book, adapting coverage to account needs and growth cycles while maintaining performance standards during scaling.',
+    'Led a team of 5 client solutions specialists while carrying a personal enterprise book, adapting coverage to account needs and growth cycles while maintaining performance standards during scaling.',
     'Founded and scaled a Center of Excellence: lifecycle playbooks, engagement templates, escalation frameworks, and onboarding guides, adopted org-wide and reducing new manager ramp time.',
     'Designed and built virtual Kanban and sprint performance boards giving the team real-time visibility into account health, delivery milestones, and individual performance.',
     'Designed structured reporting cadences that gave leadership consistent visibility into retention risk, team performance, and revenue pipeline.'] },
@@ -661,12 +661,12 @@ const TK_TOKENS = [
 
 const ARCADE_APPS = [
   { slug: 'six-degrees', needs: ['live'], preview: 'terminal', shot: 'shots-clean/six-degrees-v2.png', title: 'Six Degrees of Anything', badge: 'live data', accent: '#1a6b5a', feat: true, hook: 'Two things, whether people or films or bands or towns, and the shortest path between them, so Dolly Parton reaches Austin through Willie Nelson.' },
-  { slug: 'died-doing-what', needs: ['live'], preview: 'bars', shot: 'shots-clean/died-doing-what.png', title: 'Died Doing What', badge: 'live data', accent: '#8a4a3a', feat: true, hook: 'Pick a trade and Wikidata reports how its people actually died, so for poets tuberculosis leads at a median age of 58.' },
+  { slug: 'died-doing-what', needs: ['live'], preview: 'bars', shot: 'shots-clean/died-doing-what.png', title: 'Died Doing What', badge: 'live data', accent: '#8a4a3a', feat: true, hook: 'Pick a trade and Wikidata reports how its people actually died, so for poets tuberculosis leads, ahead of heart attacks and cancer.' },
   { slug: 'taco-coin-flip', needs: ['live'], preview: 'terminal', shot: 'shots-clean/taco-flip.png', title: 'Taco Coin Flip', badge: 'live data', accent: '#b31f5b', feat: true, hook: "Settles a lunch argument between two Austin restaurants, and if one scored worse on the city's real inspection records then the coin defers to the cleaner option." },
   { slug: 'corporate-translator', needs: ['browser'], preview: 'terminal', shot: 'shots-clean/translator.png', title: 'Corporate Translator', badge: 'no data needed', accent: '#4a5ac9', feat: true, hook: 'Paste an email and slide from passive-aggressive to Texan warm, and the slider genuinely rewrites the text.' },
   { slug: 'streak-autopsy', needs: ['browser', 'live'], preview: 'grid', shot: 'shots-clean/streak-autopsy.png', title: 'Streak Autopsy', badge: 'live + your taps', accent: '#6b6255', feat: true, hook: 'A habit tracker that only gets interesting when you fail, so two missed days and it stamps the habit DECEASED and opens a case file.' },
   { slug: 'whodunit-roulette', needs: ['live', 'export'], preview: 'terminal', shot: 'shots-clean/whodunit.png', title: 'Whodunit Roulette', badge: 'live + your export', accent: '#7a3b8f', feat: true, hook: 'Picks your next mystery by mood, and if you import your Goodreads or StoryGraph export it learns which authors you return to.' },
-  { slug: 'nepotism-graph', needs: ['live'], preview: 'terminal', shot: 'shots-clean/nepotism.png', title: 'The Nepotism Graph', badge: 'live data', accent: '#1a6b5a', hook: 'Which professions run in families, so of the 25,885 conductors in Wikidata, 347 have a relative who also conducted.' },
+  { slug: 'nepotism-graph', needs: ['live'], preview: 'terminal', shot: 'shots-clean/nepotism.png', title: 'The Nepotism Graph', badge: 'live data', accent: '#1a6b5a', hook: 'Which professions run in families, counted across everyone Wikidata lists in a trade, so you can see how many conductors had a relative who also conducted.' },
   { slug: 'same-name', needs: ['live'], preview: 'terminal', shot: 'shots-clean/same-name.png', title: 'Same Name, Different Life', badge: 'live data', accent: '#1a6b5a', hook: 'Every human in Wikidata who carried your name, as a timeline, a constellation, and a list.' },
   { slug: 'backlog-reaper', needs: ['export'], preview: 'bars', shot: 'shots-clean/backlog-reaper.png', title: 'Backlog Reaper', badge: 'your export', accent: '#8a4a3a', hook: 'Your unplayed game pile scored by guilt with one title condemned, and you can delete it forever or spare it like a coward.' },
   { slug: 'was-it-worth-it', needs: ['browser'], preview: 'grid', shot: 'shots-clean/worth-it-v2.png', title: 'Was It Worth It?', badge: 'tracks your taps', accent: '#6b6255', hook: 'Log a purchase and thirty days later it asks whether you still care, and it keeps your lifetime regret rate.' },

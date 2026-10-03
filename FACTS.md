@@ -67,7 +67,7 @@ This file is the source of truth for every number, date and version that appears
 | Renewal forecasting | $300K per quarter in previously untracked opportunities |
 | Promotions | three in under four years |
 | Education | B.S.A. Biochemistry (Bachelor of Science and Arts), The University of Texas at Austin, graduated May 2018 |
-| Certifications on the résumé | Anthropic AI Fluency (six courses); Databricks AI Agent Fundamentals, Generative AI Fundamentals, Databricks Fundamentals; dbt Fundamentals; Snowflake Hands-On Essentials; Google AI Professional, Advanced Data Analytics, Business Intelligence. Google Data Analytics, GA4 and PMP · PMI were dropped from the résumé on 26 Sep 2026 |
+| Certifications on the résumé | Anthropic AI Fluency (six courses); Databricks AI Agent Fundamentals, Generative AI Fundamentals, Databricks Fundamentals; dbt Fundamentals; Snowflake Hands-On Essentials; Google AI Professional, Advanced Data Analytics, Business Intelligence. Google Data Analytics and GA4 were dropped from the résumé on 26 Sep 2026; PMP was never held and is removed everywhere (see History) |
 | Years at GLG | eight |
 
 ## Field discovery (repo: SamieVargas/Field-Sales-Build, run 22 Sep 2026 unless a row says otherwise)
@@ -186,7 +186,7 @@ This file is the source of truth for every number, date and version that appears
 | --- | --- |
 | Raccoon | body battery floor 5/100 for 5 consecutive days; sleep score 53 vs baseline 81; HRV 26 ms; 11 nights interrupted; 9 calls; 8 days to recover; 17 days total |
 | Raccoon page detail | 3 raccoons; period Apr 24 – May 10, 2026; sleep score average during the incident 75/100; body battery pre-raccoon baseline 20/100; 4 days from finding them to removal; HRV baseline 38 ms, and 47 ms on Apr 23 before it started; the raccoon's counter-claim $95.00 (raccoon/index.html, from Garmin Connect) |
-| Raccoon body battery average | RECONCILE: the page says 10/100 during the incident, but the daily readings in content.js RACCOON_LIFE average 12.1 over Apr 24 – May 10 and 8.3 over Apr 25 – May 3, and only Apr 23 – May 3, which includes the pre-raccoon day, gives 9.8; it may be Garmin's own average, so it stays on the page and out of new copy until Samie checks it |
+| Raccoon body battery average | 12.1/100 during the incident, the mean of the 16 daily readings from Apr 25 to May 10 in content.js RACCOON_LIFE (Apr 24 has none; 194 over 16); replaces the page's 10/100, which matched no window of the readings |
 | Greenbelt | 15 of 21 miles |
 | Poirot | 26 of 33, on Dead Man's Folly |
 | Ring Fit | level 32 |
@@ -200,7 +200,7 @@ This file is the source of truth for every number, date and version that appears
 | --- | --- |
 | Header | 8 years · 6 roles · IC to people manager (six counts Junior and Senior Client Solutions Associate separately) |
 | Senior Manager, Service | Oct 2023 – present; people manager; Senior Team Leader until the org flattened; $14M+ book; ~$3.5M quarterly target; 2–3 active contract renewals at a time |
-| Team Leader | May 2022 – Oct 2023; people manager; led 5 client-facing managers while carrying a personal enterprise book; founded the Center of Excellence |
+| Team Leader | May 2022 – Oct 2023; people manager; led 5 client solutions specialists while carrying a personal enterprise book; founded the Center of Excellence |
 | Senior Client Solutions Manager | Jul 2021 – May 2022; individual contributor; 30+ concurrent enterprise engagements weekly; $1M+ annual revenue within a flagship account; an outreach campaign to 700+ users with the highest response rate to date |
 | Client Solutions Manager | Jul 2020 – Jul 2021; individual contributor; 20+ concurrent engagements; roughly $900K annual revenue (~$900K in the role line) |
 | Junior to Senior Client Solutions Associate | Jul 2018 – Jun 2020; Project Analyst, then Project Associate from Jan 2019; over 10 projects weekly |
@@ -213,19 +213,20 @@ This file is the source of truth for every number, date and version that appears
 | Databricks accreditations | Databricks Academy · Jun 2026 · three accreditations, each with its own credential link |
 | Google AI Professional Certificate | Google / Coursera · Jun 2026 · ID 719MATVYL9UZ |
 | Google Advanced Data Analytics | Google / Coursera · Jun 2026 · ID 4REOBHKQJ0DS |
-| Google Business Intelligence | Google / Coursera · Jun 2026 · no ID shown on the site; see Needs verification |
+| Google Business Intelligence | Google / Coursera · Jun 2026 · ID CLF3CXNNZO4L, verified at coursera.org/verify/professional-cert/CLF3CXNNZO4L (certificate PDF, 5 Jun 2026) |
 | Snowflake Hands-On Essentials: Data Warehouse | Snowflake · Jun 2026 · badge ID 184380098 |
 | dbt Fundamentals | dbt Labs · May 2026 |
-| Google Analytics Certification (GA4) | Google Skillshop · May 2026 · ID 182987115; on the site, off the résumé since 26 Sep 2026 |
-| PSM I | named in the Delivery skills line only, with no verify link; see Needs verification |
+| Google Analytics Certification (GA4) | Google Skillshop · May 2026 · ID 182987115; issued 21 May 2026 and expires 21 May 2027 (certificate PDF); on the site, off the résumé since 26 Sep 2026 |
+| PSM I | Professional Scrum Master I, Scrum.org · 6 May 2026 · certificate 1318010, verified at scrum.org/certificates/1318010 (certificate PDF); named in the Delivery skills line |
+| Six Sigma White Belt | Council for Six Sigma Certification · 11 May 2026 · certification number nslvDTFJHO (certificate PDF); not on the site |
 
 ## Arcade claims (data/content.js ARCADE_APPS hooks and the games' own copy)
 
 | App | Value | Source |
 | --- | --- | --- |
-| Six Degrees of Anything | Dolly Parton reaches Austin through Willie Nelson | UNSOURCED: a live Wikidata result with nothing recorded in the repo |
-| Died Doing What | for poets, tuberculosis leads at a median age of 58 | UNSOURCED: a live Wikidata result; an earlier screenshot of the app showed tuberculosis first at 460 |
-| The Nepotism Graph | of the 25,885 conductors in Wikidata, 347 have a relative who also conducted | UNSOURCED: a live Wikidata result |
+| Six Degrees of Anything | Dolly Parton reaches Austin through Willie Nelson | apps/shots-clean/six-degrees-v2.png, a capture of the live app committed 24 Sep 2026 (in git history once the screenshots are retaken) |
+| Died Doing What | for poets, tuberculosis leads, ahead of heart attacks and cancer (460, 378 and 356 recorded deaths in the capture) | apps/shots-clean/died-doing-what.png, a capture of the app's default poet view committed 24 Sep 2026 |
+| The Nepotism Graph | no figure; the hook names conductors as the example trade | the app itself |
 | SQL Tarot | fourteen SQL clauses, upright or reversed | apps/sql-tarot.html DECK |
 | Whodunit Roulette | 22 curated mysteries in the pool | apps/whodunit-roulette.html BOOKS |
 | Escalation Simulator | 41 days to renewal and five decisions | apps/escalation-simulator.html |
@@ -264,16 +265,9 @@ Each item below is on the site or in a source file the site copies from, and nee
 
 | Item | Why it needs checking | What would resolve it |
 | --- | --- | --- |
-| PSM I in the Delivery skills line | CERTIFICATIONS.md lists it with no verify link and says it stays off the site until one exists, but the work page's skills line names it | add the Scrum.org verify link to CERTIFICATIONS.md, or drop "(PSM I)" from the skills line |
-| Google Business Intelligence link | it points at a coursera.org/account/accomplishments page rather than a public /verify/ link like the other Google certificates, and the site shows no ID for it | open it while logged out; if it asks for a sign-in, swap in the public verify link and add the ID |
-| Coursera course links in CERTIFICATIONS.md | the course links under Google AI Professional and Business Intelligence are /account/accomplishments/records/ pages, which can need a login | open each logged out; only CERTIFICATIONS.md shows them, not the site |
-| Six Sigma White Belt | listed in CERTIFICATIONS.md with no issuer and no link | add both, or remove the row |
-| Every verify and credential link | the sandbox that last checked the site could not reach Skilljar, Coursera, Databricks, Snowflake, dbt or Skillshop | click each link on the work page once |
-| Arcade live results | the three UNSOURCED arcade hooks are live Wikidata results with no record in the repo, and Wikidata changes | re-run each app, then either save the result (a dated screenshot or note) as the source or update the hook |
-| Raccoon body battery average | RECONCILE row above: 10/100 does not reproduce from the daily readings | check the figure in Garmin Connect |
+| Every verify and credential link | the IDs and links now match the certificate PDFs Samie supplied on 3 Oct 2026, but the sandbox could not open Skilljar, Coursera, Databricks, Snowflake, dbt or Skillshop to see the pages load | click each link on the work page once |
 | Gemini 3.8 Flash prices | UNCONFIRMED against Google's own pricing page | check Vertex AI pricing and update the Gemini rows if they differ |
 | Field discovery and Brain Dump prices | both repos mark their list prices as assumptions to re-check | re-read the prices and re-run cost if they changed |
-| Team Leader reports | the work page says the Team Leader role led 5 client-facing managers, and the résumé says it managed 5 client solutions specialists | say which title is right, and make the other match |
 | Self-reported work figures | the résumé and experience rows have no document behind them in this repo | nothing to do unless a figure changes; they are listed so a copy edit cannot drift them |
 
 ## History
@@ -294,4 +288,10 @@ When a row changes, move the old value here with the date it stopped being curre
 | 3 Oct 2026 | Prompt tuning renderings | six library renderings tried, which /assist repeated as six shorter versions | six counted the full library; the shorter versions tried are five (dedupe, nosub, outline, bare, keysub) in assist-replay.json and the /assist table |
 | 3 Oct 2026 | Arcade | 15 apps, 6 pull live data | SQL Tarot queries data.austintexas.gov and Streak Autopsy fetches an Open-Meteo forecast, so eight apps make live requests |
 | 3 Oct 2026 | Raccoon window | 23 Apr – 10 May 2026 | the Raccoon row's 17 days and the page's period run from 24 Apr; 23 Apr is the baseline reading before it started |
+| 3 Oct 2026 | PMP | listed as PMP, Project Management Professional · PMI in CERTIFICATIONS.md and on an earlier résumé | never held, a drift from an earlier editing session; Samie's only PMI credential is the Kickoff: Predictive badge (11 May 2026), which CERTIFICATIONS.md now lists |
+| 3 Oct 2026 | Raccoon body battery average | 10/100 (RECONCILE) | it matched no window of the daily readings; Samie asked for the raccoon to follow FACTS.md, so the page takes the mean of the incident window's readings, 12.1 |
+| 3 Oct 2026 | Arcade hooks | Died Doing What: tuberculosis leads for poets "at a median age of 58"; Nepotism Graph: "of the 25,885 conductors in Wikidata, 347 have a relative who also conducted" | neither figure has a source in the repo; the Died Doing What hook now states only what its 24 Sep capture shows, and the Nepotism Graph hook names the example without a count |
+| 3 Oct 2026 | Team Leader | led 5 client-facing managers (work page) | Samie confirmed 5 client solutions specialists, as the résumé says |
+| 3 Oct 2026 | Google Business Intelligence | linked to a coursera.org/account/accomplishments page with no ID shown | the certificate PDF gives the public verify link and ID CLF3CXNNZO4L |
+| 3 Oct 2026 | PSM I and Six Sigma White Belt | no verify link or issuer on file | the certificate PDFs give Scrum.org certificate 1318010 and the Council for Six Sigma Certification number nslvDTFJHO |
 | 3 Oct 2026 | Shadow and Gemini rows | no "about" wording | Samie approved "about one suggestion in five" on the work page and "about 40% of the cost" on /assist as written |
