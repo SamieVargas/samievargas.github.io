@@ -194,6 +194,88 @@ This file is the source of truth for every number, date and version that appears
 | Tarot | 78 cards, seven decks |
 | Arcade | 15 apps, 8 pull live public data: Six Degrees, Died Doing What, Taco Coin Flip, Whodunit Roulette, The Nepotism Graph and Same Name, plus SQL Tarot's City of Austin query and Streak Autopsy's Austin forecast |
 
+## Work page, experience (data/content.js ROLES; self-reported, like the résumé facts)
+
+| Fact | Value |
+| --- | --- |
+| Header | 8 years · 6 roles · IC to people manager (six counts Junior and Senior Client Solutions Associate separately) |
+| Senior Manager, Service | Oct 2023 – present; people manager; Senior Team Leader until the org flattened; $14M+ book; ~$3.5M quarterly target; 2–3 active contract renewals at a time |
+| Team Leader | May 2022 – Oct 2023; people manager; led 5 client-facing managers while carrying a personal enterprise book; founded the Center of Excellence |
+| Senior Client Solutions Manager | Jul 2021 – May 2022; individual contributor; 30+ concurrent enterprise engagements weekly; $1M+ annual revenue within a flagship account; an outreach campaign to 700+ users with the highest response rate to date |
+| Client Solutions Manager | Jul 2020 – Jul 2021; individual contributor; 20+ concurrent engagements; roughly $900K annual revenue (~$900K in the role line) |
+| Junior to Senior Client Solutions Associate | Jul 2018 – Jun 2020; Project Analyst, then Project Associate from Jan 2019; over 10 projects weekly |
+
+## Certifications on the work page (data/content.js CERT_LIST, copied from CERTIFICATIONS.md)
+
+| Certificate | Value |
+| --- | --- |
+| Anthropic AI Fluency | Anthropic Academy · Jun 2026 · six courses, each with its own Skilljar verify link |
+| Databricks accreditations | Databricks Academy · Jun 2026 · three accreditations, each with its own credential link |
+| Google AI Professional Certificate | Google / Coursera · Jun 2026 · ID 719MATVYL9UZ |
+| Google Advanced Data Analytics | Google / Coursera · Jun 2026 · ID 4REOBHKQJ0DS |
+| Google Business Intelligence | Google / Coursera · Jun 2026 · no ID shown on the site; see Needs verification |
+| Snowflake Hands-On Essentials: Data Warehouse | Snowflake · Jun 2026 · badge ID 184380098 |
+| dbt Fundamentals | dbt Labs · May 2026 |
+| Google Analytics Certification (GA4) | Google Skillshop · May 2026 · ID 182987115; on the site, off the résumé since 26 Sep 2026 |
+| PSM I | named in the Delivery skills line only, with no verify link; see Needs verification |
+
+## Arcade claims (data/content.js ARCADE_APPS hooks and the games' own copy)
+
+| App | Value | Source |
+| --- | --- | --- |
+| Six Degrees of Anything | Dolly Parton reaches Austin through Willie Nelson | UNSOURCED: a live Wikidata result with nothing recorded in the repo |
+| Died Doing What | for poets, tuberculosis leads at a median age of 58 | UNSOURCED: a live Wikidata result; an earlier screenshot of the app showed tuberculosis first at 460 |
+| The Nepotism Graph | of the 25,885 conductors in Wikidata, 347 have a relative who also conducted | UNSOURCED: a live Wikidata result |
+| SQL Tarot | fourteen SQL clauses, upright or reversed | apps/sql-tarot.html DECK |
+| Whodunit Roulette | 22 curated mysteries in the pool | apps/whodunit-roulette.html BOOKS |
+| Escalation Simulator | 41 days to renewal and five decisions | apps/escalation-simulator.html |
+| Was It Worth It? | wait thirty days, then answer yes or no | apps/was-it-worth-it.html |
+| Streak Autopsy | a habit is declared dead at two missed days | apps/streak-autopsy.html |
+| Taco Coin Flip | scores within five points count as a tie | apps/taco-coin-flip.html |
+| Backlog Reaper | a Steam import treats anything over 20 hours as played | apps/backlog-reaper.html |
+
+## Life page, other (data/content.js LIFE_FIELD, PROGRESS, RECORDS, CHRISTIE)
+
+| Fact | Value |
+| --- | --- |
+| Life OS | 2025–26; pulls from two of Samie's own data endpoints; fifteen charts |
+| Tarot tracker | 2025 |
+| Toothbrush | a brush that maps sixteen zones, 45 seconds (self-reported) |
+| In progress bars | Greenbelt 71% (15 of 21 miles); Poirot 79% (26 of 33); Steam review-bombing detection 30%, over 31M+ reviews; solo travel, London first, 20%; the 30% and 20% are Samie's own estimates, not measurements |
+| Record shelf detail | the 1969 Santana with the print, the purple Purple Rain 12-inch, the 1977 Star Wars double LP, thirteen Bond themes plus the 1965 mono comp, three Strokes, two Selenas, one John Mulaney comedy record (Discogs export, Aug 2026) |
+| Christie shelf | publication years per book; read dates and star ratings from the Goodreads export; the Poirot short-story collections before the current book rated 4 by Samie on 25 Sep 2026 |
+| Notes | four notes; the effort curve in note 04 is illustrative and captioned as such |
+
+## Site toolkit and identity
+
+| Fact | Value |
+| --- | --- |
+| Built with | Claude Opus |
+| Builds | five builds with dated evals: Field discovery, Life in Pixels, Guideline Assist, Signal and Brain Dump |
+| Spine | five patterns on the work page: agents, RAG, assist + QA, fine-tuning (in progress, no build yet) and MCP |
+| Social card | 1200×630, was 347×190; redrawn 3 Oct 2026 with just the name |
+| Name only | home tab title, og:title, og:image:alt and the manifest short_name are "Samie Vargas" (3 Oct 2026) |
+| Favicon set | favicon.svg, favicon-16, favicon-32, apple-touch-icon 180, icon-192 and icon-512 |
+| Copy limits on /toolkit | <title> 60, og:title 70, og:description 200, description 160 characters; Google cuts descriptions around 155, and the old description was 197 |
+
+## Needs verification
+
+Each item below is on the site or in a source file the site copies from, and needs Samie to check it before it can be treated as locked. Until then rule 6 applies: it stays where it is and out of new copy.
+
+| Item | Why it needs checking | What would resolve it |
+| --- | --- | --- |
+| PSM I in the Delivery skills line | CERTIFICATIONS.md lists it with no verify link and says it stays off the site until one exists, but the work page's skills line names it | add the Scrum.org verify link to CERTIFICATIONS.md, or drop "(PSM I)" from the skills line |
+| Google Business Intelligence link | it points at a coursera.org/account/accomplishments page rather than a public /verify/ link like the other Google certificates, and the site shows no ID for it | open it while logged out; if it asks for a sign-in, swap in the public verify link and add the ID |
+| Coursera course links in CERTIFICATIONS.md | the course links under Google AI Professional and Business Intelligence are /account/accomplishments/records/ pages, which can need a login | open each logged out; only CERTIFICATIONS.md shows them, not the site |
+| Six Sigma White Belt | listed in CERTIFICATIONS.md with no issuer and no link | add both, or remove the row |
+| Every verify and credential link | the sandbox that last checked the site could not reach Skilljar, Coursera, Databricks, Snowflake, dbt or Skillshop | click each link on the work page once |
+| Arcade live results | the three UNSOURCED arcade hooks are live Wikidata results with no record in the repo, and Wikidata changes | re-run each app, then either save the result (a dated screenshot or note) as the source or update the hook |
+| Raccoon body battery average | RECONCILE row above: 10/100 does not reproduce from the daily readings | check the figure in Garmin Connect |
+| Gemini 3.8 Flash prices | UNCONFIRMED against Google's own pricing page | check Vertex AI pricing and update the Gemini rows if they differ |
+| Field discovery and Brain Dump prices | both repos mark their list prices as assumptions to re-check | re-read the prices and re-run cost if they changed |
+| Team Leader reports | the work page says the Team Leader role led 5 client-facing managers, and the résumé says it managed 5 client solutions specialists | say which title is right, and make the other match |
+| Self-reported work figures | the résumé and experience rows have no document behind them in this repo | nothing to do unless a figure changes; they are listed so a copy edit cannot drift them |
+
 ## History
 
 When a row changes, move the old value here with the date it stopped being current.
