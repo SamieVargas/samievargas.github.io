@@ -207,6 +207,10 @@
     body { background: #fff; }
     .cv-bar { display: none; }
     .cv-sheet { max-width: none; margin: 0; padding: 0; border: none; box-shadow: none; }
+    /* A little less air between blocks on paper keeps the résumé at two
+       pages now that the builds run longer. */
+    .cv-sec { margin-bottom: 10px; }
+    .cv-proj { padding: 6px 0; }
     /* Screen-only, both of them. */
     .guide, .stamp { display: none !important; }
     .js .cv-rv { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -328,7 +332,7 @@
 
   <section class="cv-sec cv-avoid cv-rv">
     <p class="cv-label">Analytics &amp; other work</p>
-    <p class="cv-cert"><strong><a href="https://github.com/SamieVargas/instacart-project">Instacart dbt + ML</a></strong> · dbt Cloud, BigQuery, scikit-learn · staging-to-mart pipeline over 3.4M orders with 35 passing tests; the cited 0.60 reorder rate hides new shoppers at 0.221 and regulars at 0.670 (random forest AUC 0.989 against 0.857).</p>
+    <p class="cv-cert"><strong><a href="https://github.com/SamieVargas/instacart-project">Instacart dbt + ML</a></strong> · dbt Cloud, BigQuery, scikit-learn · staging-to-mart pipeline over 3.4M orders with 35 passing tests; the cited 0.60 reorder rate hides new shoppers at 0.221 and regulars at 0.670 (random forest AUC 0.9886 against 0.8566).</p>
     <p class="cv-cert"><strong><a href="https://www.kaggle.com/code/samievargas/atx-foodie-inspection">ATX Foodie</a></strong> · Python, Socrata API, folium · 21,160 City of Austin inspections; follow-ups average 84.4 against 90.9 for routine visits, and scores drift 2.1 points toward more violations by the fifteenth inspection.</p>
   </section>
 
@@ -375,7 +379,7 @@
 <aside class="stamp" id="stamp" hidden></aside>
 
 <script type="module">
-import { TK_REPO } from './data/content.js?v=20261003a';
+import { TK_REPO } from './data/content.js?v=20261003b';
 
 // ── R1 ── The guide has to sit on the real print margin, so read the
 // @page rule rather than hardcoding a percentage; it then stays honest

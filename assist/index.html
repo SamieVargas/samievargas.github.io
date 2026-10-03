@@ -14,6 +14,9 @@
   <meta property="og:title" content="Guideline Assist, replayed">
   <meta property="og:description" content="A live agent assist and a post-call QA on ASAPP's ABCD support chats, played back one recorded turn at a time.">
   <meta property="og:image" content="https://samievargas.com/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Samie Vargas">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Onest:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="../css/styles.css?v=20261003a">
+  <link rel="stylesheet" href="../css/styles.css?v=20261003b">
 </head>
 <body>
 
@@ -144,7 +147,7 @@
       <span class="px-note rv">the rules for every cut were written down before the first call</span>
     </div>
     <div class="px-split px-split--start">
-        <p class="px-body rv" style="--d:.06s">After the first runs I tried to bring the cost down without losing accuracy, and since most of what arm A spends goes to reading the cached guideline library on every turn, I set the rules before any call, which were no more than 3 points lost on next action or intent and at least 20% cheaper, and tried six shorter versions of the library on 60 chats from the dev split while keeping the test chats held out. Nothing that saved 20% or more held accuracy, so the only cut I would keep drops the flow text repeated under every subflow, which saved 14% and held up on the held-out chats.</p>
+        <p class="px-body rv" style="--d:.06s">After the first runs I tried to bring the cost down without losing accuracy, and since most of what arm A spends goes to reading the cached guideline library on every turn, I set the rules before any call, which were no more than 3 points lost on next action or intent and at least 20% cheaper, and tried five shorter versions of the library on 60 chats from the dev split while keeping the test chats held out. Nothing that saved 20% or more held accuracy, so the only cut I would keep drops the flow text repeated under every subflow, which saved 14% and held up on the held-out chats.</p>
         <p class="px-body rv" style="--d:.1s">I also added Gemini 3.8 Flash as a third model because real-time assist is where the cheaper models compete, and with the library in an explicit context cache it got the next action right more often than Sonnet at about 40% of the cost, while my first run of it on Vertex's automatic cache cost more than Sonnet because the cache hit on 20 of 693 turns. Its slowest answers are what hold it back, since its p95 through Vertex's global endpoint on the day I ran it was well over the 4 s I set as a kill criterion.</p>
     </div>
     <p class="plain rv" style="--d:.14s"><strong>In plain terms:</strong> the cheap model was the most accurate one here once its caching was set up right, and it was also the slowest at the tail on the day I tested it, so I would start on Sonnet and switch once Gemini's slowest answers come in under four seconds.</p>
@@ -174,6 +177,6 @@
   </div>
 </footer>
 
-<script type="module" src="../js/assist.js?v=20261003a"></script>
+<script type="module" src="../js/assist.js?v=20261003b"></script>
 </body>
 </html>

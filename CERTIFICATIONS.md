@@ -12,11 +12,12 @@ Every certificate and accreditation I hold, with its verify link and every cours
 | Databricks accreditations, three | Databricks Academy · Jun 2026 | per accreditation, below | yes | yes |
 | Google AI Professional Certificate | Google / Coursera · Jun 2026 | [719MATVYL9UZ](https://coursera.org/verify/professional-cert/719MATVYL9UZ) | yes | yes |
 | Google Advanced Data Analytics | Google / Coursera · Jun 2026 | [4REOBHKQJ0DS](https://coursera.org/verify/professional-cert/4REOBHKQJ0DS) | yes | yes |
-| Google Business Intelligence Certificate | Google / Coursera · Jun 2026 | [CLF3CXNNZO4L](https://www.coursera.org/account/accomplishments/specialization/CLF3CXNNZO4L) | yes | yes |
+| Google Business Intelligence Certificate | Google / Coursera · Jun 2026 | [CLF3CXNNZO4L](https://coursera.org/verify/professional-cert/CLF3CXNNZO4L) | yes | yes |
 | Snowflake Hands-On Essentials: Data Warehouse | Snowflake · Jun 2026 · badge 184380098 | [badge](https://achieve.snowflake.com/e3201335-75c2-4604-98c1-4c8063699131) | yes | yes |
 | dbt Fundamentals | dbt Labs · May 2026 | [credential](https://credentials.getdbt.com/5470c199-7753-4f90-99a3-07e8f8c6fe51) | yes | yes |
-| Google Analytics Certification (GA4) | Google Skillshop · May 2026 · ID 182987115 | [credential](https://skillshop.credential.net/da7f2a2d-1e02-4267-aaca-d6bfbfc3036e#acc.5RV2vAUu) | yes | no, dropped 26 Sep 2026 |
+| Google Analytics Certification (GA4) | Google Skillshop · May 2026 · ID 182987115 · expires May 2027 | [credential](https://skillshop.credential.net/da7f2a2d-1e02-4267-aaca-d6bfbfc3036e#acc.5RV2vAUu) | yes | no, dropped 26 Sep 2026 |
 | Google Data Analytics Certificate | Google / Coursera · May 2026 | [HRA1SDNA2WE5](https://coursera.org/verify/professional-cert/HRA1SDNA2WE5) | no | no, dropped 26 Sep 2026 |
+| Professional Scrum Master I (PSM I) | Scrum.org · May 2026 | [1318010](https://www.scrum.org/certificates/1318010) | skills line only | no |
 
 ## The courses underneath
 
@@ -34,12 +35,12 @@ Every certificate and accreditation I hold, with its verify link and every cours
 - [Databricks Fundamentals](https://credentials.databricks.com/86e01edd-79c7-4c9b-a796-0273ae36c80c#acc.oQhUiTNj)
 
 **Google AI Professional Certificate** (Google / Coursera, Jun 2026)
-- [AI Fundamentals](https://www.coursera.org/account/accomplishments/records/YO15GBZ8WVHX)
-- [AI for Brainstorming & Planning](https://www.coursera.org/account/accomplishments/records/CXBRI80WES50)
-- [AI for Research & Insights](https://www.coursera.org/account/accomplishments/records/AZC0YTICJ414)
-- [AI for Writing & Communicating](https://www.coursera.org/account/accomplishments/records/O3RI2ZYB75RB)
-- [AI for Content Creation](https://www.coursera.org/account/accomplishments/records/0B0G2B3KBY4K)
-- [AI for Data Analysis](https://www.coursera.org/account/accomplishments/records/NV4CK7IFMAT0)
+- [AI Fundamentals](https://coursera.org/verify/YO15GBZ8WVHX)
+- [AI for Brainstorming & Planning](https://coursera.org/verify/CXBRI80WES50)
+- [AI for Research & Insights](https://coursera.org/verify/AZC0YTICJ414)
+- [AI for Writing & Communicating](https://coursera.org/verify/O3RI2ZYB75RB)
+- [AI for Content Creation](https://coursera.org/verify/0B0G2B3KBY4K)
+- [AI for Data Analysis](https://coursera.org/verify/NV4CK7IFMAT0)
 - [AI for App Building](https://coursera.org/verify/W7K6UKR2I24W)
 
 **Google Advanced Data Analytics** (Google / Coursera, Jun 2026)
@@ -51,8 +52,8 @@ Every certificate and accreditation I hold, with its verify link and every cours
 - [Google Advanced Data Analytics Capstone](https://coursera.org/verify/professional-cert/4REOBHKQJ0DS)
 
 **Google Business Intelligence Certificate** (Google / Coursera, Jun 2026)
-- [Foundations of Business Intelligence](https://www.coursera.org/account/accomplishments/records/7EPC6TED2TM5)
-- [The Path to Insights: Data Models and Pipelines](https://www.coursera.org/account/accomplishments/records/UD6LXCOY84A2)
+- [Foundations of Business Intelligence](https://coursera.org/verify/7EPC6TED2TM5)
+- [The Path to Insights: Data Models and Pipelines](https://coursera.org/verify/UD6LXCOY84A2)
 - [Decisions, Decisions: Dashboards and Reports](https://coursera.org/verify/MEUT0VSUNCTE)
 
 **Google Data Analytics Certificate** (Google / Coursera, May 2026)
@@ -67,10 +68,9 @@ Every certificate and accreditation I hold, with its verify link and every cours
 
 ## Listed without a verify link
 
-These were on an earlier résumé and have no link on file yet, so they stay off the site until one is added here.
+These have no public verify link on file yet, so they stay off the site until one is added here.
 
 | Certificate | Issuer | résumé |
 | --- | --- | --- |
-| PMP, Project Management Professional | PMI | no, dropped 26 Sep 2026 |
-| Six Sigma White Belt | | no |
-| Professional Scrum Master I (PSM I) | Scrum.org | no, named under Delivery skills only |
+| PMI Kickoff: Predictive, a badge (May 2026) | PMI | no |
+| Six Sigma White Belt, certification number nslvDTFJHO (May 2026) | Council for Six Sigma Certification | no |

@@ -7,8 +7,8 @@
 // reveal.js and the stylesheet.
 // ============================================================
 
-import { ARCADE_APPS } from '../data/content.js?v=20261003a';
-import { $, esc, onSeen, REDUCED } from './reveal.js?v=20261003a';
+import { ARCADE_APPS } from '../data/content.js?v=20261003b';
+import { $, esc, onSeen, REDUCED } from './reveal.js?v=20261003b';
 
 const TOTAL = ARCADE_APPS.length;
 const APPS = ARCADE_APPS.map((a, i) => ({ ...a, num: `${String(i + 1).padStart(2, '0')} / ${TOTAL}` }));
@@ -17,7 +17,7 @@ const FILTERS = [
   ['All', () => true],
   ['Live data', (a) => a.badge.includes('live')],
   ['No data needed', (a) => a.badge === 'no data needed'],
-  ['Tracks your taps', (a) => a.badge === 'tracks your taps'],
+  ['Tracks your taps', (a) => a.badge.includes('taps')],
   ['Your export', (a) => a.badge.includes('export')],
 ];
 
@@ -39,7 +39,7 @@ function renderFilters() {
 }
 
 function shot(a, cls) {
-  return `<div class="${cls}"><img src="${esc(a.shot)}?v=20261003a" alt="${esc(a.title)}" loading="lazy" decoding="async"></div>`;
+  return `<div class="${cls}"><img src="${esc(a.shot)}?v=20261003b" alt="${esc(a.title)}" loading="lazy" decoding="async"></div>`;
 }
 
 const cardHtml = (a, i) => `
