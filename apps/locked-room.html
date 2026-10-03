@@ -45,7 +45,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #f0a8a0; outline-offs
 @keyframes placed { from { transform: scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes roomIn { 0% { opacity: 0; box-shadow: inset 0 0 0 1px rgba(127,179,221,0); } 60% { opacity: 1; box-shadow: inset 0 0 0 1px rgba(127,179,221,0.5); } 100% { opacity: 1; box-shadow: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; } }
-@media (max-width: 480px) { #plan-grid { grid-template-columns: 1fr 1fr !important; } .chips { top: 28px !important; } }
+@media (max-width: 480px) { #plan-grid { grid-template-columns: 1fr 1fr !important; } }
 </style>
 </head>
 <body>
@@ -116,6 +116,7 @@ const METHODS = ["The door was never locked. It was locked afterwards, by someon
 
 function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
 function shuffle(a) { const c = a.slice(); for (let i = c.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [c[i], c[j]] = [c[j], c[i]]; } return c; }
+function who(g, cap) { const w = g === "YOU" ? "you" : "the " + g.replace("THE ", "").toLowerCase(); return cap ? w.charAt(0).toUpperCase() + w.slice(1) : w; }
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 
 const state = { c: null, revealed: false, count: 0, guess: null, scored: null, solved: 0, attempted: 0 };
@@ -144,8 +145,8 @@ function renderPlan() {
     const bg = i === 0 ? "rgba(240,168,160,0.07)" : "transparent";
     const placed = c.guests.filter((g, gi) => gi % c.rooms.length === i).map(g => g.replace("THE ", ""));
     const chips = placed.length
-      ? '<div class="chips" style="position: absolute; top: 8px; right: 8px; display: flex; flex-wrap: wrap; gap: 3px; max-width: 62px; justify-content: flex-end">'
-        + placed.map(pl => '<div style="background: #7fb3dd; color: #0d2439; font-size: 8px; padding: 2px 4px; white-space: nowrap; animation: placed 260ms ease both">' + esc(pl) + '</div>').join("")
+      ? '<div class="chips" style="position: absolute; top: 28px; left: 12px; right: 12px; display: flex; flex-wrap: wrap; gap: 3px; justify-content: flex-start">'
+        + placed.map(pl => '<div style="background: #7fb3dd; color: #0d2439; font-size: 8px; padding: 2px 4px; max-width: 100%; box-sizing: border-box; animation: placed 260ms ease both">' + esc(pl) + '</div>').join("")
         + '</div>'
       : "";
     return '<div style="border-right: 1px solid rgba(127,179,221,0.45); border-bottom: 1px solid rgba(127,179,221,0.45); padding: 12px; display: flex; flex-direction: column; justify-content: space-between; position: relative; background: ' + bg + '; animation: roomIn 460ms ease both; animation-delay: ' + cellDelay + '">'
@@ -175,8 +176,8 @@ function renderAccusation() {
   }
   if (state.scored) {
     const scoreText = state.scored === "right"
-      ? "Correct. " + c.culprit.replace("THE ", "The ") + " did it, and you saw it before the summation."
-      : "Wrong. It was " + c.culprit.replace("THE ", "the ") + ". Read the particulars again, because the detail was doing the work.";
+      ? "Correct. " + who(c.culprit, true) + " did it, and you saw it before the summation."
+      : "Wrong. It was " + who(c.culprit) + ", and the particulars are still on the page if you want to read them again.";
     const scoreColor = state.scored === "right" ? "#a8e0b8" : "#f0a8a0";
     extra += '<div style="margin-top: 16px; font-family: \'Special Elite\', cursive; font-size: 19px; line-height: 1.5; color: ' + scoreColor + '; animation: fadein 300ms ease both">' + esc(scoreText) + '</div>';
   }
@@ -185,7 +186,7 @@ function renderAccusation() {
 
 function renderCase() {
   const c = state.c;
-  el("scenario").textContent = "The body of " + c.victim + " was found in the " + c.scene + " at " + c.hour + ", the door " + c.seal + ".";
+  el("scenario").textContent = "The body of " + c.victim + (c.victim.includes(", ") ? "," : "") + " was found in the " + c.scene + " at " + c.hour + ", the door " + c.seal + ".";
   el("detail").textContent = c.detail;
   el("guest-list").innerHTML = c.guests.map((g, i) =>
     '<div style="font-size: 12.5px; display: flex; gap: 10px; align-items: baseline"><span style="color: #7fb3dd">' + String(i + 1).padStart(2, "0") + '</span><span>' + esc(g) + '</span></div>'
@@ -198,8 +199,8 @@ function renderReveal() {
   if (!state.revealed) { el("reveal-zone").innerHTML = ""; return; }
   const summation = [
     { text: c.method, delay: "0ms" },
-    { text: "The tell was that " + c.detail.charAt(0).toLowerCase() + c.detail.slice(1), delay: "420ms" },
-    { text: "Culprit: " + c.culprit.replace("THE ", "the ") + ".", delay: "840ms" }
+    { text: "The particulars also noted that " + c.detail.charAt(0).toLowerCase() + c.detail.slice(1), delay: "420ms" },
+    { text: "Culprit: " + who(c.culprit) + ".", delay: "840ms" }
   ];
   el("reveal-zone").innerHTML =
     '<div style="margin-top: 26px; border: 1.5px solid #f0a8a0; padding: 26px 30px; background: rgba(60,20,20,0.35); animation: fadein 260ms ease both">'

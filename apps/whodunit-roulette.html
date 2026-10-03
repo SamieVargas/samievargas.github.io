@@ -47,12 +47,13 @@ button, textarea, input { font: inherit; }
 .footLink { color: inherit; text-decoration: none; display: inline-block; padding: 7px 0; }
 button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px solid #d9a441; outline-offset: 2px; box-shadow: 0 0 0 4px #3a1f1a; }
 .footLink:hover { color: #3a1f1a; }
+@media (max-width: 420px) { .pad { padding-left: 20px !important; padding-right: 20px !important; } h1 { font-size: 40px !important; } #importPanel { padding: 18px 16px !important; } }
 </style>
 </head>
 <body>
 <div style="min-height: 100vh; background: #f6ecd9; color: #3a1f1a; font-family: 'Space Mono', monospace">
 
-  <div style="background: #6e1f1a; color: #f6ecd9; padding: 40px 40px 34px">
+  <div style="background: #6e1f1a; color: #f6ecd9; padding: 40px 40px 34px" class="pad">
     <div style="max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
       <div>
         <div style="font-size: 11px; letter-spacing: 4px; color: #d9a441; animation: riseIn 480ms ease both"><span style="color: #f6ecd9">[ FIG. 06 ]</span>&nbsp;&nbsp;A MURDER HAS BEEN SELECTED FOR YOU</div>
@@ -62,7 +63,7 @@ button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px sol
     </div>
   </div>
 
-  <div style="max-width: 1180px; margin: 0 auto; padding: 36px 40px 80px">
+  <div style="max-width: 1180px; margin: 0 auto; padding: 36px 40px 80px" class="pad">
 
     <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
       <div style="font-size: 10.5px; letter-spacing: 3px; color: #8a6f52; white-space: nowrap">TONIGHT'S MOOD</div>
@@ -78,7 +79,7 @@ button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px sol
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 16px; font-size: 11.5px; line-height: 1.75; color: #6b5643">
         <div><span style="color: #6e1f1a">GOODREADS</span><br>My Books &rarr; Import/Export &rarr; Export Library. Open the CSV, copy all, paste below.</div>
         <div><span style="color: #6e1f1a">STORYGRAPH</span><br>Manage Account &rarr; Export StoryGraph Library, then paste it the same way.</div>
-        <div><span style="color: #6e1f1a">OR JUST TYPE</span><br>One title per line, optionally <span style="color: #3a1f1a">Title, 2024-03-11</span> for a finish date.</div>
+        <div><span style="color: #6e1f1a">OR JUST TYPE</span><br>One title per line, and every line counts as read.</div>
       </div>
       <textarea id="pasteBox" class="pasteBox" rows="6" aria-label="Paste your Goodreads or StoryGraph export, or one title per line" placeholder="Title,Author,...,Date Read,Exclusive Shelf&#10;The Moving Finger,Agatha Christie,...,2024/03/11,read" style="width: 100%; box-sizing: border-box; margin-top: 16px; background: #fff; border: 1px solid #cfc0a4; padding: 14px; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.6; color: #3a1f1a; outline: none; resize: vertical"></textarea>
       <div style="display: flex; gap: 12px; margin-top: 12px; align-items: center; flex-wrap: wrap">
@@ -90,7 +91,7 @@ button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px sol
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 46px; margin-top: 40px; align-items: start">
 
       <div>
-        <div style="width: 288px; margin: 0 auto; perspective: 1100px">
+        <div style="width: min(288px, calc(100% - 14px)); margin: 0 auto; perspective: 1100px">
           <div id="cardBox"></div>
         </div>
         <div id="sourceNote" style="margin-top: 20px; text-align: center; font-size: 11px; letter-spacing: 1.4px; color: #8a6f52"></div>
@@ -145,7 +146,7 @@ button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px sol
 </div>
 
 <script type="module">
-import { stagedLoader } from '../js/staged-loader.js?v=20261003d';
+import { stagedLoader } from '../js/staged-loader.js?v=20261003e';
 
 const BOOKS = [
   { t: "The Moving Finger", a: "AGATHA CHRISTIE", y: 1942, d: "MISS MARPLE", m: ["cozy", "mean"], b: "Poison-pen letters arrive in a small village, everyone is lying and the vicar's wife knows it.", len: "SHORT", f: "SCRUPULOUS", bod: 3 },
@@ -206,8 +207,8 @@ function fromOpenLibrary(w, mood) {
   return {
     t: w.title,
     a: ((w.authors || [])[0] || {}).name ? String(((w.authors || [])[0]).name).toUpperCase() : "UNCREDITED",
-    y: w.first_publish_year || "",
-    d: hasDetective ? "A DETECTIVE" : "NO DETECTIVE",
+    y: w.first_publish_year || "YEAR UNKNOWN",
+    d: hasDetective ? "A DETECTIVE" : "DETECTIVE UNKNOWN",
     m: [mood],
     b: "From Open Library: catalogued under " + (subs.slice(0, 3).join(", ") || "mystery") + ", with no blurb, no reviews and no idea, which is the appeal.",
     len: len,
@@ -313,8 +314,10 @@ const runImport = () => {
   if (isCsv) {
     header.forEach((h, i) => {
       if (authorIdx < 0 && h.indexOf("author") !== -1) authorIdx = i;
-      if (shelfIdx < 0 && (h.indexOf("shelf") !== -1 || h.indexOf("read status") !== -1)) shelfIdx = i;
     });
+    // Goodreads "Exclusive Shelf" and StoryGraph "Read Status" say whether a book is read, while "Bookshelves" is only custom tags.
+    shelfIdx = header.indexOf("exclusive shelf");
+    if (shelfIdx < 0) shelfIdx = header.indexOf("read status");
   }
   const found = [], prefs = Object.assign({}, state.authorPrefs), readBy = Object.assign({}, state.readBy);
   lines.slice(isCsv ? 1 : 0).forEach(line => {
@@ -323,7 +326,7 @@ const runImport = () => {
     if (!title) return;
     const author = authorIdx >= 0 ? (cells[authorIdx] || "") : "";
     const shelfVal = shelfIdx >= 0 ? String(cells[shelfIdx] || "").toLowerCase() : "read";
-    if (shelfVal && shelfVal.indexOf("read") === -1) return;
+    if (shelfVal && shelfVal !== "read") return;
     const looksMystery = !author || MYSTERY_AUTHORS.some(a => author.toLowerCase().indexOf(a) !== -1);
     if (looksMystery) {
       found.push(title);
@@ -343,7 +346,7 @@ const runImport = () => {
   persist("shelf", shelf); persist("read", read); persist("prefs", prefs); persist("readBy", readBy);
   pasteBox.value = "";
   setState({
-    shelf: shelf, read: read, authorPrefs: prefs, readBy: readBy, importOpen: false, importOk: true,
+    shelf: shelf, read: read, authorPrefs: prefs, readBy: readBy, importOpen: true, importOk: true,
     importNote: "Found " + shelf.length + (shelf.length === 1 ? " mystery, " : " mysteries, ") + matchedInPool.length + " matched the pool."
   }, spin);
 };
@@ -402,7 +405,7 @@ const reject = () => {
 
 const reset = () => {
   ["read", "shelf", "prefs", "readBy", "rejected"].forEach(k => { try { localStorage.removeItem("whodunit." + k); } catch (e) {} });
-  setState({ read: [], shelf: [], authorPrefs: {}, readBy: {}, rejected: [] }, spin);
+  setState({ read: [], shelf: [], authorPrefs: {}, readBy: {}, rejected: [], importNote: "" }, spin);
 };
 
 // ---------- rendering ----------
@@ -460,19 +463,19 @@ function tasteHTML() {
     tasteLine = "So far: " + bits.join(", ") + ".";
   }
 
-  const years = readBooks.map(x => x.y).filter(x => x);
+  const years = readBooks.map(x => x.y).filter(x => typeof x === "number");
   const avgYear = years.length ? Math.round(years.reduce((a, c) => a + c, 0) / years.length) : null;
   const tasteStats = [
     { label: "LOGGED", value: s.read.length },
     { label: "PASSED ON", value: s.rejected.length },
     { label: "AVG VINTAGE", value: avgYear || "—" },
-    { label: "SHELVES READ", value: s.shelf.length || "—" }
+    { label: "SHELF MYSTERIES", value: s.shelf.length || "—" }
   ];
 
   const hasShelfBars = readBooks.length >= 2;
   let barsHTML = "";
   if (hasShelfBars) {
-    const sorted = readBooks.slice().sort((a, c) => a.y - c.y);
+    const sorted = readBooks.slice().sort((a, c) => (typeof a.y === "number" ? a.y : Infinity) === (typeof c.y === "number" ? c.y : Infinity) ? 0 : (typeof a.y === "number" ? a.y : Infinity) < (typeof c.y === "number" ? c.y : Infinity) ? -1 : 1);
     const bars = sorted.slice(0, 18).map((x, i) =>
       '<div style="flex: 1; height: ' + (34 + (x.len === "LONG" ? 20 : x.len === "SHORT" ? 0 : 10)) + 'px; background: ' +
       (x.len === "LONG" ? "#6e1f1a" : (x.len === "SHORT" ? "#d9a441" : "#a8703a")) +
@@ -506,7 +509,8 @@ function render() {
   const authorReads = new Set([].concat(s.readBy[key] || []).concat(BOOKS.filter(x => s.read.indexOf(x.t) !== -1 && x.a.toLowerCase().split(" ").pop() === key).map(x => norm(x.t)))).size;
   const readCount = s.read.length;
   const totalCount = active.length;
-  const poolCount = Math.max(0, active.length - s.read.length);
+  const loggedInPool = active.filter(x => s.read.indexOf(x.t) !== -1).length;
+  const poolCount = totalCount - loggedInPool;
 
   hdrStats.innerHTML = readCount + " READ · " + poolCount + " IN THE POOL<br>PICKED BY MOOD, NOT PUBLICATION ORDER";
 
@@ -568,16 +572,16 @@ function render() {
   const learned = [];
   const topAuthors = Object.keys(s.authorPrefs).sort((a, c) => s.authorPrefs[c] - s.authorPrefs[a]).slice(0, 2);
   if (topAuthors.length) learned.push("You return to " + topAuthors.map(a => a.charAt(0).toUpperCase() + a.slice(1)).join(" and ") + ", so those rank higher.");
-  if (s.read.length) learned.push(s.read.length + " logged as read, so they're out of the pool.");
-  if (s.rejected.length) learned.push(s.rejected.length + " passed on, and those sink but never vanish.");
+  if (s.read.length) learned.push(s.read.length + " logged as read, so " + (s.read.length === 1 ? "it is" : "they are") + " out of the pool.");
+  if (s.rejected.length) learned.push(s.rejected.length + " passed on, and " + (s.rejected.length === 1 ? "it sinks" : "those sink") + " but never vanishes.");
   if (!learned.length) learned.push("Nothing yet, so import your shelves or log one as read and it starts weighting.");
   learnedList.innerHTML = learned.map(l =>
     '<div style="display: flex; gap: 10px; font-size: 12.5px; line-height: 1.6"><span style="color: #6e1f1a">·</span><span>' + esc(l) + '</span></div>'
   ).join("");
 
   // Progress
-  progressBar.style.width = Math.min(100, Math.round((s.read.length / Math.max(1, active.length)) * 100)) + "%";
-  progressText.textContent = readCount + " of " + totalCount + " in the pool logged";
+  progressBar.style.width = Math.min(100, Math.round((loggedInPool / Math.max(1, active.length)) * 100)) + "%";
+  progressText.textContent = loggedInPool + " of " + totalCount + " in the pool logged";
   resetBtn.style.display = (s.read.length > 0 || s.shelf.length > 0) ? "" : "none";
 
   // Shelf section
@@ -585,7 +589,7 @@ function render() {
     shelfSection.style.display = "";
     const sig = JSON.stringify(s.shelf);
     if (sig !== shelfSig) {
-      shelfHdr.textContent = "FROM YOUR SHELVES · " + s.shelf.length + " MYSTERIES FOUND";
+      shelfHdr.textContent = "FROM YOUR SHELVES · " + s.shelf.length + (s.shelf.length === 1 ? " MYSTERY FOUND" : " MYSTERIES FOUND") + (s.shelf.length > 40 ? " · SHOWING THE FIRST 40" : "");
       shelfChips.innerHTML = s.shelf.slice(0, 40).map(t =>
         '<span style="border: 1px solid #d8c6a8; background: #fdf7ea; padding: 7px 12px; font-size: 11.5px; color: #6b5643">' + esc(t) + '</span>'
       ).join("");

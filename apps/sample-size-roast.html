@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sample Size Roast · Samie Vargas</title>
-<meta name="description" content="Paste a stat and its sample size, see the real margin of error, and receive consequences.">
+<meta name="description" content="Enter a stat and its sample size, see the real margin of error, and receive consequences.">
 <link rel="canonical" href="https://samievargas.com/apps/sample-size-roast">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://samievargas.com/apps/sample-size-roast">
 <meta property="og:title" content="Sample Size Roast · Samie Vargas">
-<meta property="og:description" content="Paste a stat and its sample size, see the real margin of error, and receive consequences.">
+<meta property="og:description" content="Enter a stat and its sample size, see the real margin of error, and receive consequences.">
 <meta property="og:image" content="https://samievargas.com/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -51,7 +51,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid 
 
     <div style="border-bottom: 3px solid #16161a; padding-bottom: 18px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap">
       <h1 style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; margin: 0; line-height: 1; animation: riseH 480ms ease both">Sample Size Roast</h1>
-      <div style="font-size: 11px; letter-spacing: 2px; color: #6b6b73; animation: riseH 520ms ease both; animation-delay: 120ms"><span style="color: #b8331a">[ FIG. 10 ]</span>&nbsp;&nbsp;PASTE A STAT. RECEIVE CONSEQUENCES.</div>
+      <div style="font-size: 11px; letter-spacing: 2px; color: #6b6b73; animation: riseH 520ms ease both; animation-delay: 120ms"><span style="color: #b8331a">[ FIG. 10 ]</span>&nbsp;&nbsp;ENTER A STAT. RECEIVE CONSEQUENCES.</div>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); gap: 46px; margin-top: 42px; align-items: start">
@@ -188,7 +188,7 @@ function compute() {
   let tier, roast, bg;
   if (n < 15) {
     tier = "NOT A SAMPLE, A TABLE";
-    roast = Math.round(p * n) + " of " + n + " people is a lunch table, which is a long way from a preference.";
+    roast = Math.round(p * n) + " of " + n + (n === 1 ? " person is a single anecdote" : " people is a lunch table") + ", which is a long way from a preference.";
     bg = "#ff5c39";
   } else if (n < 60) {
     tier = "DIRECTIONAL AT BEST";
@@ -311,11 +311,14 @@ randomBtn.addEventListener("click", () => {
 
 copyBtn.addEventListener("click", () => {
   const v = compute();
-  const text = claimInput.value + " (n=" + v.n + "), so the true value is somewhere between " + v.lo.toFixed(1) + "% and " + v.hi.toFixed(1) + "%. " + v.roast;
-  try { navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
-  copied = true;
-  updateAll();
-  setTimeout(() => { copied = false; updateAll(); }, 1800);
+  const claim = claimInput.value.trim() || "This stat";
+  const shown = new RegExp("(^|[^\\d.])" + String(v.pct).replace(".", "\\.") + "%").test(claim) ? "n=" + v.n : v.pct + "%, n=" + v.n;
+  const text = claim + " (" + shown + "), so the true value is somewhere between " + v.lo.toFixed(1) + "% and " + v.hi.toFixed(1) + "%. " + v.roast;
+  const done = ok => {
+    copyBtn.textContent = ok ? "COPIED" : "COPY FAILED, SELECT AND COPY BY HAND";
+    setTimeout(updateAll, 1800);
+  };
+  try { navigator.clipboard.writeText(text).then(() => done(true), () => done(false)); } catch (e) { done(false); }
 });
 
 updateMode();

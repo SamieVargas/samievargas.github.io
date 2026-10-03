@@ -120,7 +120,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #d9b36a; outline-offs
 </div>
 
 <script type="module">
-import { stagedLoader } from '../js/staged-loader.js?v=20261003d';
+import { stagedLoader } from '../js/staged-loader.js?v=20261003e';
 
 // ---- Wikidata access (no keys, browser-friendly endpoints) ----
 const SPARQL = "https://query.wikidata.org/sparql";
@@ -177,6 +177,17 @@ function surnameOf(name) {
   return parts.length ? parts[parts.length - 1] : "";
 }
 
+function pluralOf(w) {
+  if (/person$/i.test(w)) return w.replace(/person$/i, m => m[0] === "P" ? "People" : "people");
+  if (/[^aeiou]y$/i.test(w)) return w.slice(0, -1) + "ies";
+  if (/(s|x|z|[^r]ch|sh)$/i.test(w)) return w + "es";
+  if (/[a-z]man$/i.test(w) && !/(hu|ger|ro|ot|tal)man$/i.test(w)) return w.slice(0, -3) + "men";
+  return w + "s";
+}
+function withArticle(w) {
+  const an = /^(hour|honest|heir)/i.test(w) || (/^[aeiou]/i.test(w) && !/^(uni|use|eu|one)/i.test(w));
+  return (an ? "an " : "a ") + w;
+}
 function esc(x) {
   return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
@@ -435,9 +446,9 @@ function renderData() {
   const share = s.totalInTrade ? ((nepoCount / s.totalInTrade) * 100).toFixed(1) + "%" : "—";
 
   let finding;
-  if (ids.length >= 4) finding = "The " + lineSurname + " line runs " + ids.length + " generations deep in this trade. Whatever being " + (occLabel ? (/^[aeiou]/i.test(occLabel) ? "an " : "a ") + occLabel : "in it") + " takes, it is being handed down at the dinner table.";
-  else if (s.totalInTrade && nepoCount / s.totalInTrade > 0.03) finding = "At least " + share + " of recorded " + occLabel + "s had a parent or child in the same work. For a trade nobody calls hereditary, that is a number.";
-  else finding = g.groups.length + (g.groups.length === 1 ? " family appears" : " families appear") + " twice or more among " + occLabel + "s. Wikidata only knows the households somebody recorded, so read this as a floor.";
+  if (ids.length >= 4) finding = "The " + lineSurname + " line runs " + ids.length + " generations deep in this trade. Whatever being " + (occLabel ? withArticle(occLabel) : "in it") + " takes, it is being handed down at the dinner table.";
+  else if (s.totalInTrade && nepoCount / s.totalInTrade > 0.03) finding = "At least " + share + " of recorded " + pluralOf(occLabel) + " had a parent or child in the same work. For a trade nobody calls hereditary, that is a number.";
+  else finding = g.groups.length + (g.groups.length === 1 ? " family appears" : " families appear") + " twice or more among " + pluralOf(occLabel) + ". Wikidata only knows the households somebody recorded, so read this as a floor.";
 
   const lineName = lineSurname ? "The " + lineSurname + "s" : "One family";
   const lineSpan = (firstYear && lastYear ? firstYear + " → " + lastYear + " · " : "") + ids.length + " generations · click any dynasty below to follow it instead";
@@ -550,7 +561,7 @@ async function run() {
       return;
     }
 
-    Object.assign(state, { occ: occ, query: pairQuery(occ.id), progress: "WALKING FAMILY EDGES AMONG " + occ.label.toUpperCase() + "S…" });
+    Object.assign(state, { occ: occ, query: pairQuery(occ.id), progress: "WALKING FAMILY EDGES AMONG " + pluralOf(occ.label).toUpperCase() + "…" });
     render();
     const pairs = await sparql(pairQuery(occ.id), 40000);
     if (!pairs.length) {

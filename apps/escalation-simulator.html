@@ -41,6 +41,7 @@ button { font: inherit; }
 .foot-link { color: inherit; text-decoration: none; display: inline-block; padding: 5px 0; }
 :focus-visible { outline: 2px solid #eaffea; outline-offset: 3px; }
 .foot-link:hover { color: #eaffea; }
+@media (max-width: 480px) { .page-pad { padding-left: 20px !important; padding-right: 20px !important; } .page-h1 { font-size: 40px !important; overflow-wrap: anywhere; } }
 @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @keyframes caret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes bootline { from { opacity: 0; } to { opacity: 1; } }
@@ -48,13 +49,13 @@ button { font: inherit; }
 </style>
 </head>
 <body>
-<div style="min-height: 100vh; background: #070b07; padding: 50px 40px 80px; box-sizing: border-box; color: #b7ffb7; font-family: 'VT323', monospace">
+<div class="page-pad" style="min-height: 100vh; background: #070b07; padding: 50px 40px 80px; box-sizing: border-box; color: #b7ffb7; font-family: 'VT323', monospace">
   <div style="max-width: 1140px; margin: 0 auto">
 
     <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid #24461f; padding-bottom: 16px">
       <div>
         <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 4px; color: #6ba86b; animation: fadein 480ms ease both"><span style="color: #eaffea">[ FIG. 14 ]</span>&nbsp;&nbsp;AN ENTERPRISE ACCOUNT IS ON FIRE</div>
-        <h1 style="font-size: 60px; margin: 6px 0 0; font-weight: 400; line-height: 0.95; color: #eaffea; animation: fadein 520ms ease both; animation-delay: 90ms">ESCALATION SIMULATOR</h1>
+        <h1 class="page-h1" style="font-size: 60px; margin: 6px 0 0; font-weight: 400; line-height: 0.95; color: #eaffea; animation: fadein 520ms ease both; animation-delay: 90ms">ESCALATION SIMULATOR</h1>
       </div>
       <div style="font-family: 'Space Mono', monospace; font-size: 11px; line-height: 1.9; color: #6ba86b; text-align: right; animation: fadein 520ms ease both; animation-delay: 180ms">v1.2 · ACCOUNT: MERIDIAN<br>EVERY CHOICE HAS A REAL TRADEOFF</div>
     </div>
@@ -277,7 +278,7 @@ function choose(i) {
   const done = state.step >= SCENES.length || health <= 0;
   if (done) {
     state.runs = state.runs + 1;
-    state.saved = state.saved + (health >= 55 ? 1 : 0);
+    state.saved = state.saved + (health >= 45 ? 1 : 0);
     try {
       localStorage.setItem("escalation.runs", String(state.runs));
       localStorage.setItem("escalation.saved", String(state.saved));

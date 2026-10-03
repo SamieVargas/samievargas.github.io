@@ -16,9 +16,9 @@
 // (what the agent actually did) shows after it.
 // ============================================================
 
-import { REDUCED, $, esc, onSeen, autoReveal } from './reveal.js?v=20261003d';
+import { REDUCED, $, esc, onSeen, autoReveal } from './reveal.js?v=20261003e';
 
-const DATA_URL = '../data/assist-replay.json?v=20261003d';
+const DATA_URL = '../data/assist-replay.json?v=20261003e';
 const REPO = 'https://github.com/SamieVargas/guideline-assist';
 const TURN_MS = 750;
 const HOLD_MS = 2200;

@@ -100,7 +100,7 @@ input, button { font: inherit; }
 </div>
 
 <script type="module">
-import { stagedLoader } from '../js/staged-loader.js?v=20261003d';
+import { stagedLoader } from '../js/staged-loader.js?v=20261003e';
 
 const PRESETS = ["Peter Jackson", "John Williams", "Mary Shelley", "David Jones", "Grace Lee", "Michael Jordan"];
 const SPARQL_URL = "https://query.wikidata.org/sparql";
@@ -239,7 +239,7 @@ function digest(rows) {
     earliest: years.length ? Math.min.apply(null, years) : null,
     median: years.length ? years.slice().sort((a, b) => a - b)[Math.floor(years.length / 2)] : null,
     trades: keys.length,
-    topTrade: keys[0] || "\u2014"
+    topTrade: keys[0] || ""
   };
 }
 
@@ -281,7 +281,9 @@ function versusBoxHTML() {
   ];
   let finding = "";
   if (A && B) {
-    if (A.topTrade === B.topTrade) finding = "Both names run to " + A.topTrade + "s. Either the trade is enormous or the name means nothing, and usually it is the former.";
+    if (!A.topTrade && !B.topTrade) finding = "Neither name has a recorded trade, so there is nothing to compare there.";
+    else if (!A.topTrade || !B.topTrade) finding = (A.topTrade ? state.ranB : state.ran) + " has no recorded trade to compare, while " + (A.topTrade ? state.ran + " skews to " + A.topTrade : state.ranB + " skews to " + B.topTrade) + "s.";
+    else if (A.topTrade === B.topTrade) finding = "Both names run to " + A.topTrade + "s. Either the trade is enormous or the name means nothing, and usually it is the former.";
     else if (A.total > B.total * 1.5) finding = state.ran + " carries " + A.total + " lives against " + B.total + ", and skews to " + A.topTrade + "s where " + state.ranB + " skews to " + B.topTrade + "s.";
     else finding = state.ran + " skews to " + A.topTrade + "s while " + state.ranB + " skews to " + B.topTrade + "s, so the two names ended up doing different work.";
   }
