@@ -348,7 +348,7 @@ const RESULTS = {
     // to $0.05. "What still breaks": the same grid, 7 of 120 mental-load plans
     // got more than one now item and 12 of 120 carried a banned phrase, "need
     // to" in 9 of them (brain-dump README and the sort@v4 medium results file).
-    braindump: ['Forty-seven mental tabs with no way to tell a task from a worry', 'One HTML file, a Cloudflare Worker that holds the prompts and the key, three levels and a feeling-anxious switch', '$0.0071 a plan on average after tuning, on the short eval dumps and at list prices still to be re-checked, with no database', '7 of 120 eval plans still gave a worry-heavy dump more than one thing to do, and a banned phrase got into 12, "need to" in 9 of them, which the page rewrites before anyone sees the plan'],
+    braindump: ['Forty-seven mental tabs with no way to tell a task from a worry', 'One HTML file, a Cloudflare Worker that holds the prompts and the key, three levels and a feeling-anxious switch', '$0.0071 a plan on average after tuning, on the short eval dumps at list prices read 23 Sep 2026, with no database', '7 of 120 eval plans still gave a worry-heavy dump more than one thing to do, and a banned phrase got into 12, "need to" in 9 of them, which the page rewrites before anyone sees the plan'],
     // pixels-rag README, keyed golden run 2026-09-22 on Haiku 4.5: $0.0062 a
     // question, $0.1611 for 26; S01 still failed validation after the retry
     // (unit-glued 8.2hrs), S03 adjacency abstained, 10 of 26 needed a retry.
@@ -360,7 +360,7 @@ const RESULTS = {
     // proposal at least once in five runs), which is why a person approves
     // every write. The 9-in-20 modal id set is from the 29 Aug stability arm,
     // which has not been re-run since the golden set changed on 20 Sep.
-    discovery: ['A few lines of notes in the CRM, with no way to tell what was covered from what was skipped', 'A local requirements library, one extraction call under a closed enum, an action loop that can only propose, a person who approves each proposal, and an idempotent Salesforce upsert', '$0.0313 and 21.5 seconds per extraction and $0.0561 and 18.8 seconds per proposal run on claude-sonnet-5, at prices still marked to re-check, and nothing at all while the published demo runs canned', 'Planted instructions moved a proposal in six of ten fixtures and 10 of 12 proposal fixtures pass, so a person still approves every proposed write and confirms every inferred card'],
+    discovery: ['A few lines of notes in the CRM, with no way to tell what was covered from what was skipped', 'A local requirements library, one extraction call under a closed enum, an action loop that can only propose, a person who approves each proposal, and an idempotent Salesforce upsert', '$0.0313 and 21.5 seconds per extraction and $0.0561 and 18.8 seconds per proposal run on claude-sonnet-5 at list prices read 23 Sep 2026, and nothing at all while the published demo runs canned', 'Planted instructions moved a proposal in six of ten fixtures and 10 of 12 proposal fixtures pass, so a person still approves every proposed write and confirms every inferred card'],
     // guideline-assist README and docs/deployment-readout.md (2026-09-24/25):
     // the agent reading a policy library mid-chat and a supervisor sampling
     // chats afterwards; arm A (the whole library cached) and the validator;

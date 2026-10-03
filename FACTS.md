@@ -79,7 +79,7 @@ This file is the source of truth for every number, date and version that appears
 | Proposal fixtures | 12, 10 pass (T06 missed an update, T09 gave the wrong escalation reason); 100% escalation recall and precision; 0 unneeded writes; read-first ablation: repeat escalations 0 of 20 with the rule against 14 of 20 without |
 | Shadow run | 77.8% status agreement over 9 deals with an update; an escalation proposed on 5 of 5 slipped go-lives; missing-card recall 69.4% over 6 deals; 0 of 7 false escalations; against hand-written outcomes for 12 fixture deals, no pilot has run |
 | Injection | 10 fixtures × 5 runs; 40 of 50 unchanged (80%); 6 of 10 fixtures moved a proposal at least once (I01 run 2, I04 run 0, I05 runs 0, 1, 4, I07 runs 0, 4, I08 run 0, I10 runs 0, 2); 9 of 50 rationales echoed the planted phrase; 11 guard trips |
-| Cost / latency | claude-sonnet-5; $0.0313 and 21.5 s mean per extraction; $0.0561 and 18.8 s per action-loop run; priced at $2 / $10 per M tokens, marked in the repo as an assumption to re-check; $0 on the site (demo runs canned, per the site, not the README) |
+| Cost / latency | claude-sonnet-5; $0.0313 and 21.5 s mean per extraction; $0.0561 and 18.8 s per action-loop run; priced at $2 / $10 per M tokens, the claude-sonnet-5 list price in the Claude API pricing reference, read 23 Sep 2026 and again 3 Oct 2026 (the repo's pricing file still carries its re-check note); $0 on the site (demo runs canned, per the site, not the README) |
 | Library | hardware_rental, 19 cards (11 universal plus 8 vertical); 38 cards across 5 verticals |
 | Stability | 9 of 20 runs gave the modal id set with the closed enum and 3 of 20 without, 29 Aug 2026, not re-run since 20 Sep |
 | Kestrel transcript | G02_kestrel_buried_lede, an end-of-week catch-up; decision_maker is not_discussed and restricted_chemicals is not_discussed; 4 cards confirmed, 8 not discussed |
@@ -155,6 +155,7 @@ This file is the source of truth for every number, date and version that appears
 | Measure | Value |
 | --- | --- |
 | Grid | 20 dumps × 3 levels × anxious off and on, 120 plans per run |
+| Price | claude-sonnet-5 at $2 / $10 per M tokens, the list price in the Claude API pricing reference, read 23 Sep 2026 and again 3 Oct 2026 (worker/contracts.js still carries its re-check note) |
 | sort@v3, effort high | median 14.0 s, p90 23.8 s, $0.0134 per plan, 8 gentle-item misses, 10 banned phrases |
 | sort@v4, effort medium (live) | 7.3 s, 13.4 s, $0.0071, 7 misses, 12 banned |
 | sort@v4, effort low | 4.6 s, 6.6 s, $0.0040, 16 misses, 10 banned |
@@ -267,7 +268,6 @@ Each item below is on the site or in a source file the site copies from, and nee
 | --- | --- | --- |
 | Every verify and credential link | the IDs and links now match the certificate PDFs Samie supplied on 3 Oct 2026, but the sandbox could not open Skilljar, Coursera, Databricks, Snowflake, dbt or Skillshop to see the pages load | click each link on the work page once |
 | Gemini 3.8 Flash prices | UNCONFIRMED against Google's own pricing page | check Vertex AI pricing and update the Gemini rows if they differ |
-| Field discovery and Brain Dump prices | both repos mark their list prices as assumptions to re-check | re-read the prices and re-run cost if they changed |
 | Self-reported work figures | the résumé and experience rows have no document behind them in this repo | nothing to do unless a figure changes; they are listed so a copy edit cannot drift them |
 
 ## History
@@ -291,6 +291,7 @@ When a row changes, move the old value here with the date it stopped being curre
 | 3 Oct 2026 | PMP | listed as PMP, Project Management Professional · PMI in CERTIFICATIONS.md and on an earlier résumé | never held, a drift from an earlier editing session; Samie's only PMI credential is the Kickoff: Predictive badge (11 May 2026), which CERTIFICATIONS.md now lists |
 | 3 Oct 2026 | Raccoon body battery average | 10/100 (RECONCILE) | it matched no window of the daily readings; Samie asked for the raccoon to follow FACTS.md, so the page takes the mean of the incident window's readings, 12.1 |
 | 3 Oct 2026 | Arcade hooks | Died Doing What: tuberculosis leads for poets "at a median age of 58"; Nepotism Graph: "of the 25,885 conductors in Wikidata, 347 have a relative who also conducted" | neither figure has a source in the repo; the Died Doing What hook now states only what its 24 Sep capture shows, and the Nepotism Graph hook names the example without a count |
+| 3 Oct 2026 | Field discovery and Brain Dump prices | marked to re-check | claude-sonnet-5's $2 / $10 was set on 23 Sep 2026 from the Claude API pricing reference, replacing Sonnet 4.6's $3 / $15, and re-read unchanged on 3 Oct 2026; Samie treats it as confirmed, so the site says list prices read 23 Sep 2026 |
 | 3 Oct 2026 | Team Leader | led 5 client-facing managers (work page) | Samie confirmed 5 client solutions specialists, as the résumé says |
 | 3 Oct 2026 | Google Business Intelligence | linked to a coursera.org/account/accomplishments page with no ID shown | the certificate PDF gives the public verify link and ID CLF3CXNNZO4L |
 | 3 Oct 2026 | PSM I and Six Sigma White Belt | no verify link or issuer on file | the certificate PDFs give Scrum.org certificate 1318010 and the Council for Six Sigma Certification number nslvDTFJHO |
