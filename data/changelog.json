@@ -1,9 +1,14 @@
 {
-  "generated": "2026-09-26T23:00:00Z",
+  "generated": "2026-10-03T01:45:04Z",
   "repo": "SamieVargas/samievargas.github.io",
   "first": "2026-05-20T20:37:01-05:00",
-  "total": 320,
+  "total": 321,
   "commits": [
+    {
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "date": "2026-10-02T20:44:55-05:00",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+    },
     {
       "sha": "9d7e991e6c895779fdcf82692fa6fc59906db3f8",
       "date": "2026-09-26T17:59:16-05:00",
@@ -48,19 +53,13 @@
       "sha": "47b592cc4cfcdf7993c23d8025e0d6534b090a70",
       "date": "2026-09-26T01:00:03Z",
       "message": "Lock every number in FACTS.md and point CLAUDE.md at it"
-    },
-    {
-      "sha": "2cc043531902a548298bb04d769b7757902f8f61",
-      "date": "2026-09-25T22:29:06Z",
-      "message": "Restore the ATX Foodie reading from the notebook: higher score, more violations"
     }
   ],
   "weeks": [
-    0,
-    53,
-    69,
-    49,
-    13,
+    35,
+    22,
+    113,
+    14,
     0,
     3,
     0,
@@ -70,76 +69,77 @@
     0,
     0,
     0,
-    2,
-    26,
-    14,
+    1,
+    25,
+    16,
     15,
     0,
-    76
+    75,
+    2
   ],
   "pages": [
     {
       "file": "index.html",
       "label": "Work",
-      "date": "2026-09-26T01:19:29Z",
-      "sha": "7c7831408921278a175791348875c8cb8e3c415c",
-      "message": "Match every build on the site to its own repo README"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     },
     {
       "file": "life.html",
       "label": "Life",
-      "date": "2026-09-26T01:19:29Z",
-      "sha": "7c7831408921278a175791348875c8cb8e3c415c",
-      "message": "Match every build on the site to its own repo README"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     },
     {
       "file": "resume.html",
       "label": "Résumé",
-      "date": "2026-09-26T17:59:16-05:00",
-      "sha": "9d7e991e6c895779fdcf82692fa6fc59906db3f8",
-      "message": "Add section 04 to /assist: what it costs on Sonnet, Haiku and Gemini Flash (#50)"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     },
     {
       "file": "pixels/index.html",
       "label": "Pixels replay",
-      "date": "2026-09-26T01:19:29Z",
-      "sha": "7c7831408921278a175791348875c8cb8e3c415c",
-      "message": "Match every build on the site to its own repo README"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     },
     {
       "file": "assist/index.html",
       "label": "Assist replay",
-      "date": "2026-09-26T17:59:16-05:00",
-      "sha": "9d7e991e6c895779fdcf82692fa6fc59906db3f8",
-      "message": "Add section 04 to /assist: what it costs on Sonnet, Haiku and Gemini Flash (#50)"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     },
     {
       "file": "apps/index.html",
       "label": "Arcade",
-      "date": "2026-09-26T01:19:29Z",
-      "sha": "7c7831408921278a175791348875c8cb8e3c415c",
-      "message": "Match every build on the site to its own repo README"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     },
     {
       "file": "raccoon/index.html",
       "label": "Raccoon",
-      "date": "2026-09-26T01:19:29Z",
-      "sha": "7c7831408921278a175791348875c8cb8e3c415c",
-      "message": "Match every build on the site to its own repo README"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     },
     {
       "file": "toolkit.html",
       "label": "Toolkit",
-      "date": "2026-09-26T01:19:29Z",
-      "sha": "7c7831408921278a175791348875c8cb8e3c415c",
-      "message": "Match every build on the site to its own repo README"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     },
     {
       "file": "404.html",
       "label": "404",
-      "date": "2026-09-26T01:19:29Z",
-      "sha": "7c7831408921278a175791348875c8cb8e3c415c",
-      "message": "Match every build on the site to its own repo README"
+      "date": "2026-10-02T20:44:55-05:00",
+      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
     }
   ],
   "notes": [
@@ -193,7 +193,7 @@
     }
   ],
   "resume": {
-    "sha": "9d7e991e6c895779fdcf82692fa6fc59906db3f8",
-    "date": "2026-09-26T17:59:16-05:00"
+    "sha": "3ed3062640625de261fe89a2050099bafc73d390",
+    "date": "2026-10-02T20:44:55-05:00"
   }
 }
