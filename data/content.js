@@ -318,7 +318,7 @@ const OBSERVATIONS = [
   { tag: 'May 2026 · 21,160 inspection records', title: 'Being written up does not fix health code violations.',
     paragraphs: [
       'I started by querying every restaurant I actually eat at against the City of Austin\'s health inspection API, and places that were sent for a follow-up visit averaged 84.4 against 90.9 for routine visits, 6.45 points apart, which is the opposite direction of what I expected.',
-      'A second pattern showed up across a location\'s inspection history, the average score drifts from 90.5 at the first inspection to 92.6 by the fifteenth, which is 2.1 points toward more violations and starts to show by the fifth or sixth visit. So being written-up does not seem to be what fixes it, and the city already has the data to spot the locations that are sliding, although only the locations still open for a fifteenth visit reach the end of that line.'],
+      'A second pattern showed up across a location\'s inspection history, the average score drifts from 90.5 at the first inspection to 92.6 by the fifteenth, which is 2.1 points toward more violations and starts to show by the fifth or sixth visit. So being written up does not seem to be what fixes it, and the city already has the data to spot the locations that are sliding, although only the locations still open for a fifteenth visit reach the end of that line.'],
     sourceText: 'City of Austin open data ·', linkText: 'Full analysis ↗', linkHref: 'https://www.kaggle.com/code/samievargas/atx-foodie-inspection' },
   { tag: 'May 2026 · systems', title: 'Every productivity system I have built has the same failure mode',
     paragraphs: [

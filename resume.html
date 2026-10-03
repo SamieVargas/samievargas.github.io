@@ -187,6 +187,10 @@
     .cv-head p { text-align: left; }
     .cv-comp { grid-template-columns: 1fr; gap: 3px; }
     .cv-co, .cv-role-head { flex-wrap: wrap; row-gap: 2px; }
+    /* A long date line ("Oct 2023 – Present · Senior Team Leader…") wraps on
+       phones instead of pushing the page sideways. Print is wider than 720px,
+       so the PDF keeps it on one line. */
+    .cv-meta { white-space: normal; }
     .stamp { margin: 0 var(--edge) 32px; }
   }
 
@@ -371,7 +375,7 @@
 <aside class="stamp" id="stamp" hidden></aside>
 
 <script type="module">
-import { TK_REPO } from './data/content.js?v=20260925j';
+import { TK_REPO } from './data/content.js?v=20261003a';
 
 // ── R1 ── The guide has to sit on the real print margin, so read the
 // @page rule rather than hardcoding a percentage; it then stays honest
