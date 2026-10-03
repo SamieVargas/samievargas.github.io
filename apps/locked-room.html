@@ -19,14 +19,16 @@
   gtag('js', new Date());
   gtag('config', 'G-K7B7NDTKEL');
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body { margin: 0; background: #0d2439; }
 a { color: #7fb3dd; text-decoration: none; } a:hover { color: #dce9f5; }
-input, button { font: inherit; }
+button { font: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid #f0a8a0; outline-offset: 3px; }
 .acc-btn:hover { border-color: #dce9f5 !important; }
-.footer-link { color: inherit; text-decoration: none; }
+.footer-link { color: inherit; text-decoration: none; display: inline-block; padding: 4px 0; }
 .footer-link:hover { color: #dce9f5; }
 @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @keyframes typeline { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
@@ -34,7 +36,7 @@ input, button { font: inherit; }
 @keyframes placed { from { transform: scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes roomIn { 0% { opacity: 0; box-shadow: inset 0 0 0 1px rgba(127,179,221,0); } 60% { opacity: 1; box-shadow: inset 0 0 0 1px rgba(127,179,221,0.5); } 100% { opacity: 1; box-shadow: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; } }
-@media (max-width: 480px) { #plan-grid { grid-template-columns: 1fr 1fr !important; } }
+@media (max-width: 480px) { #plan-grid { grid-template-columns: 1fr 1fr !important; } .chips { top: 28px !important; } }
 </style>
 </head>
 <body>
@@ -133,7 +135,7 @@ function renderPlan() {
     const bg = i === 0 ? "rgba(240,168,160,0.07)" : "transparent";
     const placed = c.guests.filter((g, gi) => gi % c.rooms.length === i).map(g => g.replace("THE ", ""));
     const chips = placed.length
-      ? '<div style="position: absolute; top: 8px; right: 8px; display: flex; flex-wrap: wrap; gap: 3px; max-width: 62px; justify-content: flex-end">'
+      ? '<div class="chips" style="position: absolute; top: 8px; right: 8px; display: flex; flex-wrap: wrap; gap: 3px; max-width: 62px; justify-content: flex-end">'
         + placed.map(pl => '<div style="background: #7fb3dd; color: #0d2439; font-size: 8px; padding: 2px 4px; white-space: nowrap; animation: placed 260ms ease both">' + esc(pl) + '</div>').join("")
         + '</div>'
       : "";
@@ -149,13 +151,15 @@ function renderPlan() {
 function renderAccusation() {
   const c = state.c;
   el("tally").textContent = "SOLVED " + state.solved + " OF " + state.attempted;
+  const hadFocus = el("accusable-buttons").contains(document.activeElement) ? document.activeElement.getAttribute("data-guess") : null;
   el("accusable-buttons").innerHTML = c.guests.map(g => {
     const sel = state.guess === g;
     const bg = sel ? "#dce9f5" : "transparent";
     const fg = sel ? "#0d2439" : "#dce9f5";
     const border = sel ? "#dce9f5" : "#3f6d95";
-    return '<button type="button" class="acc-btn" data-guess="' + esc(g) + '" style="background: ' + bg + '; border: 1px solid ' + border + '; color: ' + fg + '; padding: 9px 13px; font-size: 11px; letter-spacing: 0.6px; white-space: nowrap; cursor: pointer">' + esc(g.replace("THE ", "")) + '</button>';
+    return '<button type="button" class="acc-btn" aria-pressed="' + sel + '" data-guess="' + esc(g) + '" style="background: ' + bg + '; border: 1px solid ' + border + '; color: ' + fg + '; padding: 9px 13px; font-size: 11px; letter-spacing: 0.6px; white-space: nowrap; cursor: pointer">' + esc(g.replace("THE ", "")) + '</button>';
   }).join("");
+  if (hadFocus !== null) { const f = [...el("accusable-buttons").children].find(b => b.getAttribute("data-guess") === hadFocus); if (f) f.focus(); }
   let extra = "";
   if (state.guess && !state.scored) {
     extra += '<button type="button" id="btn-accuse" style="margin-top: 16px; background: #f0a8a0; color: #0d2439; border: none; padding: 13px 22px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.6px; white-space: nowrap; cursor: pointer">MAKE THE ACCUSATION</button>';

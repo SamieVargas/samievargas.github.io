@@ -19,8 +19,9 @@
   gtag('js', new Date());
   gtag('config', 'G-K7B7NDTKEL');
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Cormorant+Garamond:ital,wght@1,400&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
 body { margin: 0; background: #f6ecd9; }
 a { color: #6e1f1a; } a:hover { color: #3a1f1a; }
@@ -34,7 +35,8 @@ button, textarea, input { font: inherit; }
 .spinBtn:hover { background: #3a1f1a !important; color: #f6ecd9 !important; }
 .redactBtn:hover { background: #6e1f1a !important; color: #f6ecd9 !important; border-color: #6e1f1a !important; }
 .pasteBox:focus { border-color: #6e1f1a !important; }
-.footLink { color: inherit; text-decoration: none; }
+.footLink { color: inherit; text-decoration: none; display: inline-block; padding: 7px 0; }
+button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px solid #d9a441; outline-offset: 2px; box-shadow: 0 0 0 4px #3a1f1a; }
 .footLink:hover { color: #3a1f1a; }
 </style>
 </head>
@@ -116,7 +118,7 @@ button, textarea, input { font: inherit; }
           </div>
           <div style="display: flex; justify-content: space-between; font-size: 11px; color: #8a6f52; margin-top: 10px; gap: 12px; flex-wrap: wrap">
             <span id="progressText"></span>
-            <button type="button" id="resetBtn" style="display: none; background: transparent; border: none; color: #8a6f52; padding: 0; font-size: 11px; letter-spacing: 1px; cursor: pointer; text-decoration: underline">clear my log</button>
+            <button type="button" id="resetBtn" style="display: none; background: transparent; border: none; color: #8a6f52; padding: 6px 0; min-height: 24px; font-size: 11px; letter-spacing: 1px; cursor: pointer; text-decoration: underline">clear my log</button>
           </div>
         </div>
       </div>
@@ -201,9 +203,7 @@ function fromOpenLibrary(w, mood) {
     b: "From Open Library: catalogued under " + (subs.slice(0, 3).join(", ") || "mystery") + ", with no blurb, no reviews and no idea, which is the appeal.",
     len: len,
     f: "UNVETTED",
-    bod: null,
-    ol: true,
-    key: w.key || ""
+    bod: null
   };
 }
 
@@ -541,7 +541,7 @@ function render() {
     const bodies = b.bod === null ? "not catalogued" : (b.bod === 0 ? "0 (a talking mystery)" : (b.bod === 1 ? "1 (efficient)" : b.bod + " (busy)"));
     bodiesCell.innerHTML = "<span>" + esc(bodies) + "</span>";
   } else {
-    bodiesCell.innerHTML = '<button type="button" data-action="reveal" class="redactBtn" style="background: repeating-linear-gradient(45deg, #d8c6a8 0 5px, #c9b494 5px 10px); border: 1px solid #8a6f52; color: #3a1f1a; padding: 3px 10px; font-family: \'Space Mono\', monospace; font-size: 11px; letter-spacing: 0.5px; cursor: pointer">redacted · click</button>';
+    bodiesCell.innerHTML = '<button type="button" data-action="reveal" class="redactBtn" style="background: repeating-linear-gradient(45deg, #d8c6a8 0 5px, #c9b494 5px 10px); border: 1px solid #8a6f52; color: #3a1f1a; padding: 3px 10px; min-height: 24px; font-family: \'Space Mono\', monospace; font-size: 11px; letter-spacing: 0.5px; cursor: pointer">redacted · click</button>';
   }
 
   acceptBtn.textContent = logged ? "LOGGED ✓" : "I'LL READ IT";
