@@ -194,8 +194,8 @@ export const BD_TUNING = {
 // Lineage as in assets/instacart-dbt/dag_01_full_lineage.png: one join, and
 // fct_orders is a mart, fed by the join and stg_orders, feeding dim_users.
 export const DAG = {
-  head: 'Instacart · dbt on BigQuery · sources through marts · 35 tests passing',
-  tests: 35,
+  head: 'Instacart · dbt on BigQuery · sources through marts · 34 tests passing',
+  tests: 34,
   hues: { src: 60, stg: 200, int: 145, mart: 330 },
   bands: [['0%', '21%', 60, 0], ['23%', '26%', 200, 0.3], ['50%', '29%', 145, 1.0], ['80%', '20%', 330, 1.5]],
   nodes: [['2%', '6%', 'lab', 0, 'Source'], ['2%', '79%', 'src', 0.05, 'instacart.orders'], ['25%', '6%', 'lab', 0.3, 'Staging · 5 models'], ['25%', '14%', 'stg', 0.35, 'stg_order_products'], ['25%', '29%', 'stg', 0.41, 'stg_products'], ['25%', '44%', 'stg', 0.47, 'stg_aisles'], ['25%', '59%', 'stg', 0.53, 'stg_departments'], ['25%', '79%', 'stg', 0.59, 'stg_orders'], ['52%', '24%', 'lab', 1.0, 'Intermediate'], ['52%', '32%', 'int', 1.05, 'int_order_products_joined'], ['82%', '24%', 'lab', 1.5, 'Marts'], ['82%', '32%', 'mart', 1.55, 'dim_products'], ['82%', '56%', 'mart', 1.6, 'fct_orders'], ['82%', '79%', 'mart', 1.66, 'dim_users']],
@@ -370,7 +370,7 @@ const RESULTS = {
     assist:    ['An agent looking up the next step in a policy library mid-chat, and a supervisor reading a sample of chats afterwards', 'One model call per agent turn with the whole guideline library in a cached prompt, a validator that rejects any step the guideline section does not list, and a QA call on the finished chat', '$121.83 per 1,000 chats on Sonnet 5 at 3.2 s p95 per turn, or $47.89 on Haiku 4.5, which picks the right next step 50.1% of the time against 73.9% for Sonnet, and on the same held-out chats Gemini 3.8 Flash picked it 82.2% of the time for $47.23 once its library sat in an explicit cache, although its p95 was 22.4 s', 'Sonnet\'s 73.9% is only level with a no-model guideline-order baseline at 73.4%, the QA still flags 20 of 100 clean chats and its wrong-value flags are right only 51.8% of the time, and one planted line pulled the suggestion to a refund in 2 of 5 runs, although 47 of 50 injected runs held'],
     // Instacart README: "most projects go straight to ML"; the input line on
     // this page; dbt Cloud on BigQuery; the days_since_prior_order cap at 30.
-    instacart: ['Modeling on the cited 0.60 reorder rate without checking it first', 'Five staging models, one join, three marts, thirty-five tests', 'A dbt Cloud project on BigQuery, run on free trials, so nothing when I run it', 'Days-since-prior is capped at 30, so 30 means 30 or more'],
+    instacart: ['Modeling on the cited 0.60 reorder rate without checking it first', 'Five staging models, one join, three marts, thirty-four tests', 'A dbt Cloud project on BigQuery, run on free trials, so nothing when I run it', 'Days-since-prior is capped at 30, so 30 means 30 or more'],
     // ATX: the pest-sighting post and "where I eat" on this page; 21,160 records,
     // 84 brands, folium; Kaggle-hosted. "What still breaks" is survivorship in
     // the drift line: point 15 only averages venues inspected fifteen times.
