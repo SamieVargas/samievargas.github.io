@@ -1,9 +1,29 @@
 {
-  "generated": "2026-10-03T02:44:50Z",
+  "generated": "2026-10-03T15:41:22Z",
   "repo": "SamieVargas/samievargas.github.io",
   "first": "2026-05-20T20:37:01-05:00",
-  "total": 331,
+  "total": 336,
   "commits": [
+    {
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "date": "2026-10-03T15:40:50Z",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+    },
+    {
+      "sha": "940337435c237d624fa51d0ace29dc3ff6c99a61",
+      "date": "2026-10-03T15:25:00Z",
+      "message": "Strip the last metadata from the site's images"
+    },
+    {
+      "sha": "54e9040fcda7d9ec089d2e0387a5adfb2f5d192f",
+      "date": "2026-10-03T15:22:25Z",
+      "message": "Lock the facts sweep in FACTS.md, with every row checked"
+    },
+    {
+      "sha": "e541778b7566ac26d1f1fbbd5523e45da5c0652d",
+      "date": "2026-10-03T14:53:43Z",
+      "message": "Fix what the facts sweep found on the pages"
+    },
     {
       "sha": "f405a9c3ff66ef332b6d76903abbea933b6ddb3a",
       "date": "2026-10-03T02:25:16Z",
@@ -33,32 +53,12 @@
       "sha": "edc90dab929847b10cf2c6f7741de1635c513198",
       "date": "2026-10-03T02:02:21Z",
       "message": "Apply the QC decisions: FACTS rows first, name-only identity, résumé PDF, image cleanup"
-    },
-    {
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "date": "2026-10-02T20:44:55-05:00",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
-    },
-    {
-      "sha": "c4d37ae9e7a61b2654a2f9477c8b9cbe80c57239",
-      "date": "2026-10-03T01:42:46Z",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost"
-    },
-    {
-      "sha": "9d7e991e6c895779fdcf82692fa6fc59906db3f8",
-      "date": "2026-09-26T17:59:16-05:00",
-      "message": "Add section 04 to /assist: what it costs on Sonnet, Haiku and Gemini Flash (#50)"
-    },
-    {
-      "sha": "7c7831408921278a175791348875c8cb8e3c415c",
-      "date": "2026-09-26T01:19:29Z",
-      "message": "Match every build on the site to its own repo README"
     }
   ],
   "weeks": [
-    38,
-    19,
-    114,
+    44,
+    25,
+    102,
     13,
     0,
     3,
@@ -75,50 +75,50 @@
     15,
     0,
     75,
-    12
+    17
   ],
   "pages": [
     {
       "file": "index.html",
       "label": "Work",
-      "date": "2026-10-02T21:22:52-05:00",
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+      "date": "2026-10-03T15:40:50Z",
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     },
     {
       "file": "life.html",
       "label": "Life",
-      "date": "2026-10-02T21:22:52-05:00",
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+      "date": "2026-10-03T15:40:50Z",
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     },
     {
       "file": "resume.html",
       "label": "Résumé",
-      "date": "2026-10-02T21:22:52-05:00",
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+      "date": "2026-10-03T15:40:50Z",
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     },
     {
       "file": "pixels/index.html",
       "label": "Pixels replay",
-      "date": "2026-10-02T21:22:52-05:00",
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+      "date": "2026-10-03T15:40:50Z",
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     },
     {
       "file": "assist/index.html",
       "label": "Assist replay",
-      "date": "2026-10-02T21:22:52-05:00",
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+      "date": "2026-10-03T15:40:50Z",
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     },
     {
       "file": "apps/index.html",
       "label": "Arcade",
-      "date": "2026-10-02T21:22:52-05:00",
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+      "date": "2026-10-03T15:40:50Z",
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     },
     {
       "file": "raccoon/index.html",
@@ -130,16 +130,16 @@
     {
       "file": "toolkit.html",
       "label": "Toolkit",
-      "date": "2026-10-02T21:22:52-05:00",
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+      "date": "2026-10-03T15:40:50Z",
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     },
     {
       "file": "404.html",
       "label": "404",
-      "date": "2026-10-02T21:22:52-05:00",
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+      "date": "2026-10-03T15:40:50Z",
+      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     }
   ],
   "notes": [
@@ -193,7 +193,7 @@
     }
   ],
   "resume": {
-    "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-    "date": "2026-10-02T21:22:52-05:00"
+    "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
+    "date": "2026-10-03T15:40:50Z"
   }
 }
