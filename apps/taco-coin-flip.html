@@ -52,15 +52,15 @@ input, button { font: inherit; }
 
     <div style="display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; align-items: center">
       <button type="button" id="nearby-btn" style="background: #fff7ec; color: #b31f5b; border: none; border-radius: 22px; padding: 13px 22px; font-family: 'Space Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px; white-space: nowrap; cursor: pointer">CLEANEST NEAR ME</button>
-      <span id="nearby-note" style="font-family: 'Space Mono', monospace; font-size: 11px; color: #ffd9e8">Uses your location once to find your zip. Nothing is stored or sent anywhere but the city's own portal.</span>
+      <span id="nearby-note" style="font-family: 'Space Mono', monospace; font-size: 11px; color: #ffd9e8">Uses your location once to find your zip. Your coordinates go only to OpenStreetMap's geocoder and the zip only to the city's own portal, and this page stores neither.</span>
     </div>
 
     <div id="nearby-panel"></div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 28px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px; margin-top: 28px">
       <div style="background: #fff7ec; color: #b31f5b; border-radius: 16px; padding: 22px">
         <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #a8758a">OPTION ONE</div>
-        <input type="text" id="q-0" class="slot-input" placeholder="Search a restaurant name" style="width: 100%; box-sizing: border-box; margin-top: 10px; background: #fff; border: 2px solid #f0c9d8; border-radius: 10px; padding: 13px 14px; font-family: 'Karla', sans-serif; font-size: 15px; color: #b31f5b; outline: none">
+        <input type="text" id="q-0" class="slot-input" aria-label="Option one, search a restaurant name" placeholder="Search a restaurant name" style="width: 100%; box-sizing: border-box; margin-top: 10px; background: #fff; border: 2px solid #f0c9d8; border-radius: 10px; padding: 13px 14px; font-family: 'Karla', sans-serif; font-size: 15px; color: #b31f5b; outline: none">
         <button type="button" id="search-0" style="width: 100%; margin-top: 10px; background: #b31f5b; color: #fff7ec; border: none; border-radius: 10px; padding: 12px 0; font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 1.4px; cursor: pointer">SEARCH THE CITY DATA</button>
         <div id="a3-stages-0" hidden style="margin-top:12px;--sl-accent:#b31f5b;--sl-track:#f0dfe6;--sl-ink:#3a1020;--sl-faint:#a8758a;--sl-alert:#c34a3a"></div>
         <div id="results-0"></div>
@@ -68,7 +68,7 @@ input, button { font: inherit; }
       </div>
       <div style="background: #fff7ec; color: #b31f5b; border-radius: 16px; padding: 22px">
         <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #a8758a">OPTION TWO</div>
-        <input type="text" id="q-1" class="slot-input" placeholder="Search a restaurant name" style="width: 100%; box-sizing: border-box; margin-top: 10px; background: #fff; border: 2px solid #f0c9d8; border-radius: 10px; padding: 13px 14px; font-family: 'Karla', sans-serif; font-size: 15px; color: #b31f5b; outline: none">
+        <input type="text" id="q-1" class="slot-input" aria-label="Option two, search a restaurant name" placeholder="Search a restaurant name" style="width: 100%; box-sizing: border-box; margin-top: 10px; background: #fff; border: 2px solid #f0c9d8; border-radius: 10px; padding: 13px 14px; font-family: 'Karla', sans-serif; font-size: 15px; color: #b31f5b; outline: none">
         <button type="button" id="search-1" style="width: 100%; margin-top: 10px; background: #b31f5b; color: #fff7ec; border: none; border-radius: 10px; padding: 12px 0; font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 1.4px; cursor: pointer">SEARCH THE CITY DATA</button>
         <div id="a3-stages-1" hidden style="margin-top:12px;--sl-accent:#b31f5b;--sl-track:#f0dfe6;--sl-ink:#3a1020;--sl-faint:#a8758a;--sl-alert:#c34a3a"></div>
         <div id="results-1"></div>
@@ -76,7 +76,7 @@ input, button { font: inherit; }
       </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 34px; margin-top: 40px; align-items: center">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 34px; margin-top: 40px; align-items: center">
       <div style="display: flex; justify-content: center">
         <button type="button" id="coin-btn" style="width: 210px; height: 210px; border: none; border-radius: 50%; background: transparent; padding: 0; cursor: pointer; perspective: 700px; animation: none; box-shadow: 0 16px 0 #b31f5b, 0 26px 40px rgba(0,0,0,0.28)">
           <div id="coin-inner" style="position: relative; width: 100%; height: 100%; transform-style: preserve-3d; animation: none">
@@ -129,7 +129,7 @@ function grade(n) {
 const state = {
   results: [[], []], picks: [null, null], loading: [false, false],
   status: "READY", flipping: false, verdict: null, coinFace: "FLIP IT", wins: {},
-  nearby: [], nearbyBusy: false, nearbyNote: "Uses your location once to find your zip. Nothing is stored or sent anywhere but the city's own portal."
+  nearby: [], nearbyBusy: false, nearbyNote: "Uses your location once to find your zip. Your coordinates go only to OpenStreetMap's geocoder and the zip only to the city's own portal, and this page stores neither."
 };
 
 function setState(patch) {
@@ -184,7 +184,7 @@ function render() {
     ).join("");
     setRegion(els.nearbyPanel,
       '<div style="margin-top: 20px; background: #b31f5b; border-radius: 16px; padding: 22px 24px">' +
-        '<div style="font-family: \'Space Mono\', monospace; font-size: 10px; letter-spacing: 2px; color: #ffb3cf; white-space: nowrap">CLEANEST IN YOUR ZIP · LAST INSPECTION</div>' +
+        '<div style="font-family: \'Space Mono\', monospace; font-size: 10px; letter-spacing: 2px; color: #ffb3cf">CLEANEST IN YOUR ZIP · LAST INSPECTION</div>' +
         '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px">' + rows + '</div>' +
         '<div style="font-family: \'Space Mono\', monospace; font-size: 10.5px; color: #ffb3cf; margin-top: 14px">Click one to load it into option one.</div>' +
       '</div>');
@@ -214,7 +214,7 @@ function render() {
     if (p) {
       const avg = p.scores.length ? Math.round(p.scores.reduce((a, b) => a + b, 0) / p.scores.length) : p.score;
       const worst = p.scores.length ? Math.min.apply(null, p.scores) : p.score;
-      const history = p.count + " inspections on file · avg " + avg + " · worst " + worst;
+      const history = p.count + (p.count === 1 ? " inspection" : " inspections") + " on file · avg " + avg + " · worst " + worst;
       const scoreColor = p.score >= 90 ? "#2f7a4f" : (p.score >= 80 ? "#c47a20" : "#b3372c");
       setRegion(els.picks[i],
         '<div style="margin-top: 14px; border-top: 2px dashed #f0c9d8; padding-top: 14px; animation: pop 240ms ease both">' +
@@ -290,7 +290,7 @@ function findNearby() {
         .sort((a, b) => b.score - a.score)
         .slice(0, 6);
       if (!list.length) throw new Error("empty");
-      setState({ nearby: list, nearbyBusy: false, nearbyNote: zip + " · " + list.length + " venues, cleanest first" });
+      setState({ nearby: list, nearbyBusy: false, nearbyNote: zip + " · " + list.length + (list.length === 1 ? " venue" : " venues") + ", cleanest first" });
     } catch (e) {
       setState({ nearbyBusy: false, nearbyNote: "could not work out your zip, so search by name instead" });
     }
@@ -343,7 +343,7 @@ async function search(i) {
     const all = state.results.slice(); all[i] = results;
     const l2 = state.loading.slice(); l2[i] = false;
     if (results.length) { loader.render(); } else { loader.fail("no venue matched that name"); }
-    setState({ results: all, loading: l2, status: results.length ? "LIVE · " + rows.length + " RECORDS READ" : "NO MATCHES" });
+    setState({ results: all, loading: l2, status: results.length ? "LIVE · " + rows.length + (rows.length === 1 ? " RECORD READ" : " RECORDS READ") : "NO MATCHES" });
     if (results.length) { loader.done(); stagesEl.hidden = true; }
   } catch (e) {
     const l2 = state.loading.slice(); l2[i] = false;

@@ -34,6 +34,7 @@ input, button { font: inherit; }
 @keyframes placed { from { transform: scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes roomIn { 0% { opacity: 0; box-shadow: inset 0 0 0 1px rgba(127,179,221,0); } 60% { opacity: 1; box-shadow: inset 0 0 0 1px rgba(127,179,221,0.5); } 100% { opacity: 1; box-shadow: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; } }
+@media (max-width: 480px) { #plan-grid { grid-template-columns: 1fr 1fr !important; } }
 </style>
 </head>
 <body>
@@ -48,7 +49,7 @@ input, button { font: inherit; }
       <div style="font-size: 11.5px; line-height: 1.8; color: #7fb3dd; text-align: right; animation: fadein 520ms ease both; animation-delay: 180ms">A HOUSE · A BODY · SIX GUESTS<br>ONE IMPOSSIBLE EXIT</div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 44px; margin-top: 44px; align-items: start">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 44px; margin-top: 44px; align-items: start">
 
       <div>
         <div style="font-size: 10.5px; letter-spacing: 3px; color: #7fb3dd; margin-bottom: 14px">GROUND FLOOR · SCENE MARKED</div>
@@ -97,10 +98,10 @@ input, button { font: inherit; }
 <script type="module">
 const VICTIMS = ["DR. HALLOWELL", "SIR EDMUND PRYCE", "MRS. VANCE-COLE", "THE NOTARY, MR. OKADA", "LADY BRAMBLE", "PROFESSOR IVES", "THE HEIR, JULIAN WREN"];
 const ROOMS = ["STUDY", "CONSERVATORY", "LIBRARY", "BILLIARD ROOM", "CELLAR", "MORNING ROOM", "OBSERVATORY", "LINEN CLOSET"];
-const SEALS = ["bolted from the inside", "locked with the only key still in the dead man's waistcoat", "barred with a chair no one could have moved from outside", "sealed with wet paint across the frame", "shut with a padlock rusted closed since spring"];
+const SEALS = ["bolted from the inside", "locked with the only key still in the victim's pocket", "barred with a chair no one could have moved from outside", "sealed with wet paint across the frame", "shut with a padlock rusted closed since spring"];
 const DETAILS = ["The window has been painted shut since 1962.", "The tea was still warm.", "The dog did not bark, which is either meaningless or the entire case.", "Every clock in the house is eleven minutes fast except one.", "There were two glasses, and only one set of prints.", "The snow outside was unbroken in every direction.", "The gramophone had been playing the same four bars for an hour."];
 const GUESTS = ["THE HEIRESS", "THE VALET", "THE VICAR", "THE CHESS RIVAL", "THE COOK", "THE STEPSON", "THE NURSE", "THE BOTANIST", "THE UNINVITED COUSIN", "THE INSPECTOR'S BROTHER", "YOU"];
-const METHODS = ["The door was never locked. It was locked afterwards, by someone with an excellent reason to be first on the scene.", "The bolt was thrown with a length of fishing line through the keyhole, then the line was burned in the grate.", "There were two rooms. The body was moved between them while everyone stared at the wrong door.", "The victim locked the door himself. He was already dying, and he wanted it to look like this.", "The room was never sealed: the clocks were wrong, and the murder happened an hour before anyone thought it had.", "The window opened inward. Nobody checked, because nobody ever checks."];
+const METHODS = ["The door was never locked. It was locked afterwards, by someone with an excellent reason to be first on the scene.", "The bolt was thrown with a length of fishing line through the keyhole, then the line was burned in the grate.", "There were two rooms. The body was moved between them while everyone stared at the wrong door.", "The victim locked the door themselves. They were already dying, and they wanted it to look like this.", "The room was never sealed: the clocks were wrong, and the murder happened an hour before anyone thought it had.", "The window opened inward. Nobody checked, because nobody ever checks."];
 
 function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
 function shuffle(a) { const c = a.slice(); for (let i = c.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [c[i], c[j]] = [c[j], c[i]]; } return c; }
@@ -128,7 +129,7 @@ function renderPlan() {
     const mark = i === 0 ? "✕ ▨" : "";
     const markDelay = (i * 60 + 500) + "ms";
     const cellDelay = (i * 90) + "ms";
-    const note = i === 0 ? "SCENE · DOOR BOLTED" : "";
+    const note = i === 0 ? "SCENE · DOOR SEALED" : "";
     const bg = i === 0 ? "rgba(240,168,160,0.07)" : "transparent";
     const placed = c.guests.filter((g, gi) => gi % c.rooms.length === i).map(g => g.replace("THE ", ""));
     const chips = placed.length
@@ -184,7 +185,7 @@ function renderReveal() {
   if (!state.revealed) { el("reveal-zone").innerHTML = ""; return; }
   const summation = [
     { text: c.method, delay: "0ms" },
-    { text: "The " + c.detail.charAt(0).toLowerCase() + c.detail.slice(1, -1) + " was the tell.", delay: "420ms" },
+    { text: "The tell was that " + c.detail.charAt(0).toLowerCase() + c.detail.slice(1), delay: "420ms" },
     { text: "Culprit: " + c.culprit.replace("THE ", "the ") + ".", delay: "840ms" }
   ];
   el("reveal-zone").innerHTML =
@@ -257,15 +258,10 @@ try {
   solved = parseInt(localStorage.getItem("lockedroom.solved") || "0", 10) || 0;
   attempted = parseInt(localStorage.getItem("lockedroom.attempted") || "0", 10) || 0;
 } catch (e) {}
-state.c = make();
 state.count = count;
 state.solved = solved;
 state.attempted = attempted;
-renderPlan();
-renderCase();
-renderAccusation();
-renderReveal();
-renderCount();
+generate();
 </script>
 </body>
 </html>

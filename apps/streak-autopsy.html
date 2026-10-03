@@ -76,7 +76,7 @@ input, textarea, button { font: inherit; }
         <div id="forecast-region"></div>
 
         <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; align-items: center">
-          <input type="text" id="new-habit" class="input-habit" placeholder="Name a habit to observe" style="flex: 1; min-width: 200px; background: #fff; border: 1px solid #cfc8b8; padding: 13px 14px; font-size: 13.5px; color: #2a2622; outline: none">
+          <input type="text" id="new-habit" class="input-habit" aria-label="Name a habit to observe" placeholder="Name a habit to observe" style="flex: 1; min-width: 200px; background: #fff; border: 1px solid #cfc8b8; padding: 13px 14px; font-size: 13.5px; color: #2a2622; outline: none">
           <button type="button" id="btn-add" style="background: #2a2622; color: #f2efe6; border: none; padding: 13px 20px; font-size: 11.5px; letter-spacing: 1.6px; cursor: pointer">OBSERVE IT</button>
         </div>
         <div style="font-size: 11px; line-height: 1.7; color: #8c8577; margin-top: 14px">A habit is alive while the gap is one day or less. At two days it's declared dead and the coroner opens a case. Everything is counted from your own taps, stored in this browser.</div>
@@ -94,7 +94,7 @@ input, textarea, button { font: inherit; }
           </div>
           <div style="font-size: 10px; letter-spacing: 2px; color: #8c8577; margin-top: 22px">CAUSE OF DEATH · ONE QUESTION ONLY</div>
           <p id="case-question" style="font-family: 'Libre Caslon Text', serif; font-style: italic; font-size: 23px; line-height: 1.4; margin: 10px 0 0"></p>
-          <textarea id="case-answer" class="textarea-answer" rows="3" placeholder="It rained and I told myself I'd go at lunch. I did not go at lunch." style="width: 100%; box-sizing: border-box; margin-top: 12px; background: #fff; border: 1px solid #cfc8b8; padding: 15px; font-family: 'Chivo Mono', monospace; font-size: 13px; line-height: 1.65; color: #4d463c; outline: none; resize: vertical"></textarea>
+          <textarea id="case-answer" class="textarea-answer" aria-labelledby="case-question" rows="3" placeholder="It rained and I told myself I'd go at lunch. I did not go at lunch." style="width: 100%; box-sizing: border-box; margin-top: 12px; background: #fff; border: 1px solid #cfc8b8; padding: 15px; font-family: 'Chivo Mono', monospace; font-size: 13px; line-height: 1.65; color: #4d463c; outline: none; resize: vertical"></textarea>
           <div style="font-size: 10px; letter-spacing: 2px; color: #8c8577; margin-top: 16px; margin-bottom: 9px">CONTRIBUTING FACTOR</div>
           <div id="case-factors" style="display: flex; gap: 8px; flex-wrap: wrap"></div>
           <div style="display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap">
@@ -240,7 +240,7 @@ function renderHabits() {
         '<button type="button" data-action="today" data-idx="' + i + '" style="border: 1.5px solid #2a2622; background: ' + (doneToday ? "#2a2622" : "transparent") + '; color: ' + (doneToday ? "#f2efe6" : "#2a2622") + '; padding: 10px 16px; font-size: 11.5px; letter-spacing: 1.2px; white-space: nowrap; cursor: pointer">' + (doneToday ? "DONE TODAY ✓" : "I DID IT TODAY") + '</button>' +
         '<button type="button" data-action="yesterday" data-idx="' + i + '" class="btn-yesterday" style="border: 1px solid #cfc8b8; background: transparent; color: #6b6357; padding: 10px 14px; font-size: 11.5px; white-space: nowrap; cursor: pointer">also yesterday</button>' +
         (dead ? '<button type="button" data-action="case" data-idx="' + i + '" class="btn-opencase" style="border: 1.5px solid #b3372c; background: transparent; color: #b3372c; padding: 10px 16px; font-size: 11.5px; letter-spacing: 1.2px; white-space: nowrap; cursor: pointer">OPEN THE CASE</button>' : '') +
-        '<button type="button" data-action="remove" data-idx="' + i + '" class="btn-remove" style="border: none; background: transparent; color: #b0a894; padding: 10px 6px; font-size: 15px; cursor: pointer">×</button>' +
+        '<button type="button" data-action="remove" data-idx="' + i + '" class="btn-remove" aria-label="Remove ' + esc(h.name) + '" style="border: none; background: transparent; color: #b0a894; padding: 10px 6px; font-size: 15px; cursor: pointer">×</button>' +
       '</div>' +
     '</div>';
   }).join("");
@@ -297,7 +297,8 @@ function renderCase() {
   const caseLast = caseH.log.slice().sort().pop();
   document.getElementById("case-no").textContent = String(state.records.length + 1).padStart(3, "0");
   document.getElementById("case-habit").textContent = caseH.name;
-  document.getElementById("case-days").textContent = bestOf(caseH.log) + " days";
+  const best = bestOf(caseH.log);
+  document.getElementById("case-days").textContent = best + (best === 1 ? " day" : " days");
   document.getElementById("case-tod").textContent = pretty(caseLast) + ", then nothing";
   document.getElementById("case-question").textContent = QUESTIONS[(state.records.length + (state.caseIdx || 0)) % QUESTIONS.length];
   renderFactors();
@@ -340,10 +341,10 @@ function renderCert() {
     '<div style="font-family: \'Libre Caslon Text\', serif; font-size: 28px; margin-top: 12px">Certificate of Death</div>' +
     '<div style="width: 60px; height: 1px; background: #2a2622; margin: 16px auto"></div>' +
     '<div style="font-family: \'Libre Caslon Text\', serif; font-size: 34px; line-height: 1.15">' + esc(c.name) + '</div>' +
-    '<div style="font-size: 11.5px; color: #6b6357; margin-top: 10px; line-height: 1.8">SURVIVED ' + esc(c.days + " days") + '<br>TIME OF DEATH · ' + esc(c.tod) + '<br>CAUSE · ' + esc(c.cause) + '</div>' +
+    '<div style="font-size: 11.5px; color: #6b6357; margin-top: 10px; line-height: 1.8">SURVIVED ' + esc(c.days + (c.days === 1 ? " day" : " days")) + '<br>TIME OF DEATH · ' + esc(c.tod) + '<br>CAUSE · ' + esc(c.cause) + '</div>' +
     '<p style="font-family: \'Libre Caslon Text\', serif; font-style: italic; font-size: 16px; line-height: 1.5; margin: 16px auto 0; max-width: 380px">' + esc("“" + c.statement + "”") + '</p>' +
     '<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 26px; gap: 20px">' +
-      '<div style="text-align: left; font-size: 9.5px; letter-spacing: 1.6px; color: #8c8577">CASE NO. ' + String(state.records.length + 1).padStart(3, "0") + '<br>FILED ' + MONTHS[now.getMonth()] + ' ' + now.getDate() + '</div>' +
+      '<div style="text-align: left; font-size: 9.5px; letter-spacing: 1.6px; color: #8c8577">CASE NO. ' + String(c.no).padStart(3, "0") + '<br>FILED ' + MONTHS[now.getMonth()] + ' ' + now.getDate() + '</div>' +
       '<div style="border: 2.5px solid #b3372c; color: #b3372c; font-size: 10.5px; letter-spacing: 2px; padding: 5px 9px; transform: rotate(-6deg); white-space: nowrap">CERTIFIED</div>' +
     '</div>' +
   '</div>';
@@ -359,7 +360,7 @@ function renderFile() {
     '<div style="border-top: 1px solid #ddd5c3; padding: 16px 22px">' +
       '<div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">' +
         '<span style="font-family: \'Libre Caslon Text\', serif; font-size: 19px">' + esc(r.habit) + '</span>' +
-        '<span style="font-size: 11px; color: #8c8577">' + esc(r.days) + ' days · ' + esc(r.factor) + '</span>' +
+        '<span style="font-size: 11px; color: #8c8577">' + esc(r.days) + (r.days === 1 ? ' day · ' : ' days · ') + esc(r.factor) + '</span>' +
       '</div>' +
       '<div style="font-size: 12.5px; line-height: 1.6; color: #6b6357; margin-top: 6px">' + esc(r.answer) + '</div>' +
     '</div>'
@@ -370,10 +371,11 @@ function renderStatsGrid() {
   const fc = factorCounts();
   const lifespans = state.records.map(r => r.days || 0);
   const avg = lifespans.length ? Math.round(lifespans.reduce((a, b) => a + b, 0) / lifespans.length) : 0;
+  const longest = lifespans.length ? Math.max.apply(null, lifespans) : 0;
   const taps = state.habits.reduce((a, h) => a + (h.log || []).length, 0);
   document.getElementById("stats-grid").innerHTML =
-    '<div><span style="color: #8c8577">LONGEST LIFE</span><br>' + (lifespans.length ? Math.max.apply(null, lifespans) + " days" : "—") + '</div>' +
-    '<div><span style="color: #8c8577">AVERAGE LIFESPAN</span><br>' + (lifespans.length ? avg + " days" : "—") + '</div>' +
+    '<div><span style="color: #8c8577">LONGEST LIFE</span><br>' + (lifespans.length ? longest + (longest === 1 ? " day" : " days") : "—") + '</div>' +
+    '<div><span style="color: #8c8577">AVERAGE LIFESPAN</span><br>' + (lifespans.length ? avg + (avg === 1 ? " day" : " days") : "—") + '</div>' +
     '<div><span style="color: #8c8577">REPEAT FACTOR</span><br>' + esc(fc.top ? fc.top + " (×" + fc.counts[fc.top] + ")" : "—") + '</div>' +
     '<div><span style="color: #8c8577">TAPS LOGGED</span><br>' + taps + '</div>';
 }
@@ -419,6 +421,8 @@ function fileReport(resurrect) {
   const answerEl = document.getElementById("case-answer");
   const last = h.log.slice().sort().pop();
   const days = bestOf(h.log);
+  // The case number shown on the open case panel, kept for the certificate.
+  const no = state.records.length + 1;
   const rec = { habit: h.name, days: days, factor: state.factor, answer: answerEl.value || "No statement given.", tod: pretty(last) };
   const records = [rec].concat(state.records).slice(0, 14);
   try { localStorage.setItem("streak.file", JSON.stringify(records)); } catch (e) {}
@@ -435,7 +439,7 @@ function fileReport(resurrect) {
   state.records = records;
   state.finding = finding;
   state.caseIdx = null;
-  state.lastCert = { name: h.name, days: days, tod: pretty(last), cause: state.factor, statement: rec.answer };
+  state.lastCert = { no: no, name: h.name, days: days, tod: pretty(last), cause: state.factor, statement: rec.answer };
   state.showCert = false;
   answerEl.value = "";
   renderAll();

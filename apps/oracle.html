@@ -52,7 +52,7 @@ input, button { font: inherit; }
 
     <div style="max-width: 620px; margin: 44px auto 0">
       <div id="input-label" style="font-size: 10px; letter-spacing: 3px; color: #6b6395; text-align: center; margin-bottom: 6px">WHAT YOU CAME WITH</div>
-      <input type="text" id="q-input" placeholder="Should we build the integration or the reporting layer first?" style="width: 100%; box-sizing: border-box; padding: 18px 0; border: none; border-bottom: 1.5px solid #3a3160; background: transparent; font-family: 'Instrument Serif', serif; font-size: 26px; color: #efe9ff; text-align: center; outline: none">
+      <input type="text" id="q-input" aria-labelledby="input-label" placeholder="Should we build the integration or the reporting layer first?" style="width: 100%; box-sizing: border-box; padding: 18px 0; border: none; border-bottom: 1.5px solid #3a3160; background: transparent; font-family: 'Instrument Serif', serif; font-size: 26px; color: #efe9ff; text-align: center; outline: none">
       <div style="display: flex; gap: 12px; margin-top: 22px; justify-content: center; flex-wrap: wrap">
         <button type="button" id="ask-btn" style="flex: none; background: #6f5fd6; color: #f0ecff; border: none; border-radius: 30px; padding: 16px 30px; font-size: 12px; font-weight: 700; letter-spacing: 1.8px; white-space: nowrap; cursor: pointer">CONSULT THE STONE</button>
         <button type="button" id="surprise-btn" class="btn-ghost" style="flex: none; background: transparent; border: 1px solid #4a3f7a; border-radius: 30px; color: #b3a9d9; padding: 16px 26px; font-size: 12px; letter-spacing: 1.6px; white-space: nowrap; cursor: pointer">BRING IT A REAL DILEMMA</button>
@@ -96,11 +96,11 @@ const DILEMMAS = [
 ];
 
 const RULES = [
-  { test: /or\b/i, tag: "it sees a fork", q: ["Which one has a customer already waiting for it?", "If you could only ship one and never the other, which absence would you have to explain?", "Which of the two are you avoiding because it's harder?"], why: "You framed a fork. Forks are usually a hidden ranking problem." },
+  { test: /\bor\b/i, tag: "it sees a fork", q: ["Which one has a customer already waiting for it?", "If you could only ship one and never the other, which absence would you have to explain?", "Which of the two are you avoiding because it's harder?"], why: "You framed a fork. Forks are usually a hidden ranking problem." },
   { test: /should i (tell|say|mention|raise)/i, tag: "it asks who knows", q: ["What happens to you if they find out later, from someone else?", "Who else already knows?", "What are you hoping they'll do with it?"], why: "You asked about disclosure, which means the information already feels like a liability." },
   { test: /worth it|worth (the|a)/i, tag: "compared to what?", q: ["Compared to doing nothing for six months, what actually changes?", "What would have to be true for it to obviously not be worth it?", "Who pays if you're wrong?"], why: "“Worth it” is a comparison with the other half missing." },
   { test: /hire|headcount|team|backfill/i, tag: "it asks what stops", q: ["What work stops the day they start?", "If the role were frozen for a year, what would you stop doing?", "Who trains them, and what do they stop doing?"], why: "Headcount questions are almost always sequencing questions." },
-  { test: /should we (sunset|kill|deprecate|shut)/i, tag: "it asks who remains", q: ["Who is still using it, and what do they use it for?", "What breaks that you don't currently see?", "What are you actually trying to free up?"], why: "Endings are easy to decide and hard to schedule." },
+  { test: /\b(should|do) we (sunset|kill|deprecate|shut)/i, tag: "it asks who remains", q: ["Who is still using it, and what do they use it for?", "What breaks that you don't currently see?", "What are you actually trying to free up?"], why: "Endings are easy to decide and hard to schedule." },
   { test: /take the (job|role|offer)|bigger title|new (job|role)/i, tag: "it sees a wager", q: ["Which version of yourself is this a bet on?", "What would make you regret staying?", "In two years, which one gives you a better story about your judgment?"], why: "Career forks are rarely about the two options on the table." },
   { test: /rebuild|refactor|patch|rewrite/i, tag: "it asks who inherits", q: ["How many more times can you patch it before the patch is the system?", "What do you learn from the rebuild that you can't learn now?", "Who owns it after it's rebuilt?"], why: "The real question is who inherits it after the rebuild." },
   { test: /when|deadline|timeline|by (friday|monday|q[1-4])/i, tag: "it doubts the date", q: ["What is actually happening on that date?", "Who chose that date, and were they in the room for the work?", "What would you cut to make it true?"], why: "A date question is usually a scope question in costume." },
@@ -112,8 +112,8 @@ const GENERIC = { tag: "it finds nothing to hold", q: ["What would you decide if
 const DESCENT = [
   { tag: "it asks who decides", q: ["Who else would have to agree with that answer?"], why: "Your first answer belongs to someone. The stone wants to know who." },
   { tag: "it asks for the cost", q: ["And what does that cost you, specifically, this quarter?"], why: "Every honest answer has a price attached. This is where it shows up." },
-  { tag: "it asks what you avoided", q: ["What did you leave out of that answer on purpose?"], why: "By the third descent, the omissions are more interesting than the answers." },
-  { tag: "it asks the real one", q: ["So what is the question you came here actually wanting asked?"], why: "The stone has taken four questions off you. It is returning the one underneath." }
+  { tag: "it asks what you avoided", q: ["What did you leave out of that answer on purpose?"], why: "By the fourth descent, the omissions are more interesting than the answers." },
+  { tag: "it asks the real one", q: ["So what is the question you came here actually wanting asked?"], why: "The stone has taken five questions off you. It is returning the one underneath." }
 ];
 const HEARD = [
   "It is holding your first answer now. It will not give that back.",
@@ -242,7 +242,7 @@ function copyDescent() {
     .filter(h => h.asked && h.replied)
     .map((h, i) => (i + 1) + ". I asked: " + h.asked + "\n   It asked: " + h.replied);
   const text = "ONE-QUESTION ORACLE · a descent\n\n" + lines.join("\n\n") + "\n\nIt never answered. samievargas.com";
-  try { navigator.clipboard.writeText(text); } catch (e) {}
+  try { navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
   state.copied = true;
   updateCopyLabel();
   setTimeout(() => { state.copied = false; updateCopyLabel(); }, 1800);
@@ -264,12 +264,13 @@ function ask() {
       q = (fresh.length ? fresh : rule.q)[0];
     }
     const words = text.split(/\s+/).length;
-    const joints = (text.match(/,|and|but/gi) || []).length;
+    const joints = (text.match(/,|\band\b|\bbut\b/gi) || []).length;
+    const a = /^(8|11$|18$)/.test(words) ? "An " : "A ";
     let heard;
     if (turn > 1) heard = HEARD[Math.min(HEARD.length - 1, turn - 2)];
-    else if (words < 6) heard = "Six words or fewer, and short questions hide their constraint.";
-    else if (joints === 0) heard = "A " + words + "-word question with one clean clause, which is rarer than it sounds.";
-    else heard = "A " + words + "-word question with " + joints + " joint" + (joints === 1 ? "" : "s") + " in it. That makes it more than one question.";
+    else if (words <= 6) heard = "Six words or fewer, and short questions hide their constraint.";
+    else if (joints === 0) heard = a + words + "-word question with one clean clause, which is rarer than it sounds.";
+    else heard = a + words + "-word question with " + joints + " joint" + (joints === 1 ? "" : "s") + " in it. That makes it more than one question.";
     Object.assign(state, {
       shaking: false, answer: q, heard: heard, why: rule.why, tag: rule.tag, turn: turn, askedText: text,
       used: state.used.concat([q]),

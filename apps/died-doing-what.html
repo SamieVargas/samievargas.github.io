@@ -63,7 +63,7 @@ input, button { font: inherit; }
       <div style="display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; align-items: flex-end; animation: rise 520ms ease both; animation-delay: 260ms">
         <div style="flex: 1; min-width: 260px">
           <div style="font-size: 10px; letter-spacing: 2px; color: #8b8377">OCCUPATION</div>
-          <input type="text" id="occInput" value="poet" placeholder="poet, boxer, astronaut, chef" style="width: 100%; box-sizing: border-box; background: transparent; border: none; border-bottom: 1.5px solid #241f1c; padding: 10px 0; font-family: 'Libre Caslon Text', serif; font-size: 28px; color: #241f1c; outline: none">
+          <input type="text" id="occInput" aria-label="Occupation" value="poet" placeholder="poet, boxer, astronaut, chef" style="width: 100%; box-sizing: border-box; background: transparent; border: none; border-bottom: 1.5px solid #241f1c; padding: 10px 0; font-family: 'Libre Caslon Text', serif; font-size: 28px; color: #241f1c; outline: none">
         </div>
         <button type="button" id="runBtn" style="background: #241f1c; color: #efece3; border: none; padding: 16px 26px; font-size: 11.5px; letter-spacing: 1.8px; white-space: nowrap; cursor: pointer">QUERYING</button>
       </div>
@@ -106,7 +106,7 @@ input, button { font: inherit; }
           <div style="border: 1px solid #cfc9ba; padding: 20px 22px; margin-top: 16px">
             <div style="font-size: 9.5px; letter-spacing: 2px; color: #8b8377; white-space: nowrap">COMPARE WITH ANOTHER TRADE</div>
             <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap">
-              <input type="text" id="cmpInput" value="boxer" placeholder="boxer" style="flex: 1; min-width: 110px; background: #fff; border: 1px solid #cfc9ba; padding: 10px 12px; font-family: 'Chivo Mono', monospace; font-size: 13px; color: #241f1c; outline: none">
+              <input type="text" id="cmpInput" aria-label="Compare with another trade" value="boxer" placeholder="boxer" style="flex: 1; min-width: 110px; background: #fff; border: 1px solid #cfc9ba; padding: 10px 12px; font-family: 'Space Mono', monospace; font-size: 13px; color: #241f1c; outline: none">
               <button type="button" id="cmpBtn" style="background: #241f1c; color: #efece3; border: none; padding: 10px 14px; font-size: 10.5px; letter-spacing: 1.2px; white-space: nowrap; cursor: pointer">COMPARE</button>
             </div>
           </div>
@@ -278,22 +278,24 @@ function compute() {
     if (!byCause[cq]) byCause[cq] = [];
     if (byCause[cq].length < 6) byCause[cq].push({
       name: v(r, "pLabel"),
-      url: v(r, "p") || "#",
+      url: (v(r, "p") || "#").replace(/^http:/, "https:"),
       meta: year(v(r, "birth")) + "–" + year(v(r, "death")) + (a ? " · aged " + a : "")
     });
   });
   ages.sort((a, b) => a - b);
   const median = ages.length ? ages[Math.floor(ages.length / 2)] : null;
 
-  // The hazard: the most common cause that isn't a generic natural death.
-  const GENERIC = /natural causes|old age|myocardial|cardiovascular|cancer|stroke|pneumonia|heart failure|disease/i;
+  // The hazard: the most common cause that isn't a generic natural death. Tuberculosis counts as generic, since it wins almost any trade.
+  const GENERIC = /natural causes|old age|myocardial|cardiovascular|cancer|stroke|pneumonia|heart failure|disease|tubercul/i;
   const hazardCause = causes.filter(c => !GENERIC.test(c.label))[0];
   const occLabel = s.occ ? s.occ.label : "";
 
   let finding = "";
   if (causes.length && total) {
     const topShare = Math.round((causes[0].n / total) * 100);
-    if (hazardCause && hazardCause.i > 0) {
+    if (/tubercul/i.test(causes[0].label)) {
+      finding = "For " + occLabel + "s, the leading recorded cause is " + causes[0].label.toLowerCase() + " at " + topShare + "% of deaths on file. Tuberculosis wins almost any trade, so that is the era showing up in the data rather than the job.";
+    } else if (hazardCause && hazardCause.i > 0) {
       finding = "Most " + occLabel + "s die the way everyone does. The one that stands out is " + hazardCause.label.toLowerCase() + ", at " + hazardCause.n + " of " + total + " recorded deaths.";
     } else if (hazardCause) {
       finding = "For " + occLabel + "s, the leading recorded cause is " + hazardCause.label.toLowerCase() + " at " + Math.round((hazardCause.n / total) * 100) + "% of deaths on file. That is the job showing up in the data.";
@@ -342,7 +344,7 @@ function renderSelCard() {
   selCard.innerHTML =
     '<div style="font-size: 9.5px; letter-spacing: 2px; color: #8b8377">' + (sel ? "CAUSE " + (state.selected + 1) + " OF " + d.causes.length : "") + '</div>' +
     '<div style="font-family: \'Libre Caslon Text\', serif; font-size: 26px; line-height: 1.15; margin-top: 8px">' + esc(sel ? sel.label : "") + '</div>' +
-    '<div style="font-size: 11.5px; color: #6b6459; margin-top: 8px">' + esc(sel && d.total ? sel.n + " deaths · " + Math.round((sel.n / d.total) * 100) + "% of those on record" : "") + '</div>' +
+    '<div style="font-size: 11.5px; color: #6b6459; margin-top: 8px">' + esc(sel && d.total ? sel.n + (sel.n === 1 ? " death · " : " deaths · ") + Math.round((sel.n / d.total) * 100) + "% of those on record" : "") + '</div>' +
     '<div style="border-top: 1px solid #ddd8cb; margin-top: 18px; padding-top: 14px">' +
       '<div style="font-size: 9.5px; letter-spacing: 2px; color: #8b8377; margin-bottom: 10px">WHO</div>' +
       '<div style="display: flex; flex-direction: column; gap: 10px">' +
@@ -395,8 +397,8 @@ function renderComparePanel() {
     return {
       label: k,
       meta: Math.round(a) + "% · " + Math.round(b) + "%",
-      aPct: Math.max(1, Math.round(a * 2)) + "%",
-      bPct: Math.max(1, Math.round(b * 2)) + "%"
+      aPct: Math.min(100, Math.max(1, Math.round(a * 2))) + "%",
+      bPct: Math.min(100, Math.max(1, Math.round(b * 2))) + "%"
     };
   });
 
@@ -405,7 +407,7 @@ function renderComparePanel() {
   const theirTop = v(s.compareRows[0], "codLabel");
   const compareFinding = !s.occ ? "" : (top === theirTop
     ? "Both trades lead with " + top + ", which usually means you are looking at the era rather than the job. Narrow the years."
-    : s.occ.label + "s lead with " + top + "; " + s.compareOcc.label + "s with " + theirTop + ". That difference is the job showing up.");
+    : s.occ.label + "s lead with " + top + "; " + s.compareOcc.label + "s with " + theirTop + ". " + (/tubercul/i.test(top + " " + theirTop) ? "Tuberculosis usually means you are looking at the era rather than the job, so narrow the years." : "That difference is the job showing up."));
 
   comparePanel.innerHTML =
     '<div style="display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; align-items: baseline">' +
@@ -444,7 +446,7 @@ function renderData() {
 
   renderCauses();
   coverage.textContent = (state.people || []).length
-    ? "Names sampled from " + (state.people || []).length + " individual records; counts above come from a separate aggregate query over the whole dataset."
+    ? "Names sampled from " + (state.people || []).length + ((state.people || []).length === 1 ? " individual record; " : " individual records; ") + "counts above come from a separate aggregate query over the whole dataset."
     : "Counts are aggregate; individual names were not returned for this trade.";
   renderSelCard();
   findingText.textContent = d.finding;

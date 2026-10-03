@@ -190,7 +190,7 @@ function logEntryHTML(l) {
     '<div style="font-size: 21px; line-height: 1.35; margin-top: 5px; color: #eaffea">' + esc(l.result) + '</div>' +
     '<div style="font-family: \'Space Mono\', monospace; font-size: 11px; line-height: 1.6; margin-top: 7px; color: ' + color + '">' + esc(l.delta) + ' · ' + esc(l.lesson) + '</div>';
   if (l.framework) {
-    html += '<div style="font-family: \'Space Mono\', monospace; font-size: 10.5px; line-height: 1.6; margin-top: 6px; color: #6ba86b">WHY IT WORKS: ' + esc(l.framework) + '</div>';
+    html += '<div style="font-family: \'Space Mono\', monospace; font-size: 10.5px; line-height: 1.6; margin-top: 6px; color: #6ba86b">THE PRINCIPLE: ' + esc(l.framework) + '</div>';
   }
   if (l.alts && l.alts.length) {
     html += '<div style="margin-top: 9px; border-left: 1px solid #2f5c2f; padding-left: 10px; display: flex; flex-direction: column; gap: 5px">' +
@@ -219,7 +219,7 @@ function renderBoot() {
 
 function renderReady() {
   app.innerHTML = '' +
-    '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 44px; margin-top: 36px; align-items: start; animation: fadein 360ms ease both">' +
+    '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); gap: 44px; margin-top: 36px; align-items: start; animation: fadein 360ms ease both">' +
       '<div>' +
         '<div id="statusCard" style="border: 1px solid #24461f; background: #0b120b; padding: 26px 28px">' + statusHTML() + '</div>' +
         '<div id="sceneLine" style="margin-top: 24px; font-size: 24px; line-height: 1.35; color: #eaffea">' + sceneHTML() + '</div>' +

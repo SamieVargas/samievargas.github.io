@@ -50,7 +50,7 @@ button { font: inherit; }
 
     <div id="cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 26px; margin-top: 48px; max-width: 900px; margin-left: auto; margin-right: auto"></div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; margin-top: 46px; align-items: start">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 40px; margin-top: 46px; align-items: start">
       <div>
         <div style="border-top: 1px solid #3d2a52; border-bottom: 1px solid #3d2a52; padding: 26px 0">
           <div style="font-size: 10px; letter-spacing: 3px; color: #9a86b5">THE READING</div>
@@ -67,7 +67,7 @@ button { font: inherit; }
           <button type="button" id="drawBtn" style="background: #b98cd9; color: #100a1c; border: none; border-radius: 24px; padding: 16px 28px; font-size: 12px; font-weight: 700; letter-spacing: 1.8px; cursor: pointer">DRAW THREE</button>
           <button type="button" id="copyBtn" class="copy-btn" style="background: transparent; border: 1px solid #3d2a52; border-radius: 24px; color: #b9aecb; padding: 16px 24px; font-size: 12px; letter-spacing: 1.6px; cursor: pointer">COPY READING</button>
         </div>
-        <div style="font-size: 11px; color: #6f6288; margin-top: 16px"><span id="drawnCount">0</span> readings drawn on this machine</div>
+        <div style="font-size: 11px; color: #6f6288; margin-top: 16px"><span id="drawnCount">0 readings</span> drawn on this machine</div>
       </div>
 
       <div>
@@ -261,7 +261,7 @@ async function runQuery() {
       : { name: (r.restaurant_name || "").trim(), value: Math.round(parseFloat(r.score) || 0) + "" });
     state.running = false;
     state.rows = rows;
-    state.runNote = rows.length + " rows returned, live";
+    state.runNote = rows.length + (rows.length === 1 ? " row" : " rows") + " returned, live";
   } catch (e) {
     state.running = false;
     state.runNote = "could not reach the portal";
@@ -292,7 +292,7 @@ function draw() {
   };
   state.drawn = n;
   state.copied = false;
-  $("drawnCount").textContent = String(state.drawn);
+  $("drawnCount").textContent = state.drawn + (state.drawn === 1 ? " reading" : " readings");
   renderCards();
   renderSide();
   renderHistory();

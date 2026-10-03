@@ -69,14 +69,14 @@ button, textarea, input { font: inherit; }
         <div><span style="color: #6e1f1a">STORYGRAPH</span><br>Manage Account &rarr; Export StoryGraph Library, then paste it the same way.</div>
         <div><span style="color: #6e1f1a">OR JUST TYPE</span><br>One title per line, optionally <span style="color: #3a1f1a">Title, 2024-03-11</span> for a finish date.</div>
       </div>
-      <textarea id="pasteBox" class="pasteBox" rows="6" placeholder="Title,Author,...,Date Read,Exclusive Shelf&#10;The Moving Finger,Agatha Christie,...,2024/03/11,read" style="width: 100%; box-sizing: border-box; margin-top: 16px; background: #fff; border: 1px solid #cfc0a4; padding: 14px; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.6; color: #3a1f1a; outline: none; resize: vertical"></textarea>
+      <textarea id="pasteBox" class="pasteBox" rows="6" aria-label="Paste your Goodreads or StoryGraph export, or one title per line" placeholder="Title,Author,...,Date Read,Exclusive Shelf&#10;The Moving Finger,Agatha Christie,...,2024/03/11,read" style="width: 100%; box-sizing: border-box; margin-top: 16px; background: #fff; border: 1px solid #cfc0a4; padding: 14px; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.6; color: #3a1f1a; outline: none; resize: vertical"></textarea>
       <div style="display: flex; gap: 12px; margin-top: 12px; align-items: center; flex-wrap: wrap">
         <button type="button" id="runImportBtn" style="background: #6e1f1a; color: #f6ecd9; border: none; padding: 13px 22px; font-size: 11.5px; letter-spacing: 1.4px; cursor: pointer">READ MY SHELVES</button>
         <span id="importNote" style="font-size: 11.5px; color: #6b5643"></span>
       </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 46px; margin-top: 40px; align-items: start">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 46px; margin-top: 40px; align-items: start">
 
       <div>
         <div style="width: 288px; margin: 0 auto; perspective: 1100px">
@@ -227,7 +227,7 @@ function esc(x) {
 
 const state = {
   mood: "cozy", idx: 0, read: [], rejected: [], key: 0,
-  importOpen: false, importNote: "", importOk: true, shelf: [], authorPrefs: {}, showBodies: false,
+  importOpen: false, importNote: "", importOk: true, shelf: [], authorPrefs: {}, readBy: {}, showBodies: false,
   lib: [], libLoading: false, libNote: "22 curated mysteries are in the pool, and going deeper pulls real records from Open Library, keyless and with no login, ranked against your shelves."
 };
 
@@ -240,6 +240,9 @@ function setState(patch, cb) {
 function pool() { return state.lib.length ? state.lib : BOOKS; }
 
 function persist(k, v) { try { localStorage.setItem("whodunit." + k, JSON.stringify(v)); } catch (e) {} }
+
+// Distinct titles per author, so "You've read N" counts books while authorPrefs stays a weighted ranking score.
+function addTitle(list, t) { list = [].concat(list || []); return list.indexOf(norm(t)) === -1 ? list.concat([norm(t)]) : list; }
 
 // ---------- actions ----------
 
@@ -304,7 +307,7 @@ const runImport = () => {
       if (shelfIdx < 0 && (h.indexOf("shelf") !== -1 || h.indexOf("read status") !== -1)) shelfIdx = i;
     });
   }
-  const found = [], prefs = Object.assign({}, state.authorPrefs);
+  const found = [], prefs = Object.assign({}, state.authorPrefs), readBy = Object.assign({}, state.readBy);
   lines.slice(isCsv ? 1 : 0).forEach(line => {
     const cells = isCsv ? splitCsvLine(line) : line.split(",").map(x => x.trim());
     const title = cells[titleIdx];
@@ -316,18 +319,23 @@ const runImport = () => {
     if (looksMystery) {
       found.push(title);
       const key = author.toLowerCase().split(/[ ,]+/).pop();
-      if (key) prefs[key] = (prefs[key] || 0) + 1;
+      if (key) {
+        prefs[key] = (prefs[key] || 0) + 1;
+        // A pool match is counted under the pool's own title, so a book already logged with I'LL READ IT is not counted twice.
+        const inPool = BOOKS.filter(b => norm(title) === norm(b.t) || norm(title).indexOf(norm(b.t)) === 0)[0];
+        readBy[key] = addTitle(readBy[key], inPool ? inPool.t : title);
+      }
     }
   });
   if (!found.length) { setState({ importNote: "No mystery titles recognised in that paste.", importOk: false }); return; }
   const shelf = found.slice(0, 200);
   const matchedInPool = BOOKS.filter(b => shelf.some(t => norm(t) === norm(b.t) || norm(t).indexOf(norm(b.t)) === 0)).map(b => b.t);
   const read = Array.from(new Set(state.read.concat(matchedInPool)));
-  persist("shelf", shelf); persist("read", read); persist("prefs", prefs);
+  persist("shelf", shelf); persist("read", read); persist("prefs", prefs); persist("readBy", readBy);
   pasteBox.value = "";
   setState({
-    shelf: shelf, read: read, authorPrefs: prefs, importOpen: false, importOk: true,
-    importNote: "Found " + shelf.length + " mysteries, " + matchedInPool.length + " matched the pool."
+    shelf: shelf, read: read, authorPrefs: prefs, readBy: readBy, importOpen: false, importOk: true,
+    importNote: "Found " + shelf.length + (shelf.length === 1 ? " mystery, " : " mysteries, ") + matchedInPool.length + " matched the pool."
   }, spin);
 };
 
@@ -369,8 +377,10 @@ const accept = () => {
   const key = b.a.toLowerCase().split(" ").pop();
   const prefs = Object.assign({}, state.authorPrefs);
   prefs[key] = (prefs[key] || 0) + 2;
-  persist("read", read); persist("prefs", prefs);
-  setState({ read: read, authorPrefs: prefs });
+  const readBy = Object.assign({}, state.readBy);
+  readBy[key] = addTitle(readBy[key], b.t);
+  persist("read", read); persist("prefs", prefs); persist("readBy", readBy);
+  setState({ read: read, authorPrefs: prefs, readBy: readBy });
 };
 
 const reject = () => {
@@ -382,8 +392,8 @@ const reject = () => {
 };
 
 const reset = () => {
-  ["read", "shelf", "prefs", "rejected"].forEach(k => { try { localStorage.removeItem("whodunit." + k); } catch (e) {} });
-  setState({ read: [], shelf: [], authorPrefs: {}, rejected: [] }, spin);
+  ["read", "shelf", "prefs", "readBy", "rejected"].forEach(k => { try { localStorage.removeItem("whodunit." + k); } catch (e) {} });
+  setState({ read: [], shelf: [], authorPrefs: {}, readBy: {}, rejected: [] }, spin);
 };
 
 // ---------- rendering ----------
@@ -466,7 +476,7 @@ function tasteHTML() {
   }
 
   return '<div style="margin-top: 28px; border: 1.5px solid #6e1f1a; background: #fdf7ea; padding: 22px 24px; animation: riseIn 340ms ease both">' +
-    '<div style="font-size: 10.5px; letter-spacing: 2px; color: #8a6f52; white-space: nowrap">YOUR TASTE, ACCORDING TO YOUR LOG</div>' +
+    '<div style="font-size: 10.5px; letter-spacing: 2px; color: #8a6f52">YOUR TASTE, ACCORDING TO YOUR LOG</div>' +
     '<p style="font-family: \'Cormorant Garamond\', serif; font-style: italic; font-size: 23px; line-height: 1.4; margin: 10px 0 0">' + esc(tasteLine) + '</p>' +
     '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; margin-top: 16px; font-size: 11.5px; line-height: 1.6">' +
       tasteStats.map(t => '<div style="white-space: nowrap"><span style="color: #8a6f52">' + esc(t.label) + '</span><br>' + esc(t.value) + '</div>').join("") +
@@ -483,6 +493,8 @@ function render() {
   const mood = MOODS.filter(m => m.key === s.mood)[0] || MOODS[0];
   const key = b.a.toLowerCase().split(" ").pop();
   const affinity = s.authorPrefs[key] || 0;
+  // Curated titles in the log are counted too, which covers logs saved before readBy existed.
+  const authorReads = new Set([].concat(s.readBy[key] || []).concat(BOOKS.filter(x => s.read.indexOf(x.t) !== -1 && x.a.toLowerCase().split(" ").pop() === key).map(x => norm(x.t)))).size;
   const readCount = s.read.length;
   const totalCount = active.length;
   const poolCount = Math.max(0, active.length - s.read.length);
@@ -517,7 +529,7 @@ function render() {
 
   blurbEl.textContent = b.b;
   let because;
-  if (affinity >= 3) because = "You've read " + affinity + " by this author already, which is the strongest signal it has.";
+  if (affinity >= 3 && authorReads) because = "You've read " + authorReads + " by this author already, which is the strongest signal it has.";
   else if (b.m.indexOf(s.mood) !== -1) because = "Chosen for the mood first: this is squarely a " + mood.label.toLowerCase() + " book.";
   else because = "A stretch pick: nothing in your log points here, which is the argument for it.";
   becauseEl.textContent = because;
@@ -597,18 +609,20 @@ resetBtn.addEventListener("click", reset);
 // ---------- mount ----------
 
 (function init() {
-  let read = [], shelf = [], prefs = {}, rej = [];
+  let read = [], shelf = [], prefs = {}, rej = [], readBy = {};
   try {
     read = JSON.parse(localStorage.getItem("whodunit.read") || "[]");
     shelf = JSON.parse(localStorage.getItem("whodunit.shelf") || "[]");
     prefs = JSON.parse(localStorage.getItem("whodunit.prefs") || "{}");
     rej = JSON.parse(localStorage.getItem("whodunit.rejected") || "[]");
+    readBy = JSON.parse(localStorage.getItem("whodunit.readBy") || "{}");
   } catch (e) {}
   setState({
     read: Array.isArray(read) ? read : [],
     shelf: Array.isArray(shelf) ? shelf : [],
     rejected: Array.isArray(rej) ? rej : [],
-    authorPrefs: prefs && typeof prefs === "object" ? prefs : {}
+    authorPrefs: prefs && typeof prefs === "object" ? prefs : {},
+    readBy: readBy && typeof readBy === "object" ? readBy : {}
   }, spin);
 })();
 </script>
