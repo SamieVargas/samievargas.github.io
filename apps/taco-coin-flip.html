@@ -64,7 +64,7 @@ input, button { font: inherit; }
 
     <div style="display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; align-items: center">
       <button type="button" id="nearby-btn" style="background: #fff7ec; color: #b31f5b; border: none; border-radius: 22px; padding: 13px 22px; font-family: 'Space Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px; white-space: nowrap; cursor: pointer">CLEANEST NEAR ME</button>
-      <span id="nearby-note" style="font-family: 'Space Mono', monospace; font-size: 11px; color: #ffd9e8">Uses your location once to find your zip. Your coordinates go only to OpenStreetMap's geocoder and the zip only to the city's own portal, and this page stores neither.</span>
+      <span id="nearby-note" style="font-family: 'Space Mono', monospace; font-size: 11px; color: #ffd9e8">Uses your location once to find your zip. Your coordinates go only to OpenStreetMap's geocoder and the zip only to the city's own portal, and this page stores neither. Your win record below is saved in this browser only, and Google Analytics counts page views.</span>
     </div>
 
     <div id="nearby-panel"></div>
@@ -115,7 +115,7 @@ input, button { font: inherit; }
 </div>
 
 <script type="module">
-import { stagedLoader } from '../js/staged-loader.js?v=20261003d';
+import { stagedLoader } from '../js/staged-loader.js?v=20261003e';
 
 const ENDPOINT = "https://data.austintexas.gov/resource/ecmv-9xxi.json";
 
@@ -141,7 +141,7 @@ function grade(n) {
 const state = {
   results: [[], []], picks: [null, null], loading: [false, false],
   status: "READY", flipping: false, verdict: null, coinFace: "FLIP IT", wins: {},
-  nearby: [], nearbyBusy: false, nearbyNote: "Uses your location once to find your zip. Your coordinates go only to OpenStreetMap's geocoder and the zip only to the city's own portal, and this page stores neither."
+  nearby: [], nearbyBusy: false, nearbyNote: "Uses your location once to find your zip. Your coordinates go only to OpenStreetMap's geocoder and the zip only to the city's own portal, and this page stores neither. Your win record below is saved in this browser only, and Google Analytics counts page views."
 };
 
 function setState(patch) {

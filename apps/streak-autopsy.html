@@ -169,12 +169,25 @@ function bestOf(log) {
   });
   return best;
 }
+// The run of consecutive days ending at the last logged day, which is how long the habit lived before it died.
+function lastRunOf(log) {
+  const sorted = log.slice().sort();
+  let run = 0, prev = null;
+  sorted.forEach(k => {
+    if (prev) {
+      const diff = Math.round((new Date(k + "T00:00:00") - new Date(prev + "T00:00:00")) / 86400000);
+      run = diff === 1 ? run + 1 : 1;
+    } else run = 1;
+    prev = k;
+  });
+  return run;
+}
 
 function esc(x) { return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 
 const state = {
   habits: [{ name: "Morning run", log: [shift(-3), shift(-4), shift(-5), shift(-6), shift(-7)] }],
-  caseIdx: null, factor: "Rain", records: [], finding: null, resurrections: 0,
+  caseCount: 0, caseIdx: null, factor: "Rain", records: [], finding: null, resurrections: 0,
   forecast: null, showCert: false, lastCert: null
 };
 
@@ -307,9 +320,9 @@ function renderCase() {
   if (!caseH) { panel.style.display = "none"; return; }
   const wasHidden = panel.style.display === "none";
   const caseLast = caseH.log.slice().sort().pop();
-  document.getElementById("case-no").textContent = String(state.records.length + 1).padStart(3, "0");
+  document.getElementById("case-no").textContent = String(state.caseCount + 1).padStart(3, "0");
   document.getElementById("case-habit").textContent = caseH.name;
-  const best = bestOf(caseH.log);
+  const best = lastRunOf(caseH.log);
   document.getElementById("case-days").textContent = best + (best === 1 ? " day" : " days");
   document.getElementById("case-tod").textContent = pretty(caseLast) + ", then nothing";
   document.getElementById("case-question").textContent = QUESTIONS[(state.records.length + (state.caseIdx || 0)) % QUESTIONS.length];
@@ -432,9 +445,11 @@ function fileReport(resurrect) {
   if (!h) return;
   const answerEl = document.getElementById("case-answer");
   const last = h.log.slice().sort().pop();
-  const days = bestOf(h.log);
+  const days = lastRunOf(h.log);
   // The case number shown on the open case panel, kept for the certificate.
-  const no = state.records.length + 1;
+  const no = state.caseCount + 1;
+  state.caseCount = no;
+  try { localStorage.setItem("streak.cases", String(no)); } catch (e) {}
   const rec = { habit: h.name, days: days, factor: state.factor, answer: answerEl.value || "No statement given.", tod: pretty(last) };
   const records = [rec].concat(state.records).slice(0, 14);
   try { localStorage.setItem("streak.file", JSON.stringify(records)); } catch (e) {}
@@ -529,15 +544,17 @@ async function loadForecast() {
 
 // Load persisted state, then first paint.
 (function init() {
-  let h = null, r = [], res = 0;
+  let h = null, r = [], res = 0, cases = 0;
   try {
     h = JSON.parse(localStorage.getItem("streak.habits") || "null");
     r = JSON.parse(localStorage.getItem("streak.file") || "[]");
     res = parseInt(localStorage.getItem("streak.res") || "0", 10) || 0;
+    cases = parseInt(localStorage.getItem("streak.cases") || "0", 10) || 0;
   } catch (e) {}
   if (Array.isArray(h) && h.length) state.habits = h;
   state.records = Array.isArray(r) ? r : [];
   state.resurrections = res;
+  state.caseCount = Math.max(cases, state.records.length);
   renderAll();
   loadForecast();
 })();

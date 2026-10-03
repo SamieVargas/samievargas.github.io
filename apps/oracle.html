@@ -111,11 +111,11 @@ const RULES = [
   { test: /\bor\b/i, tag: "it sees a fork", q: ["Which one has a customer already waiting for it?", "If you could only ship one and never the other, which absence would you have to explain?", "Which of the two are you avoiding because it's harder?"], why: "You framed a fork. Forks are usually a hidden ranking problem." },
   { test: /should i (tell|say|mention|raise)/i, tag: "it asks who knows", q: ["What happens to you if they find out later, from someone else?", "Who else already knows?", "What are you hoping they'll do with it?"], why: "You asked about disclosure, which means the information already feels like a liability." },
   { test: /worth it|worth (the|a)/i, tag: "compared to what?", q: ["Compared to doing nothing for six months, what actually changes?", "What would have to be true for it to obviously not be worth it?", "Who pays if you're wrong?"], why: "“Worth it” is a comparison with the other half missing." },
-  { test: /hire|headcount|team|backfill/i, tag: "it asks what stops", q: ["What work stops the day they start?", "If the role were frozen for a year, what would you stop doing?", "Who trains them, and what do they stop doing?"], why: "Headcount questions are almost always sequencing questions." },
+  { test: /\b(hires?|hiring|headcount|teams?|backfills?)\b/i, tag: "it asks what stops", q: ["What work stops the day they start?", "If the role were frozen for a year, what would you stop doing?", "Who trains them, and what do they stop doing?"], why: "Headcount questions are almost always sequencing questions." },
   { test: /\b(should|do) we (sunset|kill|deprecate|shut)/i, tag: "it asks who remains", q: ["Who is still using it, and what do they use it for?", "What breaks that you don't currently see?", "What are you actually trying to free up?"], why: "Endings are easy to decide and hard to schedule." },
   { test: /take the (job|role|offer)|bigger title|new (job|role)/i, tag: "it sees a wager", q: ["Which version of yourself is this a bet on?", "What would make you regret staying?", "In two years, which one gives you a better story about your judgment?"], why: "Career forks are rarely about the two options on the table." },
   { test: /rebuild|refactor|patch|rewrite/i, tag: "it asks who inherits", q: ["How many more times can you patch it before the patch is the system?", "What do you learn from the rebuild that you can't learn now?", "Who owns it after it's rebuilt?"], why: "The real question is who inherits it after the rebuild." },
-  { test: /when|deadline|timeline|by (friday|monday|q[1-4])/i, tag: "it doubts the date", q: ["What is actually happening on that date?", "Who chose that date, and were they in the room for the work?", "What would you cut to make it true?"], why: "A date question is usually a scope question in costume." },
+  { test: /\b(when|deadlines?|timelines?)\b|\bby (friday|monday|q[1-4])\b/i, tag: "it doubts the date", q: ["What is actually happening on that date?", "Who chose that date, and were they in the room for the work?", "What would you cut to make it true?"], why: "A date question is usually a scope question in costume." },
   { test: /how do i|how can i|how should i/i, tag: "it looks for the near-miss", q: ["What have you already tried that almost worked?", "Who has solved this in front of you?", "What's the smallest version of this you could do today?"], why: "You asked for method. Method usually already exists nearby." },
   { test: /\?/, tag: "it goes to the base", q: ["What would you do if nobody would ever ask you to justify it?", "Which part of this have you already decided?", "What are you actually afraid of here?"], why: "Nothing specific to grab, so the oracle went for the base of it." }
 ];
@@ -254,10 +254,12 @@ function copyDescent() {
     .filter(h => h.asked && h.replied)
     .map((h, i) => (i + 1) + ". I asked: " + h.asked + "\n   It asked: " + h.replied);
   const text = "ONE-QUESTION ORACLE · a descent\n\n" + lines.join("\n\n") + "\n\nIt never answered. samievargas.com";
-  try { navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
-  state.copied = true;
-  updateCopyLabel();
-  setTimeout(() => { state.copied = false; updateCopyLabel(); }, 1800);
+  const done = ok => {
+    state.copied = ok;
+    updateCopyLabel();
+    setTimeout(() => { state.copied = false; updateCopyLabel(); }, 1800);
+  };
+  try { navigator.clipboard.writeText(text).then(() => done(true), () => done(false)); } catch (e) { done(false); }
 }
 
 function ask() {

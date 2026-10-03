@@ -75,7 +75,7 @@ input, button { font: inherit; }
             </div>
             <div>
               <div style="font-size: 10px; letter-spacing: 1.6px; color: #6b6459">DAYS AGO</div>
-              <input id="agoInput" type="number" value="0" aria-label="Days ago" style="width: 100%; box-sizing: border-box; background: #f4f2ea; border: 1px solid #d6d0c2; padding: 11px 12px; font-size: 17px; color: #23211c; margin-top: 7px; outline: none">
+              <input id="agoInput" type="number" min="0" value="0" aria-label="Days ago" style="width: 100%; box-sizing: border-box; background: #f4f2ea; border: 1px solid #d6d0c2; padding: 11px 12px; font-size: 17px; color: #23211c; margin-top: 7px; outline: none">
             </div>
           </div>
           <button type="button" id="addBtn" style="width: 100%; margin-top: 18px; background: #23211c; color: #fdfcf7; border: none; padding: 14px 0; font-size: 12px; letter-spacing: 1.8px; white-space: nowrap; cursor: pointer">ADD TO THE LEDGER</button>
@@ -122,6 +122,7 @@ input, button { font: inherit; }
           <div style="text-align: center; font-size: 12px; font-weight: 700; letter-spacing: 2px">REGRET AUDIT SERVICES</div>
           <div style="text-align: center; font-size: 10px; color: #6b6459; margin-top: 4px"><span id="ledgerCount"></span> ON FILE</div>
           <div style="border-top: 1.5px dashed #23211c; margin: 16px 0"></div>
+          <div id="sampleNote" style="display: none; font-size: 10px; color: #6b6459; line-height: 1.7; margin-bottom: 12px">sample ledger for the mock, not real purchases, so clear it to start your own</div>
           <div id="ledgerEmpty" style="display: none; font-size: 12px; color: #6b6459; line-height: 1.7">Nothing is on file yet, so log something you bought this month and come back in thirty days.</div>
           <div id="ledgerList" style="display: flex; flex-direction: column; gap: 11px"></div>
           <div style="border-top: 1.5px dashed #23211c; margin: 18px 0 12px"></div>
@@ -171,7 +172,8 @@ function dated(x) {
 
 const state = {
   items: DEMO.map(dated),
-  importOpen: false
+  importOpen: false,
+  sample: true
 };
 
 const $ = id => document.getElementById(id);
@@ -179,7 +181,7 @@ const itemInput = $("itemInput"), priceInput = $("priceInput"), agoInput = $("ag
 const importPanel = $("importPanel"), importToggle = $("importToggle");
 const pasteBox = $("pasteBox"), importNote = $("importNote");
 
-function persist(items) { try { localStorage.setItem("worthit.items", JSON.stringify(items)); } catch (e) {} }
+function persist(items) { state.sample = false; try { localStorage.setItem("worthit.items", JSON.stringify(items)); } catch (e) {} }
 
 function setImportNote(text, ok) {
   importNote.textContent = text;
@@ -274,6 +276,7 @@ function render() {
 
   // The ledger
   $("ledgerCount").textContent = items.length + (items.length === 1 ? " ITEM" : " ITEMS");
+  $("sampleNote").style.display = state.sample ? "" : "none";
   $("ledgerEmpty").style.display = items.length === 0 ? "" : "none";
   $("ledgerList").innerHTML = items.map((x, i) => {
     const color = x.verdict === "no" ? "#b3372c" : "#23211c";
@@ -289,7 +292,7 @@ function render() {
       </div>`;
   }).join("");
   $("totalLogged").textContent = money(total);
-  $("regretRate").textContent = judged.length ? rate + "%" : "—";
+  $("regretRate").textContent = judged.length ? rate + "%" : "n/a";
 }
 
 // Reads a bank/card CSV in any column order: finds date, description, amount by header name.
@@ -360,7 +363,7 @@ $("runImportBtn").addEventListener("click", runImport);
 $("addBtn").addEventListener("click", () => {
   const name = (itemInput.value || "").trim();
   if (!name) return;
-  const items = [{ item: name, price: parseFloat(priceInput.value) || 0, logged: loggedOn(parseInt(agoInput.value, 10) || 0), verdict: null }].concat(state.items);
+  const items = [{ item: name, price: parseFloat(priceInput.value) || 0, logged: loggedOn(Math.max(0, parseInt(agoInput.value, 10) || 0)), verdict: null }].concat(state.items);
   persist(items);
   state.items = items;
   itemInput.value = "";
@@ -388,7 +391,8 @@ $("clearBtn").addEventListener("click", () => {
 
 let saved = null;
 try { saved = JSON.parse(localStorage.getItem("worthit.items") || "null"); } catch (e) {}
-if (Array.isArray(saved) && saved.length) {
+if (Array.isArray(saved)) {
+  state.sample = false;
   state.items = saved.map(dated);
   if (saved.some(x => !x.logged)) persist(state.items);
 }

@@ -256,7 +256,7 @@ function render() {
     const readings = readInbound();
     const worryScore = Math.min(5, readings.length + (tells >= 2 ? 1 : 0));
     const worryColor = worryScore >= 4 ? "#ff8a7a" : (worryScore >= 2 ? "#ffbf7f" : "#9be8c8");
-    const readKey = JSON.stringify([readings, worryScore]);
+    const readKey = JSON.stringify([readings, worryScore, !!src.trim()]);
     if (readKey !== lastReadKey) {
       lastReadKey = readKey;
       readSection.innerHTML = `
@@ -275,8 +275,8 @@ function render() {
           <div style="margin-top: 20px; background: #201c33; border-radius: 12px; padding: 18px 20px">
             <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #8a83b8; white-space: nowrap">HOW WORRIED TO BE</div>
             <div class="worry-row" style="display: flex; align-items: baseline; gap: 10px; margin-top: 8px">
-              <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 30px; color: ${worryColor}">${esc(WORRY[worryScore])}</span>
-              <span style="font-family: 'Space Mono', monospace; font-size: 11.5px; color: #b9b3d9">${esc(WORRY_NOTE[worryScore])}</span>
+              <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 30px; color: ${worryColor}">${esc(src.trim() ? WORRY[worryScore] : "Nothing yet")}</span>
+              <span style="font-family: 'Space Mono', monospace; font-size: 11.5px; color: #b9b3d9">${esc(src.trim() ? WORRY_NOTE[worryScore] : "Paste what they sent and a reading shows up here.")}</span>
             </div>
           </div>
         </div>`;
@@ -293,10 +293,16 @@ function render() {
 
   // What changed
   const moves = [];
-  if (state.tone <= 1) moves.push("Nothing was softened, so the subtext stays visible on purpose.");
-  if (state.tone === 2) moves.push("Passive tells removed, no warmth added.");
-  if (state.tone >= 3) { moves.push("Blame language traded for shared uncertainty (“" + (state.tone === 3 ? "I think" : "I could be off") + "”)."); moves.push("Deadline framed as a decision you both made, so nobody broke a rule."); }
-  if (state.tone === 4) moves.push("Closing line gives them an out, and that's the whole trick.");
+  const hasBlame = /this was owned by your team|i'?d like to understand what happened here/i.test(src);
+  const hasDeadline = /the deadline was friday/i.test(src);
+  if (!src.trim()) moves.push("Nothing to change yet, paste an email to see what moves.");
+  else {
+    if (state.tone <= 1) moves.push("Nothing was softened, so the subtext stays visible on purpose.");
+    if (state.tone === 2) moves.push("Passive tells removed, no warmth added.");
+    if (state.tone >= 3 && hasBlame) moves.push("Blame language traded for shared uncertainty" + (/this was owned by your team/i.test(src) ? " (“" + (state.tone === 3 ? "I think" : "I could be off") + "”)." : "."));
+    if (state.tone >= 3 && hasDeadline) moves.push("Deadline framed as a decision you both made, so nobody broke a rule.");
+    if (state.tone === 4) moves.push("Closing line gives them an out, and that's the whole trick.");
+  }
   if (tells > 0) moves.push(tells + " passive tell" + (tells === 1 ? "" : "s") + " detected in the original.");
   movesList.innerHTML = moves.map(m =>
     `<div style="display: flex; gap: 12px; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.5; color: #b9b3d9"><span style="color: #ffbf7f">→</span><span>${esc(m)}</span></div>`
@@ -316,7 +322,7 @@ function render() {
     document.getElementById("outWords").innerHTML = outWordsHTML(out);
   }
 
-  copyBtn.textContent = state.copied ? "COPIED" : "COPY TRANSLATION";
+  copyBtn.textContent = state.copied === "failed" ? "COPY BLOCKED, SELECT IT" : (state.copied ? "COPIED" : "COPY TRANSLATION");
 
   // Reading stats
   statWords.textContent = words;
@@ -358,10 +364,14 @@ sampleBtns.addEventListener("click", e => {
 });
 clearBtn.addEventListener("click", () => { ta.value = ""; state.copied = false; render(); });
 copyBtn.addEventListener("click", () => {
-  try { navigator.clipboard.writeText(translate()).catch(() => {}); } catch (e) {}
-  state.copied = true;
-  render();
-  setTimeout(() => { state.copied = false; render(); }, 1700);
+  const text = translate();
+  if (!text) return;
+  const done = ok => {
+    state.copied = ok ? true : "failed";
+    render();
+    setTimeout(() => { state.copied = false; render(); }, 1700);
+  };
+  try { navigator.clipboard.writeText(text).then(() => done(true), () => done(false)); } catch (e) { done(false); }
 });
 
 // Initial state

@@ -54,6 +54,8 @@ button:focus-visible, .footlink:focus-visible { outline: 2px solid #ffd166; outl
   .page { padding-left: 20px !important; padding-right: 20px !important; }
   #rows { overflow-x: clip; }
   .pile-grid { grid-template-columns: 1fr 54px 40px 40px 24px !important; gap: 6px !important; }
+  .stats { gap: 18px !important; }
+  .pile-head { letter-spacing: 0.6px !important; }
   .pile-grid input[type=number] { -moz-appearance: textfield; appearance: textfield; }
   .pile-grid input::-webkit-inner-spin-button { display: none; }
 }
@@ -68,7 +70,7 @@ button:focus-visible, .footlink:focus-visible { outline: 2px solid #ffd166; outl
         <div style="font-size: 10.5px; letter-spacing: 4px; color: #7a7a88; animation: rowRise 480ms ease both"><span style="color: #ff4d6d">[ FIG. 07 ]</span>&nbsp;&nbsp;ONE MUST GO. YOU CHOSE THIS.</div>
         <h1 style="font-family: 'Bungee', cursive; font-size: 50px; margin: 10px 0 0; line-height: 1; color: #ff4d6d; animation: rowRise 520ms ease both; animation-delay: 90ms">THE BACKLOG REAPER</h1>
       </div>
-      <div style="display: flex; gap: 26px; font-size: 11px; line-height: 1.6; color: #7a7a88; text-align: right; white-space: nowrap; animation: rowRise 520ms ease both; animation-delay: 180ms">
+      <div class="stats" style="display: flex; gap: 26px; font-size: 11px; line-height: 1.6; color: #7a7a88; text-align: right; white-space: nowrap; animation: rowRise 520ms ease both; animation-delay: 180ms">
         <div>UNPLAYED<br><span id="statCount" style="color: #e4e4ea; font-size: 17px"></span></div>
         <div>HOURS OWED<br><span id="statHours" style="color: #e4e4ea; font-size: 17px"></span></div>
         <div>PILE VALUE<br><span id="statPile" style="color: #ffd166; font-size: 17px"></span></div>
@@ -81,7 +83,7 @@ button:focus-visible, .footlink:focus-visible { outline: 2px solid #ffd166; outl
       <div>
         <div style="font-size: 10.5px; letter-spacing: 2px; color: #7a7a88">THE CONDEMNED</div>
         <div id="rows" style="display: flex; flex-direction: column; gap: 8px; margin-top: 14px"></div>
-        <div class="pile-grid" style="display: grid; grid-template-columns: 1fr 66px 62px 62px 30px; gap: 10px; margin-top: 8px; font-size: 9px; letter-spacing: 1.4px; color: #56566a; padding: 0 14px; white-space: nowrap">
+        <div class="pile-grid pile-head" style="display: grid; grid-template-columns: 1fr 66px 62px 62px 30px; gap: 10px; margin-top: 8px; font-size: 9px; letter-spacing: 1.4px; color: #56566a; padding: 0 14px; white-space: nowrap">
           <div>TITLE</div><div style="text-align: right">OWNED</div><div style="text-align: right">HRS</div><div style="text-align: right">PAID $</div><div></div>
         </div>
         <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap">
@@ -89,6 +91,8 @@ button:focus-visible, .footlink:focus-visible { outline: 2px solid #ffd166; outl
           <button type="button" id="btnToggleImport" class="btn-pale" style="border: 1px solid #33333d; border-radius: 8px; background: transparent; color: #b0b0be; padding: 13px 20px; font-size: 11.5px; letter-spacing: 1.4px; cursor: pointer">IMPORT FROM STEAM</button>
           <button type="button" id="btnDemo" class="btn-dim" style="border: 1px solid #26262e; border-radius: 8px; background: transparent; color: #7a7a88; padding: 13px 20px; font-size: 11.5px; letter-spacing: 1.4px; cursor: pointer">RESET THE PILE</button>
         </div>
+
+        <div id="importDone" role="status" style="display: none; margin-top: 16px; font-size: 11.5px; color: #8f8f9e"></div>
 
         <div id="importPanel" style="display: none; margin-top: 22px; border: 1px solid #33333d; border-radius: 10px; background: #14141a; padding: 22px 24px">
           <div style="font-size: 10.5px; letter-spacing: 2px; color: #7a7a88">IMPORT YOUR OWN LIBRARY</div>
@@ -98,7 +102,7 @@ button:focus-visible, .footlink:focus-visible { outline: 2px solid #ffd166; outl
           <textarea id="pasteBox" rows="6" aria-label="Steam JSON or plain lines to import" placeholder='{"response":{"games":[...]}}   or   Persona 5 Royal, 4y, 0.4' style="width: 100%; box-sizing: border-box; margin-top: 14px; background: #0c0c0f; border: 1px solid #33333d; border-radius: 8px; color: #e4e4ea; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.6; padding: 14px; outline: none; resize: vertical"></textarea>
           <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; align-items: center">
             <button type="button" id="btnRunImport" style="background: #ff4d6d; color: #0c0c0f; border: none; border-radius: 8px; padding: 13px 22px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px; cursor: pointer">IMPORT THE PILE</button>
-            <span id="importNote" style="font-size: 11.5px; color: #8f8f9e"></span>
+            <span id="importNote" role="status" style="font-size: 11.5px; color: #8f8f9e"></span>
           </div>
           <p style="font-size: 11px; line-height: 1.7; color: #56566a; margin: 14px 0 0">Unplayed and barely-played Steam titles are kept; anything over 20 hours is treated as played and left out of the pile. Steam's list does not say when you bought anything, so the owned column comes in as unknown and you can fill it in. Your key is never typed into this page and nothing is uploaded anywhere.</p>
         </div>
@@ -233,7 +237,9 @@ function renderVerdict() {
   if (chosen) {
     const t = CASES[(state.key + state.chosen) % CASES.length];
     const hrs = parseFloat(chosen.played) || 0;
-    caseText = t.replace("{owned}", chosen.owned).replace("{played}", hrs + (hrs === 1 ? " hour" : " hours")).replace("{length}", chosen.length || 30);
+    const ownedKnown = !/^\s*(unknown)?\s*$/i.test(String(chosen.owned));
+    const tt = ownedKnown ? t : t.replace("Owned {owned}. ", "").replace("{played} in {owned}, so", "{played} played and no record of when you bought it, so");
+    caseText = tt.replace("{owned}", chosen.owned).replace("{played}", hrs + (hrs === 1 ? " hour" : " hours")).replace(chosen.length ? "{length}" : " It is {length} hours long.", chosen.length ? chosen.length : "");
   }
   $("chosenTitle").textContent = chosen ? chosen.title : "NOTHING LEFT";
   $("chosenCase").textContent = caseText;
@@ -247,10 +253,10 @@ function renderVerdict() {
     sparedEl.style.display = "none";
     sparedEl.textContent = "";
   }
-  $("chosenOwned").textContent = chosen ? chosen.owned : "—";
-  $("chosenPlayed").textContent = chosen ? (parseFloat(chosen.played) || 0) + "h" : "—";
-  $("chosenPrice").textContent = chosen && parseFloat(chosen.price) ? "$" + Math.round(parseFloat(chosen.price)) : "—";
-  $("chosenScore").textContent = chosen ? score(chosen) : "—";
+  $("chosenOwned").textContent = chosen ? (String(chosen.owned).trim() || "unknown") : "n/a";
+  $("chosenPlayed").textContent = chosen ? (parseFloat(chosen.played) || 0) + "h" : "n/a";
+  $("chosenPrice").textContent = chosen && parseFloat(chosen.price) ? "$" + Math.round(parseFloat(chosen.price)) : "n/a";
+  $("chosenScore").textContent = chosen ? score(chosen) : "n/a";
 }
 
 function restartToll() {
@@ -278,9 +284,13 @@ function renderClosing() {
 function renderImportUI() {
   $("importPanel").style.display = state.importOpen ? "block" : "none";
   $("btnToggleImport").textContent = state.importOpen ? "CLOSE IMPORT" : "IMPORT FROM STEAM";
+  // errors stay beside the import button, the success note sits under the buttons so it is still visible once the panel closes
   const note = $("importNote");
-  note.textContent = state.importNote;
-  note.style.color = state.importOk ? "#8f8f9e" : "#ff4d6d";
+  note.textContent = state.importOk ? "" : state.importNote;
+  note.style.color = "#ff4d6d";
+  const done = $("importDone");
+  done.textContent = state.importOk ? state.importNote : "";
+  done.style.display = state.importOk && state.importNote ? "block" : "none";
 }
 
 function reroll() {
@@ -311,7 +321,7 @@ function reap() {
     const price = parseFloat(g.price) || 0;
     const grave = state.graveyard.concat([{
       title: g.title,
-      note: "reaped after " + g.owned + (price ? " · $" + Math.round(price) : "")
+      note: (/^\s*(unknown)?\s*$/i.test(String(g.owned)) ? "reaped" : "reaped after " + g.owned) + (price ? " · $" + Math.round(price) : "")
     }]).slice(-8);
     state.graveyard = grave;
     state.reaped += 1;
@@ -351,14 +361,14 @@ function runImport() {
       // GetOwnedGames has no purchase date (rtime_last_played is the last session), so owned stays unknown.
       parsed = games.map(g => {
         const hrs = Math.round(((g.playtime_forever || 0) / 60) * 10) / 10;
-        return { title: g.name || ("App " + g.appid), owned: "unknown", played: hrs, length: 30, price: 0 };
+        return { title: g.name || ("App " + g.appid), owned: "unknown", played: hrs, length: 0, price: 0 };
       }).filter(g => g.played <= 20);
     } catch (e) { state.importNote = "That isn't valid JSON, so copy the whole page."; state.importOk = false; renderImportUI(); return; }
   } else {
     parsed = raw.split(/\n+/).map(line => {
       const p = line.split(",").map(x => x.trim());
       if (!p[0]) return null;
-      return { title: p[0], owned: p[1] || "1y", played: parseFloat(p[2]) || 0, length: parseFloat(p[3]) || 30, price: parseFloat(p[4]) || 0 };
+      return { title: p[0], owned: p[1] || "unknown", played: parseFloat(p[2]) || 0, length: parseFloat(p[3]) || 0, price: parseFloat(p[4]) || 0 };
     }).filter(Boolean);
   }
   if (!parsed.length) { state.importNote = "Nothing importable found."; state.importOk = false; renderImportUI(); return; }
@@ -392,19 +402,25 @@ $("rows").addEventListener("click", e => {
   if (!btn) return;
   const i = parseInt(btn.getAttribute("data-remove"), 10);
   state.items = state.items.filter((g, j) => j !== i);
+  state.importNote = "";
+  renderImportUI();
   renderRows();
   renderStats();
   reroll();
 });
 
 $("btnAdd").addEventListener("click", () => {
-  state.items.push({ title: "Something you bought on sale", owned: "1y", played: 0, length: 30, price: 0 });
+  state.items.push({ title: "Something you bought on sale", owned: "unknown", played: 0, length: 0, price: 0 });
+  state.importNote = "";
+  renderImportUI();
   renderRows();
   renderStats();
 });
 
 $("btnDemo").addEventListener("click", () => {
   state.items = DEMO.map(d => Object.assign({}, d));
+  state.importNote = "";
+  renderImportUI();
   renderRows();
   renderStats();
   reroll();
