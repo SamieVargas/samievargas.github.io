@@ -13,7 +13,7 @@
 // from guideline-assist's evals/results/assist-2026-09-24.json (Sonnet 5,
 // arm A, 258 of 349 action points).
 export const HERO_LOG = {
-  head: 'evals · last run 24 Sep 2026',
+  head: 'evals · runs from 21 to 24 Sep 2026',
   rows: [
     { p: 'field_disc', k: 'golden transcripts', v: '8/8 pass', tone: 'ok' },
     { p: 'field_disc', k: 'escalation recall · precision', v: '1.00 · 1.00', tone: 'ok' },
@@ -191,14 +191,16 @@ export const BD_TUNING = {
 
 // The Instacart dbt DAG: [x, y, tier, delay in seconds, text]. Tier hues
 // follow the style guide: source 60, staging 200, intermediate 145, marts 330.
+// Lineage as in assets/instacart-dbt/dag_01_full_lineage.png: one join, and
+// fct_orders is a mart, fed by the join and stg_orders, feeding dim_users.
 export const DAG = {
   head: 'Instacart · dbt on BigQuery · sources through marts · 35 tests passing',
   tests: 35,
   hues: { src: 60, stg: 200, int: 145, mart: 330 },
   bands: [['0%', '21%', 60, 0], ['23%', '26%', 200, 0.3], ['50%', '29%', 145, 1.0], ['80%', '20%', 330, 1.5]],
-  nodes: [['2%', '6%', 'lab', 0, 'Source'], ['2%', '79%', 'src', 0.05, 'instacart.orders'], ['25%', '6%', 'lab', 0.3, 'Staging · 5 models'], ['25%', '14%', 'stg', 0.35, 'stg_order_products'], ['25%', '29%', 'stg', 0.41, 'stg_products'], ['25%', '44%', 'stg', 0.47, 'stg_aisles'], ['25%', '59%', 'stg', 0.53, 'stg_departments'], ['25%', '79%', 'stg', 0.59, 'stg_orders'], ['52%', '24%', 'lab', 1.0, 'Intermediate'], ['52%', '32%', 'int', 1.05, 'int_order_products_joined'], ['52%', '79%', 'int', 1.12, 'fct_orders'], ['82%', '24%', 'lab', 1.5, 'Marts'], ['82%', '32%', 'mart', 1.55, 'dim_products'], ['82%', '79%', 'mart', 1.62, 'dim_users']],
+  nodes: [['2%', '6%', 'lab', 0, 'Source'], ['2%', '79%', 'src', 0.05, 'instacart.orders'], ['25%', '6%', 'lab', 0.3, 'Staging · 5 models'], ['25%', '14%', 'stg', 0.35, 'stg_order_products'], ['25%', '29%', 'stg', 0.41, 'stg_products'], ['25%', '44%', 'stg', 0.47, 'stg_aisles'], ['25%', '59%', 'stg', 0.53, 'stg_departments'], ['25%', '79%', 'stg', 0.59, 'stg_orders'], ['52%', '24%', 'lab', 1.0, 'Intermediate'], ['52%', '32%', 'int', 1.05, 'int_order_products_joined'], ['82%', '24%', 'lab', 1.5, 'Marts'], ['82%', '32%', 'mart', 1.55, 'dim_products'], ['82%', '56%', 'mart', 1.6, 'fct_orders'], ['82%', '79%', 'mart', 1.66, 'dim_users']],
   // [x1, y1, x2, y2, stage, hue]
-  edges: [[11.5, 82, 24, 82, 0, 60], [36, 17, 51, 36, 1, 200], [36, 32, 51, 36, 1, 200], [36, 47, 51, 36, 1, 200], [36, 62, 51, 36, 1, 200], [36, 82, 51, 82, 1, 200], [64.5, 36, 81, 36, 2, 145], [62, 41, 52.5, 77, 2, 145], [58.5, 82, 81, 82, 2, 145]],
+  edges: [[11.5, 82, 24, 82, 0, 60], [36, 17, 51, 36, 1, 200], [36, 32, 51, 36, 1, 200], [36, 47, 51, 36, 1, 200], [36, 62, 51, 36, 1, 200], [36, 82, 81, 59, 1, 200], [64.5, 36, 81, 36, 2, 145], [64.5, 38, 81, 59, 2, 145], [85, 63, 85, 78, 2, 330]],
 };
 // Reorder rate: pooled 0.60, new 0.221, veteran 0.670 (instacart README).
 export const REORDER = { pooled: 0.60, fresh: 0.221, veteran: 0.670 };
@@ -374,7 +376,7 @@ const RESULTS = {
     // ATX: the pest-sighting post and "where I eat" on this page; 21,160 records,
     // 84 brands, folium; Kaggle-hosted. "What still breaks" is survivorship in
     // the drift line: point 15 only averages venues inspected fifteen times.
-    atx:       ['Anecdotes about where I eat, and one pest-sighting post', '21,160 records through the Socrata API, 84 brands, a folium choropleth', 'Nothing, it is a Kaggle notebook and static images on this page', 'Only venues inspected fifteen times reach the end of the drift line, so part of the drift may be which places stay open'],
+    atx:       ['Anecdotes about where I eat, and one pest-sighting post', '21,160 records through the Socrata API, 84 brands, a folium choropleth', 'Nothing, it is a Kaggle notebook, and the chart on this page is redrawn from it', 'Only venues inspected fifteen times reach the end of the drift line, so part of the drift may be which places stay open'],
   },
 };
 
