@@ -1,9 +1,19 @@
 {
-  "generated": "2026-10-03T15:54:20Z",
+  "generated": "2026-10-03T17:30:42Z",
   "repo": "SamieVargas/samievargas.github.io",
   "first": "2026-05-20T20:37:01-05:00",
-  "total": 341,
+  "total": 344,
   "commits": [
+    {
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "date": "2026-10-03T17:13:25Z",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
+    },
+    {
+      "sha": "971b30b353cde8cc037e7b02afc6dd8c3edcd92d",
+      "date": "2026-10-03T17:06:37Z",
+      "message": "Polish the 15 arcade games and retake their screenshots as WebP"
+    },
     {
       "sha": "baab34d236ff689964e524ba2429983411a4c58d",
       "date": "2026-10-03T15:49:18Z",
@@ -43,22 +53,12 @@
       "sha": "e541778b7566ac26d1f1fbbd5523e45da5c0652d",
       "date": "2026-10-03T14:53:43Z",
       "message": "Fix what the facts sweep found on the pages"
-    },
-    {
-      "sha": "f405a9c3ff66ef332b6d76903abbea933b6ddb3a",
-      "date": "2026-10-03T02:25:16Z",
-      "message": "Treat the Field discovery and Brain Dump prices as confirmed"
-    },
-    {
-      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
-      "date": "2026-10-02T21:22:52-05:00",
-      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     }
   ],
   "weeks": [
     44,
-    25,
-    102,
+    29,
+    98,
     13,
     0,
     3,
@@ -75,71 +75,71 @@
     15,
     0,
     75,
-    22
+    25
   ],
   "pages": [
     {
       "file": "index.html",
       "label": "Work",
-      "date": "2026-10-03T15:40:50Z",
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     },
     {
       "file": "life.html",
       "label": "Life",
-      "date": "2026-10-03T15:40:50Z",
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     },
     {
       "file": "resume.html",
       "label": "Résumé",
-      "date": "2026-10-03T15:40:50Z",
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     },
     {
       "file": "pixels/index.html",
       "label": "Pixels replay",
-      "date": "2026-10-03T15:40:50Z",
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     },
     {
       "file": "assist/index.html",
       "label": "Assist replay",
-      "date": "2026-10-03T15:40:50Z",
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     },
     {
       "file": "apps/index.html",
       "label": "Arcade",
-      "date": "2026-10-03T15:40:50Z",
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     },
     {
       "file": "raccoon/index.html",
       "label": "Raccoon",
-      "date": "2026-10-03T15:48:02Z",
-      "sha": "035108e5382483d87c89c331f9ff13aeb9974462",
-      "message": "Move the last six pages to ?v=20261003c"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     },
     {
       "file": "toolkit.html",
       "label": "Toolkit",
-      "date": "2026-10-03T15:40:50Z",
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     },
     {
       "file": "404.html",
       "label": "404",
-      "date": "2026-10-03T15:40:50Z",
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
+      "date": "2026-10-03T17:13:25Z",
+      "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+      "message": "Apply the verified optimization audit and point /apps at the WebP screenshots"
     }
   ],
   "notes": [
@@ -193,7 +193,7 @@
     }
   ],
   "resume": {
-    "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-    "date": "2026-10-03T15:40:50Z"
+    "sha": "6fed2fb41ea52972be3d6ad50e70d784ef82b24e",
+    "date": "2026-10-03T17:13:25Z"
   }
 }
