@@ -1,9 +1,14 @@
 {
-  "generated": "2026-10-03T01:45:04Z",
+  "generated": "2026-10-03T02:23:01Z",
   "repo": "SamieVargas/samievargas.github.io",
   "first": "2026-05-20T20:37:01-05:00",
-  "total": 321,
+  "total": 322,
   "commits": [
+    {
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "date": "2026-10-02T21:22:52-05:00",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
+    },
     {
       "sha": "3ed3062640625de261fe89a2050099bafc73d390",
       "date": "2026-10-02T20:44:55-05:00",
@@ -48,18 +53,13 @@
       "sha": "ba365156883dc9d65b7f1276de5c2c11fc583db1",
       "date": "2026-09-26T01:00:11Z",
       "message": "Rewrite the site copy for readers outside AI, and split the Christie shelf by series"
-    },
-    {
-      "sha": "47b592cc4cfcdf7993c23d8025e0d6534b090a70",
-      "date": "2026-09-26T01:00:03Z",
-      "message": "Lock every number in FACTS.md and point CLAUDE.md at it"
     }
   ],
   "weeks": [
     35,
     22,
-    113,
-    14,
+    114,
+    13,
     0,
     3,
     0,
@@ -75,50 +75,50 @@
     15,
     0,
     75,
-    2
+    3
   ],
   "pages": [
     {
       "file": "index.html",
       "label": "Work",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-02T21:22:52-05:00",
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     },
     {
       "file": "life.html",
       "label": "Life",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-02T21:22:52-05:00",
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     },
     {
       "file": "resume.html",
       "label": "Résumé",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-02T21:22:52-05:00",
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     },
     {
       "file": "pixels/index.html",
       "label": "Pixels replay",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-02T21:22:52-05:00",
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     },
     {
       "file": "assist/index.html",
       "label": "Assist replay",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-02T21:22:52-05:00",
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     },
     {
       "file": "apps/index.html",
       "label": "Arcade",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-02T21:22:52-05:00",
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     },
     {
       "file": "raccoon/index.html",
@@ -130,16 +130,16 @@
     {
       "file": "toolkit.html",
       "label": "Toolkit",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-02T21:22:52-05:00",
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     },
     {
       "file": "404.html",
       "label": "404",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-02T21:22:52-05:00",
+      "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+      "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
     }
   ],
   "notes": [
@@ -193,7 +193,7 @@
     }
   ],
   "resume": {
-    "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-    "date": "2026-10-02T20:44:55-05:00"
+    "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
+    "date": "2026-10-02T21:22:52-05:00"
   }
 }
