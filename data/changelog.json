@@ -1,9 +1,29 @@
 {
-  "generated": "2026-10-03T15:41:22Z",
+  "generated": "2026-10-03T15:54:20Z",
   "repo": "SamieVargas/samievargas.github.io",
   "first": "2026-05-20T20:37:01-05:00",
-  "total": 336,
+  "total": 341,
   "commits": [
+    {
+      "sha": "baab34d236ff689964e524ba2429983411a4c58d",
+      "date": "2026-10-03T15:49:18Z",
+      "message": "Say what Same Name actually shows"
+    },
+    {
+      "sha": "035108e5382483d87c89c331f9ff13aeb9974462",
+      "date": "2026-10-03T15:48:02Z",
+      "message": "Move the last six pages to ?v=20261003c"
+    },
+    {
+      "sha": "ca9c9e2ee5be84d185c6d238b17d142851ff8251",
+      "date": "2026-10-03T15:47:35Z",
+      "message": "Set the raccoon page's body battery average to 12.1/100"
+    },
+    {
+      "sha": "5ddf3335268bff9ed63dd312719bac31ddabe9b3",
+      "date": "2026-10-03T15:47:27Z",
+      "message": "Fix the bugs the QC found in the arcade games and /raccoon"
+    },
     {
       "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
       "date": "2026-10-03T15:40:50Z",
@@ -33,26 +53,6 @@
       "sha": "a15db0416aabb1682d6818e5e082879deea8c232",
       "date": "2026-10-02T21:22:52-05:00",
       "message": "QC follow-up: FACTS decisions, verified certificates, name-only identity, résumé PDF and image cleanup (#52)"
-    },
-    {
-      "sha": "aaae69f3e8f86ae77b56b9745b7297091790a4db",
-      "date": "2026-10-03T02:22:28Z",
-      "message": "Bump ?v= to 20261003b for the content.js and arcade.js changes"
-    },
-    {
-      "sha": "f345f0c9d5d4c4445fc1ce72ecd475e0f92c1d12",
-      "date": "2026-10-03T02:19:41Z",
-      "message": "Verify the certificates, drop PMP, fix the Team Leader title and two arcade hooks"
-    },
-    {
-      "sha": "689d7b28dc4dc1b10259746c74aaa403ff463aef",
-      "date": "2026-10-03T02:08:49Z",
-      "message": "Lock the rest of the site's facts in FACTS.md and list what needs checking"
-    },
-    {
-      "sha": "edc90dab929847b10cf2c6f7741de1635c513198",
-      "date": "2026-10-03T02:02:21Z",
-      "message": "Apply the QC decisions: FACTS rows first, name-only identity, résumé PDF, image cleanup"
     }
   ],
   "weeks": [
@@ -75,7 +75,7 @@
     15,
     0,
     75,
-    17
+    22
   ],
   "pages": [
     {
@@ -123,9 +123,9 @@
     {
       "file": "raccoon/index.html",
       "label": "Raccoon",
-      "date": "2026-10-02T20:44:55-05:00",
-      "sha": "3ed3062640625de261fe89a2050099bafc73d390",
-      "message": "QC pass: phone layout, a few copy slips, sitemap and stale README cost (#51)"
+      "date": "2026-10-03T15:48:02Z",
+      "sha": "035108e5382483d87c89c331f9ff13aeb9974462",
+      "message": "Move the last six pages to ?v=20261003c"
     },
     {
       "file": "toolkit.html",
