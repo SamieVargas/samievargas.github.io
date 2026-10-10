@@ -71,6 +71,7 @@ index.html           -- the work page: hero and eval log, the five-pattern spine
 life.html            -- /life, with the notes at /life#notes
 pixels/              -- /pixels, the recorded Life in Pixels runs
 assist/              -- /assist, the recorded Guideline Assist chats and QA
+redirects/           -- the short-link Worker for /linkedin, /github and /kaggle, deployed with wrangler
 design/
   samie-3a-style.md  -- the 3a style guide every page follows
 apps/                -- the arcade index plus fifteen self-contained apps
