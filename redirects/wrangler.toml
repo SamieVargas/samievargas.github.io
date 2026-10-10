@@ -1,0 +1,9 @@
+name = "samievargas-redirects"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+routes = [
+  { pattern = "samievargas.com/linkedin*", zone_name = "samievargas.com" },
+  { pattern = "samievargas.com/github*", zone_name = "samievargas.com" },
+  { pattern = "samievargas.com/kaggle*", zone_name = "samievargas.com" },
+]
