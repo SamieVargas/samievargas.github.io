@@ -250,7 +250,7 @@ export const OFF_CLOCK = [
   { name: 'Notes', line: 'What the data I live in keeps telling me.', cta: 'Read four →', href: '/life#notes' },
 ];
 
-export const CONTACT_CMD = ["SELECT * FROM conversations WHERE topic = 'ai'", 'dbt run --select samie.availability', 'mail sammisnv@gmail.com'];
+export const CONTACT_CMD = ["SELECT * FROM conversations WHERE topic = 'ai'", 'dbt run --select samie.availability', 'mail me@samievargas.com'];
 
 const ROLES = [
   { title: 'Senior Manager, Service', period: 'Oct 2023 – present', meta: 'People manager · Senior Team Leader until the org flattened · $14M+ book · ~$3.5M quarterly target', bullets: [
@@ -379,7 +379,7 @@ const RESULTS = {
 };
 
 const CONTACT_LINKS = [
-  { label: 'Email', value: 'sammisnv@gmail.com', href: 'mailto:sammisnv@gmail.com' },
+  { label: 'Email', value: 'me@samievargas.com', href: 'mailto:me@samievargas.com' },
   { label: 'LinkedIn', value: 'linkedin.com/in/samievargas12', href: 'https://www.linkedin.com/in/samievargas12/' },
   { label: 'GitHub', value: 'github.com/SamieVargas', href: 'https://github.com/SamieVargas' },
   { label: 'Kaggle', value: 'kaggle.com/samievargas', href: 'https://www.kaggle.com/samievargas' },

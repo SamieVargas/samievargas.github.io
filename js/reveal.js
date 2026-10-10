@@ -107,7 +107,7 @@ export function typeText(el, text, { cps = 40, delay = 0, onChar } = {}) {
 
 // Copy the email on every [data-copy-email] button; the label flips to
 // "Copied ✓" for 1.6s.
-export function wireCopyEmail(email = 'sammisnv@gmail.com') {
+export function wireCopyEmail(email = 'me@samievargas.com') {
   const btns = $$('[data-copy-email]');
   btns.forEach((b) => { b.dataset.label = b.textContent; });
   let timer;
