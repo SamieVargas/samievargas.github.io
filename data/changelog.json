@@ -1,9 +1,14 @@
 {
-  "generated": "2026-10-10T17:32:45Z",
+  "generated": "2026-10-10T17:45:47Z",
   "repo": "SamieVargas/samievargas.github.io",
   "first": "2026-05-20T20:37:01-05:00",
-  "total": 349,
+  "total": 351,
   "commits": [
+    {
+      "sha": "e7580ea1290077b7f8599f2ee9aad763f36940a0",
+      "date": "2026-10-10T17:43:25Z",
+      "message": "Add Worker for /linkedin, /github and /kaggle redirects"
+    },
     {
       "sha": "f9af10524a753a5d82c3fa5126d38e85b6b9244c",
       "date": "2026-10-10T17:21:58Z",
@@ -48,16 +53,11 @@
       "sha": "5ddf3335268bff9ed63dd312719bac31ddabe9b3",
       "date": "2026-10-03T15:47:27Z",
       "message": "Fix the bugs the QC found in the arcade games and /raccoon"
-    },
-    {
-      "sha": "f5b004eb8f7f5b8edc198f5de44522ae1d1ea401",
-      "date": "2026-10-03T15:40:50Z",
-      "message": "Bump ?v= to 20261003c for this PR's content.js changes"
     }
   ],
   "weeks": [
-    29,
-    98,
+    35,
+    92,
     13,
     0,
     3,
@@ -75,7 +75,7 @@
     0,
     75,
     25,
-    5
+    7
   ],
   "pages": [
     {
