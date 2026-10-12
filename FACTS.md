@@ -50,7 +50,7 @@ This file is the source of truth for every number, date and version that appears
 | 2022 | Original business-unit knowledge base built during the Team Leader role and rolled out to about 150 people (self-reported) | resume.html, content.js ROLES |
 | Sep 2026 | Claude pilot Phase 1 with a 60-person team, through September | resume.html |
 | Nov 2026 | Claude pilot Phase 2, added after Phase 1 showed mid-market and growth accounts apply answers and SOPs differently, through November | resume.html |
-| After Phase 2 | Planned rollout to four more pods (about 240 people), gated on no increase in back-and-forth against the paired baseline; the kickoff date is UNSOURCED (see Needs verification) | resume.html |
+| Jan 2027 | Planned rollout to four more pods (about 240 people), after Phase 2 and gated on no increase in back-and-forth against the paired baseline | resume.html |
 | 24 Apr – 10 May 2026 | Raccoon window, 17 days (found 29 Apr, removed 3 May); 23 Apr is the last reading before it started (body battery 23, sleep 93, HRV 47 ms), not the baseline, which on the page is sleep 81, body battery 20/100 and HRV 38 ms | raccoon/index.html, content.js RACCOON_LIFE |
 
 ## Résumé facts
@@ -63,7 +63,7 @@ This file is the source of truth for every number, date and version that appears
 | Team | 5 client-facing managers (between 5 and 10 per quarter) |
 | Knowledge base | 2026 rebuild of the original knowledge base for Claude over a ~110-document library; cut an average of three back-and-forth turns; accurate on 10 of 10 simple requests |
 | Original knowledge base | built about four years ago (2022) during the Team Leader role for the business unit and rolled out to about 150 people (self-reported) |
-| Claude pilot | two phases: Phase 1 with a 60-person team through September 2026, Phase 2 through November 2026 to cover how answers and SOPs are applied differently for mid-market and growth accounts; rollout to four more pods (about 240 people) follows Phase 2, gated on no increase in back-and-forth against the paired baseline |
+| Claude pilot | two phases: Phase 1 with a 60-person team through September 2026, Phase 2 through November 2026 to cover how answers and SOPs are applied differently for mid-market and growth accounts; rollout to four more pods (about 240 people) in January 2027, after Phase 2, gated on no increase in back-and-forth against the paired baseline |
 | Company-wide working group | on the working group for GLG's company-wide Claude knowledge base, which came out of aligning with a senior BI lead on how teams across the company keep re-explaining the same things to Claude; no scope, headcount or outcome is stated |
 | MBR prep | 3 hours per account per month to 1 hour, across four accounts |
 | AI tooling outcome | deliverables in the first hour, 10% to ~25% in one quarter |
@@ -313,7 +313,6 @@ Each item below is on the site or in a source file the site copies from, and nee
 | Self-reported work figures | the résumé and experience rows have no document behind them in this repo | nothing to do unless a figure changes; they are listed so a copy edit cannot drift them |
 | Brain Dump "forty-seven mental tabs" | content.js credits the brain-dump README, which is not in this repo, and the line has been on the work page since 20 Sep 2026 (bfdb1e7) | confirm the brain-dump README says forty-seven, or reword without the count |
 | Fine-tuning spine caption "baselines scored · tuned run not yet" | on the spine since c01eb10 (24 Sep 2026) with no results file behind it, while the fine-tuning section captions its bars as placeholders | name the baseline results file, or change the caption to say no runs yet |
-| Claude pilot rollout kickoff | the brief said "Jan 2026 kickoff", which cannot follow a Phase 2 that ends in November 2026, so it may mean Jan 2027 for the rollout or Jan 2026 for the pilot's start; the copy states no kickoff date | Samie says which, and the date goes into the bullet and the Timeline |
 | "Copilot" in the Senior Manager bullet (work page) | the work page names Copilot among the AI tools, and the résumé's bullet and Tools line do not | Samie confirms Copilot and the résumé adds it, or the work page drops it |
 | Instacart "run on free trials, so nothing when I run it" | content.js cites the Instacart README, which is not in this repo, and assets/instacart-dbt/instacartREADME.md is a one-line stub | confirm the free trials and the $0 in the Instacart README, or reword the cost line |
 | Life in Pixels "the config and the two tool schemas are in the repo" | /pixels section 03 says it, and neither this repo's README.md nor any file here names the config or the schemas, and the pixels-rag README is the source under rule 9 | confirm both in the pixels-rag README, or drop the clause from /pixels |
@@ -382,3 +381,4 @@ When a row changes, move the old value here with the date it stopped being curre
 | 3 Oct 2026 | Streak Autopsy lifespans and case numbers | the longest run in the whole log, and case numbers capped by the 14-record file | the case panel, certificate and stats use the run ending at the last logged day, and case numbers keep counting past 14 through a saved counter |
 | 12 Oct 2026 | Knowledge base (résumé and work page) | "Built" / "Designed" a Claude-ready knowledge base | it is a 2026 rebuild of the original knowledge base Samie built in 2022 and rolled out to about 150 people, so the Senior Manager bullet says rebuilt and the Team Leader role gains the original |
 | 12 Oct 2026 | Claude pilot | one pilot with a 60-person team through September 2026 and rollout to four more pods (about 240 people) in October | Phase 1 surfaced mid-market and growth differences in how answers and SOPs are applied, so a Phase 2 through November 2026 was added and the rollout follows it |
+| 12 Oct 2026 | Claude pilot rollout kickoff | no date, the brief's "Jan 2026 kickoff" being unclear | Samie confirmed January 2027, after Phase 2 ends in November 2026 |
