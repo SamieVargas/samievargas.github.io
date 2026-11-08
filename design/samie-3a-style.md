@@ -16,8 +16,8 @@ A lab-notebook layout set in an editorial serif, with one green accent and evide
 | sunk | `#f3f2ee` / `#eeece6` | wells, empty bar tracks |
 | ink | `#161513` | headings, body on light, dark panels |
 | body | `#3a3833` | paragraph text |
-| muted | `#55534c` · `#77746b` | secondary text, mono meta |
-| faint | `#99968c` | captions only, never meaning-carrying |
+| muted | `#55534c` · `#6b6860` | secondary text, mono meta (5.3:1 on paper, 4.7:1 on the darkest well) |
+| faint | `#75726a` | captions, axis ticks and micro-labels, the lightest grey text allowed (4.6:1 on paper, passes WCAG AA) |
 | rule | `#e4e2dc` (hairline) · `#cfccc4` (control border) · `#161513` (section rule) | |
 | accent | `#1a6b5a` | links, eyebrows, primary buttons, the one highlighted series |
 | accent on dark | `#8fd6bf` | same roles inside dark panels |
@@ -25,7 +25,9 @@ A lab-notebook layout set in an editorial serif, with one green accent and evide
 | alert | `oklch(0.6 0.16 28)` | the thing that still breaks, failures, "more violations" |
 | dark panel | `#161513` with text `#e9e7e1`, secondary `#b9b6ad` / `#8b887e`, rules `#2e2c28` / `#3a3731` | terminals, hand-off cards, detail panels |
 
-Category colors (data types, pattern kinds, dbt tiers): same lightness and chroma, vary hue only, e.g. `oklch(0.55 0.1 H)` for strokes and `oklch(0.965 0.025 H)` for fills, H from {60, 145, 200, 250, 290, 330}. Never more than one saturated accent in the chrome.
+Category colors (data types, pattern kinds, dbt tiers, the five deployment patterns on the homepage): same lightness and chroma, vary hue only, e.g. `oklch(0.55 0.1 H)` for strokes, `oklch(0.52 0.1 H)` for text (at least 4.9:1 on paper) and `oklch(0.965 0.025 H)` for fills, H from {60, 145, 200, 250, 290, 330}. They colour content, such as the pattern names and numbers in the homepage index, and green stays the only accent in the chrome.
+
+Deep green `#0f3d33` (`--accent-deep`) is the one deep-green band, used for the contact section, with mint `#8fd6bf` accents and green-tinted secondary text `#cfe5dc` / `#a9cbbf` / `#8fb8aa` (all at least 5.5:1).
 
 ## Type
 - **Young Serif 400** for anything that speaks: h1 54px/1.04, h2 40px/1.08 (section) or 28–30px (sub-section), h3 22–26px, card titles 18–22px, big numbers 28–52px. Letter-spacing -.01em at 40px and above.
@@ -41,6 +43,13 @@ Category colors (data types, pattern kinds, dbt tiers): same lightness and chrom
 - Four-up sets (results strips, step frames) are built as two pairs so they wrap 4 → 2+2 → 1, never 3+1.
 - 1px-gap grids on a colored background are only allowed when every cell fills its row; otherwise put borders on the cells.
 - Dark bands (a whole section on `#161513`) at most once or twice per page.
+
+## Signature
+Four marks, all in the accent, used together and nowhere else in the chrome.
+- **A · green period**: the name is set `Samie Vargas.` with the period in accent (`.nav__dot`), echoing the dot in samievargas.com. Use the same treatment when the domain is set as a wordmark.
+- **C · section notch**: every section's top rule starts with a 48px accent notch (4px tall on a 2px rule, 3px on a 1px rule), drawn as `::before` on the section.
+- **D · sv tile**: lower-case `sv` in Young Serif, paper-coloured on an accent square with square corners. It's the favicon, the app icons and the social or résumé avatar.
+- **F · title tick**: a 34px by 3px accent tick under section headlines (`.sec .h2`), 14px below the last line.
 
 ## Components
 - **Eyebrow**: Geist Mono 12px in accent, `Pattern · Project · kind` separated by ` · `.
