@@ -14,8 +14,8 @@
   --ink:     #161513;  /* headings, body on light, dark panels */
   --body:    #3a3833;  /* paragraph text */
   --muted:   #55534c;  /* secondary text */
-  --meta:    #77746b;  /* mono meta */
-  --faint:   #99968c;  /* captions only, never meaning-carrying */
+  --meta:    #6b6860;  /* mono meta, 5.3:1 on paper */
+  --faint:   #75726a;  /* captions and axis ticks, 4.6:1 on paper */
   --rule:    #e4e2dc;  /* hairlines */
   --control: #cfccc4;  /* control borders */
   --outline: #bdbab1;  /* neutral button outline */

@@ -16,8 +16,8 @@ A lab-notebook layout set in an editorial serif, with one green accent and evide
 | sunk | `#f3f2ee` / `#eeece6` | wells, empty bar tracks |
 | ink | `#161513` | headings, body on light, dark panels |
 | body | `#3a3833` | paragraph text |
-| muted | `#55534c` · `#77746b` | secondary text, mono meta |
-| faint | `#99968c` | captions only, never meaning-carrying |
+| muted | `#55534c` · `#6b6860` | secondary text, mono meta (5.3:1 on paper, 4.7:1 on the darkest well) |
+| faint | `#75726a` | captions, axis ticks and micro-labels, the lightest grey text allowed (4.6:1 on paper, passes WCAG AA) |
 | rule | `#e4e2dc` (hairline) · `#cfccc4` (control border) · `#161513` (section rule) | |
 | accent | `#1a6b5a` | links, eyebrows, primary buttons, the one highlighted series |
 | accent on dark | `#8fd6bf` | same roles inside dark panels |
