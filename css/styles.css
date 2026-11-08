@@ -24,6 +24,7 @@
   --accent:      #1a6b5a;
   --accent-dark: #8fd6bf;  /* accent inside dark panels */
   --accent-tint: #e6f1ec;  /* In plain terms, selected tier, outline-button fill */
+  --accent-deep: #0f3d33;  /* the one deep-green band: contact */
   --alert:       oklch(0.6 0.16 28);
   --alert-ink:   oklch(0.55 0.15 28);
   --alert-dark:  #f08a7a;
@@ -291,6 +292,7 @@ i.d { display: block; font-style: normal; }  /* data marks drawn as <i> */
 
 /* Hero */
 .hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 48px; padding: 80px 0 88px; align-items: center; }
+.h1__em { font-style: normal; color: var(--accent); }
 .hero__copy { display: flex; flex-direction: column; gap: 22px; }
 .hero__actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .hero__log { min-height: 330px; }
@@ -304,6 +306,17 @@ i.d { display: block; font-style: normal; }  /* data marks drawn as <i> */
 .spine__rows { display: flex; flex-direction: column; }
 .spine__row { display: grid; grid-template-columns: minmax(100px, 150px) minmax(0, 1.2fr) minmax(0, 1.3fr) minmax(0, .9fr); gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--rule); align-items: center; }
 .spine__label { font: 400 20px var(--serif); }
+/* Each pattern carries its own category hue (style guide: oklch .52 .1 H,
+   at least 4.9:1 on paper), so the index reads in colour while green stays
+   the chrome. */
+.spine__rows { counter-reset: sp; }
+.spine__row:not(.spine__row--pending) .spine__label { color: var(--hue); }
+.spine__row { --hue: oklch(0.52 0.1 60); }
+.spine__row:nth-child(5n+2) { --hue: oklch(0.52 0.1 250); }
+.spine__row:nth-child(5n+3) { --hue: oklch(0.52 0.1 290); }
+.spine__row:nth-child(5n+4) { --hue: oklch(0.52 0.1 330); }
+.spine__row:nth-child(5n+5) { --hue: oklch(0.52 0.1 200); }
+.spine__label::before { counter-increment: sp; content: counter(sp, decimal-leading-zero); display: block; width: fit-content; margin-bottom: 6px; padding-bottom: 4px; font: 500 11px/1.2 var(--mono); letter-spacing: .08em; color: var(--hue); background: linear-gradient(var(--hue), var(--hue)) 0 100% / 100% 2px no-repeat; }
 .spine__line { font-size: 14.5px; line-height: 1.5; }
 .spine__plain { display: block; width: fit-content; max-width: 100%; margin-top: 8px; font-size: 13px; line-height: 1.45; color: var(--ink); background: var(--accent-tint); padding: 6px 10px; }
 .spine__viz { display: flex; flex-direction: column; gap: 8px; }
@@ -580,7 +593,9 @@ i.d { display: block; font-style: normal; }  /* data marks drawn as <i> */
 .oc__door:hover strong { color: var(--accent); }
 
 /* Contact */
-.contact { background: var(--dark); color: var(--dark-text); }
+.contact { background: var(--accent-deep); color: var(--dark-text); --dark-body: #cfe5dc; --dark-muted: #a9cbbf; --dark-dim: #8fb8aa; --dark-rule: #245a4c; }
+.contact__mark { max-width: var(--max); margin: 0 auto; padding: 8px var(--edge) 28px; font: 400 clamp(32px, 9.6vw, 120px)/1 var(--serif); letter-spacing: -.02em; color: var(--paper); white-space: nowrap; overflow: hidden; }
+.contact__mark span { color: var(--accent-dark); }
 .contact__in { max-width: var(--max); margin: 0 auto; padding: 80px var(--edge) 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px; }
 .contact__h { font: 400 54px/1 var(--serif); }
 .contact__h em { color: var(--accent-dark); }

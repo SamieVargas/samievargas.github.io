@@ -25,7 +25,9 @@ A lab-notebook layout set in an editorial serif, with one green accent and evide
 | alert | `oklch(0.6 0.16 28)` | the thing that still breaks, failures, "more violations" |
 | dark panel | `#161513` with text `#e9e7e1`, secondary `#b9b6ad` / `#8b887e`, rules `#2e2c28` / `#3a3731` | terminals, hand-off cards, detail panels |
 
-Category colors (data types, pattern kinds, dbt tiers): same lightness and chroma, vary hue only, e.g. `oklch(0.55 0.1 H)` for strokes and `oklch(0.965 0.025 H)` for fills, H from {60, 145, 200, 250, 290, 330}. Never more than one saturated accent in the chrome.
+Category colors (data types, pattern kinds, dbt tiers, the five deployment patterns on the homepage): same lightness and chroma, vary hue only, e.g. `oklch(0.55 0.1 H)` for strokes, `oklch(0.52 0.1 H)` for text (at least 4.9:1 on paper) and `oklch(0.965 0.025 H)` for fills, H from {60, 145, 200, 250, 290, 330}. They colour content, such as the pattern names and numbers in the homepage index, and green stays the only accent in the chrome.
+
+Deep green `#0f3d33` (`--accent-deep`) is the one deep-green band, used for the contact section, with mint `#8fd6bf` accents and green-tinted secondary text `#cfe5dc` / `#a9cbbf` / `#8fb8aa` (all at least 5.5:1).
 
 ## Type
 - **Young Serif 400** for anything that speaks: h1 54px/1.04, h2 40px/1.08 (section) or 28–30px (sub-section), h3 22–26px, card titles 18–22px, big numbers 28–52px. Letter-spacing -.01em at 40px and above.
