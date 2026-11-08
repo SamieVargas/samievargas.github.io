@@ -42,6 +42,13 @@ Category colors (data types, pattern kinds, dbt tiers): same lightness and chrom
 - 1px-gap grids on a colored background are only allowed when every cell fills its row; otherwise put borders on the cells.
 - Dark bands (a whole section on `#161513`) at most once or twice per page.
 
+## Signature
+Four marks, all in the accent, used together and nowhere else in the chrome.
+- **A · green period**: the name is set `Samie Vargas.` with the period in accent (`.nav__dot`), echoing the dot in samievargas.com. Use the same treatment when the domain is set as a wordmark.
+- **C · section notch**: every section's top rule starts with a 48px accent notch (4px tall on a 2px rule, 3px on a 1px rule), drawn as `::before` on the section.
+- **D · sv tile**: lower-case `sv` in Young Serif, paper-coloured on an accent square with square corners. It's the favicon, the app icons and the social or résumé avatar.
+- **F · title tick**: a 34px by 3px accent tick under section headlines (`.sec .h2`), 14px below the last line.
+
 ## Components
 - **Eyebrow**: Geist Mono 12px in accent, `Pattern · Project · kind` separated by ` · `.
 - **Buttons**: primary is accent fill + white Geist Mono 12.5–13px, 44–46px tall, square corners; secondary is `1px solid accent` + accent text on accent tint, hover fills solid; neutral is `1px #bdbab1` outline. Arrows: `→` internal, `↗` external, `↓` download.

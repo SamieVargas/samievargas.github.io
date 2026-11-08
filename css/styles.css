@@ -82,6 +82,8 @@ i.d { display: block; font-style: normal; }  /* data marks drawn as <i> */
 .mono  { font-family: var(--mono); }
 .h1 { font: 400 54px/1.06 var(--serif); letter-spacing: -.01em; }
 .h2 { font: 400 40px/1.08 var(--serif); letter-spacing: -.01em; }
+/* Signature F: a short green tick under section headlines. */
+.sec .h2 { padding-bottom: 14px; background: linear-gradient(var(--accent), var(--accent)) 0 100% / 34px 3px no-repeat; }
 .h2--sub { font-size: 30px; line-height: 1.12; letter-spacing: 0; }
 .h3 { font: 400 24px/1.2 var(--serif); }
 .eyebrow { font: 400 12px/1.4 var(--mono); color: var(--accent); }
@@ -100,6 +102,13 @@ i.d { display: block; font-style: normal; }  /* data marks drawn as <i> */
 .sec--major { border-top-width: 2px; }
 .sec--tight { padding: 56px 0; }
 .sec--plain { border-top: none; }
+/* Signature C: every section rule starts with a short green notch. */
+.sec, .life-field, .notes-head, .arc-feat, .px-sec, .tk-sec { position: relative; }
+.sec::before, .life-field::before, .notes-head::before, .arc-feat::before, .px-sec::before, .tk-sec::before {
+  content: ""; position: absolute; left: 0; top: -2px; width: 48px; height: 4px; background: var(--accent);
+}
+.sec:not(.sec--major)::before { top: -1px; height: 3px; }
+.sec--plain::before { display: none; }
 .stack { display: flex; flex-direction: column; gap: 12px; }
 .stack--14 { gap: 14px; }
 .stack--18 { gap: 18px; }
@@ -121,6 +130,8 @@ i.d { display: block; font-style: normal; }  /* data marks drawn as <i> */
 .nav__in { max-width: var(--max); margin: 0 auto; padding: 16px var(--edge); display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
 .nav__name { font: 400 18px var(--serif); color: var(--ink); text-decoration: none; }
 .nav__name:hover { color: var(--accent); }
+/* Signature A: the green period from samievargas.com follows the name. */
+.nav__dot { color: var(--accent); }
 .nav__links { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; font: 400 12px var(--mono); }
 .nav__links a { color: var(--muted); text-decoration: none; }
 .nav__links a:hover { color: var(--ink); }
